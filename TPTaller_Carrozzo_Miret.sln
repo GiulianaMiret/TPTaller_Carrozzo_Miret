@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2018
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TPTaller_Carrozzo_Miret", "TPTaller_Carrozzo_Miret\TPTaller_Carrozzo_Miret.csproj", "{9FB8EEBA-2843-4AC6-AB22-A6BE88FBA8B5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{53B1862B-0AA7-47EA-A28F-C9A8783067D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFramework", "EntityFramework\EntityFramework.csproj", "{4CE120C8-D6DA-478C-9139-E77FDB8C4986}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9FB8EEBA-2843-4AC6-AB22-A6BE88FBA8B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9FB8EEBA-2843-4AC6-AB22-A6BE88FBA8B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9FB8EEBA-2843-4AC6-AB22-A6BE88FBA8B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9FB8EEBA-2843-4AC6-AB22-A6BE88FBA8B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53B1862B-0AA7-47EA-A28F-C9A8783067D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53B1862B-0AA7-47EA-A28F-C9A8783067D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53B1862B-0AA7-47EA-A28F-C9A8783067D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53B1862B-0AA7-47EA-A28F-C9A8783067D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CE120C8-D6DA-478C-9139-E77FDB8C4986}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CE120C8-D6DA-478C-9139-E77FDB8C4986}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CE120C8-D6DA-478C-9139-E77FDB8C4986}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CE120C8-D6DA-478C-9139-E77FDB8C4986}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

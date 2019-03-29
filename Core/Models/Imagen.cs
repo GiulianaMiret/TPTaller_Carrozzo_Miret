@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TPTaller_Carrozzo_Miret
+namespace Core.Models
 {
-    class Program
+    public class Imagen
     {
-        static void Main(string[] args)
-        {
-        }
+
+        public Campania Campania { get; set; }
     }
 }
