@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFramework", "EntityFramework\EntityFramework.csproj", "{4CE120C8-D6DA-478C-9139-E77FDB8C4986}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vista", "Vista\Vista.csproj", "{E3FA97F1-5593-4A31-9F80-08080947E38A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Controlador", "Controlador\Controlador.csproj", "{24D2531E-0110-4BB6-A0EA-8E73F85B8B4F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{4CE120C8-D6DA-478C-9139-E77FDB8C4986}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CE120C8-D6DA-478C-9139-E77FDB8C4986}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4CE120C8-D6DA-478C-9139-E77FDB8C4986}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3FA97F1-5593-4A31-9F80-08080947E38A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3FA97F1-5593-4A31-9F80-08080947E38A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3FA97F1-5593-4A31-9F80-08080947E38A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3FA97F1-5593-4A31-9F80-08080947E38A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24D2531E-0110-4BB6-A0EA-8E73F85B8B4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24D2531E-0110-4BB6-A0EA-8E73F85B8B4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24D2531E-0110-4BB6-A0EA-8E73F85B8B4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24D2531E-0110-4BB6-A0EA-8E73F85B8B4F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
