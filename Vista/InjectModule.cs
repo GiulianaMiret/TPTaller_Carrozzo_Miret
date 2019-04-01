@@ -15,6 +15,7 @@ namespace Vista
         {
             //Bindeamos las inyecciones de dependencias y las hacemos Singleton , es decir, una sola instancia de las variables para toda la ejecucion del programa.
             Bind<IBannerRepository>().To<BannerRepository>().InSingletonScope();
+            Bind<ICampaniaRepository>().To<CampaniaRepository>().InSingletonScope();
         }
     }
 }

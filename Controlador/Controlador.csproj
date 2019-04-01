@@ -44,7 +44,9 @@
     <Compile Include="Fachada.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\BannerRepository.cs" />
+    <Compile Include="Services\CampaniaRepository.cs" />
     <Compile Include="Services\IBannerRepository.cs" />
+    <Compile Include="Services\ICampaniaRepository.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
