@@ -46,6 +46,8 @@
     <Compile Include="Models\Imagen.cs" />
     <Compile Include="Models\RangoFecha.cs" />
     <Compile Include="Models\RangoHorario.cs" />
+    <Compile Include="Models\RSS.cs" />
+    <Compile Include="Models\TextoFijo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

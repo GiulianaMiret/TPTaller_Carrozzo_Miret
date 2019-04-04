@@ -8,6 +8,11 @@ namespace Core.Models
 {
     public class Imagen
     {
+        public string Nombre { get; set; }
+
+        public string Hash { get; set; }
+
+        public bool Estado { get; set; }
 
         public Campania Campania { get; set; }
     }

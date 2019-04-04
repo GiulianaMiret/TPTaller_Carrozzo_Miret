@@ -8,7 +8,7 @@ namespace Core.Models
 {
     public class Fuente //public abstract class
     {
-        public virtual string Valor { get; set; }
+        //public virtual string Valor { get; set; }
 
    //     public abstract bool Actualizable { get; set; };
     }
