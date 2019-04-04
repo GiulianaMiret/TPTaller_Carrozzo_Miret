@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Core.Models
 {
-    public class RSS
+    public class RSS : Fuente
     {
         public string URL { get; set; }
 

@@ -12,7 +12,21 @@ namespace EntityFramework.ModelsMap
     {
         public RangoFechaMap()
         {
-            this.ToTable("RangoFecha");
+            //this.ToTable("RangoFecha");
+
+            this.Property(p => p.FechaInicio)
+                .IsRequired();
+
+            this.Property(p => p.FechaFin)
+                .IsRequired();
+
+            this.HasMany<RangoHorario>(p => p.RangosHorarios)
+                .WithRequired(s => s.RangoFecha);
+
+            // PUEDE QUE NO TENGA UNO DE ESTOS...
+            this.HasRequired<Campania>(p => p.Campania);
+
+            this.HasRequired<Banner>(p => p.Banner);
         }
     }
 }

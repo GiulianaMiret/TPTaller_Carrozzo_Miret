@@ -8,21 +8,21 @@ using Core.Models;
 
 namespace EntityFramework.ModelsMap
 {
-    public class RangoHorarioMap : EntityTypeConfiguration<RangoHorario>
+    public class RSSMap : EntityTypeConfiguration<RSS>
     {
-        public RangoHorarioMap()
+        public RSSMap()
         {
-            //this.ToTable("RangoHorario");
-
-            this.Property(p => p.HoraInicio)
+            this.Property(p => p.URL)
                 .IsRequired();
 
-            this.Property(p => p.HoraFin)
+            this.Property(p => p.Descripcion)
                 .IsRequired();
 
-            this.HasRequired<RangoFecha>(p => p.RangoFecha);
+            this.Property(p => p.Valor)
+                .IsRequired();
 
-
+            this.Property(p => p.Codigo)
+                .IsRequired();
         }
     }
 }

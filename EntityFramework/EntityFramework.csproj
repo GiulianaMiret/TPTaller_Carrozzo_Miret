@@ -53,6 +53,8 @@
     <Compile Include="ModelsMap\ImagenMap.cs" />
     <Compile Include="ModelsMap\RangoFechaMap.cs" />
     <Compile Include="ModelsMap\RangoHorarioMap.cs" />
+    <Compile Include="ModelsMap\RSSMap.cs" />
+    <Compile Include="ModelsMap\TextoFijoMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

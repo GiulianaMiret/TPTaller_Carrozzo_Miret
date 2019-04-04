@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Core.Models
 {
-    public class TextoFijo
+    public class TextoFijo : Fuente
     {
         public string Valor { get; set; }
     }

@@ -12,7 +12,19 @@ namespace EntityFramework.ModelsMap
     {
         public ImagenMap()
         {
-            this.ToTable("Imagen");
+            //this.ToTable("Imagen");
+
+            this.Property(p => p.Nombre)
+                .HasMaxLength(50)
+                .IsRequired();
+
+            this.Property(p => p.Estado)
+                .IsRequired();
+
+            this.Property(p => p.Hash)
+                .IsRequired();
+
+            this.HasRequired<Campania>(p => p.Campania);
         }
     }
 }
