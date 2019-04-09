@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace Core.Models
 {
-    public abstract class Fuente 
+    public class Fuente
     {
-        //link de donde saque
-        //https://weblogs.asp.net/manavi/inheritance-mapping-strategies-with-entity-framework-code-first-ctp5-part-1-table-per-hierarchy-tph
+        public int Id { get; set; }
 
-        //public virtual string Valor { get; set; }
+        public string URL { get; set; }
 
-        //     public abstract bool Actualizable { get; set; };
+        public string Descripcion { get; set; }
+
+        public virtual BannerRSS BannerRSS { get; set; }
     }
 }

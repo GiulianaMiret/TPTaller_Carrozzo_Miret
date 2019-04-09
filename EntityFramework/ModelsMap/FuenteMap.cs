@@ -8,21 +8,20 @@ using Core.Models;
 
 namespace EntityFramework.ModelsMap
 {
-    public class RSSMap : EntityTypeConfiguration<RSS>
+    public class FuenteMap : EntityTypeConfiguration<Fuente>
     {
-        public RSSMap()
+        public FuenteMap()
         {
+            this.HasKey(x => x.Id);
+
             this.Property(p => p.URL)
                 .IsRequired();
 
-            this.Property(p => p.Descripcion)
+            this.Property(x => x.Descripcion)
                 .IsRequired();
 
-            this.Property(p => p.Valor)
-                .IsRequired();
-
-            this.Property(p => p.Codigo)
-                .IsRequired();
+            this.HasRequired<BannerRSS>(p => p.BannerRSS);
         }
+
     }
 }

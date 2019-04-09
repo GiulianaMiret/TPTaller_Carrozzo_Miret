@@ -8,13 +8,20 @@ namespace Core.Models
 {
     public class Campania
     {
+        public int Id { get; set; }
+
         public string Nombre { get; set; }
 
         public bool Estado { get; set; }
 
-        public ICollection<RangoFecha> RangosFechas { get; set; }
+        public virtual ICollection<Imagen> Imagenes { get; set; }
 
-        public ICollection<Imagen> Imagenes { get; set; }
+        public DateTime FechaInicio { get; set; }
 
+        public DateTime FechaFin { get; set; }
+
+        public TimeSpan HoraInicio { get; set; }
+
+        public TimeSpan HoraFin { get; set; }
     }
 }

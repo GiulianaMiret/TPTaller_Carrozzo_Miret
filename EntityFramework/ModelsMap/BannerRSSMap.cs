@@ -8,12 +8,13 @@ using Core.Models;
 
 namespace EntityFramework.ModelsMap
 {
-    public class TextoFijoMap : EntityTypeConfiguration<TextoFijo>
+    public class BannerRSSMap : EntityTypeConfiguration<BannerRSS>
     {
-        public TextoFijoMap()
+        public BannerRSSMap()
         {
-            this.Property(p => p.Valor)
-                .IsRequired();
+            
+
+            this.HasRequired<Fuente>(p => p.Fuente);
         }
     }
 }

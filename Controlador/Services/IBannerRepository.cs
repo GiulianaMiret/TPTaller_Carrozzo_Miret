@@ -9,7 +9,7 @@ namespace Controlador.Services
     /// <summary>
     /// Clase interfaz del repositorio de banner
     /// </summary>
-    public interface IBannerRepository
+    public interface IBannerRepository 
     {
     }
 }

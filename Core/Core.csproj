@@ -41,13 +41,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Banner.cs" />
+    <Compile Include="Models\BannerRSS.cs" />
+    <Compile Include="Models\BannerTextoFijo.cs" />
     <Compile Include="Models\Campania.cs" />
     <Compile Include="Models\Fuente.cs" />
     <Compile Include="Models\Imagen.cs" />
-    <Compile Include="Models\RangoFecha.cs" />
-    <Compile Include="Models\RangoHorario.cs" />
-    <Compile Include="Models\RSS.cs" />
-    <Compile Include="Models\TextoFijo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

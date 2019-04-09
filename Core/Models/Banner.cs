@@ -6,15 +6,20 @@ using System.Threading.Tasks;
 
 namespace Core.Models
 {
-    public class Banner
+    public abstract class Banner
     {
+        public int Id { get; set; }
+
         public string Nombre { get; set; }
 
         public bool Estado { get; set; }
+        
+        public DateTime FechaInicio { get; set; }
 
-        public Fuente Fuente { get; set; }
+        public DateTime FechaFin { get; set; }
 
-        public ICollection<RangoFecha> RangosFechas { get; set; }
+        public TimeSpan HoraInicio { get; set; }
 
+        public TimeSpan HoraFin { get; set; }
     }
 }

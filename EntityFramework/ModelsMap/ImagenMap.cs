@@ -12,7 +12,7 @@ namespace EntityFramework.ModelsMap
     {
         public ImagenMap()
         {
-            //this.ToTable("Imagen");
+            this.HasKey(x => x.Id);
 
             this.Property(p => p.Nombre)
                 .HasMaxLength(50)

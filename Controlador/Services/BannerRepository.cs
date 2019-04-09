@@ -14,7 +14,7 @@ namespace Controlador.Services
         // private readonly DigitalBillBoardContext context;
         // public void Insert(Banner pBanner)
         //{
-        //      context.add();
+        //      context.campanias.add();
         //}
         // public void Delete()
     }

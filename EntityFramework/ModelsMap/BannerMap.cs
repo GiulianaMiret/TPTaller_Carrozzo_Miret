@@ -12,24 +12,25 @@ namespace EntityFramework.ModelsMap
     {
         public BannerMap()
         {
-            //this.ToTable("Banner");
+            this.HasKey(x => x.Id);
 
             this.Property(p => p.Nombre)
-                .HasColumnName("Nombre")
-                .HasColumnType("string")
-                .IsRequired()
-                .HasMaxLength(50);
+                            .HasColumnName("Nombre")
+                            .HasColumnType("string")
+                            .IsRequired()
+                            .HasMaxLength(50);
 
             this.Property(p => p.Estado)
-                .HasColumnName("Estado")
-                .IsRequired();
+                            .HasColumnName("Estado")
+                            .IsRequired();
 
-            this.HasRequired<Fuente>(p => p.Fuente);
+            Map<BannerRSS>(x => x.Requires("Type")
+                                    .HasValue("R")
+                                    .HasColumnType("char")
+                                    .HasMaxLength(1));
 
-            this.HasMany<RangoFecha>(s => s.RangosFechas)
-                .WithRequired(c => c.Banner)
-                .Map(cs => cs.ToTable("BannerRangosFechas"));
-
+            Map<BannerTextoFijo>(x => x.Requires("Type")
+                                       .HasValue("T"));
 
         }
     }

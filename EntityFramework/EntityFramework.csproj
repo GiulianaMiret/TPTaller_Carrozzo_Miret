@@ -48,13 +48,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DigitalBillboardContext.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelsMap\BannerMap.cs" />
+    <Compile Include="ModelsMap\BannerRSSMap.cs" />
     <Compile Include="ModelsMap\CampaniaMap.cs" />
+    <Compile Include="ModelsMap\FuenteMap.cs" />
     <Compile Include="ModelsMap\ImagenMap.cs" />
-    <Compile Include="ModelsMap\RangoFechaMap.cs" />
-    <Compile Include="ModelsMap\RangoHorarioMap.cs" />
-    <Compile Include="ModelsMap\RSSMap.cs" />
-    <Compile Include="ModelsMap\TextoFijoMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

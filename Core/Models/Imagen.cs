@@ -8,12 +8,14 @@ namespace Core.Models
 {
     public class Imagen
     {
+        public int Id { get; set; }
+
         public string Nombre { get; set; }
 
-        public string Hash { get; set; }
+        public byte Hash { get; set; }
 
         public bool Estado { get; set; }
 
-        public Campania Campania { get; set; }
+        public virtual Campania Campania { get; set; }
     }
 }

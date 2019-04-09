@@ -18,6 +18,8 @@ namespace Vista
             //DI Injection , Ninject
             IKernel kernel = new StandardKernel(new InjectModule());
 
+            
+
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

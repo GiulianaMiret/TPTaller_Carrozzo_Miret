@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace Core.Models
 {
-    public class TextoFijo : Fuente
+    public class BannerRSS : Banner
     {
+        public int Codigo { get; set; }
+
         public string Valor { get; set; }
+
+        public virtual Fuente Fuente { get; set; }
     }
 }
