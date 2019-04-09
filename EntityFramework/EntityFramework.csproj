@@ -48,9 +48,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DigitalBillboardContext.cs" />
+    <Compile Include="Migrations\201904091548522_Inicial.cs" />
+    <Compile Include="Migrations\201904091548522_Inicial.Designer.cs">
+      <DependentUpon>201904091548522_Inicial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelsMap\BannerMap.cs" />
     <Compile Include="ModelsMap\BannerRSSMap.cs" />
+    <Compile Include="ModelsMap\BannerTextoFijoMap.cs" />
     <Compile Include="ModelsMap\CampaniaMap.cs" />
     <Compile Include="ModelsMap\FuenteMap.cs" />
     <Compile Include="ModelsMap\ImagenMap.cs" />
@@ -67,6 +72,11 @@
       <Project>{53B1862B-0AA7-47EA-A28F-C9A8783067D8}</Project>
       <Name>Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201904091548522_Inicial.resx">
+      <DependentUpon>201904091548522_Inicial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

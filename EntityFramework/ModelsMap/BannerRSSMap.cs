@@ -12,9 +12,13 @@ namespace EntityFramework.ModelsMap
     {
         public BannerRSSMap()
         {
-            
+            this.ToTable("BannerRSS");
 
-            this.HasRequired<Fuente>(p => p.Fuente);
+            this.Property(x => x.Valor).IsRequired();
+
+            this.Property(x => x.Codigo).IsRequired();
+
+            this.HasRequired<Fuente>(x => x.Fuente).WithRequiredDependent();
         }
     }
 }

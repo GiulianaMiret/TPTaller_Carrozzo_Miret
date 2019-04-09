@@ -16,22 +16,12 @@ namespace EntityFramework.ModelsMap
 
             this.Property(p => p.Nombre)
                             .HasColumnName("Nombre")
-                            .HasColumnType("string")
                             .IsRequired()
                             .HasMaxLength(50);
 
             this.Property(p => p.Estado)
                             .HasColumnName("Estado")
                             .IsRequired();
-
-            Map<BannerRSS>(x => x.Requires("Type")
-                                    .HasValue("R")
-                                    .HasColumnType("char")
-                                    .HasMaxLength(1));
-
-            Map<BannerTextoFijo>(x => x.Requires("Type")
-                                       .HasValue("T"));
-
         }
     }
 }

@@ -24,17 +24,18 @@ namespace EntityFramework
         public DigitalBillboardContext() : base("name=Default")
         {
             Database.SetInitializer<DigitalBillboardContext>(new CreateDatabaseIfNotExists<DigitalBillboardContext>());
+            this.Configuration.LazyLoadingEnabled = false;
+            this.Configuration.ProxyCreationEnabled = false;
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new CampaniaMap());
             modelBuilder.Configurations.Add(new ImagenMap());
-
             modelBuilder.Configurations.Add(new BannerMap());
             modelBuilder.Configurations.Add(new FuenteMap());
             modelBuilder.Configurations.Add(new BannerRSSMap());
-
+            modelBuilder.Configurations.Add(new BannerTextoFijoMap());
             base.OnModelCreating(modelBuilder);
         }
 

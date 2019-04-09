@@ -22,9 +22,7 @@ namespace Core.ModelsMap
                 .IsRequired();
 
             this.HasMany<Imagen>(i => i.Imagenes)
-                .WithRequired(k => k.Campania)
-                .Map(ki => ki.ToTable("CampaniaImagenes"));
-           
+                .WithRequired(k => k.Campania);           
         }
 
     }
