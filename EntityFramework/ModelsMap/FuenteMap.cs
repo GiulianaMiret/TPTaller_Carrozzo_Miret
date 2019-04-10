@@ -19,6 +19,8 @@ namespace EntityFramework.ModelsMap
 
             this.Property(x => x.Descripcion)
                 .IsRequired();
+
+            // this.HasRequired<BannerRSS>(x => x.BannerRSS);
         }
 
     }

@@ -53,6 +53,11 @@
       <DependentUpon>201904091548522_Inicial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Services\BannerRepository.cs" />
+    <Compile Include="Services\CampaniaRepository.cs" />
+    <Compile Include="Services\FuenteRepository.cs" />
+    <Compile Include="Services\IRepository.cs" />
+    <Compile Include="Services\ImagenRepository.cs" />
     <Compile Include="ModelsMap\BannerMap.cs" />
     <Compile Include="ModelsMap\BannerRSSMap.cs" />
     <Compile Include="ModelsMap\BannerTextoFijoMap.cs" />
