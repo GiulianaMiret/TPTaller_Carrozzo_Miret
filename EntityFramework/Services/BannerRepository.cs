@@ -21,51 +21,105 @@ namespace EntityFramework.Services
             _context = context;
         }
 
-        //IQueryable<T> Find(Expression<Func<T, bool>> predicate);
         public IQueryable<Banner> Find(Expression<Func<Banner, bool>> predicate)
         {
-            IQueryable<Banner> query = _context.Set<Banner>().Where(predicate);
+            IQueryable<Banner> query = _context.Banners.TakeWhile(predicate);
             return query;
         }
 
-        //IEnumerable<T> GetAll();
+        public Banner FindById (int pId)
+        {
+            Banner banner = _context.Banners.Find(pId);
+            if ((banner == null) || !(banner.Estado))
+            {
+                throw new Exception("Banner no encontrado");
+            }
+            return banner;
+        }
+
         public IEnumerable<Banner> GetAll()
         {
-            return _context.Banners.ToList();
+            List<Banner> listaBanners = _context.Banners.ToList();
+            List<Banner> activos = new List<Banner>();
+            foreach (Banner item in listaBanners)
+            {
+                if (item.Estado)
+                {
+                    activos.Add(item);
+                }
+            }
+            return activos;
         }
 
-        //T GetById(int pId);
         public Banner GetById(int pId)
         {
-            return _context.Banners.Find(pId);
+            Banner banner = _context.Banners.Find(pId);
+            if(banner == null)
+            {
+                throw new Exception("No se ha encontrado el Banner");
+            }
+            if (!banner.Estado)
+            {
+                throw new Exception("No se ha encontrado el Banner");
+            }
+            return banner;
         }
 
-        //void Insert(T entity);
         public void Insert(Banner pBanner)
         {
-            _context.Banners.Add(pBanner);
+            Banner banner = _context.Banners.Find(pBanner.Id);
+            if (banner != null)
+            {
+                if (!(banner.Estado))
+                {
+                    banner.Estado = true;
+                    _context.Banners.Attach(banner);
+                }
+                else
+                {
+                    throw new Exception("El banner ya existe");
+                }   
+            }
+            else
+            {
+                _context.Banners.Add(pBanner);
+            }
+            
         }
 
-        //void Delete(T entity);
         public void Delete(Banner pBanner)
         {
-            _context.Banners.Remove(pBanner);
+            Banner encontrado = _context.Banners.Find(pBanner.Id);
+            if ((encontrado == null) || !(pBanner.Estado))
+            {
+                throw new Exception("El banner no se ha encontrado");
+            }
+            pBanner.Estado = false;
+            _context.Banners.Attach(pBanner);
+                        
         }
 
-        //void DeleteById(int pId);
         public void DeleteById(int pId)
         {
             Banner pBanner = _context.Banners.Find(pId);
-            _context.Banners.Remove(pBanner);
+            if ((pBanner == null) || !(pBanner.Estado))
+            {
+                throw new Exception("El banner no se ha encontrado");
+            }
+            pBanner.Estado = false;
+            _context.Banners.Attach(pBanner);
         }
 
-        //void Update(T entity);
         public void Update(Banner pBanner)
         {
-            _context.Entry(pBanner).State = EntityState.Modified;
+            Banner bannerAnterior = _context.Banners.Find(pBanner.Id);
+            if (bannerAnterior.Equals(pBanner))
+            {
+                throw new Exception("No se han detectado cambios en el banner");
+            }
+            _context.Banners.Attach(pBanner);
         }
 
-        //void Save();
         public void Save()
         {
             _context.SaveChanges();

@@ -20,7 +20,10 @@ namespace EntityFramework.ModelsMap
             this.Property(x => x.Descripcion)
                 .IsRequired();
 
-            // this.HasRequired<BannerRSS>(x => x.BannerRSS);
+            this.Property(x => x.Estado)
+                .IsRequired();
+
+            this.HasRequired<BannerRSS>(x => x.BannerRSS);
         }
 
     }

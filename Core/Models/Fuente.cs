@@ -10,6 +10,8 @@ namespace Core.Models
     {
         public int Id { get; set; }
 
+        public bool Estado { get; set; }
+
         public string URL { get; set; }
 
         public string Descripcion { get; set; }

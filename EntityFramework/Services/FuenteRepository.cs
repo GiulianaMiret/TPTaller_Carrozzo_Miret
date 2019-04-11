@@ -9,6 +9,9 @@ using System.Data.Entity;
 
 namespace EntityFramework.Services
 {
+    /// <summary>
+    /// Clase repositorio de la Fuente, donde se va a usar el context para realizar las operaciones
+    /// </summary>
     public class FuenteRepository : IRepository<Fuente>
     {
         private readonly DigitalBillboardContext _context;
@@ -18,55 +21,103 @@ namespace EntityFramework.Services
             _context = context;
         }
 
-        //IQueryable<T> Find(Expression<Func<T, bool>> predicate);
         public IQueryable<Fuente> Find(Expression<Func<Fuente, bool>> predicate)
         {
-            IQueryable<Fuente> query = _context.Set<Fuente>().Where(predicate);
+            IQueryable<Fuente> query = _context.Fuentes.TakeWhile(predicate);
             return query;
         }
 
-        //IEnumerable<T> GetAll();
-        public IEnumerable<Fuente> GetAll()
-        {
-            return _context.Fuentes.ToList();
-        }
-
-        //T GetById(int pId);
-        public Fuente GetById(int pId)
-        {
-            return _context.Fuentes.Find(pId);
-        }
-
-        //void Insert(T entity);
-        public void Insert(Fuente pFuente)
-        {
-            _context.Fuentes.Add(pFuente);
-        }
-
-        //void Delete(T entity);
-        public void Delete(Fuente pFuente)
-        {
-            _context.Fuentes.Remove(pFuente);
-        }
-
-        //void DeleteById(int pId);
-        public void DeleteById(int pId)
+        public Fuente FindById(int pId)
         {
             Fuente fuente = _context.Fuentes.Find(pId);
-            _context.Fuentes.Remove(fuente);
+            if ((fuente == null) || !(fuente.Estado))
+            {
+                throw new Exception("Fuente no encontrada");
+            }
+            return fuente;
         }
 
-        //void Update(T entity);
+        public IEnumerable<Fuente> GetAll()
+        {
+            List<Fuente> listaFuentes = _context.Fuentes.ToList();
+            List<Fuente> activos = new List<Fuente>();
+            foreach (Fuente item in listaFuentes)
+            {
+                if (item.Estado)
+                {
+                    activos.Add(item);
+                }
+            }
+            return activos;
+        }
+
+        public Fuente GetById(int pId)
+        {
+            Fuente fuente = _context.Fuentes.Find(pId);
+            if ((fuente == null) || !(fuente.Estado))
+            {
+                throw new Exception("No se ha encontrado la Fuente");
+            }
+            return fuente;
+        }
+
+        public void Insert(Fuente pFuente)
+        {
+            Fuente fuente = _context.Fuentes.Find(pFuente.Id);
+            if (fuente != null)
+            {
+                if (!(fuente.Estado))
+                {
+                    fuente.Estado = true;
+                    _context.Fuentes.Attach(fuente);
+                }
+                else
+                {
+                    throw new Exception("La Fuente ya existe");
+                }
+            }
+            else
+            {
+                _context.Fuentes.Add(pFuente);
+            }
+        }
+
+        public void Delete(Fuente pFuente)
+        {
+            Fuente encontrado = _context.Fuentes.Find(pFuente.Id);
+            if ((encontrado == null) || !(pFuente.Estado))
+            {
+                throw new Exception("La Fuente no se ha encontrado");
+            }
+            pFuente.Estado = false;
+            _context.Fuentes.Attach(pFuente);
+
+        }
+
+        public void DeleteById(int pId)
+        {
+            Fuente pFuente = _context.Fuentes.Find(pId);
+            if ((pFuente == null) || !(pFuente.Estado))
+            {
+                throw new Exception("La Fuente no se ha encontrado");
+            }
+            pFuente.Estado = false;
+            _context.Fuentes.Attach(pFuente);
+        }
+
         public void Update(Fuente pFuente)
         {
-            _context.Entry(pFuente).State = EntityState.Modified;
+            Fuente fuenteAnterior = _context.Fuentes.Find(pFuente.Id);
+            if (fuenteAnterior.Equals(pFuente))
+            {
+                throw new Exception("No se han detectado cambios en la Fuente");
+            }
+            _context.Fuentes.Attach(pFuente);
         }
 
-        //void Save();
         public void Save()
         {
             _context.SaveChanges();
         }
-
     }
 }

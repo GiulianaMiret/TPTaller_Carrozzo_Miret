@@ -3,7 +3,7 @@ namespace EntityFramework.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Inicial : DbMigration
+    public partial class initial : DbMigration
     {
         public override void Up()
         {
@@ -26,9 +26,10 @@ namespace EntityFramework.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
+                        Estado = c.Boolean(nullable: false),
                         URL = c.String(nullable: false),
                         Descripcion = c.String(nullable: false),
-                        BannerRSS_Id = c.Int(),
+                        BannerRSS_Id = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.BannerRSS", t => t.BannerRSS_Id)
@@ -49,7 +50,7 @@ namespace EntityFramework.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.Imagenes",
+                "dbo.Imagens",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -93,15 +94,15 @@ namespace EntityFramework.Migrations
             DropForeignKey("dbo.BannerTextoFijo", "Id", "dbo.Banners");
             DropForeignKey("dbo.BannerRSS", "Id", "dbo.Fuentes");
             DropForeignKey("dbo.BannerRSS", "Id", "dbo.Banners");
-            DropForeignKey("dbo.Imagenes", "Campania_Id", "dbo.Campanias");
+            DropForeignKey("dbo.Imagens", "Campania_Id", "dbo.Campanias");
             DropForeignKey("dbo.Fuentes", "BannerRSS_Id", "dbo.BannerRSS");
             DropIndex("dbo.BannerTextoFijo", new[] { "Id" });
             DropIndex("dbo.BannerRSS", new[] { "Id" });
-            DropIndex("dbo.Imagenes", new[] { "Campania_Id" });
+            DropIndex("dbo.Imagens", new[] { "Campania_Id" });
             DropIndex("dbo.Fuentes", new[] { "BannerRSS_Id" });
             DropTable("dbo.BannerTextoFijo");
             DropTable("dbo.BannerRSS");
-            DropTable("dbo.Imagenes");
+            DropTable("dbo.Imagens");
             DropTable("dbo.Campanias");
             DropTable("dbo.Fuentes");
             DropTable("dbo.Banners");

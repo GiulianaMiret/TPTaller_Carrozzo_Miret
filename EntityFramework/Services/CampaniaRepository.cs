@@ -10,6 +10,9 @@ using System.Data.Entity;
 
 namespace EntityFramework.Services
 {
+    /// <summary>
+    /// Clase repositorio de la Campaña, donde se va a usar el context para realizar las operaciones
+    /// </summary>
     public class CampaniaRepository : IRepository<Campania>
     {
         private readonly DigitalBillboardContext _context;
@@ -19,86 +22,103 @@ namespace EntityFramework.Services
             _context = context;
         }
 
-
-        //IQueryable<T> Find(Expression<Func<T, bool>> predicate);
         public IQueryable<Campania> Find(Expression<Func<Campania, bool>> predicate)
         {
-            IQueryable<Campania> query = _context.Set<Campania>().Where(predicate);
+            IQueryable<Campania> query = _context.Campanias.TakeWhile(predicate);
             return query;
         }
 
-        //IEnumerable<T> GetAll();
-        public IEnumerable<Campania> GetAll()
-        {
-            return _context.Campanias.ToList();
-        }
-
-        //T GetById(int pId);
-        public Campania GetById(int pId)
-        {
-            return _context.Campanias.Find(pId);
-        }
-
-        //void Insert(T entity);
-        public void Insert(Campania pCampania)
-        {
-            try
-            {
-                //agrega la entidad al contexto:
-                _context.Campanias.Add(pCampania);
-                //se inserta en la DB:
-                //_context.SaveChanges();
-            }
-            catch (Exception exc)
-            {
-                throw exc;
-            }
-        }
-
-        //void Delete(T entity);
-        public void Delete(Campania pCampania)
-        {
-            _context.Campanias.Remove(pCampania);
-        }
-
-        //void DeleteById(int pId);
-        public void DeleteById(int pId)
+        public Campania FindById(int pId)
         {
             Campania campania = _context.Campanias.Find(pId);
-            _context.Campanias.Remove(campania);
+            if ((campania == null) || !(campania.Estado))
+            {
+                throw new Exception("Campaña no encontrada");
+            }
+            return campania;
         }
 
-        //void Update(T entity);
+        public IEnumerable<Campania> GetAll()
+        {
+            List<Campania> listaCampanias = _context.Campanias.ToList();
+            List<Campania> activos = new List<Campania>();
+            foreach (Campania item in listaCampanias)
+            {
+                if (item.Estado)
+                {
+                    activos.Add(item);
+                }
+            }
+            return activos;
+        }
+
+        public Campania GetById(int pId)
+        {
+            Campania campania = _context.Campanias.Find(pId);
+            if ((campania == null) || !(campania.Estado))
+            {
+                throw new Exception("No se ha encontrado la Campaña");
+            }
+            return campania;
+        }
+
+        public void Insert(Campania pCampania)
+        {
+            Campania campania = _context.Campanias.Find(pCampania.Id);
+            if (campania != null)
+            {
+                if (!(campania.Estado))
+                {
+                    campania.Estado = true;
+                    _context.Campanias.Attach(campania);
+                }
+                else
+                {
+                    throw new Exception("La Campaña ya existe");
+                }
+            }
+            else
+            {
+                _context.Campanias.Add(pCampania);
+            }
+        }
+
+        public void Delete(Campania pCampania)
+        {
+            Campania encontrado = _context.Campanias.Find(pCampania.Id);
+            if ((encontrado == null) || !(pCampania.Estado))
+            {
+                throw new Exception("La Campaña no se ha encontrado");
+            }
+            pCampania.Estado = false;
+            _context.Campanias.Attach(pCampania);
+
+        }
+
+        public void DeleteById(int pId)
+        {
+            Campania pCampania = _context.Campanias.Find(pId);
+            if ((pCampania == null) || !(pCampania.Estado))
+            {
+                throw new Exception("La Campaña no se ha encontrado");
+            }
+            pCampania.Estado = false;
+            _context.Campanias.Attach(pCampania);
+        }
+
         public void Update(Campania pCampania)
         {
-            _context.Entry(pCampania).State = EntityState.Modified;
+            Campania campaniaAnterior = _context.Campanias.Find(pCampania.Id);
+            if (campaniaAnterior.Equals(pCampania))
+            {
+                throw new Exception("No se han detectado cambios en la campaña");
+            }
+            _context.Campanias.Attach(pCampania);
         }
 
-        //void Save();
         public void Save()
         {
             _context.SaveChanges();
         }
-
-        //ESTO ES PORQUE USA IDISPOSABLE
-        //private bool disposed = false;
-
-        //protected virtual void Dispose(bool disposing)
-        //{
-        //    if (!this.disposed)
-        //    {
-        //        if (disposing)
-        //        {
-        //            _context.Dispose();
-        //        }
-        //    }
-        //    this.disposed.true;
-        //}
-
-        //public void Dispose()
-        //{
-        //    Dispose(true);
-        //    GC.SuppressFinalize(this);
-        //}
     }
 }
