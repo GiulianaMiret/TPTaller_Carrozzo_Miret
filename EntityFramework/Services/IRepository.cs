@@ -16,14 +16,14 @@ namespace EntityFramework.Services
         /// Este metodo devuelve un conjunto de T (Banners, Campanias, etc) obtenidos segun la expresion pasada como parámetro
         /// </summary>
         /// <param name="predicate"></param>
-        /// <returns> conjunto de T entity </returns>
+        /// <returns> conjunto de T "entity" </returns>
         IQueryable<T> Find(Expression<Func<T, bool>> predicate);
 
         /// <summary>
         /// Este método devuelve una entidad (T) obtenido por el id indicado como parámetro si se encuentra ACTIVA (Estado == true)
         /// </summary>
         /// <param name="pId"></param>
-        /// <returns> T entity </returns>
+        /// <returns> T "entity" </returns>
         T FindById(int pId);
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace EntityFramework.Services
         /// Este método obtiene una entidad (T) mediante el id si la entidad se encuentra ACTIVA (Estado == true)
         /// </summary>
         /// <param name="pId"></param>
-        /// <returns> T entity </returns>
+        /// <returns> T "entity" </returns>
         T GetById(int pId);
 
         /// <summary>

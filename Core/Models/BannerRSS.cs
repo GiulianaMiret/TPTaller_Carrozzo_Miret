@@ -12,7 +12,7 @@ namespace Core.Models
         public int Codigo { get; set; }
 
         public string Valor { get; set; }
-        //[Required]
+        
         public virtual Fuente Fuente { get; set; }
     }
 }
