@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Core.Models;
+using System.Linq.Expressions;
 
 namespace Controlador
 {
@@ -216,11 +217,122 @@ namespace Controlador
 
         /// <summary>
         /// Métodos para obtener una entidad mediante su ID:
-        ///     getByIdBannerRSS
-        ///     getByIdBannerTXT
+        ///     getByIdBanner
         ///     getByIdFuente
         ///     getByIdCampania
         ///     getByIdImagen
         /// </summary>
+        public Banner getByIdBannerRSS (int pId)
+        {
+            return _bannerRepository.GetById(pId);
+        }
+
+        public Fuente getByIdFuente (int pId)
+        {
+            return _fuenteRepository.GetById(pId);
+        }
+
+        public Campania getByIdCampania (int pId)
+        {
+            return _campaniaRepository.GetById(pId);
+        }
+
+        public Imagen getByIdImagen (int pId)
+        {
+            return _imagenRepository.GetById(pId);
+        }
+
+        /// <summary>
+        /// Métodos para obtener todas las entidades de un tipo:
+        ///     getAllBanner
+        ///     getAllFuente
+        ///     getAllCampania
+        ///     getAllImagen
+        /// </summary>
+        public IEnumerable<Banner> getAllBanner()
+        {
+            return _bannerRepository.GetAll();
+        }
+
+        public IEnumerable<Fuente> getAllFuente()
+        {
+            return _fuenteRepository.GetAll();
+        }
+
+        public IEnumerable<Campania> getAllCampania()
+        {
+            return _campaniaRepository.GetAll();
+        }
+
+        public IEnumerable<Imagen> getAllImagen()
+        {
+            return _imagenRepository.GetAll();
+        }
+
+        /// <summary>
+        /// Métodos para buscar por id:
+        ///     findByIdBanner
+        ///     findByIdFuente
+        ///     findByIdCampania
+        ///     findByIdImagen
+        /// </summary>
+        public Banner findByIdBanner(int pId)
+        {
+            return _bannerRepository.FindById(pId);
+        }
+
+        public Fuente findByIdFuente (int pId)
+        {
+            return _fuenteRepository.FindById(pId);
+        }
+
+        public Campania findByIdCampania (int pId)
+        {
+            return _campaniaRepository.FindById(pId);
+        }
+
+        public Imagen findByIdImagen (int pId)
+        {
+            return _imagenRepository.FindById(pId);
+        }
+
+        /// <summary>
+        /// Métodos para buscar todas las entidades que cumplan con la expresión indicada
+        ///     findBanner
+        ///     findFuente
+        ///     findCampania
+        ///     findImagen
+        /// </summary>
+        public IQueryable<Banner> findBanner (Expression<Func<Banner, bool>> predicate)
+        {
+            return _bannerRepository.Find(predicate);
+        }
+
+        public IQueryable<Fuente> findFuente(Expression<Func<Fuente, bool>> predicate)
+        {
+            return _fuenteRepository.Find(predicate);
+        }
+
+        public IQueryable<Campania> findCampania (Expression<Func<Campania, bool>> predicate)
+        {
+            return _campaniaRepository.Find(predicate);
+        }
+
+        public IQueryable<Imagen> findImagen(Expression<Func<Imagen, bool>> predicate)
+        {
+            return _imagenRepository.Find(predicate);
+        }
+
+        /// <summary>
+        /// Métodos para guardar los cambios en la base de datos
+        /// </summary>
+        public void Save()
+        {
+            _bannerRepository.Save();
+            _fuenteRepository.Save();
+            _campaniaRepository.Save();
+            _imagenRepository.Save();
+        }
+
     }
 }
