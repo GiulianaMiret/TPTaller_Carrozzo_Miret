@@ -12,7 +12,7 @@ namespace EntityFramework.Services
     /// <summary>
     /// Clase repositorio del banner, donde se va a usar el context para realizar las operaciones
     /// </summary>
-    public class BannerRepository : IRepository<Banner>
+    public class BannerRepository : IBannerRepository
     {
         private readonly DigitalBillboardContext _context;
 
@@ -20,21 +20,15 @@ namespace EntityFramework.Services
         {
             _context = context;
         }
-
-        public IQueryable<Banner> Find(Expression<Func<Banner, bool>> predicate)
+        
+        public IQueryable<Banner> Get(Expression<Func<Banner, bool>> predicate)
         {
             IQueryable<Banner> query = _context.Banners.TakeWhile(predicate);
-            return query;
-        }
-
-        public Banner FindById (int pId)
-        {
-            Banner banner = _context.Banners.Find(pId);
-            if ((banner == null) || !(banner.Estado))
+            if (query.Count() == 0)
             {
-                throw new Exception("Banner no encontrado");
+                throw new Exception("No hay Banners");
             }
-            return banner;
+            return query;
         }
 
         public IEnumerable<Banner> GetAll()
@@ -48,17 +42,17 @@ namespace EntityFramework.Services
                     activos.Add(item);
                 }
             }
+            if (activos.Count() == 0)
+            {
+                throw new Exception("No hay Banners");
+            }
             return activos;
         }
 
         public Banner GetById(int pId)
         {
             Banner banner = _context.Banners.Find(pId);
-            if(banner == null)
-            {
-                throw new Exception("No se ha encontrado el Banner");
-            }
-            if (!banner.Estado)
+            if ((banner == null) || !(banner.Estado))
             {
                 throw new Exception("No se ha encontrado el Banner");
             }
@@ -113,9 +107,9 @@ namespace EntityFramework.Services
         public void Update(Banner pBanner)
         {
             Banner bannerAnterior = _context.Banners.Find(pBanner.Id);
-            if (bannerAnterior.Equals(pBanner))
+            if (bannerAnterior == null)
             {
-                throw new Exception("No se han detectado cambios en el banner");
+                throw new Exception("No se ha encontrado el banner que se quiere modificar");
             }
             _context.Banners.Attach(pBanner);
         }
@@ -123,6 +117,39 @@ namespace EntityFramework.Services
         public void Save()
         {
             _context.SaveChanges();
+        }
+
+
+        public void CambiarFuente(int pIdBanner, int pIdFuente)
+        {
+            Banner banner = _context.Banners.Find(pIdBanner);
+
+        }
+
+        public List<BannerRSS> GetAllRss()
+        {
+            return _context.Banners.OfType<BannerRSS>().ToList();
+        }
+
+        public List<BannerTextoFijo> GetAllTXT()
+        {
+            return _context.Banners.OfType<BannerTextoFijo>().ToList();
+        }
+
+        public List<Banner> GetAllBannerRSS()
+        {
+            var result = from banner in _context.Banners
+                         where banner is BannerRSS
+                         select banner;
+            return result.ToList();
+        }
+
+        public List<Banner> GetAllBannerTXT()
+        {
+            var result = from banner in _context.Banners
+                         where banner is BannerTextoFijo
+                         select banner;
+            return result.ToList();
         }
     }
 }

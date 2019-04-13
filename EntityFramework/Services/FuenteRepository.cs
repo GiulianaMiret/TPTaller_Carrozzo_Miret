@@ -21,20 +21,14 @@ namespace EntityFramework.Services
             _context = context;
         }
 
-        public IQueryable<Fuente> Find(Expression<Func<Fuente, bool>> predicate)
+        public IQueryable<Fuente> Get(Expression<Func<Fuente, bool>> predicate)
         {
             IQueryable<Fuente> query = _context.Fuentes.TakeWhile(predicate);
-            return query;
-        }
-
-        public Fuente FindById(int pId)
-        {
-            Fuente fuente = _context.Fuentes.Find(pId);
-            if ((fuente == null) || !(fuente.Estado))
+            if (query.Count() == 0)
             {
-                throw new Exception("Fuente no encontrada");
+                throw new Exception("No hay Fuentes");
             }
-            return fuente;
+            return query;
         }
 
         public IEnumerable<Fuente> GetAll()
@@ -47,6 +41,10 @@ namespace EntityFramework.Services
                 {
                     activos.Add(item);
                 }
+            }
+            if (activos.Count() == 0)
+            {
+                throw new Exception("No hay Fuentes");
             }
             return activos;
         }
@@ -108,9 +106,9 @@ namespace EntityFramework.Services
         public void Update(Fuente pFuente)
         {
             Fuente fuenteAnterior = _context.Fuentes.Find(pFuente.Id);
-            if (fuenteAnterior.Equals(pFuente))
+            if (fuenteAnterior == null)
             {
-                throw new Exception("No se han detectado cambios en la Fuente");
+                throw new Exception("No se ha encontrado el banner que se quiere modificar");
             }
             _context.Fuentes.Attach(pFuente);
         }

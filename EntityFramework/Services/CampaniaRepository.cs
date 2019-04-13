@@ -22,20 +22,14 @@ namespace EntityFramework.Services
             _context = context;
         }
 
-        public IQueryable<Campania> Find(Expression<Func<Campania, bool>> predicate)
+        public IQueryable<Campania> Get(Expression<Func<Campania, bool>> predicate)
         {
             IQueryable<Campania> query = _context.Campanias.TakeWhile(predicate);
-            return query;
-        }
-
-        public Campania FindById(int pId)
-        {
-            Campania campania = _context.Campanias.Find(pId);
-            if ((campania == null) || !(campania.Estado))
+            if (query.Count() == 0)
             {
-                throw new Exception("Campaña no encontrada");
+                throw new Exception("No hay Campañas");
             }
-            return campania;
+            return query;
         }
 
         public IEnumerable<Campania> GetAll()
@@ -48,6 +42,10 @@ namespace EntityFramework.Services
                 {
                     activos.Add(item);
                 }
+            }
+            if (activos.Count() == 0)
+            {
+                throw new Exception("No hay Campañas");
             }
             return activos;
         }
@@ -109,9 +107,9 @@ namespace EntityFramework.Services
         public void Update(Campania pCampania)
         {
             Campania campaniaAnterior = _context.Campanias.Find(pCampania.Id);
-            if (campaniaAnterior.Equals(pCampania))
+            if (campaniaAnterior == null)
             {
-                throw new Exception("No se han detectado cambios en la campaña");
+                throw new Exception("No se ha encontrado la campaña que se quiere modificar");
             }
             _context.Campanias.Attach(pCampania);
         }

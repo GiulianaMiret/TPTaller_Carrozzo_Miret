@@ -21,20 +21,14 @@ namespace EntityFramework.Services
             _context = context;
         }
 
-        public IQueryable<Imagen> Find(Expression<Func<Imagen, bool>> predicate)
+        public IQueryable<Imagen> Get(Expression<Func<Imagen, bool>> predicate)
         {
             IQueryable<Imagen> query = _context.Imagenes.TakeWhile(predicate);
-            return query;
-        }
-
-        public Imagen FindById(int pId)
-        {
-            Imagen imagen = _context.Imagenes.Find(pId);
-            if ((imagen == null) || !(imagen.Estado))
+            if (query.Count() == 0)
             {
-                throw new Exception("Imagen no encontrada");
+                throw new Exception("No hay Imagenes");
             }
-            return imagen;
+            return query;
         }
 
         public IEnumerable<Imagen> GetAll()
@@ -47,6 +41,10 @@ namespace EntityFramework.Services
                 {
                     activos.Add(item);
                 }
+            }
+            if (activos.Count() == 0)
+            {
+                throw new Exception("No hay Imagenes");
             }
             return activos;
         }
@@ -108,9 +106,9 @@ namespace EntityFramework.Services
         public void Update(Imagen pImagen)
         {
             Imagen imagenAnterior = _context.Imagenes.Find(pImagen.Id);
-            if (imagenAnterior.Equals(pImagen))
+            if (imagenAnterior == null)
             {
-                throw new Exception("No se han detectado cambios en la Imagen");
+                throw new Exception("No se ha encontrado el banner que se quiere modificar");
             }
             _context.Imagenes.Attach(pImagen);
         }

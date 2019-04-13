@@ -17,7 +17,7 @@ namespace Controlador
         /// <summary>
         /// Declaramos las variables repositorios de solo lectura, que se inyectarán con Ninject.
         /// </summary>
-        private readonly IRepository<Banner> _bannerRepository;
+        private readonly IBannerRepository _bannerRepository;
         private readonly IRepository<Campania> _campaniaRepository;
         private readonly IRepository<Fuente> _fuenteRepository;
         private readonly IRepository<Imagen> _imagenRepository;
@@ -27,7 +27,7 @@ namespace Controlador
         /// </summary>
         /// <param name="bannerRepository"></param>
         /// <param name="campaniaRepository"></param>
-        public Fachada(IRepository<Banner> bannerRepository, IRepository<Campania> campaniaRepository, IRepository<Fuente> fuenteRepository, IRepository<Imagen> imagenRepository)
+        public Fachada(IBannerRepository bannerRepository, IRepository<Campania> campaniaRepository, IRepository<Fuente> fuenteRepository, IRepository<Imagen> imagenRepository)
         {
             _bannerRepository = bannerRepository;
             _campaniaRepository = campaniaRepository;
@@ -58,8 +58,14 @@ namespace Controlador
             banner.Codigo = pCodigo;
             banner.Valor = pValor;
             banner.Fuente = pFuente;
-
-            _bannerRepository.Insert(banner);
+            try
+            {
+                _bannerRepository.Insert(banner);
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
         }
 
         public void newBannerTXT(string pNombre, DateTime pFechaInicio, DateTime pFechaFin, TimeSpan pHoraInicio, TimeSpan pHoraFin, string pTexto)
@@ -73,8 +79,14 @@ namespace Controlador
             banner.HoraInicio = pHoraInicio;
             banner.HoraFin = pHoraFin;
             banner.Texto = pTexto;
-
-            _bannerRepository.Insert(banner);
+            try
+            {
+                _bannerRepository.Insert(banner);
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
         }
 
         public void newFuente(string pURL, string pDescripcion, BannerRSS pBanner)
@@ -85,8 +97,14 @@ namespace Controlador
             fuente.URL = pURL;
             fuente.Descripcion = pDescripcion;
             fuente.BannerRSS = pBanner;
-
-            _fuenteRepository.Insert(fuente);
+            try
+            {
+                _fuenteRepository.Insert(fuente);
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
         }
 
         public void newCampania(string pNombre, DateTime pFechaInicio, DateTime pFechaFin, TimeSpan pHoraInicio, TimeSpan pHoraFin, ICollection<Imagen> pImagenes)
@@ -100,8 +118,14 @@ namespace Controlador
             campania.HoraInicio = pHoraInicio;
             campania.HoraFin = pHoraFin;
             campania.Imagenes = pImagenes;
-
-            _campaniaRepository.Insert(campania);
+            try
+            {
+                _campaniaRepository.Insert(campania);
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
         }
 
         public void newImagen(string pNombre, byte pHash, Campania pCampania)
@@ -112,8 +136,14 @@ namespace Controlador
             imagen.Nombre = pNombre;
             imagen.Hash = pHash;
             imagen.Campania = pCampania;
-
-            _imagenRepository.Insert(imagen);
+            try
+            {
+                _imagenRepository.Insert(imagen);
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
         }
 
         /// <summary>
@@ -126,27 +156,62 @@ namespace Controlador
         /// </summary>
         public void deleteBannerRSS(BannerRSS pBanner)
         {
-            _bannerRepository.Delete(pBanner);
+            try
+            {
+                _bannerRepository.Delete(pBanner);
+            }
+            catch(Exception exc)
+            {
+                throw exc;
+            }
         }
 
         public void deleteBannerTXT(BannerTextoFijo pBanner)
         {
-            _bannerRepository.Delete(pBanner);
+            try
+            {
+                _bannerRepository.Delete(pBanner);
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
         }
 
         public void deleteFuente(Fuente pFuente)
         {
-            _fuenteRepository.Delete(pFuente);
+            try
+            {
+                _fuenteRepository.Delete(pFuente);
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
         }
 
         public void deleteCampania(Campania pCampania)
         {
-            _campaniaRepository.Delete(pCampania);
+            try
+            {
+                _campaniaRepository.Delete(pCampania);
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
         }
 
         public void deleteImagen(Imagen pImagen)
         {
-            _imagenRepository.Delete(pImagen);
+            try
+            {
+                _imagenRepository.Delete(pImagen);
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
         }
 
         /// <summary>
@@ -159,27 +224,62 @@ namespace Controlador
         /// </summary>
         public void deleteByIdBannerRSS(int pId)
         {
-            _bannerRepository.DeleteById(pId);
+            try
+            {
+                _bannerRepository.DeleteById(pId);
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
         }
 
         public void deleteByIdBannerTXT(int pId)
         {
-            _bannerRepository.DeleteById(pId);
+            try
+            {
+                _bannerRepository.DeleteById(pId);
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
         }
 
         public void deleteByIdFuente(int pId)
         {
-            _fuenteRepository.DeleteById(pId);
+            try
+            {
+                _fuenteRepository.DeleteById(pId);
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
         }
 
         public void deleteByIdCampania(int pId)
         {
-            _campaniaRepository.DeleteById(pId);
+            try
+            {
+                _campaniaRepository.DeleteById(pId);
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
         }
 
         public void deleteByIdImagen(int pId)
         {
-            _imagenRepository.DeleteById(pId);
+            try
+            {
+                _imagenRepository.DeleteById(pId);
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
         }
 
         /// <summary>
@@ -192,27 +292,62 @@ namespace Controlador
         /// </summary>
         public void updateBannerRSS (BannerRSS pBanner)
         {
-            _bannerRepository.Update(pBanner);
+            try
+            {
+                _bannerRepository.Update(pBanner);
+            }
+            catch(Exception exc)
+            {
+                throw exc;
+            }
         }
 
         public void updateBannerTXT (BannerTextoFijo pBanner)
         {
-            _bannerRepository.Update(pBanner);
+            try
+            {
+                _bannerRepository.Update(pBanner);
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
         }
 
         public void updateFuente (Fuente pFuente)
         {
-            _fuenteRepository.Update(pFuente);
+            try
+            {
+                _fuenteRepository.Update(pFuente);
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
         }
 
         public void updateCampania (Campania pCampania)
         {
-            _campaniaRepository.Update(pCampania);
+            try
+            {
+                _campaniaRepository.Update(pCampania);
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
         }
 
         public void updateImagen (Imagen pImagen)
         {
-            _imagenRepository.Update(pImagen);
+            try
+            {
+                _imagenRepository.Update(pImagen);
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
         }
 
         /// <summary>
@@ -222,24 +357,52 @@ namespace Controlador
         ///     getByIdCampania
         ///     getByIdImagen
         /// </summary>
-        public Banner getByIdBannerRSS (int pId)
+        public Banner getByIdBanner (int pId)
         {
-            return _bannerRepository.GetById(pId);
+            try
+            {
+                return _bannerRepository.GetById(pId);
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
         }
 
         public Fuente getByIdFuente (int pId)
         {
-            return _fuenteRepository.GetById(pId);
+            try
+            {
+                return _fuenteRepository.GetById(pId);
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
         }
 
         public Campania getByIdCampania (int pId)
         {
-            return _campaniaRepository.GetById(pId);
+            try
+            {
+                return _campaniaRepository.GetById(pId);
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
         }
 
         public Imagen getByIdImagen (int pId)
         {
-            return _imagenRepository.GetById(pId);
+            try
+            {
+                return _imagenRepository.GetById(pId);
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
         }
 
         /// <summary>
@@ -251,76 +414,105 @@ namespace Controlador
         /// </summary>
         public IEnumerable<Banner> getAllBanner()
         {
-            return _bannerRepository.GetAll();
+            try
+            {
+                return _bannerRepository.GetAll();
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
         }
 
         public IEnumerable<Fuente> getAllFuente()
         {
-            return _fuenteRepository.GetAll();
+            try
+            {
+                return _fuenteRepository.GetAll();
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
         }
 
         public IEnumerable<Campania> getAllCampania()
         {
-            return _campaniaRepository.GetAll();
+            try
+            {
+                return _campaniaRepository.GetAll();
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
         }
 
         public IEnumerable<Imagen> getAllImagen()
         {
-            return _imagenRepository.GetAll();
-        }
-
-        /// <summary>
-        /// Métodos para buscar por id:
-        ///     findByIdBanner
-        ///     findByIdFuente
-        ///     findByIdCampania
-        ///     findByIdImagen
-        /// </summary>
-        public Banner findByIdBanner(int pId)
-        {
-            return _bannerRepository.FindById(pId);
-        }
-
-        public Fuente findByIdFuente (int pId)
-        {
-            return _fuenteRepository.FindById(pId);
-        }
-
-        public Campania findByIdCampania (int pId)
-        {
-            return _campaniaRepository.FindById(pId);
-        }
-
-        public Imagen findByIdImagen (int pId)
-        {
-            return _imagenRepository.FindById(pId);
+            try
+            {
+                return _imagenRepository.GetAll();
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
         }
 
         /// <summary>
         /// Métodos para buscar todas las entidades que cumplan con la expresión indicada
-        ///     findBanner
-        ///     findFuente
-        ///     findCampania
-        ///     findImagen
+        ///     GetBanner
+        ///     GetFuente
+        ///     GetCampania
+        ///     GetImagen
         /// </summary>
-        public IQueryable<Banner> findBanner (Expression<Func<Banner, bool>> predicate)
+        public IQueryable<Banner> GetBanner (Expression<Func<Banner, bool>> predicate)
         {
-            return _bannerRepository.Find(predicate);
+            try
+            {
+                return _bannerRepository.Get(predicate);
+            }
+            catch(Exception exc)
+            {
+                throw exc;
+            }
         }
 
-        public IQueryable<Fuente> findFuente(Expression<Func<Fuente, bool>> predicate)
+        public IQueryable<Fuente> GetFuente(Expression<Func<Fuente, bool>> predicate)
         {
-            return _fuenteRepository.Find(predicate);
+            try
+            {
+                return _fuenteRepository.Get(predicate);
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
         }
 
-        public IQueryable<Campania> findCampania (Expression<Func<Campania, bool>> predicate)
+        public IQueryable<Campania> GetCampania (Expression<Func<Campania, bool>> predicate)
         {
-            return _campaniaRepository.Find(predicate);
+            try
+            {
+                return _campaniaRepository.Get(predicate);
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
         }
 
-        public IQueryable<Imagen> findImagen(Expression<Func<Imagen, bool>> predicate)
+        public IQueryable<Imagen> GetImagen(Expression<Func<Imagen, bool>> predicate)
         {
-            return _imagenRepository.Find(predicate);
+            try
+            {
+                return _imagenRepository.Get(predicate);
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
         }
 
         /// <summary>

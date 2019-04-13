@@ -17,14 +17,7 @@ namespace EntityFramework.Services
         /// </summary>
         /// <param name="predicate"></param>
         /// <returns> conjunto de T "entity" </returns>
-        IQueryable<T> Find(Expression<Func<T, bool>> predicate);
-
-        /// <summary>
-        /// Este método devuelve una entidad (T) obtenido por el id indicado como parámetro si se encuentra ACTIVA (Estado == true)
-        /// </summary>
-        /// <param name="pId"></param>
-        /// <returns> T "entity" </returns>
-        T FindById(int pId);
+        IQueryable<T> Get(Expression<Func<T, bool>> predicate);
 
         /// <summary>
         /// Este método devuelve la lista completa de entidades ACTIVAS (Estado == true)
