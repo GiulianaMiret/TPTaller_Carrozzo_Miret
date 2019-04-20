@@ -120,20 +120,45 @@ namespace EntityFramework.Services
         }
 
 
-        public void CambiarFuente(int pIdBanner, int pIdFuente)
+        public void CambiarFuente(int pIdBanner, Fuente pFuente)
         {
-            Banner banner = _context.Banners.Find(pIdBanner);
-
+            BannerRSS bannerRss = _context.Banners.OfType<BannerRSS>().Where(x => x.Id == pIdBanner).First();
+            if(bannerRss == null)
+            {
+                throw new Exception("No se ha encontrado el Banner");
+            }
+            bannerRss.Fuente = pFuente;
+            _context.Banners.Attach(bannerRss);
         }
 
         public List<BannerRSS> GetAllRss()
         {
-            return _context.Banners.OfType<BannerRSS>().ToList();
+            List<BannerRSS> lista = _context.Banners.OfType<BannerRSS>().ToList();
+            if(lista.Count() == 0)
+            {
+                throw new Exception("No se han encontrado Banners RSS");
+            }
+            List<BannerRSS> listaActivos = lista.Where(x => x.Estado == true).ToList();
+            if (listaActivos.Count() == 0)
+            {
+                throw new Exception("No se han econtrado banners RSS");
+            }
+            return listaActivos;
         }
 
         public List<BannerTextoFijo> GetAllTXT()
         {
-            return _context.Banners.OfType<BannerTextoFijo>().ToList();
+            List<BannerTextoFijo> lista = _context.Banners.OfType<BannerTextoFijo>().ToList();
+            if (lista.Count() == 0)
+            {
+                throw new Exception("No se han encontrado Banners TXT");
+            }
+            List<BannerTextoFijo> listaActivos = lista.Where(x => x.Estado == true).ToList();
+            if (listaActivos.Count() == 0)
+            {
+                throw new Exception("No se han econtrado banners TXT");
+            }
+            return listaActivos;
         }
 
         public List<Banner> GetAllBannerRSS()
@@ -141,7 +166,12 @@ namespace EntityFramework.Services
             var result = from banner in _context.Banners
                          where banner is BannerRSS
                          select banner;
-            return result.ToList();
+            List<Banner> bannerActivo = result.Where(x => x.Estado == true).ToList();
+            if(bannerActivo.Count() == 0)
+            {
+                throw new Exception("No se han encontrado Banners");
+            }
+            return bannerActivo;
         }
 
         public List<Banner> GetAllBannerTXT()
@@ -149,7 +179,12 @@ namespace EntityFramework.Services
             var result = from banner in _context.Banners
                          where banner is BannerTextoFijo
                          select banner;
-            return result.ToList();
+            List<Banner> bannerActivo = result.Where(x => x.Estado == true).ToList();
+            if(bannerActivo.Count() == 0)
+            {
+                throw new Exception("No se han encontrado Banners");
+            }
+            return bannerActivo;
         }
     }
 }

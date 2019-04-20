@@ -13,7 +13,7 @@ namespace EntityFramework.Services
     /// <summary>
     /// Clase repositorio de la Campaña, donde se va a usar el context para realizar las operaciones
     /// </summary>
-    public class CampaniaRepository : IRepository<Campania>
+    public class CampaniaRepository : ICampaniaRepository
     {
         private readonly DigitalBillboardContext _context;
         
@@ -117,6 +117,59 @@ namespace EntityFramework.Services
         public void Save()
         {
             _context.SaveChanges();
+        }
+
+
+
+        public List<Imagen> GetImagenes (int pIdCampania)
+        {
+            Campania pCampania = _context.Campanias.Find(pIdCampania);
+            if (pCampania == null)
+            {
+                throw new Exception("No se ha encontrado la Campaña");
+            }
+            if (pCampania.Imagenes.Count() == 0)
+            {
+                throw new Exception("La campaña no contiene imágenes");
+            }
+            return pCampania.Imagenes.ToList();
+        }
+
+        public void DeleteImagenes(int pIdImagen, int pIdCampania)
+        {
+            Campania pCampania = _context.Campanias.Find(pIdCampania);
+            if (pCampania == null)
+            {
+                throw new Exception("No se ha encontrado la Campaña");
+            }
+            if (pCampania.Imagenes.Count() == 0)
+            {
+                throw new Exception("La campaña no contiene imágenes");
+            }
+            Imagen pImagen = pCampania.Imagenes.Where(x => x.Id == pIdImagen).First();
+            if (pImagen == null)
+            {
+                throw new Exception("La imágen no se ha encontrado");
+            }
+            pImagen.Estado = false;
+            _context.Imagenes.Attach(pImagen);
+            _context.Campanias.Attach(pCampania); //no sé si es necesario esto.. porque ya está dada de baja la imagen
+        }
+
+        public void AddImagenes(int pIdImagen, int pIdCampania)
+        {
+            Campania pCampania = _context.Campanias.Find(pIdCampania);
+            if (pCampania == null)
+            {
+                throw new Exception("No se ha encontrado la Campaña");
+            }
+            Imagen pImagen = pCampania.Imagenes.Where(x => x.Id == pIdImagen).First();
+            if (pImagen != null)
+            {
+                throw new Exception("La imágen ya existe");
+            }
+            pCampania.Imagenes.Add(pImagen);
+            _context.Campanias.Attach(pCampania);
         }
     }
 }

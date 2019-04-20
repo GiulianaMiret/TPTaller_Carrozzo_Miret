@@ -18,7 +18,7 @@ namespace Controlador
         /// Declaramos las variables repositorios de solo lectura, que se inyectarán con Ninject.
         /// </summary>
         private readonly IBannerRepository _bannerRepository;
-        private readonly IRepository<Campania> _campaniaRepository;
+        private readonly ICampaniaRepository _campaniaRepository;
         private readonly IRepository<Fuente> _fuenteRepository;
         private readonly IRepository<Imagen> _imagenRepository;
 
@@ -27,7 +27,7 @@ namespace Controlador
         /// </summary>
         /// <param name="bannerRepository"></param>
         /// <param name="campaniaRepository"></param>
-        public Fachada(IBannerRepository bannerRepository, IRepository<Campania> campaniaRepository, IRepository<Fuente> fuenteRepository, IRepository<Imagen> imagenRepository)
+        public Fachada(IBannerRepository bannerRepository, ICampaniaRepository campaniaRepository, IRepository<Fuente> fuenteRepository, IRepository<Imagen> imagenRepository)
         {
             _bannerRepository = bannerRepository;
             _campaniaRepository = campaniaRepository;
@@ -526,5 +526,123 @@ namespace Controlador
             _imagenRepository.Save();
         }
 
+        // -------------- Métodos del IBannerRepository -------------- //
+
+        /// <summary>
+        /// Obtiene todos los bannersRSS ACTIVOS
+        /// </summary>
+        /// <returns>Lista de banners RSS</returns>
+        public List<BannerRSS> GetAllRss()
+        {
+            try
+            {
+                return _bannerRepository.GetAllRss();
+            }
+            catch(Exception exc)
+            {
+                throw exc;
+            }
+        }
+
+        /// <summary>
+        /// Obtiene todos los bannersTextoFijo ACTIVOS
+        /// </summary>
+        /// <returns>Lista de banners TXT</returns>
+        public List<BannerTextoFijo> GetAllTXT()
+        {
+            try
+            {
+                return _bannerRepository.GetAllTXT();
+            }
+            catch(Exception exc)
+            {
+                throw exc;
+            }
+        }
+
+        /// <summary>
+        /// Obtiene todos los banners ACTIVOS cuya fuente es RSS (pero no da los datos del RSS, solo del banner)
+        /// </summary>
+        /// <returns>Lista de Banner</returns>
+        public List<Banner> GetAllBannerRSS()
+        {
+            try
+            {
+                return _bannerRepository.GetAllBannerRSS();
+            }
+            catch(Exception exc)
+            {
+                throw exc;
+            }
+        }
+
+        /// <summary>
+        /// Obtiene todos los Banners ACTIVOS cuya fuente es TXT (pero no da los datos del TXT solo del banner)
+        /// </summary>
+        /// <returns></returns>
+        public List<Banner> GetAllBannerTXT()
+        {
+            try
+            {
+                return _bannerRepository.GetAllBannerTXT();
+            }
+            catch(Exception exc)
+            {
+                throw exc;
+            }
+        }
+
+        // -------------- Métodos del ICampaniaRepository -------------- //
+
+        /// <summary>
+        /// Obtiene todas las imagenes de una campaña
+        /// </summary>
+        /// <param name="pIdCampania"></param>
+        /// <returns>lista de imágenes</returns>
+        public List<Imagen> GetImagenes(int pIdCampania)
+        {
+            try
+            {
+                return _campaniaRepository.GetImagenes(pIdCampania);
+            }
+            catch(Exception exc)
+            {
+                throw exc;
+            }
+        }
+
+        /// <summary>
+        /// Desactiva (Estado = false) una imagen de una campaña
+        /// </summary>
+        /// <param name="pIdImagen"></param>
+        /// <param name="pIdCampania"></param>
+        public void DeleteImagenes(int pIdImagen, int pIdCampania)
+        {
+            try
+            {
+                _campaniaRepository.DeleteImagenes(pIdImagen, pIdCampania);
+            }
+            catch(Exception exc)
+            {
+                throw exc;
+            }
+        }
+
+        /// <summary>
+        /// Agrega una imágen a una campaña
+        /// </summary>
+        /// <param name="pIdImagen"></param>
+        /// <param name="pIdCampania"></param>
+        public void AddImagenes(int pIdImagen, int pIdCampania)
+        {
+            try
+            {
+                _campaniaRepository.AddImagenes(pIdImagen, pIdCampania);
+            }
+            catch(Exception exc)
+            {
+                throw exc;
+            }
+        }
     }
 }

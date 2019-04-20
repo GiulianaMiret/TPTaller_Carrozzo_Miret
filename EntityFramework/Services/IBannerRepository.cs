@@ -11,7 +11,7 @@ namespace EntityFramework.Services
 {
     public interface IBannerRepository : IRepository<Banner>
     {
-        void CambiarFuente(int pIdBannerRSS, int pIdFuente);
+        void CambiarFuente(int pIdBannerRSS, Fuente pFuente);
 
         List<BannerRSS> GetAllRss();
 

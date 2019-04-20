@@ -57,6 +57,7 @@
     <Compile Include="Services\CampaniaRepository.cs" />
     <Compile Include="Services\FuenteRepository.cs" />
     <Compile Include="Services\IBannerRepository.cs" />
+    <Compile Include="Services\ICampaniaRepository.cs" />
     <Compile Include="Services\IRepository.cs" />
     <Compile Include="Services\ImagenRepository.cs" />
     <Compile Include="ModelsMap\BannerMap.cs" />
