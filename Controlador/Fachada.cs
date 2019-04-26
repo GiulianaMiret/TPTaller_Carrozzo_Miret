@@ -17,8 +17,8 @@ namespace Controlador
         /// <summary>
         /// Declaramos las variables repositorios de solo lectura, que se inyectarán con Ninject.
         /// </summary>
-        private readonly IRepository<Banner> _bannerRepository;
-        private readonly IRepository<Campania> _campaniaRepository;
+        private readonly IBannerRepository _bannerRepository;
+        private readonly ICampaniaRepository _campaniaRepository;
         private readonly IRepository<Fuente> _fuenteRepository;
         private readonly IRepository<Imagen> _imagenRepository;
 
