@@ -55,7 +55,7 @@
             this.buttonAdministracion.Text = "Administración";
             this.buttonAdministracion.UseVisualStyleBackColor = false;
             // 
-            // frmPrincipal
+            // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -68,7 +68,7 @@
             this.Font = new System.Drawing.Font("Monotype Corsiva", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "frmPrincipal";
+            this.Name = "FrmPrincipal";
             this.Text = "Shout News";
             this.Load += new System.EventHandler(this.frmPrincipal_Load);
             this.ResumeLayout(false);

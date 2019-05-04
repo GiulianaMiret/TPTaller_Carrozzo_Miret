@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAdministracion));
             this.buttonAdmCampania = new System.Windows.Forms.Button();
-            this.buttonAdmBanner = new System.Windows.Forms.Button();
+            this.buttonNewBanner = new System.Windows.Forms.Button();
             this.labelAdmCampania = new System.Windows.Forms.Label();
             this.labelAdmBanner = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -42,23 +42,23 @@
             this.buttonAdmCampania.BackColor = System.Drawing.Color.White;
             this.buttonAdmCampania.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonAdmCampania.Font = new System.Drawing.Font("Perpetua Titling MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAdmCampania.Location = new System.Drawing.Point(550, 158);
+            this.buttonAdmCampania.Location = new System.Drawing.Point(574, 88);
             this.buttonAdmCampania.Name = "buttonAdmCampania";
             this.buttonAdmCampania.Size = new System.Drawing.Size(148, 43);
             this.buttonAdmCampania.TabIndex = 0;
             this.buttonAdmCampania.Text = "Campañas";
             this.buttonAdmCampania.UseVisualStyleBackColor = false;
             // 
-            // buttonAdmBanner
+            // buttonNewBanner
             // 
-            this.buttonAdmBanner.BackColor = System.Drawing.Color.White;
-            this.buttonAdmBanner.Font = new System.Drawing.Font("Perpetua Titling MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAdmBanner.Location = new System.Drawing.Point(304, 298);
-            this.buttonAdmBanner.Name = "buttonAdmBanner";
-            this.buttonAdmBanner.Size = new System.Drawing.Size(148, 43);
-            this.buttonAdmBanner.TabIndex = 1;
-            this.buttonAdmBanner.Text = "Banners";
-            this.buttonAdmBanner.UseVisualStyleBackColor = false;
+            this.buttonNewBanner.BackColor = System.Drawing.Color.White;
+            this.buttonNewBanner.Font = new System.Drawing.Font("Perpetua Titling MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonNewBanner.Location = new System.Drawing.Point(304, 224);
+            this.buttonNewBanner.Name = "buttonNewBanner";
+            this.buttonNewBanner.Size = new System.Drawing.Size(148, 43);
+            this.buttonNewBanner.TabIndex = 1;
+            this.buttonNewBanner.Text = "Nuevo Banner";
+            this.buttonNewBanner.UseVisualStyleBackColor = false;
             // 
             // labelAdmCampania
             // 
@@ -66,7 +66,7 @@
             this.labelAdmCampania.BackColor = System.Drawing.Color.Transparent;
             this.labelAdmCampania.Font = new System.Drawing.Font("Script MT Bold", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelAdmCampania.ForeColor = System.Drawing.Color.White;
-            this.labelAdmCampania.Location = new System.Drawing.Point(458, 35);
+            this.labelAdmCampania.Location = new System.Drawing.Point(543, 37);
             this.labelAdmCampania.Name = "labelAdmCampania";
             this.labelAdmCampania.Size = new System.Drawing.Size(155, 38);
             this.labelAdmCampania.TabIndex = 2;
@@ -78,7 +78,7 @@
             this.labelAdmBanner.BackColor = System.Drawing.Color.Transparent;
             this.labelAdmBanner.Font = new System.Drawing.Font("Script MT Bold", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelAdmBanner.ForeColor = System.Drawing.Color.White;
-            this.labelAdmBanner.Location = new System.Drawing.Point(316, 228);
+            this.labelAdmBanner.Location = new System.Drawing.Point(297, 174);
             this.labelAdmBanner.Name = "labelAdmBanner";
             this.labelAdmBanner.Size = new System.Drawing.Size(125, 38);
             this.labelAdmBanner.TabIndex = 2;
@@ -92,7 +92,7 @@
             this.ClientSize = new System.Drawing.Size(867, 489);
             this.Controls.Add(this.labelAdmBanner);
             this.Controls.Add(this.labelAdmCampania);
-            this.Controls.Add(this.buttonAdmBanner);
+            this.Controls.Add(this.buttonNewBanner);
             this.Controls.Add(this.buttonAdmCampania);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmAdministracion";
@@ -105,7 +105,7 @@
         #endregion
 
         private System.Windows.Forms.Button buttonAdmCampania;
-        private System.Windows.Forms.Button buttonAdmBanner;
+        private System.Windows.Forms.Button buttonNewBanner;
         private System.Windows.Forms.Label labelAdmCampania;
         private System.Windows.Forms.Label labelAdmBanner;
     }

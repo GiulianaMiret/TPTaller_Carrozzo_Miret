@@ -55,6 +55,12 @@
     <Compile Include="FrmAdministracion.Designer.cs">
       <DependentUpon>FrmAdministracion.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmNewBanner.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmNewBanner.Designer.cs">
+      <DependentUpon>FrmNewBanner.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmOperacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +78,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FrmAdministracion.resx">
       <DependentUpon>FrmAdministracion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmNewBanner.resx">
+      <DependentUpon>FrmNewBanner.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmOperacion.resx">
       <DependentUpon>FrmOperacion.cs</DependentUpon>
