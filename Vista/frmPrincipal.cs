@@ -16,10 +16,10 @@ namespace Vista
         {
             InitializeComponent();
         }
-
-        private void frmPrincipal_Load(object sender, EventArgs e)
+        
+        private void agregarFuenteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            
         }
     }
 }

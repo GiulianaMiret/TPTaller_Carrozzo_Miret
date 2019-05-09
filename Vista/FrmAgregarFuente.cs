@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Vista
 {
-    public partial class FrmAdministracion : Form
+    public partial class FrmAgregarFuente : Form
     {
-        public FrmAdministracion()
+        public FrmAgregarFuente()
         {
             InitializeComponent();
         }

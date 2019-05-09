@@ -15,7 +15,5 @@ namespace Core.Models
         public string URL { get; set; }
 
         public string Descripcion { get; set; }
-
-        public virtual BannerRSS BannerRSS { get; set; }
     }
 }

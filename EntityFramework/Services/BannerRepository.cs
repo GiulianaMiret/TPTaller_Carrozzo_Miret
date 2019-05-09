@@ -16,9 +16,9 @@ namespace EntityFramework.Services
     {
         private readonly DigitalBillboardContext _context;
 
-        public BannerRepository(DigitalBillboardContext context)
+        public BannerRepository()
         {
-            _context = context;
+            _context = new DigitalBillboardContext();
         }
         
         public IQueryable<Banner> Get(Expression<Func<Banner, bool>> predicate)

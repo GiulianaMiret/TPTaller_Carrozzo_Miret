@@ -49,11 +49,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FrmAdministracion.cs">
+    <Compile Include="FrmAgregarFuente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmAdministracion.Designer.cs">
-      <DependentUpon>FrmAdministracion.cs</DependentUpon>
+    <Compile Include="FrmAgregarFuente.Designer.cs">
+      <DependentUpon>FrmAgregarFuente.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmNewBanner.cs">
       <SubType>Form</SubType>
@@ -76,8 +76,8 @@
     <Compile Include="InjectModule.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FrmAdministracion.resx">
-      <DependentUpon>FrmAdministracion.cs</DependentUpon>
+    <EmbeddedResource Include="FrmAgregarFuente.resx">
+      <DependentUpon>FrmAgregarFuente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmNewBanner.resx">
       <DependentUpon>FrmNewBanner.cs</DependentUpon>

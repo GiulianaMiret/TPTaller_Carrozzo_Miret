@@ -44,13 +44,13 @@
             this.radioButtonRSS = new System.Windows.Forms.RadioButton();
             this.radioButtonTextoFijo = new System.Windows.Forms.RadioButton();
             this.groupBoxTextoFijo = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.textBoxTXTTexto = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBoxRSS = new System.Windows.Forms.GroupBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
-            this.buttonBannerCancelar = new System.Windows.Forms.Button();
-            this.buttonBannerGuardar = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btnBannerCancelar = new System.Windows.Forms.Button();
+            this.btnBannerGuardar = new System.Windows.Forms.Button();
             this.groupBoxFechaHora.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBanner)).BeginInit();
             this.groupBoxTipoBanner.SuspendLayout();
@@ -249,6 +249,14 @@
             this.groupBoxTextoFijo.Text = "Propiedades";
             this.groupBoxTextoFijo.Visible = false;
             // 
+            // textBoxTXTTexto
+            // 
+            this.textBoxTXTTexto.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxTXTTexto.Location = new System.Drawing.Point(17, 52);
+            this.textBoxTXTTexto.Name = "textBoxTXTTexto";
+            this.textBoxTXTTexto.Size = new System.Drawing.Size(557, 30);
+            this.textBoxTXTTexto.TabIndex = 10;
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -260,14 +268,6 @@
             this.label2.Size = new System.Drawing.Size(57, 24);
             this.label2.TabIndex = 10;
             this.label2.Text = "Texto";
-            // 
-            // textBoxTXTTexto
-            // 
-            this.textBoxTXTTexto.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxTXTTexto.Location = new System.Drawing.Point(17, 52);
-            this.textBoxTXTTexto.Name = "textBoxTXTTexto";
-            this.textBoxTXTTexto.Size = new System.Drawing.Size(557, 30);
-            this.textBoxTXTTexto.TabIndex = 10;
             // 
             // groupBoxRSS
             // 
@@ -285,15 +285,6 @@
             this.groupBoxRSS.Text = "Propiedades";
             this.groupBoxRSS.Visible = false;
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(15, 49);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(558, 90);
-            this.dataGridView1.TabIndex = 0;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -306,27 +297,36 @@
             this.label3.TabIndex = 10;
             this.label3.Text = "Seleccione la Fuente";
             // 
-            // buttonBannerCancelar
+            // dataGridView1
             // 
-            this.buttonBannerCancelar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonBannerCancelar.Font = new System.Drawing.Font("Copperplate Gothic Light", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonBannerCancelar.Location = new System.Drawing.Point(463, 455);
-            this.buttonBannerCancelar.Name = "buttonBannerCancelar";
-            this.buttonBannerCancelar.Size = new System.Drawing.Size(134, 33);
-            this.buttonBannerCancelar.TabIndex = 14;
-            this.buttonBannerCancelar.Text = "Cancelar";
-            this.buttonBannerCancelar.UseVisualStyleBackColor = true;
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(15, 49);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(558, 90);
+            this.dataGridView1.TabIndex = 0;
             // 
-            // buttonBannerGuardar
+            // btnBannerCancelar
             // 
-            this.buttonBannerGuardar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonBannerGuardar.Font = new System.Drawing.Font("Copperplate Gothic Light", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonBannerGuardar.Location = new System.Drawing.Point(259, 455);
-            this.buttonBannerGuardar.Name = "buttonBannerGuardar";
-            this.buttonBannerGuardar.Size = new System.Drawing.Size(134, 33);
-            this.buttonBannerGuardar.TabIndex = 15;
-            this.buttonBannerGuardar.Text = "Guardar";
-            this.buttonBannerGuardar.UseVisualStyleBackColor = true;
+            this.btnBannerCancelar.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnBannerCancelar.Font = new System.Drawing.Font("Copperplate Gothic Light", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBannerCancelar.Location = new System.Drawing.Point(463, 455);
+            this.btnBannerCancelar.Name = "btnBannerCancelar";
+            this.btnBannerCancelar.Size = new System.Drawing.Size(134, 33);
+            this.btnBannerCancelar.TabIndex = 14;
+            this.btnBannerCancelar.Text = "Cancelar";
+            this.btnBannerCancelar.UseVisualStyleBackColor = true;
+            // 
+            // btnBannerGuardar
+            // 
+            this.btnBannerGuardar.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnBannerGuardar.Font = new System.Drawing.Font("Copperplate Gothic Light", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBannerGuardar.Location = new System.Drawing.Point(259, 455);
+            this.btnBannerGuardar.Name = "btnBannerGuardar";
+            this.btnBannerGuardar.Size = new System.Drawing.Size(134, 33);
+            this.btnBannerGuardar.TabIndex = 15;
+            this.btnBannerGuardar.Text = "Guardar";
+            this.btnBannerGuardar.UseVisualStyleBackColor = true;
             // 
             // FrmNewBanner
             // 
@@ -336,8 +336,8 @@
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(877, 512);
-            this.Controls.Add(this.buttonBannerGuardar);
-            this.Controls.Add(this.buttonBannerCancelar);
+            this.Controls.Add(this.btnBannerGuardar);
+            this.Controls.Add(this.btnBannerCancelar);
             this.Controls.Add(this.groupBoxRSS);
             this.Controls.Add(this.groupBoxTextoFijo);
             this.Controls.Add(this.groupBoxTipoBanner);
@@ -388,7 +388,7 @@
         private System.Windows.Forms.GroupBox groupBoxRSS;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button buttonBannerCancelar;
-        private System.Windows.Forms.Button buttonBannerGuardar;
+        private System.Windows.Forms.Button btnBannerCancelar;
+        private System.Windows.Forms.Button btnBannerGuardar;
     }
 }

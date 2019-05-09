@@ -23,7 +23,7 @@ namespace Vista
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmNewBanner());
+            Application.Run(new FrmPrincipal());
         }
     }
 }

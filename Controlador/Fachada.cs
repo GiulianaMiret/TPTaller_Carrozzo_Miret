@@ -96,7 +96,6 @@ namespace Controlador
             fuente.Estado = true;
             fuente.URL = pURL;
             fuente.Descripcion = pDescripcion;
-            fuente.BannerRSS = pBanner;
             try
             {
                 _fuenteRepository.Insert(fuente);
