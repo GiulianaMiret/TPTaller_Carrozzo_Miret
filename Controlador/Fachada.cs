@@ -134,7 +134,6 @@ namespace Controlador
             imagen.Estado = true;
             imagen.Nombre = pNombre;
             imagen.Hash = pHash;
-            imagen.Campania = pCampania;
             try
             {
                 _imagenRepository.Insert(imagen);

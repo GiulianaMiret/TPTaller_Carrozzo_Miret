@@ -51,9 +51,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DigitalBillboardContext.cs" />
-    <Compile Include="Migrations\201904110104269_initial.cs" />
-    <Compile Include="Migrations\201904110104269_initial.Designer.cs">
-      <DependentUpon>201904110104269_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201905150004232_Inicial_2.cs" />
+    <Compile Include="Migrations\201905150004232_Inicial_2.Designer.cs">
+      <DependentUpon>201905150004232_Inicial_2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Services\BannerRepository.cs" />
@@ -84,8 +84,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201904110104269_initial.resx">
-      <DependentUpon>201904110104269_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201905150004232_Inicial_2.resx">
+      <DependentUpon>201905150004232_Inicial_2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

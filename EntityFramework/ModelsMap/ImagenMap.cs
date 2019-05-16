@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity.ModelConfiguration;
 using Core.Models;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EntityFramework.ModelsMap
 {
@@ -13,6 +14,9 @@ namespace EntityFramework.ModelsMap
         public ImagenMap()
         {
             this.HasKey(x => x.Id);
+
+            this.Property(a => a.Id)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             this.Property(p => p.Nombre)
                 .HasMaxLength(50)
@@ -23,8 +27,6 @@ namespace EntityFramework.ModelsMap
 
             this.Property(p => p.Hash)
                 .IsRequired();
-
-            this.HasRequired<Campania>(p => p.Campania);
         }
     }
 }

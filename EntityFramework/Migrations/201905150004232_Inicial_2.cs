@@ -3,7 +3,7 @@ namespace EntityFramework.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class initial : DbMigration
+    public partial class Inicial_2 : DbMigration
     {
         public override void Up()
         {
@@ -11,7 +11,7 @@ namespace EntityFramework.Migrations
                 "dbo.Banners",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         Nombre = c.String(nullable: false, maxLength: 50),
                         Estado = c.Boolean(nullable: false),
                         FechaInicio = c.DateTime(nullable: false),
@@ -29,11 +29,8 @@ namespace EntityFramework.Migrations
                         Estado = c.Boolean(nullable: false),
                         URL = c.String(nullable: false),
                         Descripcion = c.String(nullable: false),
-                        BannerRSS_Id = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.BannerRSS", t => t.BannerRSS_Id)
-                .Index(t => t.BannerRSS_Id);
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.Campanias",
@@ -57,10 +54,10 @@ namespace EntityFramework.Migrations
                         Nombre = c.String(nullable: false, maxLength: 50),
                         Hash = c.Byte(nullable: false),
                         Estado = c.Boolean(nullable: false),
-                        Campania_Id = c.Int(nullable: false),
+                        Campania_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Campanias", t => t.Campania_Id, cascadeDelete: true)
+                .ForeignKey("dbo.Campanias", t => t.Campania_Id)
                 .Index(t => t.Campania_Id);
             
             CreateTable(
@@ -95,11 +92,9 @@ namespace EntityFramework.Migrations
             DropForeignKey("dbo.BannerRSS", "Id", "dbo.Fuentes");
             DropForeignKey("dbo.BannerRSS", "Id", "dbo.Banners");
             DropForeignKey("dbo.Imagens", "Campania_Id", "dbo.Campanias");
-            DropForeignKey("dbo.Fuentes", "BannerRSS_Id", "dbo.BannerRSS");
             DropIndex("dbo.BannerTextoFijo", new[] { "Id" });
             DropIndex("dbo.BannerRSS", new[] { "Id" });
             DropIndex("dbo.Imagens", new[] { "Campania_Id" });
-            DropIndex("dbo.Fuentes", new[] { "BannerRSS_Id" });
             DropTable("dbo.BannerTextoFijo");
             DropTable("dbo.BannerRSS");
             DropTable("dbo.Imagens");

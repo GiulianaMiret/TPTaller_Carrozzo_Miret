@@ -16,6 +16,5 @@ namespace Core.Models
 
         public bool Estado { get; set; }
 
-        public virtual Campania Campania { get; set; }
     }
 }
