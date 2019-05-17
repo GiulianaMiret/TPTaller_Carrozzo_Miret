@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Vista
 {
-    public partial class FrmNewBanner : Form
+    public partial class FrmAgregarBanner : Form
     {
-        public FrmNewBanner()
+        public FrmAgregarBanner()
         {
             InitializeComponent();
         }
@@ -28,5 +28,6 @@ namespace Vista
             groupBoxTextoFijo.Visible = false;
             groupBoxRSS.Visible = true;
         }
+
     }
 }

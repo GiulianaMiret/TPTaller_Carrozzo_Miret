@@ -49,9 +49,10 @@
             // 
             this.textBoxOperacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxOperacion.Location = new System.Drawing.Point(12, 410);
+            this.textBoxOperacion.Font = new System.Drawing.Font("Trebuchet MS", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxOperacion.Location = new System.Drawing.Point(12, 408);
             this.textBoxOperacion.Name = "textBoxOperacion";
-            this.textBoxOperacion.Size = new System.Drawing.Size(844, 20);
+            this.textBoxOperacion.Size = new System.Drawing.Size(844, 41);
             this.textBoxOperacion.TabIndex = 1;
             // 
             // FrmOperacion
@@ -60,9 +61,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(868, 485);
             this.Controls.Add(this.textBoxOperacion);
             this.Controls.Add(this.pictureBoxOperacion);
+            this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmOperacion";
             this.Text = "Shout News";

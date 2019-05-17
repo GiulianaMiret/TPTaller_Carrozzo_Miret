@@ -1,6 +1,6 @@
 ﻿namespace Vista
 {
-    partial class FrmNewBanner
+    partial class FrmAgregarBanner
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmNewBanner));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAgregarBanner));
             this.labelNuevoBanner = new System.Windows.Forms.Label();
             this.labelNombre = new System.Windows.Forms.Label();
             this.textBoxBannerNombre = new System.Windows.Forms.TextBox();
@@ -39,7 +39,6 @@
             this.dateTimePickerBannerFechaInicio = new System.Windows.Forms.DateTimePicker();
             this.labelFechaHoraFin = new System.Windows.Forms.Label();
             this.labelFHInicio = new System.Windows.Forms.Label();
-            this.dataGridViewBanner = new System.Windows.Forms.DataGridView();
             this.groupBoxTipoBanner = new System.Windows.Forms.GroupBox();
             this.radioButtonRSS = new System.Windows.Forms.RadioButton();
             this.radioButtonTextoFijo = new System.Windows.Forms.RadioButton();
@@ -51,12 +50,13 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnBannerCancelar = new System.Windows.Forms.Button();
             this.btnBannerGuardar = new System.Windows.Forms.Button();
+            this.dataGridViewNewBanner = new System.Windows.Forms.DataGridView();
             this.groupBoxFechaHora.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBanner)).BeginInit();
             this.groupBoxTipoBanner.SuspendLayout();
             this.groupBoxTextoFijo.SuspendLayout();
             this.groupBoxRSS.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewNewBanner)).BeginInit();
             this.SuspendLayout();
             // 
             // labelNuevoBanner
@@ -109,7 +109,7 @@
             this.groupBoxFechaHora.Controls.Add(this.labelFHInicio);
             this.groupBoxFechaHora.Font = new System.Drawing.Font("Perpetua Titling MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxFechaHora.ForeColor = System.Drawing.Color.White;
-            this.groupBoxFechaHora.Location = new System.Drawing.Point(32, 157);
+            this.groupBoxFechaHora.Location = new System.Drawing.Point(32, 180);
             this.groupBoxFechaHora.Name = "groupBoxFechaHora";
             this.groupBoxFechaHora.Size = new System.Drawing.Size(298, 112);
             this.groupBoxFechaHora.TabIndex = 4;
@@ -182,25 +182,16 @@
             this.labelFHInicio.TabIndex = 5;
             this.labelFHInicio.Text = "Inicio";
             // 
-            // dataGridViewBanner
-            // 
-            this.dataGridViewBanner.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.dataGridViewBanner.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dataGridViewBanner.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewBanner.Location = new System.Drawing.Point(350, 165);
-            this.dataGridViewBanner.Name = "dataGridViewBanner";
-            this.dataGridViewBanner.Size = new System.Drawing.Size(357, 93);
-            this.dataGridViewBanner.TabIndex = 5;
-            // 
             // groupBoxTipoBanner
             // 
+            this.groupBoxTipoBanner.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.groupBoxTipoBanner.AutoSize = true;
             this.groupBoxTipoBanner.BackColor = System.Drawing.Color.Transparent;
             this.groupBoxTipoBanner.Controls.Add(this.radioButtonRSS);
             this.groupBoxTipoBanner.Controls.Add(this.radioButtonTextoFijo);
             this.groupBoxTipoBanner.Font = new System.Drawing.Font("Perpetua Titling MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxTipoBanner.ForeColor = System.Drawing.Color.White;
-            this.groupBoxTipoBanner.Location = new System.Drawing.Point(32, 296);
+            this.groupBoxTipoBanner.Location = new System.Drawing.Point(32, 317);
             this.groupBoxTipoBanner.Name = "groupBoxTipoBanner";
             this.groupBoxTipoBanner.Size = new System.Drawing.Size(185, 107);
             this.groupBoxTipoBanner.TabIndex = 8;
@@ -235,15 +226,15 @@
             // 
             // groupBoxTextoFijo
             // 
-            this.groupBoxTextoFijo.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.groupBoxTextoFijo.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.groupBoxTextoFijo.BackColor = System.Drawing.Color.Transparent;
             this.groupBoxTextoFijo.Controls.Add(this.textBoxTXTTexto);
             this.groupBoxTextoFijo.Controls.Add(this.label2);
             this.groupBoxTextoFijo.Font = new System.Drawing.Font("Perpetua Titling MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxTextoFijo.ForeColor = System.Drawing.Color.White;
-            this.groupBoxTextoFijo.Location = new System.Drawing.Point(274, 285);
+            this.groupBoxTextoFijo.Location = new System.Drawing.Point(258, 301);
             this.groupBoxTextoFijo.Name = "groupBoxTextoFijo";
-            this.groupBoxTextoFijo.Size = new System.Drawing.Size(580, 155);
+            this.groupBoxTextoFijo.Size = new System.Drawing.Size(580, 160);
             this.groupBoxTextoFijo.TabIndex = 9;
             this.groupBoxTextoFijo.TabStop = false;
             this.groupBoxTextoFijo.Text = "Propiedades";
@@ -271,15 +262,17 @@
             // 
             // groupBoxRSS
             // 
-            this.groupBoxRSS.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.groupBoxRSS.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.groupBoxRSS.AutoSize = true;
             this.groupBoxRSS.BackColor = System.Drawing.Color.Transparent;
+            this.groupBoxRSS.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.groupBoxRSS.Controls.Add(this.label3);
             this.groupBoxRSS.Controls.Add(this.dataGridView1);
             this.groupBoxRSS.Font = new System.Drawing.Font("Perpetua Titling MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxRSS.ForeColor = System.Drawing.Color.White;
-            this.groupBoxRSS.Location = new System.Drawing.Point(268, 285);
+            this.groupBoxRSS.Location = new System.Drawing.Point(258, 301);
             this.groupBoxRSS.Name = "groupBoxRSS";
-            this.groupBoxRSS.Size = new System.Drawing.Size(580, 138);
+            this.groupBoxRSS.Size = new System.Drawing.Size(592, 164);
             this.groupBoxRSS.TabIndex = 11;
             this.groupBoxRSS.TabStop = false;
             this.groupBoxRSS.Text = "Propiedades";
@@ -308,9 +301,10 @@
             // 
             // btnBannerCancelar
             // 
-            this.btnBannerCancelar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnBannerCancelar.Font = new System.Drawing.Font("Copperplate Gothic Light", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBannerCancelar.Location = new System.Drawing.Point(463, 455);
+            this.btnBannerCancelar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnBannerCancelar.Font = new System.Drawing.Font("Copperplate Gothic Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBannerCancelar.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.btnBannerCancelar.Location = new System.Drawing.Point(463, 467);
             this.btnBannerCancelar.Name = "btnBannerCancelar";
             this.btnBannerCancelar.Size = new System.Drawing.Size(134, 33);
             this.btnBannerCancelar.TabIndex = 14;
@@ -319,14 +313,24 @@
             // 
             // btnBannerGuardar
             // 
-            this.btnBannerGuardar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnBannerGuardar.Font = new System.Drawing.Font("Copperplate Gothic Light", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBannerGuardar.Location = new System.Drawing.Point(259, 455);
+            this.btnBannerGuardar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnBannerGuardar.AutoSize = true;
+            this.btnBannerGuardar.Font = new System.Drawing.Font("Copperplate Gothic Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBannerGuardar.Location = new System.Drawing.Point(258, 467);
             this.btnBannerGuardar.Name = "btnBannerGuardar";
             this.btnBannerGuardar.Size = new System.Drawing.Size(134, 33);
             this.btnBannerGuardar.TabIndex = 15;
             this.btnBannerGuardar.Text = "Guardar";
             this.btnBannerGuardar.UseVisualStyleBackColor = true;
+            // 
+            // dataGridViewNewBanner
+            // 
+            this.dataGridViewNewBanner.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridViewNewBanner.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewNewBanner.Location = new System.Drawing.Point(397, 184);
+            this.dataGridViewNewBanner.Name = "dataGridViewNewBanner";
+            this.dataGridViewNewBanner.Size = new System.Drawing.Size(468, 100);
+            this.dataGridViewNewBanner.TabIndex = 16;
             // 
             // FrmNewBanner
             // 
@@ -335,17 +339,19 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(877, 512);
+            this.Controls.Add(this.dataGridViewNewBanner);
             this.Controls.Add(this.btnBannerGuardar);
+            this.Controls.Add(this.groupBoxTextoFijo);
             this.Controls.Add(this.btnBannerCancelar);
             this.Controls.Add(this.groupBoxRSS);
-            this.Controls.Add(this.groupBoxTextoFijo);
             this.Controls.Add(this.groupBoxTipoBanner);
-            this.Controls.Add(this.dataGridViewBanner);
             this.Controls.Add(this.groupBoxFechaHora);
             this.Controls.Add(this.textBoxBannerNombre);
             this.Controls.Add(this.labelNombre);
             this.Controls.Add(this.labelNuevoBanner);
+            this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmNewBanner";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -353,7 +359,6 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.groupBoxFechaHora.ResumeLayout(false);
             this.groupBoxFechaHora.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBanner)).EndInit();
             this.groupBoxTipoBanner.ResumeLayout(false);
             this.groupBoxTipoBanner.PerformLayout();
             this.groupBoxTextoFijo.ResumeLayout(false);
@@ -361,6 +366,7 @@
             this.groupBoxRSS.ResumeLayout(false);
             this.groupBoxRSS.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewNewBanner)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -375,7 +381,6 @@
         private System.Windows.Forms.Label labelFechaHoraFin;
         private System.Windows.Forms.Label labelFHInicio;
         private System.Windows.Forms.DateTimePicker dateTimePickerBannerFechaInicio;
-        private System.Windows.Forms.DataGridView dataGridViewBanner;
         private System.Windows.Forms.GroupBox groupBoxTipoBanner;
         private System.Windows.Forms.RadioButton radioButtonRSS;
         private System.Windows.Forms.RadioButton radioButtonTextoFijo;
@@ -390,5 +395,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnBannerCancelar;
         private System.Windows.Forms.Button btnBannerGuardar;
+        private System.Windows.Forms.DataGridView dataGridViewNewBanner;
     }
 }

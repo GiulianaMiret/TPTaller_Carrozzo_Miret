@@ -49,17 +49,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrmAgregarCampania.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAgregarCampania.Designer.cs">
+      <DependentUpon>FrmAgregarCampania.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmAgregarFuente.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmAgregarFuente.Designer.cs">
       <DependentUpon>FrmAgregarFuente.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmNewBanner.cs">
+    <Compile Include="FrmAgregarBanner.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmNewBanner.Designer.cs">
-      <DependentUpon>FrmNewBanner.cs</DependentUpon>
+    <Compile Include="FrmAgregarBanner.Designer.cs">
+      <DependentUpon>FrmAgregarBanner.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmAgregarImagen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAgregarImagen.Designer.cs">
+      <DependentUpon>FrmAgregarImagen.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmOperacion.cs">
       <SubType>Form</SubType>
@@ -76,11 +88,17 @@
     <Compile Include="InjectModule.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FrmAgregarCampania.resx">
+      <DependentUpon>FrmAgregarCampania.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmAgregarFuente.resx">
       <DependentUpon>FrmAgregarFuente.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmNewBanner.resx">
-      <DependentUpon>FrmNewBanner.cs</DependentUpon>
+    <EmbeddedResource Include="FrmAgregarBanner.resx">
+      <DependentUpon>FrmAgregarBanner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmAgregarImagen.resx">
+      <DependentUpon>FrmAgregarImagen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmOperacion.resx">
       <DependentUpon>FrmOperacion.cs</DependentUpon>

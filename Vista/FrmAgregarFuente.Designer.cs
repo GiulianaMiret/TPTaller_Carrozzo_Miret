@@ -28,55 +28,117 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.labelDescripcionFuente = new System.Windows.Forms.Label();
-            this.labelURLFuente = new System.Windows.Forms.Label();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAgregarFuente));
+            this.textBoxURLfuente = new System.Windows.Forms.TextBox();
+            this.textBoxDescripfuente = new System.Windows.Forms.TextBox();
+            this.labelNuevaFuente = new System.Windows.Forms.Label();
+            this.labelURL = new System.Windows.Forms.Label();
+            this.labeldescfuen = new System.Windows.Forms.Label();
+            this.btnFuenteGuardar = new System.Windows.Forms.Button();
+            this.btnFuenteCancelar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // textBox1
+            // textBoxURLfuente
             // 
-            this.textBox1.Location = new System.Drawing.Point(171, 34);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(594, 20);
-            this.textBox1.TabIndex = 0;
+            this.textBoxURLfuente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxURLfuente.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxURLfuente.Location = new System.Drawing.Point(173, 149);
+            this.textBoxURLfuente.Name = "textBoxURLfuente";
+            this.textBoxURLfuente.Size = new System.Drawing.Size(594, 30);
+            this.textBoxURLfuente.TabIndex = 0;
             // 
-            // textBox2
+            // textBoxDescripfuente
             // 
-            this.textBox2.Location = new System.Drawing.Point(171, 74);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(594, 20);
-            this.textBox2.TabIndex = 1;
+            this.textBoxDescripfuente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxDescripfuente.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxDescripfuente.Location = new System.Drawing.Point(173, 308);
+            this.textBoxDescripfuente.Name = "textBoxDescripfuente";
+            this.textBoxDescripfuente.Size = new System.Drawing.Size(594, 30);
+            this.textBoxDescripfuente.TabIndex = 1;
             // 
-            // labelDescripcionFuente
+            // labelNuevaFuente
             // 
-            this.labelDescripcionFuente.AutoSize = true;
-            this.labelDescripcionFuente.Location = new System.Drawing.Point(12, 77);
-            this.labelDescripcionFuente.Name = "labelDescripcionFuente";
-            this.labelDescripcionFuente.Size = new System.Drawing.Size(125, 13);
-            this.labelDescripcionFuente.TabIndex = 2;
-            this.labelDescripcionFuente.Text = "Descripción de la fuente:";
+            this.labelNuevaFuente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelNuevaFuente.AutoSize = true;
+            this.labelNuevaFuente.BackColor = System.Drawing.Color.Transparent;
+            this.labelNuevaFuente.Font = new System.Drawing.Font("Lucida Calligraphy", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNuevaFuente.Location = new System.Drawing.Point(37, 28);
+            this.labelNuevaFuente.Name = "labelNuevaFuente";
+            this.labelNuevaFuente.Size = new System.Drawing.Size(289, 45);
+            this.labelNuevaFuente.TabIndex = 5;
+            this.labelNuevaFuente.Text = "Nueva Fuente";
+            this.labelNuevaFuente.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // labelURLFuente
+            // labelURL
             // 
-            this.labelURLFuente.AutoSize = true;
-            this.labelURLFuente.Location = new System.Drawing.Point(12, 37);
-            this.labelURLFuente.Name = "labelURLFuente";
-            this.labelURLFuente.Size = new System.Drawing.Size(91, 13);
-            this.labelURLFuente.TabIndex = 3;
-            this.labelURLFuente.Text = "URL de la fuente:";
+            this.labelURL.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.labelURL.AutoSize = true;
+            this.labelURL.BackColor = System.Drawing.Color.Transparent;
+            this.labelURL.Font = new System.Drawing.Font("Perpetua Titling MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelURL.ForeColor = System.Drawing.Color.White;
+            this.labelURL.Location = new System.Drawing.Point(11, 151);
+            this.labelURL.Name = "labelURL";
+            this.labelURL.Size = new System.Drawing.Size(153, 19);
+            this.labelURL.TabIndex = 6;
+            this.labelURL.Text = "URL de la fuente";
+            // 
+            // labeldescfuen
+            // 
+            this.labeldescfuen.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.labeldescfuen.AutoSize = true;
+            this.labeldescfuen.BackColor = System.Drawing.Color.Transparent;
+            this.labeldescfuen.Font = new System.Drawing.Font("Perpetua Titling MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labeldescfuen.ForeColor = System.Drawing.Color.White;
+            this.labeldescfuen.Location = new System.Drawing.Point(24, 314);
+            this.labeldescfuen.Name = "labeldescfuen";
+            this.labeldescfuen.Size = new System.Drawing.Size(117, 19);
+            this.labeldescfuen.TabIndex = 7;
+            this.labeldescfuen.Text = "Descripción";
+            // 
+            // btnFuenteGuardar
+            // 
+            this.btnFuenteGuardar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnFuenteGuardar.AutoSize = true;
+            this.btnFuenteGuardar.Font = new System.Drawing.Font("Copperplate Gothic Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFuenteGuardar.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.btnFuenteGuardar.Location = new System.Drawing.Point(234, 385);
+            this.btnFuenteGuardar.Name = "btnFuenteGuardar";
+            this.btnFuenteGuardar.Size = new System.Drawing.Size(134, 33);
+            this.btnFuenteGuardar.TabIndex = 16;
+            this.btnFuenteGuardar.Text = "Guardar";
+            this.btnFuenteGuardar.UseVisualStyleBackColor = true;
+            // 
+            // btnFuenteCancelar
+            // 
+            this.btnFuenteCancelar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnFuenteCancelar.Font = new System.Drawing.Font("Copperplate Gothic Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFuenteCancelar.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.btnFuenteCancelar.Location = new System.Drawing.Point(422, 385);
+            this.btnFuenteCancelar.Name = "btnFuenteCancelar";
+            this.btnFuenteCancelar.Size = new System.Drawing.Size(134, 33);
+            this.btnFuenteCancelar.TabIndex = 17;
+            this.btnFuenteCancelar.Text = "Cancelar";
+            this.btnFuenteCancelar.UseVisualStyleBackColor = true;
             // 
             // FrmAgregarFuente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.labelURLFuente);
-            this.Controls.Add(this.labelDescripcionFuente);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.btnFuenteCancelar);
+            this.Controls.Add(this.btnFuenteGuardar);
+            this.Controls.Add(this.labeldescfuen);
+            this.Controls.Add(this.labelURL);
+            this.Controls.Add(this.labelNuevaFuente);
+            this.Controls.Add(this.textBoxDescripfuente);
+            this.Controls.Add(this.textBoxURLfuente);
+            this.DoubleBuffered = true;
+            this.ForeColor = System.Drawing.Color.SandyBrown;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmAgregarFuente";
-            this.Text = "FrmAgregarFuente";
+            this.Text = "Shout News";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -84,9 +146,12 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label labelDescripcionFuente;
-        private System.Windows.Forms.Label labelURLFuente;
+        private System.Windows.Forms.TextBox textBoxURLfuente;
+        private System.Windows.Forms.TextBox textBoxDescripfuente;
+        private System.Windows.Forms.Label labelNuevaFuente;
+        private System.Windows.Forms.Label labelURL;
+        private System.Windows.Forms.Label labeldescfuen;
+        private System.Windows.Forms.Button btnFuenteGuardar;
+        private System.Windows.Forms.Button btnFuenteCancelar;
     }
 }

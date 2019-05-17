@@ -40,8 +40,9 @@
             // 
             // btnOperacion
             // 
+            this.btnOperacion.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnOperacion.BackColor = System.Drawing.Color.White;
-            this.btnOperacion.Font = new System.Drawing.Font("Perpetua Titling MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOperacion.Font = new System.Drawing.Font("Perpetua Titling MT", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOperacion.Location = new System.Drawing.Point(118, 115);
             this.btnOperacion.Name = "btnOperacion";
             this.btnOperacion.Size = new System.Drawing.Size(239, 79);
@@ -85,7 +86,7 @@
             // agregarFuenteToolStripMenuItem
             // 
             this.agregarFuenteToolStripMenuItem.Name = "agregarFuenteToolStripMenuItem";
-            this.agregarFuenteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.agregarFuenteToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.agregarFuenteToolStripMenuItem.Text = "Agregar fuente";
             this.agregarFuenteToolStripMenuItem.Click += new System.EventHandler(this.agregarFuenteToolStripMenuItem_Click);
             // 
@@ -95,10 +96,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(507, 280);
             this.Controls.Add(this.btnOperacion);
             this.Controls.Add(this.menuStripFrmPrincipal);
             this.Cursor = System.Windows.Forms.Cursors.Default;
+            this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Monotype Corsiva", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
