@@ -1,6 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Controlador;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FachadaTest
 {

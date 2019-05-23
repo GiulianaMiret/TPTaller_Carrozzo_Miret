@@ -45,15 +45,5 @@
     <Compile Include="Fachada.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Core\Core.csproj">
-      <Project>{53b1862b-0aa7-47ea-a28f-c9a8783067d8}</Project>
-      <Name>Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EntityFramework\EntityFramework.csproj">
-      <Project>{4CE120C8-D6DA-478C-9139-E77FDB8C4986}</Project>
-      <Name>EntityFramework</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

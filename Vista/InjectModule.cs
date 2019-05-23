@@ -6,20 +6,28 @@ using System.Text;
 using System.Threading.Tasks;
 using Ninject;
 using EntityFramework.Services;
-using Core.Models;
 using EntityFramework;
+using Controlador;
+using Core.Models;
+using log4net;
+using log4net.Core;
+using Vista.Logger;
 
 namespace Vista
 {
     public class InjectModule : NinjectModule
-    {      
+    {
+
         public override void Load()
         {
             //Bindeamos las inyecciones de dependencias y las hacemos Singleton , es decir, una sola instancia de las variables para toda la ejecucion del programa.
             Bind<IBannerRepository>().To<BannerRepository>().InSingletonScope();
             Bind<ICampaniaRepository>().To<CampaniaRepository>().InSingletonScope();
-            Bind<FuenteRepository>().ToSelf().InSingletonScope();
-            Bind<ImagenRepository>().ToSelf().InSingletonScope();
+            Bind<IRepository<Fuente>>().To<FuenteRepository>().InSingletonScope();
+            Bind<IRepository<Imagen>>().To<ImagenRepository>().InSingletonScope();
+            Bind<Fachada>().ToSelf().InSingletonScope();
+            Bind<Vista.Logger.ILogger>().To<Logger4net>().InSingletonScope();
+
         }
     }
 }

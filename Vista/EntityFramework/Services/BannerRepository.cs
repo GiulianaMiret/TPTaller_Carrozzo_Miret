@@ -18,7 +18,7 @@ namespace EntityFramework.Services
 
         public BannerRepository()
         {
-            _context = new DigitalBillboardContext();
+            _context = new DigitalBillboardContext();            
         }
         
         public IQueryable<Banner> Get(Expression<Func<Banner, bool>> predicate)
@@ -28,6 +28,7 @@ namespace EntityFramework.Services
             {
                 throw new Exception("No hay Banners");
             }
+
             return query;
         }
 

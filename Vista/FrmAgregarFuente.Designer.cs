@@ -107,6 +107,7 @@
             this.btnFuenteGuardar.TabIndex = 16;
             this.btnFuenteGuardar.Text = "Guardar";
             this.btnFuenteGuardar.UseVisualStyleBackColor = true;
+            this.btnFuenteGuardar.Click += new System.EventHandler(this.btnFuenteGuardar_Click);
             // 
             // btnFuenteCancelar
             // 

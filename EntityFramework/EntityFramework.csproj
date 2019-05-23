@@ -30,12 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
     </Reference>
@@ -51,24 +45,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DigitalBillboardContext.cs" />
-    <Compile Include="Migrations\201905150004232_Inicial_2.cs" />
-    <Compile Include="Migrations\201905150004232_Inicial_2.Designer.cs">
-      <DependentUpon>201905150004232_Inicial_2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Services\BannerRepository.cs" />
-    <Compile Include="Services\CampaniaRepository.cs" />
-    <Compile Include="Services\FuenteRepository.cs" />
-    <Compile Include="Services\IBannerRepository.cs" />
-    <Compile Include="Services\ICampaniaRepository.cs" />
-    <Compile Include="Services\IRepository.cs" />
-    <Compile Include="Services\ImagenRepository.cs" />
-    <Compile Include="ModelsMap\BannerMap.cs" />
-    <Compile Include="ModelsMap\BannerRSSMap.cs" />
-    <Compile Include="ModelsMap\BannerTextoFijoMap.cs" />
-    <Compile Include="ModelsMap\CampaniaMap.cs" />
-    <Compile Include="ModelsMap\FuenteMap.cs" />
-    <Compile Include="ModelsMap\ImagenMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -76,17 +52,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Core\Core.csproj">
-      <Project>{53B1862B-0AA7-47EA-A28F-C9A8783067D8}</Project>
-      <Name>Core</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201905150004232_Inicial_2.resx">
-      <DependentUpon>201905150004232_Inicial_2.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

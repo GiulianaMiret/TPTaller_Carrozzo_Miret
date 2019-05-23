@@ -1,0 +1,2 @@
+﻿2019-05-22 20:43:14,216 INFO [1] Vista.Program.Main - fsdfasdfasdf
+2019-05-22 21:01:07,051 INFO [1] Vista.Logger.Logger4net.Info - PRUEBA!

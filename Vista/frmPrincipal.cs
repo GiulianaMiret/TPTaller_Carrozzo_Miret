@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Controlador;
+using EntityFramework.Services;
+using log4net;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,14 +15,20 @@ namespace Vista
 {
     public partial class FrmPrincipal : Form
     {
-        public FrmPrincipal()
+        private readonly Fachada iFachada;
+        private readonly IBannerRepository iBannerRepository;
+        private readonly Vista.Logger.ILogger iLog;
+        public FrmPrincipal(IBannerRepository bannerRepository, Fachada fachada, Logger.ILogger log)
         {
+            iBannerRepository = bannerRepository;
+            iFachada = fachada;
+            iLog = log;
             InitializeComponent();
         }
         
         private void agregarFuenteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            iLog.Info("PRUEBA!");
         }
     }
 }
