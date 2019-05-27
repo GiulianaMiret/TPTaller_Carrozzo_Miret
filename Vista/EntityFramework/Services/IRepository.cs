@@ -36,7 +36,7 @@ namespace EntityFramework.Services
         /// </summary>
         /// <param name="pId"></param>
         /// <returns> T "entity" </returns>
-        T GetByName(int pId);
+     //   T GetByName(int pId);
 
         /// <summary>
         /// Agrega una entidad (T) verificando que no exista o no esté activa.

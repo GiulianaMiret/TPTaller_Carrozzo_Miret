@@ -30,5 +30,10 @@ namespace Vista
         {
             CompositionRoot.Resolve<FrmAgregarFuente>().ShowDialog();
         }
+
+        private void gestiónDeImagenesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CompositionRoot.Resolve<FrmGestionImagenes>().ShowDialog();
+        }
     }
 }

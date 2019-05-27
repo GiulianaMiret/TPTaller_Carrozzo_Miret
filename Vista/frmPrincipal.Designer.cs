@@ -35,6 +35,7 @@
             this.administraciónDeBannersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.administraciónDeFuentesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.agregarFuenteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gestiónDeImagenesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripFrmPrincipal.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,6 +66,8 @@
             // 
             // administraciónDeFuentesToolStripMenuItem
             // 
+            this.administraciónDeFuentesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.gestiónDeImagenesToolStripMenuItem});
             this.administraciónDeFuentesToolStripMenuItem.Name = "administraciónDeFuentesToolStripMenuItem";
             this.administraciónDeFuentesToolStripMenuItem.Size = new System.Drawing.Size(175, 20);
             this.administraciónDeFuentesToolStripMenuItem.Text = "Administración de Campañas";
@@ -86,9 +89,16 @@
             // agregarFuenteToolStripMenuItem
             // 
             this.agregarFuenteToolStripMenuItem.Name = "agregarFuenteToolStripMenuItem";
-            this.agregarFuenteToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.agregarFuenteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.agregarFuenteToolStripMenuItem.Text = "Agregar fuente";
             this.agregarFuenteToolStripMenuItem.Click += new System.EventHandler(this.agregarFuenteToolStripMenuItem_Click);
+            // 
+            // gestiónDeImagenesToolStripMenuItem
+            // 
+            this.gestiónDeImagenesToolStripMenuItem.Name = "gestiónDeImagenesToolStripMenuItem";
+            this.gestiónDeImagenesToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.gestiónDeImagenesToolStripMenuItem.Text = "Gestión de Imagenes";
+            this.gestiónDeImagenesToolStripMenuItem.Click += new System.EventHandler(this.gestiónDeImagenesToolStripMenuItem_Click);
             // 
             // FrmPrincipal
             // 
@@ -123,6 +133,7 @@
         private System.Windows.Forms.ToolStripMenuItem administraciónDeBannersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem administraciónDeFuentesToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem agregarFuenteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gestiónDeImagenesToolStripMenuItem;
     }
 }
 
