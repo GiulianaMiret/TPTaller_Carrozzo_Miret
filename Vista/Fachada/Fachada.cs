@@ -19,15 +19,15 @@ namespace Controlador
         /// </summary>
         private readonly IBannerRepository iBannerRepository;
         private readonly ICampaniaRepository iCampaniaRepository;
-        private readonly IRepository<Fuente> iFuenteRepository;
-        private readonly IRepository<Imagen> iImagenRepository;
+        private readonly FuenteRSSRepository iFuenteRepository;
+        private readonly ImagenRepository iImagenRepository;
 
         /// <summary>
         /// Constructor de la clase Fachada que basicamente inyecta las dependencias de los repositorios con Ninject.
         /// </summary>
         /// <param name="bannerRepository"></param>
         /// <param name="campaniaRepository"></param>
-        public Fachada(IBannerRepository bannerRepository, ICampaniaRepository campaniaRepository, IRepository<Fuente> fuenteRepository, IRepository<Imagen> imagenRepository)
+        public Fachada(IBannerRepository bannerRepository, ICampaniaRepository campaniaRepository, FuenteRSSRepository fuenteRepository, ImagenRepository imagenRepository)
         {
             iBannerRepository = bannerRepository;
             iCampaniaRepository = campaniaRepository;
@@ -46,7 +46,7 @@ namespace Controlador
         ///     newCampania
         ///     newImagen
         /// </summary>
-        public void AddBannerRSS(string pNombre, DateTime pFechaInicio, DateTime pFechaFin, TimeSpan pHoraInicio, TimeSpan pHoraFin, int pCodigo, string pValor, Fuente pFuente)
+        public void AddBannerRSS(string pNombre, DateTime pFechaInicio, DateTime pFechaFin, TimeSpan pHoraInicio, TimeSpan pHoraFin, int pCodigo, string pValor, FuenteRSS pFuente)
         {
             BannerRSS banner = new BannerRSS();
             //banner.Id
@@ -56,7 +56,6 @@ namespace Controlador
             banner.FechaFin = pFechaFin;
             banner.HoraInicio = pHoraInicio;
             banner.HoraFin = pHoraFin;
-            banner.Codigo = pCodigo;
             banner.Valor = pValor;
             banner.Fuente = pFuente;
             try
@@ -90,7 +89,7 @@ namespace Controlador
             }
         }
 
-        public void AddFuente(Fuente pFuente)
+        public void AddFuente(FuenteRSS pFuente)
         {            
             try
             {
@@ -123,16 +122,11 @@ namespace Controlador
             }
         }
 
-        public void AddImagen(string pNombre, byte pHash, Campania pCampania)
-        {
-            Imagen imagen = new Imagen();
-            //imagen.Id
-            imagen.Estado = true;
-            imagen.Nombre = pNombre;
-            imagen.Hash = pHash;
+        public void AddImagen(Imagen pImagen)
+        {           
             try
             {
-                iImagenRepository.Insert(imagen);
+                iImagenRepository.Insert(pImagen);
             }
             catch (Exception exc)
             {
@@ -148,7 +142,7 @@ namespace Controlador
         ///     deleteCampania
         ///     deleteImagen
         /// </summary>
-        public void deleteBannerRSS(BannerRSS pBanner)
+        public void DeleteBannerRSS(BannerRSS pBanner)
         {
             try
             {
@@ -160,7 +154,7 @@ namespace Controlador
             }
         }
 
-        public void deleteBannerTXT(BannerTextoFijo pBanner)
+        public void DeleteBannerTXT(BannerTextoFijo pBanner)
         {
             try
             {
@@ -172,7 +166,7 @@ namespace Controlador
             }
         }
 
-        public void deleteFuente(Fuente pFuente)
+        public void DeleteFuenteRSS(FuenteRSS pFuente)
         {
             try
             {
@@ -184,7 +178,7 @@ namespace Controlador
             }
         }
 
-        public void deleteCampania(Campania pCampania)
+        public void DeleteCampania(Campania pCampania)
         {
             try
             {
@@ -196,7 +190,7 @@ namespace Controlador
             }
         }
 
-        public void deleteImagen(Imagen pImagen)
+        public void DeleteImagen(Imagen pImagen)
         {
             try
             {
@@ -216,7 +210,7 @@ namespace Controlador
         ///     deleteByIdCampania
         ///     deleteByIdImagen
         /// </summary>
-        public void deleteByIdBannerRSS(int pId)
+        public void DeleteByIdBannerRSS(int pId)
         {
             try
             {
@@ -228,7 +222,7 @@ namespace Controlador
             }
         }
 
-        public void deleteByIdBannerTXT(int pId)
+        public void DeleteByIdBannerTXT(int pId)
         {
             try
             {
@@ -240,7 +234,7 @@ namespace Controlador
             }
         }
 
-        public void deleteByIdFuente(int pId)
+        public void DeleteByIdFuente(int pId)
         {
             try
             {
@@ -252,7 +246,7 @@ namespace Controlador
             }
         }
 
-        public void deleteByIdCampania(int pId)
+        public void DeleteByIdCampania(int pId)
         {
             try
             {
@@ -264,7 +258,7 @@ namespace Controlador
             }
         }
 
-        public void deleteByIdImagen(int pId)
+        public void DeleteByIdImagen(int pId)
         {
             try
             {
@@ -284,7 +278,7 @@ namespace Controlador
         ///     updateCampania
         ///     updateImagen
         /// </summary>
-        public void updateBannerRSS (BannerRSS pBanner)
+        public void UpdateBannerRSS (BannerRSS pBanner)
         {
             try
             {
@@ -296,7 +290,7 @@ namespace Controlador
             }
         }
 
-        public void updateBannerTXT (BannerTextoFijo pBanner)
+        public void UpdateBannerTXT (BannerTextoFijo pBanner)
         {
             try
             {
@@ -308,7 +302,7 @@ namespace Controlador
             }
         }
 
-        public void updateFuente (Fuente pFuente)
+        public void UpdateFuente (FuenteRSS pFuente)
         {
             try
             {
@@ -320,7 +314,7 @@ namespace Controlador
             }
         }
 
-        public void updateCampania (Campania pCampania)
+        public void UpdateCampania (Campania pCampania)
         {
             try
             {
@@ -332,7 +326,7 @@ namespace Controlador
             }
         }
 
-        public void updateImagen (Imagen pImagen)
+        public void UpdateImagen (Imagen pImagen)
         {
             try
             {
@@ -346,12 +340,12 @@ namespace Controlador
 
         /// <summary>
         /// Métodos para obtener una entidad mediante su ID:
-        ///     getByIdBanner
-        ///     getByIdFuente
-        ///     getByIdCampania
-        ///     getByIdImagen
+        ///     getBannerById
+        ///     getFuenteById
+        ///     getCampaniaById
+        ///     getImagenById
         /// </summary>
-        public Banner getByIdBanner (int pId)
+        public Banner GetBannerById(int pId)
         {
             try
             {
@@ -363,7 +357,7 @@ namespace Controlador
             }
         }
 
-        public Fuente getByIdFuente (int pId)
+        public FuenteRSS GetFuenteById(int pId)
         {
             try
             {
@@ -375,7 +369,7 @@ namespace Controlador
             }
         }
 
-        public Campania getByIdCampania (int pId)
+        public Campania GetCampaniaById(int pId)
         {
             try
             {
@@ -387,7 +381,7 @@ namespace Controlador
             }
         }
 
-        public Imagen getByIdImagen (int pId)
+        public Imagen GetImagenById(int pId)
         {
             try
             {
@@ -399,6 +393,29 @@ namespace Controlador
             }
         }
 
+        public Imagen GetImagenByName(string pNombreImagen)
+        {
+            try
+            {
+                return iImagenRepository.GetByName(pNombreImagen);
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
+        }
+
+        public List<string> GetAllNamesFromImages()
+        {
+            try
+            {
+                return iImagenRepository.GetAllNamesFromImages();
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
+        }
         /// <summary>
         /// Métodos para obtener todas las entidades de un tipo:
         ///     getAllBanner
@@ -406,7 +423,7 @@ namespace Controlador
         ///     getAllCampania
         ///     getAllImagen
         /// </summary>
-        public IEnumerable<Banner> getAllBanner()
+        public IEnumerable<Banner> GetAllBanner()
         {
             try
             {
@@ -418,7 +435,7 @@ namespace Controlador
             }
         }
 
-        public IEnumerable<Fuente> getAllFuente()
+        public IEnumerable<FuenteRSS> GetAllFuente()
         {
             try
             {
@@ -430,7 +447,7 @@ namespace Controlador
             }
         }
 
-        public IEnumerable<Campania> getAllCampania()
+        public IEnumerable<Campania> GetAllCampania()
         {
             try
             {
@@ -442,7 +459,7 @@ namespace Controlador
             }
         }
 
-        public IEnumerable<Imagen> getAllImagen()
+        public IEnumerable<Imagen> GetAllImagen()
         {
             try
             {
@@ -473,7 +490,7 @@ namespace Controlador
             }
         }
 
-        public IQueryable<Fuente> GetFuente(Expression<Func<Fuente, bool>> predicate)
+        public IQueryable<FuenteRSS> GetFuente(Expression<Func<FuenteRSS, bool>> predicate)
         {
             try
             {

@@ -18,7 +18,7 @@ namespace EntityFramework
 
         public DbSet<Banner> Banners { get; set; }
 
-        public DbSet<Fuente> Fuentes { get; set; }
+        public DbSet<FuenteRSS> Fuentes { get; set; }
 
 
         public DigitalBillboardContext() : base("name=Default")

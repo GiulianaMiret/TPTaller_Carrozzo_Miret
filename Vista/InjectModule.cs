@@ -23,8 +23,8 @@ namespace Vista
             //Bindeamos las inyecciones de dependencias y las hacemos Singleton , es decir, una sola instancia de las variables para toda la ejecucion del programa.
             Bind<IBannerRepository>().To<BannerRepository>().InSingletonScope();
             Bind<ICampaniaRepository>().To<CampaniaRepository>().InSingletonScope();
-            Bind<IRepository<Fuente>>().To<FuenteRepository>().InSingletonScope();
-            Bind<IRepository<Imagen>>().To<ImagenRepository>().InSingletonScope();
+            Bind<FuenteRSSRepository>().ToSelf().InSingletonScope();
+            Bind<ImagenRepository>().ToSelf().InSingletonScope();
             Bind<Fachada>().ToSelf().InSingletonScope();
             Bind<Vista.Logger.ILogger>().To<Logger4net>().InSingletonScope();
 

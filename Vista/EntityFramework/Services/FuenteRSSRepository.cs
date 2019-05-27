@@ -12,18 +12,18 @@ namespace EntityFramework.Services
     /// <summary>
     /// Clase repositorio de la Fuente, donde se va a usar el context para realizar las operaciones
     /// </summary>
-    public class FuenteRepository : IRepository<Fuente>
+    public class FuenteRSSRepository : IRepository<FuenteRSS>
     {
         private readonly DigitalBillboardContext _context;
 
-        public FuenteRepository()
+        public FuenteRSSRepository()
         {
             _context = new DigitalBillboardContext();
         }
 
-        public IQueryable<Fuente> Get(Expression<Func<Fuente, bool>> predicate)
+        public IQueryable<FuenteRSS> Get(Expression<Func<FuenteRSS, bool>> predicate)
         {
-            IQueryable<Fuente> query = _context.Fuentes.TakeWhile(predicate);
+            IQueryable<FuenteRSS> query = _context.Fuentes.TakeWhile(predicate);
             if (query.Count() == 0)
             {
                 throw new Exception("No hay Fuentes");
@@ -31,11 +31,11 @@ namespace EntityFramework.Services
             return query;
         }
 
-        public IEnumerable<Fuente> GetAll()
+        public IEnumerable<FuenteRSS> GetAll()
         {
-            List<Fuente> listaFuentes = _context.Fuentes.ToList();
-            List<Fuente> activos = new List<Fuente>();
-            foreach (Fuente item in listaFuentes)
+            List<FuenteRSS> listaFuentes = _context.Fuentes.ToList();
+            List<FuenteRSS> activos = new List<FuenteRSS>();
+            foreach (FuenteRSS item in listaFuentes)
             {
                 if (item.Estado)
                 {
@@ -49,9 +49,9 @@ namespace EntityFramework.Services
             return activos;
         }
 
-        public Fuente GetById(int pId)
+        public FuenteRSS GetById(int pId)
         {
-            Fuente fuente = _context.Fuentes.Find(pId);
+            FuenteRSS fuente = _context.Fuentes.Find(pId);
             if ((fuente == null) || !(fuente.Estado))
             {
                 throw new Exception("No se ha encontrado la Fuente");
@@ -59,9 +59,9 @@ namespace EntityFramework.Services
             return fuente;
         }
 
-        public void Insert(Fuente pFuente)
+        public void Insert(FuenteRSS pFuente)
         {
-            Fuente fuente = _context.Fuentes.Find(pFuente.Id);
+            FuenteRSS fuente = _context.Fuentes.Find(pFuente.Id);
             if (fuente != null)
             {
                 if (!(fuente.Estado))
@@ -80,9 +80,9 @@ namespace EntityFramework.Services
             }
         }
 
-        public void Delete(Fuente pFuente)
+        public void Delete(FuenteRSS pFuente)
         {
-            Fuente encontrado = _context.Fuentes.Find(pFuente.Id);
+            FuenteRSS encontrado = _context.Fuentes.Find(pFuente.Id);
             if ((encontrado == null) || !(pFuente.Estado))
             {
                 throw new Exception("La Fuente no se ha encontrado");
@@ -94,7 +94,7 @@ namespace EntityFramework.Services
 
         public void DeleteById(int pId)
         {
-            Fuente pFuente = _context.Fuentes.Find(pId);
+            FuenteRSS pFuente = _context.Fuentes.Find(pId);
             if ((pFuente == null) || !(pFuente.Estado))
             {
                 throw new Exception("La Fuente no se ha encontrado");
@@ -103,9 +103,9 @@ namespace EntityFramework.Services
             _context.Fuentes.Attach(pFuente);
         }
 
-        public void Update(Fuente pFuente)
+        public void Update(FuenteRSS pFuente)
         {
-            Fuente fuenteAnterior = _context.Fuentes.Find(pFuente.Id);
+            FuenteRSS fuenteAnterior = _context.Fuentes.Find(pFuente.Id);
             if (fuenteAnterior == null)
             {
                 throw new Exception("No se ha encontrado el banner que se quiere modificar");

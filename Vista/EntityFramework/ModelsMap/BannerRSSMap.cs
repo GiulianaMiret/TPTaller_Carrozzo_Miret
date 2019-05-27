@@ -16,9 +16,7 @@ namespace EntityFramework.ModelsMap
 
             this.Property(x => x.Valor).IsRequired();
 
-            this.Property(x => x.Codigo).IsRequired();
-
-            this.HasRequired<Fuente>(x => x.Fuente).WithRequiredDependent();
+            this.HasRequired<FuenteRSS>(x => x.Fuente).WithRequiredDependent();
         }
     }
 }

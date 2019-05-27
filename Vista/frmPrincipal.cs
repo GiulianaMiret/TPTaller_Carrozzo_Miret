@@ -1,4 +1,5 @@
 ﻿using Controlador;
+using Core.Models;
 using EntityFramework.Services;
 using log4net;
 using System;
@@ -18,9 +19,8 @@ namespace Vista
         private readonly Fachada iFachada;
         private readonly IBannerRepository iBannerRepository;
         private readonly Vista.Logger.ILogger iLog;
-        public FrmPrincipal(IBannerRepository bannerRepository, Fachada fachada, Logger.ILogger log)
+        public FrmPrincipal(Fachada fachada, Logger.ILogger log)
         {
-            iBannerRepository = bannerRepository;
             iFachada = fachada;
             iLog = log;
             InitializeComponent();
@@ -28,7 +28,7 @@ namespace Vista
         
         private void agregarFuenteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            iLog.Info("PRUEBA!");
+            CompositionRoot.Resolve<FrmAgregarFuente>().ShowDialog();
         }
     }
 }

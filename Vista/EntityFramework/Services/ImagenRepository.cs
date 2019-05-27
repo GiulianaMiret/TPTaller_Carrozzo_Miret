@@ -49,25 +49,58 @@ namespace EntityFramework.Services
             return activos;
         }
 
-        public Imagen GetById(int pId)
+        public Imagen GetByName(string pNombreImagen)
         {
-            Imagen imagene = _context.Imagenes.Find(pId);
-            if ((imagene == null) || !(imagene.Estado))
+            Imagen mImagen = _context.Imagenes.Where(x => x.Nombre == pNombreImagen).FirstOrDefault();
+            if ((mImagen == null) || !(mImagen.Estado))
             {
                 throw new Exception("No se ha encontrado la Imagen");
             }
-            return imagene;
+            return mImagen;
+        }
+
+        public Imagen GetById(int pId)
+        {
+            Imagen mImagen = _context.Imagenes.Where(x => x.Id == pId).FirstOrDefault();
+            if ((mImagen == null) || !(mImagen.Estado))
+            {
+                throw new Exception("No se ha encontrado la Imagen");
+            }
+            return mImagen;
+        }
+
+        public Imagen GetByHash (byte[] pImagen)
+        {
+            Imagen mImagen = _context.Imagenes.Where(x => x.Hash == pImagen).FirstOrDefault();
+            if ((mImagen == null) || !(mImagen.Estado))
+            {
+                throw new Exception("No se ha encontrado la Imagen");
+            }
+            return mImagen;
+        }
+
+        public List<string> GetAllNamesFromImages()
+        {
+            List<string> mListasDeNombres = new List<string>();
+
+            foreach (var item in _context.Imagenes)
+            {
+                mListasDeNombres.Add(item.Nombre);
+            }
+
+            return mListasDeNombres;
         }
 
         public void Insert(Imagen pImagen)
         {
-            Imagen imagen = _context.Imagenes.Find(pImagen.Id);
-            if (imagen != null)
+            Imagen mBusquedaDeImagenPorHash = _context.Imagenes.Where(x => x.Hash == pImagen.Hash).FirstOrDefault();
+            Imagen mBusquedaDeImagenPorNombre = _context.Imagenes.Where(x => x.Nombre == pImagen.Nombre).FirstOrDefault();
+            if ((mBusquedaDeImagenPorHash != null) && (mBusquedaDeImagenPorNombre != null))
             {
-                if (!(imagen.Estado))
+                if (!(mBusquedaDeImagenPorNombre.Estado))
                 {
-                    imagen.Estado = true;
-                    _context.Imagenes.Attach(imagen);
+                    mBusquedaDeImagenPorNombre.Estado = true;
+                    _context.Imagenes.Attach(mBusquedaDeImagenPorNombre);
                 }
                 else
                 {

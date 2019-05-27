@@ -121,7 +121,7 @@ namespace EntityFramework.Services
         }
 
 
-        public void CambiarFuente(int pIdBanner, Fuente pFuente)
+        public void CambiarFuente(int pIdBanner, FuenteRSS pFuente)
         {
             BannerRSS bannerRss = _context.Banners.OfType<BannerRSS>().Where(x => x.Id == pIdBanner).First();
             if(bannerRss == null)

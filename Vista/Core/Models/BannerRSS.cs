@@ -9,10 +9,8 @@ namespace Core.Models
 {
     public class BannerRSS : Banner
     {
-        public int Codigo { get; set; }
-
         public string Valor { get; set; }
-        
-        public virtual Fuente Fuente { get; set; }
+
+        public virtual FuenteRSS Fuente { get; set; }
     }
 }

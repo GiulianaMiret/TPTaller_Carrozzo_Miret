@@ -32,6 +32,13 @@ namespace EntityFramework.Services
         T GetById(int pId);
 
         /// <summary>
+        /// Este método obtiene una entidad (T) mediante el id si la entidad se encuentra ACTIVA (Estado == true)
+        /// </summary>
+        /// <param name="pId"></param>
+        /// <returns> T "entity" </returns>
+        T GetByName(int pId);
+
+        /// <summary>
         /// Agrega una entidad (T) verificando que no exista o no esté activa.
         /// Si la entidad habia sido borrada (Estado == false), se la vuelve a activar (Estado == true)
         /// </summary>

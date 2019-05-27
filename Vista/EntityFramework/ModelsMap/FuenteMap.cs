@@ -9,7 +9,7 @@ using Core.Models;
 
 namespace EntityFramework.ModelsMap
 {
-    public class FuenteMap : EntityTypeConfiguration<Fuente>
+    public class FuenteMap : EntityTypeConfiguration<FuenteRSS>
     {
         public FuenteMap()
         {
@@ -18,8 +18,6 @@ namespace EntityFramework.ModelsMap
             this.Property(a => a.Id)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
-            this.Property(p => p.URL)
-                .IsRequired();
 
             this.Property(x => x.Descripcion)
                 .IsRequired();

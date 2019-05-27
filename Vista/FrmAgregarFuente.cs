@@ -9,19 +9,18 @@ namespace Vista
 {
     public partial class FrmAgregarFuente : Form
     {
-        private readonly FuenteRepository iFuenteRepository;
         private readonly Fachada iFachada;
-        public FrmAgregarFuente()
+        public FrmAgregarFuente(Fachada fachada)
         {
-            
+            iFachada = fachada;
             InitializeComponent();
         }
 
         private void btnFuenteGuardar_Click(object sender, EventArgs e)
         {
-            Fuente mFuente = new Fuente();
+            FuenteRSS mFuente = new FuenteRSS();
             mFuente.Descripcion = textBoxDescripfuente.Text;
-            mFuente.URL = textBoxURLfuente.Text;
+       //     mFuente.URL = textBoxURLfuente;
             mFuente.Estado = true;
             iFachada.AddFuente(mFuente);
         }

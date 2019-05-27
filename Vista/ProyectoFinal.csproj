@@ -76,7 +76,7 @@
     <Compile Include="EntityFramework\ModelsMap\ImagenMap.cs" />
     <Compile Include="EntityFramework\Services\BannerRepository.cs" />
     <Compile Include="EntityFramework\Services\CampaniaRepository.cs" />
-    <Compile Include="EntityFramework\Services\FuenteRepository.cs" />
+    <Compile Include="EntityFramework\Services\FuenteRSSRepository.cs" />
     <Compile Include="EntityFramework\Services\IBannerRepository.cs" />
     <Compile Include="EntityFramework\Services\ICampaniaRepository.cs" />
     <Compile Include="EntityFramework\Services\ImagenRepository.cs" />
@@ -100,11 +100,11 @@
     <Compile Include="FrmAgregarBanner.Designer.cs">
       <DependentUpon>FrmAgregarBanner.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmAgregarImagen.cs">
+    <Compile Include="FrmGestionImagenes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmAgregarImagen.Designer.cs">
-      <DependentUpon>FrmAgregarImagen.cs</DependentUpon>
+    <Compile Include="FrmGestionImagenes.Designer.cs">
+      <DependentUpon>FrmGestionImagenes.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmOperacion.cs">
       <SubType>Form</SubType>
@@ -123,10 +123,11 @@
     <Compile Include="Core\Models\BannerRSS.cs" />
     <Compile Include="Core\Models\BannerTextoFijo.cs" />
     <Compile Include="Core\Models\Campania.cs" />
-    <Compile Include="Core\Models\Fuente.cs" />
+    <Compile Include="Core\Models\FuenteRSS.cs" />
     <Compile Include="Core\Models\Imagen.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilidades.cs" />
     <EmbeddedResource Include="Migrations\201905150004232_Inicial_2.resx">
       <DependentUpon>201905150004232_Inicial_2.cs</DependentUpon>
     </EmbeddedResource>
@@ -139,8 +140,8 @@
     <EmbeddedResource Include="FrmAgregarBanner.resx">
       <DependentUpon>FrmAgregarBanner.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmAgregarImagen.resx">
-      <DependentUpon>FrmAgregarImagen.cs</DependentUpon>
+    <EmbeddedResource Include="FrmGestionImagenes.resx">
+      <DependentUpon>FrmGestionImagenes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmOperacion.resx">
       <DependentUpon>FrmOperacion.cs</DependentUpon>
