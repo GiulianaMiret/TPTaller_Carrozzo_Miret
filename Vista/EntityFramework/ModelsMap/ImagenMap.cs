@@ -21,9 +21,7 @@ namespace EntityFramework.ModelsMap
             this.Property(p => p.Nombre)
                 .HasMaxLength(50)
                 .IsRequired();
-
-            this.Property(p => p.Estado)
-                .IsRequired();
+            
 
             this.Property(p => p.Hash)
                 .IsRequired();

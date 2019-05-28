@@ -151,7 +151,7 @@ namespace EntityFramework.Services
             {
                 throw new Exception("La imágen no se ha encontrado");
             }
-            pImagen.Estado = false;
+        //    pImagen.Estado = false;
             _context.Imagenes.Attach(pImagen);
             _context.Campanias.Attach(pCampania); //no sé si es necesario esto.. porque ya está dada de baja la imagen
         }

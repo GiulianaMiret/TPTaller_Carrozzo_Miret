@@ -34,7 +34,7 @@ namespace Controlador
             iFuenteRepository = fuenteRepository;
             iImagenRepository = imagenRepository;
         }
-        
+
 
         /// <summary>
         /// New - Delete - Delete by id - Update - Get by id - Get all - Find by id - Find - Save
@@ -90,7 +90,7 @@ namespace Controlador
         }
 
         public void AddFuente(FuenteRSS pFuente)
-        {            
+        {
             try
             {
                 iFuenteRepository.Insert(pFuente);
@@ -123,7 +123,7 @@ namespace Controlador
         }
 
         public void AddImagen(Imagen pImagen)
-        {           
+        {
             try
             {
                 iImagenRepository.Insert(pImagen);
@@ -148,7 +148,7 @@ namespace Controlador
             {
                 iBannerRepository.Delete(pBanner);
             }
-            catch(Exception exc)
+            catch (Exception exc)
             {
                 throw exc;
             }
@@ -202,6 +202,17 @@ namespace Controlador
             }
         }
 
+        public void DeleteImagenByHash(byte[] pHash)
+        {
+            try
+            {
+                iImagenRepository.DeleteByHash(pHash);
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
+        }
         /// <summary>
         /// Métodos para dar de baja lógica a una entidad, pasando el ID:
         ///     deleteByIdBannerRSS

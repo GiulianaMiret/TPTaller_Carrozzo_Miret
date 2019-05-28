@@ -19,6 +19,7 @@ namespace Vista
         public FrmGestionImagenes(Fachada fachada, Logger.ILogger logger)
         {
             iFachada = fachada;
+            iLogger = logger;
             InitializeComponent();
         }
 
@@ -27,6 +28,7 @@ namespace Vista
             OpenFileDialog mOpenFileDialog = new OpenFileDialog();
             mOpenFileDialog.Filter = "Todas las imágenes soportadas|*.jpeg;*.png;*.bmp;*.ico";
             if (mOpenFileDialog.ShowDialog() == DialogResult.OK) pictureBoxImagen.Load(mOpenFileDialog.FileName);
+            comboBoxImagen.Text = "COLOQUE AQUÍ EL NOMBRE DE LA IMAGEN";
             comboBoxImagen.Focus();
         }
 
@@ -34,10 +36,11 @@ namespace Vista
         {
             Imagen mImagenAInsertar = new Imagen();
             mImagenAInsertar.Hash = Utilidades.ImageToByteArray(pictureBoxImagen);
-            mImagenAInsertar.Nombre = comboBoxImagen.Text;
+            mImagenAInsertar.Nombre = comboBoxImagen.Text; 
             try
             {
                 iFachada.AddImagen(mImagenAInsertar);
+                FrmGestionImagenes_Load(sender, e);
             }
             catch (Exception ex)
             {
@@ -48,16 +51,35 @@ namespace Vista
 
         private void comboBoxImagen_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Imagen pImagen = iFachada.GetImagenByName(comboBoxImagen.Text);
-            pictureBoxImagen.Image = Utilidades.ByteToImage(pImagen.Hash);
+           if (comboBoxImagen.SelectedIndex > 0)
+            {
+                Imagen pImagen = iFachada.GetImagenByName(comboBoxImagen.Text);
+                pictureBoxImagen.Image = Utilidades.ByteToImage(pImagen.Hash);
+            }          
         }
 
         private void FrmGestionImagenes_Load(object sender, EventArgs e)
         {
+            comboBoxImagen.Items.Clear();
             comboBoxImagen.Items.Insert(0, "Seleccione o cargue una imagen mediante el botón -->");
-            foreach (var mNombreImagen in iFachada.GetAllNamesFromImages())
+            var mListaDeNombresDeLasImagenes = iFachada.GetAllNamesFromImages();
+            foreach (var mNombreImagen in mListaDeNombresDeLasImagenes)
             {
                 comboBoxImagen.Items.Add(mNombreImagen);
+            }
+            comboBoxImagen.SelectedIndex = 0;
+        }
+
+        private void btnBorrarImagen_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                iFachada.DeleteImagenByHash(Utilidades.ImageToByteArray(pictureBoxImagen));
+                FrmGestionImagenes_Load(sender, e);
+            }
+            catch (Exception Exc)
+            {
+                throw new Exception(Exc.Message);
             }
         }
     }

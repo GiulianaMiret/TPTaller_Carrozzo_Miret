@@ -1,4 +1,4 @@
-namespace EntityFramework.Migrations
+namespace Vista.Migrations
 {
     using System;
     using System.Data.Entity;
@@ -9,7 +9,7 @@ namespace EntityFramework.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(EntityFramework.DigitalBillboardContext context)

@@ -121,6 +121,7 @@
             this.btnBorrarImagen.TabIndex = 23;
             this.btnBorrarImagen.Text = "Borrar";
             this.btnBorrarImagen.UseVisualStyleBackColor = true;
+            this.btnBorrarImagen.Click += new System.EventHandler(this.btnBorrarImagen_Click);
             // 
             // FrmGestionImagenes
             // 

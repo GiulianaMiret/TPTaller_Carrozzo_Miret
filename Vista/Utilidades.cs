@@ -93,11 +93,11 @@ namespace Vista
                 foreach (XmlNode bRssXmlItem in mRssXmlDocument.SelectNodes("//channel/item"))
                 {
                     mFuentes.Add(new FuenteRSS
-                    { 
-                       Titulo = GetXmlNodeValue<String>(bRssXmlItem, "title"),
+                    {
+                        Titulo = GetXmlNodeValue<String>(bRssXmlItem, "title"),
                         Descripcion = GetXmlNodeValue<String>(bRssXmlItem, "description"),
                         Fecha = GetXmlNodeValue<DateTime>(bRssXmlItem, "pubDate"),
-                        URL = new Uri(GetXmlNodeValue<String>(bRssXmlItem, "link"))
+                        URL = new Uri(GetXmlNodeValue<String>(bRssXmlItem, "link")).ToString()
                       }
                     );
                 }

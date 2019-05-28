@@ -1,2 +1,6 @@
 ﻿2019-05-22 20:43:14,216 INFO [1] Vista.Program.Main - fsdfasdfasdf
 2019-05-22 21:01:07,051 INFO [1] Vista.Logger.Logger4net.Info - PRUEBA!
+2019-05-27 21:28:41,045 ERROR [1] Vista.Logger.Logger4net.Error - La Imagen ya existe
+2019-05-27 21:32:13,554 ERROR [1] Vista.Logger.Logger4net.Error - La Imagen ya existe
+2019-05-27 21:32:34,929 ERROR [1] Vista.Logger.Logger4net.Error - Referencia a objeto no establecida como instancia de un objeto.
+2019-05-27 22:20:37,322 ERROR [1] Vista.Logger.Logger4net.Error - La imagen ya existe

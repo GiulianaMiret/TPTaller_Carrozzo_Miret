@@ -37,10 +37,10 @@ namespace EntityFramework.Services
             List<Imagen> activos = new List<Imagen>();
             foreach (Imagen item in listaImagenes)
             {
-                if (item.Estado)
-                {
-                    activos.Add(item);
-                }
+                //if (item.Estado)
+                //{
+                //    activos.Add(item);
+                //}
             }
             if (activos.Count() == 0)
             {
@@ -52,7 +52,7 @@ namespace EntityFramework.Services
         public Imagen GetByName(string pNombreImagen)
         {
             Imagen mImagen = _context.Imagenes.Where(x => x.Nombre == pNombreImagen).FirstOrDefault();
-            if ((mImagen == null) || !(mImagen.Estado))
+            if (mImagen == null)
             {
                 throw new Exception("No se ha encontrado la Imagen");
             }
@@ -62,17 +62,17 @@ namespace EntityFramework.Services
         public Imagen GetById(int pId)
         {
             Imagen mImagen = _context.Imagenes.Where(x => x.Id == pId).FirstOrDefault();
-            if ((mImagen == null) || !(mImagen.Estado))
-            {
-                throw new Exception("No se ha encontrado la Imagen");
-            }
+            //if ((mImagen == null) || !(mImagen.Estado))
+            //{
+            //    throw new Exception("No se ha encontrado la Imagen");
+            //}
             return mImagen;
         }
 
         public Imagen GetByHash (byte[] pImagen)
         {
             Imagen mImagen = _context.Imagenes.Where(x => x.Hash == pImagen).FirstOrDefault();
-            if ((mImagen == null) || !(mImagen.Estado))
+            if (mImagen == null)
             {
                 throw new Exception("No se ha encontrado la Imagen");
             }
@@ -83,7 +83,7 @@ namespace EntityFramework.Services
         {
             List<string> mListasDeNombres = new List<string>();
 
-            foreach (var item in _context.Imagenes)
+            foreach (var item in _context.Imagenes.ToList())
             {
                 mListasDeNombres.Add(item.Nombre);
             }
@@ -95,47 +95,55 @@ namespace EntityFramework.Services
         {
             Imagen mBusquedaDeImagenPorHash = _context.Imagenes.Where(x => x.Hash == pImagen.Hash).FirstOrDefault();
             Imagen mBusquedaDeImagenPorNombre = _context.Imagenes.Where(x => x.Nombre == pImagen.Nombre).FirstOrDefault();
-            if ((mBusquedaDeImagenPorHash != null) && (mBusquedaDeImagenPorNombre != null))
+            
+            if (mBusquedaDeImagenPorHash != null)
             {
-                if (!(mBusquedaDeImagenPorNombre.Estado))
-                {
-                    mBusquedaDeImagenPorNombre.Estado = true;
-                    _context.Imagenes.Attach(mBusquedaDeImagenPorNombre);
-                }
-                else
-                {
-                    throw new Exception("La Imagen ya existe");
-                }
+                throw new Exception("La imagen ya existe");
             }
-            else
+            if (mBusquedaDeImagenPorNombre != null)
             {
-                _context.Imagenes.Add(pImagen);
+                throw new Exception("Una imagen con ese nombre ya existe, elija otro.");
             }
+
+           _context.Imagenes.Add(pImagen);
+           _context.SaveChanges();
+            
         }
 
         public void Delete(Imagen pImagen)
         {
-            Imagen encontrado = _context.Imagenes.Find(pImagen.Id);
-            if ((encontrado == null) || !(pImagen.Estado))
+            Imagen mImagen = _context.Imagenes.Find(pImagen.Id);
+            if (mImagen == null)
             {
                 throw new Exception("La Imagen no se ha encontrado");
             }
-            pImagen.Estado = false;
-            _context.Imagenes.Attach(pImagen);
-
+            _context.Imagenes.Remove(mImagen);
+            _context.SaveChanges();
         }
 
         public void DeleteById(int pId)
         {
-            Imagen pImagen = _context.Imagenes.Find(pId);
-            if ((pImagen == null) || !(pImagen.Estado))
+            Imagen mImagen = _context.Imagenes.Where(x => x.Id == pId).FirstOrDefault();
+            if (mImagen == null)
             {
                 throw new Exception("La Imagen no se ha encontrado");
             }
-            pImagen.Estado = false;
-            _context.Imagenes.Attach(pImagen);
+            //  pImagen.Estado = false;
+            _context.Imagenes.Remove(mImagen);
+            _context.SaveChanges();
         }
 
+        public void DeleteByHash(byte[] pHash)
+        {
+            Imagen mImagen = _context.Imagenes.Where(x => x.Hash == pHash).FirstOrDefault();
+            if (mImagen == null)
+            {
+                throw new Exception("La Imagen no se ha encontrado");
+            }
+            //  pImagen.Estado = false;
+            _context.Imagenes.Remove(mImagen);
+            _context.SaveChanges();
+        }
         public void Update(Imagen pImagen)
         {
             Imagen imagenAnterior = _context.Imagenes.Find(pImagen.Id);
