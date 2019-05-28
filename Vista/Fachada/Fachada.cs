@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Core.Models;
 using System.Linq.Expressions;
+using System.Windows.Forms;
+using Vista;
 
 namespace Controlador
 {
@@ -207,6 +209,19 @@ namespace Controlador
             try
             {
                 iImagenRepository.DeleteByHash(pHash);
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
+        }
+
+        public void DeleteImagen(PictureBox pImagen, string pExtension)
+        {
+            try
+            {
+                Imagen mImagen = iImagenRepository.GetByHash(Utilidades.ImageToByteArray(pImagen, pExtension));
+                iImagenRepository.DeleteById(mImagen.Id);
             }
             catch (Exception exc)
             {

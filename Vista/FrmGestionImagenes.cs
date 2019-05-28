@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace Vista
     {
         private readonly Fachada iFachada;
         private readonly Logger.ILogger iLogger;
+        private string iExtension;
         public FrmGestionImagenes(Fachada fachada, Logger.ILogger logger)
         {
             iFachada = fachada;
@@ -26,16 +28,17 @@ namespace Vista
         private void btnExplorarBtn_Click(object sender, EventArgs e)
         {
             OpenFileDialog mOpenFileDialog = new OpenFileDialog();
-            mOpenFileDialog.Filter = "Todas las imágenes soportadas|*.jpeg;*.png;*.bmp;*.ico";
+            mOpenFileDialog.Filter = "*.png|*.png";
             if (mOpenFileDialog.ShowDialog() == DialogResult.OK) pictureBoxImagen.Load(mOpenFileDialog.FileName);
             comboBoxImagen.Text = "COLOQUE AQUÍ EL NOMBRE DE LA IMAGEN";
+            iExtension = Path.GetExtension(mOpenFileDialog.FileName);
             comboBoxImagen.Focus();
         }
 
         private void btnInsertarImagen_Click(object sender, EventArgs e)
         {
             Imagen mImagenAInsertar = new Imagen();
-            mImagenAInsertar.Hash = Utilidades.ImageToByteArray(pictureBoxImagen);
+            mImagenAInsertar.Hash = Utilidades.ImageToByteArray(pictureBoxImagen, iExtension);
             mImagenAInsertar.Nombre = comboBoxImagen.Text; 
             try
             {
@@ -74,7 +77,7 @@ namespace Vista
         {
             try
             {
-                iFachada.DeleteImagenByHash(Utilidades.ImageToByteArray(pictureBoxImagen));
+                iFachada.DeleteImagen(pictureBoxImagen);
                 FrmGestionImagenes_Load(sender, e);
             }
             catch (Exception Exc)

@@ -98,7 +98,7 @@ namespace Vista
                         Descripcion = GetXmlNodeValue<String>(bRssXmlItem, "description"),
                         Fecha = GetXmlNodeValue<DateTime>(bRssXmlItem, "pubDate"),
                         URL = new Uri(GetXmlNodeValue<String>(bRssXmlItem, "link")).ToString()
-                      }
+                    }
                     );
                 }
 
@@ -120,11 +120,20 @@ namespace Vista
             return mBitMap;
         }
 
-        public static byte[] ImageToByteArray(PictureBox pPictureBox)
+        public static byte[] ImageToByteArray(PictureBox pPictureBox, string pExtension)
         {
-            MemoryStream mMemoryStream = new MemoryStream();
-            pPictureBox.Image.Save(mMemoryStream, System.Drawing.Imaging.ImageFormat.Jpeg);
-            return mMemoryStream.GetBuffer();
+            if (pExtension.ToUpper() == ".PNG")
+            {
+                MemoryStream mMemoryStream = new MemoryStream();
+                pPictureBox.Image.Save(mMemoryStream, System.Drawing.Imaging.ImageFormat.Png);
+                return mMemoryStream.GetBuffer();
+            }
+            else
+            {
+                MemoryStream mMemoryStream = new MemoryStream();
+                pPictureBox.Image.Save(mMemoryStream, System.Drawing.Imaging.ImageFormat.Jpeg);
+                return mMemoryStream.GetBuffer();
+            }
         }
     }
 }
