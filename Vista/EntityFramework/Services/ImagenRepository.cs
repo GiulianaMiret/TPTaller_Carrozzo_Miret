@@ -121,6 +121,17 @@ namespace EntityFramework.Services
             _context.SaveChanges();
         }
 
+        public void DeleteByName(string pName)
+        {
+            Imagen mImagen = _context.Imagenes.Where(x => x.Nombre == pName).FirstOrDefault();
+            if (mImagen == null)
+            {
+                throw new Exception("La Imagen no se ha encontrado");
+            }
+            
+            _context.Imagenes.Remove(mImagen);
+            _context.SaveChanges();
+        }
         public void DeleteById(int pId)
         {
             Imagen mImagen = _context.Imagenes.Where(x => x.Id == pId).FirstOrDefault();
@@ -128,11 +139,10 @@ namespace EntityFramework.Services
             {
                 throw new Exception("La Imagen no se ha encontrado");
             }
-            //  pImagen.Estado = false;
+
             _context.Imagenes.Remove(mImagen);
             _context.SaveChanges();
         }
-
         public void DeleteByHash(byte[] pHash)
         {
             Imagen mImagen = _context.Imagenes.Where(x => x.Hash == pHash).FirstOrDefault();

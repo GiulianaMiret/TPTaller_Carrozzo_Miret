@@ -322,6 +322,7 @@
             this.btnBannerGuardar.TabIndex = 15;
             this.btnBannerGuardar.Text = "Guardar";
             this.btnBannerGuardar.UseVisualStyleBackColor = true;
+            this.btnBannerGuardar.Click += new System.EventHandler(this.btnBannerGuardar_Click);
             // 
             // dataGridViewNewBanner
             // 
@@ -332,7 +333,7 @@
             this.dataGridViewNewBanner.Size = new System.Drawing.Size(468, 100);
             this.dataGridViewNewBanner.TabIndex = 16;
             // 
-            // FrmNewBanner
+            // FrmAgregarBanner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -353,7 +354,7 @@
             this.Controls.Add(this.labelNuevoBanner);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "FrmNewBanner";
+            this.Name = "FrmAgregarBanner";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Shout News";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

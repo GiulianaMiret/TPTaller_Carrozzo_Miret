@@ -38,10 +38,9 @@ namespace EntityFramework.Services
             List<Campania> activos = new List<Campania>();
             foreach (Campania item in listaCampanias)
             {
-                if (item.Estado)
-                {
+                
                     activos.Add(item);
-                }
+                
             }
             if (activos.Count() == 0)
             {
@@ -53,7 +52,7 @@ namespace EntityFramework.Services
         public Campania GetById(int pId)
         {
             Campania campania = _context.Campanias.Find(pId);
-            if ((campania == null) || !(campania.Estado))
+            if (campania == null)
             {
                 throw new Exception("No se ha encontrado la Campaña");
             }
@@ -65,15 +64,14 @@ namespace EntityFramework.Services
             Campania campania = _context.Campanias.Find(pCampania.Id);
             if (campania != null)
             {
-                if (!(campania.Estado))
-                {
-                    campania.Estado = true;
+            
+            
+                   
                     _context.Campanias.Attach(campania);
-                }
-                else
-                {
+               
+              
                     throw new Exception("La Campaña ya existe");
-                }
+            
             }
             else
             {
@@ -84,11 +82,11 @@ namespace EntityFramework.Services
         public void Delete(Campania pCampania)
         {
             Campania encontrado = _context.Campanias.Find(pCampania.Id);
-            if ((encontrado == null) || !(pCampania.Estado))
+            if ((encontrado == null))
             {
                 throw new Exception("La Campaña no se ha encontrado");
             }
-            pCampania.Estado = false;
+ 
             _context.Campanias.Attach(pCampania);
 
         }
@@ -96,11 +94,11 @@ namespace EntityFramework.Services
         public void DeleteById(int pId)
         {
             Campania pCampania = _context.Campanias.Find(pId);
-            if ((pCampania == null) || !(pCampania.Estado))
+            if ((pCampania == null))
             {
                 throw new Exception("La Campaña no se ha encontrado");
             }
-            pCampania.Estado = false;
+            
             _context.Campanias.Attach(pCampania);
         }
 

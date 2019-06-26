@@ -12,8 +12,6 @@ namespace Core.Models
 
         public string Nombre { get; set; }
 
-        public bool Estado { get; set; }
-
         public virtual ICollection<Imagen> Imagenes { get; set; }
 
         public DateTime FechaInicio { get; set; }

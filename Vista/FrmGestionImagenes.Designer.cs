@@ -33,7 +33,6 @@
             this.btnExplorarBtn = new System.Windows.Forms.Button();
             this.comboBoxImagen = new System.Windows.Forms.ComboBox();
             this.pictureBoxImagen = new System.Windows.Forms.PictureBox();
-            this.btnActualizar = new System.Windows.Forms.Button();
             this.btnInsertarImagen = new System.Windows.Forms.Button();
             this.btnBorrarImagen = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImagen)).BeginInit();
@@ -85,18 +84,6 @@
             this.pictureBoxImagen.TabIndex = 22;
             this.pictureBoxImagen.TabStop = false;
             // 
-            // btnActualizar
-            // 
-            this.btnActualizar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnActualizar.Font = new System.Drawing.Font("Copperplate Gothic Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnActualizar.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.btnActualizar.Location = new System.Drawing.Point(580, 606);
-            this.btnActualizar.Name = "btnActualizar";
-            this.btnActualizar.Size = new System.Drawing.Size(155, 45);
-            this.btnActualizar.TabIndex = 17;
-            this.btnActualizar.Text = "Actualizar";
-            this.btnActualizar.UseVisualStyleBackColor = true;
-            // 
             // btnInsertarImagen
             // 
             this.btnInsertarImagen.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
@@ -115,7 +102,7 @@
             this.btnBorrarImagen.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnBorrarImagen.Font = new System.Drawing.Font("Copperplate Gothic Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBorrarImagen.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.btnBorrarImagen.Location = new System.Drawing.Point(419, 606);
+            this.btnBorrarImagen.Location = new System.Drawing.Point(613, 606);
             this.btnBorrarImagen.Name = "btnBorrarImagen";
             this.btnBorrarImagen.Size = new System.Drawing.Size(155, 45);
             this.btnBorrarImagen.TabIndex = 23;
@@ -135,12 +122,11 @@
             this.Controls.Add(this.comboBoxImagen);
             this.Controls.Add(this.btnExplorarBtn);
             this.Controls.Add(this.labelNuevaImagen);
-            this.Controls.Add(this.btnActualizar);
             this.Controls.Add(this.btnInsertarImagen);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmGestionImagenes";
-            this.Text = "Shout News";
+            this.Text = " ";
             this.Load += new System.EventHandler(this.FrmGestionImagenes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImagen)).EndInit();
             this.ResumeLayout(false);
@@ -153,7 +139,6 @@
         private System.Windows.Forms.Button btnExplorarBtn;
         private System.Windows.Forms.ComboBox comboBoxImagen;
         private System.Windows.Forms.PictureBox pictureBoxImagen;
-        private System.Windows.Forms.Button btnActualizar;
         private System.Windows.Forms.Button btnInsertarImagen;
         private System.Windows.Forms.Button btnBorrarImagen;
     }

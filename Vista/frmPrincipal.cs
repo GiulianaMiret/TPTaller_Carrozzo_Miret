@@ -28,12 +28,17 @@ namespace Vista
         
         private void agregarFuenteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CompositionRoot.Resolve<FrmAgregarFuente>().ShowDialog();
+            CompositionRoot.Resolve<FrmAgregarFuenteRSSTXT>().ShowDialog();
         }
 
         private void gestiónDeImagenesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CompositionRoot.Resolve<FrmGestionImagenes>().ShowDialog();
+        }
+
+        private void btnOperacion_Click(object sender, EventArgs e)
+        {
+            CompositionRoot.Resolve<FrmOperacion>().ShowDialog();
         }
     }
 }

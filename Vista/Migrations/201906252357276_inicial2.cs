@@ -3,7 +3,7 @@ namespace Vista.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class inicial2 : DbMigration
     {
         public override void Up()
         {
@@ -13,23 +13,25 @@ namespace Vista.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Nombre = c.String(nullable: false, maxLength: 50),
-                        Estado = c.Boolean(nullable: false),
                         FechaInicio = c.DateTime(nullable: false),
                         FechaFin = c.DateTime(nullable: false),
                         HoraInicio = c.Time(nullable: false, precision: 7),
                         HoraFin = c.Time(nullable: false, precision: 7),
+                        Fuente_Id = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Fuentes", t => t.Fuente_Id, cascadeDelete: true)
+                .Index(t => t.Fuente_Id);
             
             CreateTable(
-                "dbo.FuenteRSSes",
+                "dbo.Fuentes",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Estado = c.Boolean(nullable: false),
-                        Fecha = c.DateTime(nullable: false),
                         Titulo = c.String(),
-                        Descripcion = c.String(nullable: false),
+                        Valor = c.String(),
+                        URL = c.String(),
+                        TipoFuente = c.String(nullable: false, maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -39,7 +41,6 @@ namespace Vista.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Nombre = c.String(nullable: false, maxLength: 50),
-                        Estado = c.Boolean(nullable: false),
                         FechaInicio = c.DateTime(nullable: false),
                         FechaFin = c.DateTime(nullable: false),
                         HoraInicio = c.Time(nullable: false, precision: 7),
@@ -54,52 +55,23 @@ namespace Vista.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         Hash = c.Binary(nullable: false),
                         Nombre = c.String(nullable: false, maxLength: 50),
-                        Estado = c.Boolean(nullable: false),
                         Campania_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Campanias", t => t.Campania_Id)
                 .Index(t => t.Campania_Id);
             
-            CreateTable(
-                "dbo.BannerRSS",
-                c => new
-                    {
-                        Id = c.Int(nullable: false),
-                        Valor = c.String(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Banners", t => t.Id)
-                .ForeignKey("dbo.FuenteRSSes", t => t.Id)
-                .Index(t => t.Id);
-            
-            CreateTable(
-                "dbo.BannerTextoFijo",
-                c => new
-                    {
-                        Id = c.Int(nullable: false),
-                        Texto = c.String(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Banners", t => t.Id)
-                .Index(t => t.Id);
-            
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.BannerTextoFijo", "Id", "dbo.Banners");
-            DropForeignKey("dbo.BannerRSS", "Id", "dbo.FuenteRSSes");
-            DropForeignKey("dbo.BannerRSS", "Id", "dbo.Banners");
             DropForeignKey("dbo.Imagens", "Campania_Id", "dbo.Campanias");
-            DropIndex("dbo.BannerTextoFijo", new[] { "Id" });
-            DropIndex("dbo.BannerRSS", new[] { "Id" });
+            DropForeignKey("dbo.Banners", "Fuente_Id", "dbo.Fuentes");
             DropIndex("dbo.Imagens", new[] { "Campania_Id" });
-            DropTable("dbo.BannerTextoFijo");
-            DropTable("dbo.BannerRSS");
+            DropIndex("dbo.Banners", new[] { "Fuente_Id" });
             DropTable("dbo.Imagens");
             DropTable("dbo.Campanias");
-            DropTable("dbo.FuenteRSSes");
+            DropTable("dbo.Fuentes");
             DropTable("dbo.Banners");
         }
     }

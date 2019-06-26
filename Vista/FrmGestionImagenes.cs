@@ -17,7 +17,6 @@ namespace Vista
     {
         private readonly Fachada iFachada;
         private readonly Logger.ILogger iLogger;
-        private string iExtension;
         public FrmGestionImagenes(Fachada fachada, Logger.ILogger logger)
         {
             iFachada = fachada;
@@ -31,18 +30,18 @@ namespace Vista
             mOpenFileDialog.Filter = "*.png|*.png";
             if (mOpenFileDialog.ShowDialog() == DialogResult.OK) pictureBoxImagen.Load(mOpenFileDialog.FileName);
             comboBoxImagen.Text = "COLOQUE AQUÍ EL NOMBRE DE LA IMAGEN";
-            iExtension = Path.GetExtension(mOpenFileDialog.FileName);
             comboBoxImagen.Focus();
         }
 
         private void btnInsertarImagen_Click(object sender, EventArgs e)
         {
             Imagen mImagenAInsertar = new Imagen();
-            mImagenAInsertar.Hash = Utilidades.ImageToByteArray(pictureBoxImagen, iExtension);
+            mImagenAInsertar.Hash = Utilidades.ImageToByteArray(pictureBoxImagen);
             mImagenAInsertar.Nombre = comboBoxImagen.Text; 
             try
             {
                 iFachada.AddImagen(mImagenAInsertar);
+                Utilidades.MostrarMensajePopup("Se agregó correctamente la imagen.");
                 FrmGestionImagenes_Load(sender, e);
             }
             catch (Exception ex)
@@ -66,9 +65,10 @@ namespace Vista
             comboBoxImagen.Items.Clear();
             comboBoxImagen.Items.Insert(0, "Seleccione o cargue una imagen mediante el botón -->");
             var mListaDeNombresDeLasImagenes = iFachada.GetAllNamesFromImages();
+            pictureBoxImagen.Image = null;
             foreach (var mNombreImagen in mListaDeNombresDeLasImagenes)
             {
-                comboBoxImagen.Items.Add(mNombreImagen);
+                comboBoxImagen.Items.Add(mNombreImagen);                
             }
             comboBoxImagen.SelectedIndex = 0;
         }
@@ -77,12 +77,22 @@ namespace Vista
         {
             try
             {
-                iFachada.DeleteImagen(pictureBoxImagen);
+                iFachada.DeleteImagenByHash(Utilidades.ImageToByteArray(pictureBoxImagen));
+                Utilidades.MostrarMensajePopup("Se borró correctamente la imagen.");
                 FrmGestionImagenes_Load(sender, e);
             }
-            catch (Exception Exc)
+            catch (Exception)
             {
-                throw new Exception(Exc.Message);
+                try
+                { 
+                iFachada.DeleteImagenByName(comboBoxImagen.Text);
+                Utilidades.MostrarMensajePopup("Se borró correctamente la imagen.");
+                FrmGestionImagenes_Load(sender, e);
+                }
+                catch (Exception exc)
+                {
+                    throw new Exception(exc.Message, exc);
+                }
             }
         }
     }

@@ -7,6 +7,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Vista.Core.Models;
 
 namespace EntityFramework
 {
@@ -18,14 +19,14 @@ namespace EntityFramework
 
         public DbSet<Banner> Banners { get; set; }
 
-        public DbSet<FuenteRSS> Fuentes { get; set; }
+        public DbSet<Fuente> Fuentes { get; set; }
 
 
         public DigitalBillboardContext() : base("name=Default")
         {
             Database.SetInitializer(new CreateDatabaseIfNotExists<DigitalBillboardContext>());
-            this.Configuration.LazyLoadingEnabled = false;
-            this.Configuration.ProxyCreationEnabled = false;
+            this.Configuration.LazyLoadingEnabled = true;
+            this.Configuration.ProxyCreationEnabled = true;
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -33,9 +34,7 @@ namespace EntityFramework
             modelBuilder.Configurations.Add(new CampaniaMap());
             modelBuilder.Configurations.Add(new ImagenMap());
             modelBuilder.Configurations.Add(new BannerMap());
-            modelBuilder.Configurations.Add(new FuenteRSSMap());
-            modelBuilder.Configurations.Add(new BannerRSSMap());
-            modelBuilder.Configurations.Add(new BannerTextoFijoMap());
+            modelBuilder.Configurations.Add(new FuenteMap());
             base.OnModelCreating(modelBuilder);
         }
 

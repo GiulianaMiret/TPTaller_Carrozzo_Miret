@@ -38,10 +38,10 @@ namespace EntityFramework.Services
             List<Banner> activos = new List<Banner>();
             foreach (Banner item in listaBanners)
             {
-                if (item.Estado)
-                {
+           
+               
                     activos.Add(item);
-                }
+              
             }
             if (activos.Count() == 0)
             {
@@ -53,7 +53,7 @@ namespace EntityFramework.Services
         public Banner GetById(int pId)
         {
             Banner banner = _context.Banners.Find(pId);
-            if ((banner == null) || !(banner.Estado))
+            if ((banner == null))
             {
                 throw new Exception("No se ha encontrado el Banner");
             }
@@ -65,15 +65,14 @@ namespace EntityFramework.Services
             Banner banner = _context.Banners.Find(pBanner.Id);
             if (banner != null)
             {
-                if (!(banner.Estado))
-                {
-                    banner.Estado = true;
+               
+                
+              
                     _context.Banners.Attach(banner);
-                }
-                else
-                {
+            
+                
                     throw new Exception("El banner ya existe");
-                }   
+               
             }
             else
             {
@@ -85,11 +84,10 @@ namespace EntityFramework.Services
         public void Delete(Banner pBanner)
         {
             Banner encontrado = _context.Banners.Find(pBanner.Id);
-            if ((encontrado == null) || !(pBanner.Estado))
+            if ((encontrado == null))
             {
                 throw new Exception("El banner no se ha encontrado");
             }
-            pBanner.Estado = false;
             _context.Banners.Attach(pBanner);
                         
         }
@@ -97,11 +95,11 @@ namespace EntityFramework.Services
         public void DeleteById(int pId)
         {
             Banner pBanner = _context.Banners.Find(pId);
-            if ((pBanner == null) || !(pBanner.Estado))
+            if ((pBanner == null))
             {
                 throw new Exception("El banner no se ha encontrado");
             }
-            pBanner.Estado = false;
+   
             _context.Banners.Attach(pBanner);
         }
 
@@ -120,72 +118,77 @@ namespace EntityFramework.Services
             _context.SaveChanges();
         }
 
-
-        public void CambiarFuente(int pIdBanner, FuenteRSS pFuente)
+        public Banner GetBannerNow()
         {
-            BannerRSS bannerRss = _context.Banners.OfType<BannerRSS>().Where(x => x.Id == pIdBanner).First();
-            if(bannerRss == null)
-            {
-                throw new Exception("No se ha encontrado el Banner");
-            }
-            bannerRss.Fuente = pFuente;
-            _context.Banners.Attach(bannerRss);
+            Banner mBanner = _context.Banners.Where(x=> x.FechaInicio < DateTime.Now && x.FechaFin > DateTime.Now).FirstOrDefault();
+            return mBanner;
         }
 
-        public List<BannerRSS> GetAllRss()
-        {
-            List<BannerRSS> lista = _context.Banners.OfType<BannerRSS>().ToList();
-            if(lista.Count() == 0)
-            {
-                throw new Exception("No se han encontrado Banners RSS");
-            }
-            List<BannerRSS> listaActivos = lista.Where(x => x.Estado == true).ToList();
-            if (listaActivos.Count() == 0)
-            {
-                throw new Exception("No se han econtrado banners RSS");
-            }
-            return listaActivos;
-        }
+        //public void CambiarFuente(int pIdBanner, FuenteRSS pFuente)
+        //{
+        //    BannerRSS bannerRss = _context.Banners.OfType<BannerRSS>().Where(x => x.Id == pIdBanner).First();
+        //    if(bannerRss == null)
+        //    {
+        //        throw new Exception("No se ha encontrado el Banner");
+        //    }
+        //    bannerRss.Fuente = pFuente;
+        //    _context.Banners.Attach(bannerRss);
+        //}
 
-        public List<BannerTextoFijo> GetAllTXT()
-        {
-            List<BannerTextoFijo> lista = _context.Banners.OfType<BannerTextoFijo>().ToList();
-            if (lista.Count() == 0)
-            {
-                throw new Exception("No se han encontrado Banners TXT");
-            }
-            List<BannerTextoFijo> listaActivos = lista.Where(x => x.Estado == true).ToList();
-            if (listaActivos.Count() == 0)
-            {
-                throw new Exception("No se han econtrado banners TXT");
-            }
-            return listaActivos;
-        }
+        //public List<BannerRSS> GetAllRss()
+        //{
+        //    List<BannerRSS> lista = _context.Banners.OfType<BannerRSS>().ToList();
+        //    if(lista.Count() == 0)
+        //    {
+        //        throw new Exception("No se han encontrado Banners RSS");
+        //    }
+        //    List<BannerRSS> listaActivos = lista.ToList();
+        //    if (listaActivos.Count() == 0)
+        //    {
+        //        throw new Exception("No se han econtrado banners RSS");
+        //    }
+        //    return listaActivos;
+        //}
 
-        public List<Banner> GetAllBannerRSS()
-        {
-            var result = from banner in _context.Banners
-                         where banner is BannerRSS
-                         select banner;
-            List<Banner> bannerActivo = result.Where(x => x.Estado == true).ToList();
-            if(bannerActivo.Count() == 0)
-            {
-                throw new Exception("No se han encontrado Banners");
-            }
-            return bannerActivo;
-        }
+        //public List<BannerTextoFijo> GetAllTXT()
+        //{
+        //    List<BannerTextoFijo> lista = _context.Banners.OfType<BannerTextoFijo>().ToList();
+        //    if (lista.Count() == 0)
+        //    {
+        //        throw new Exception("No se han encontrado Banners TXT");
+        //    }
+        //    List<BannerTextoFijo> listaActivos = lista.ToList();
+        //    if (listaActivos.Count() == 0)
+        //    {
+        //        throw new Exception("No se han econtrado banners TXT");
+        //    }
+        //    return listaActivos;
+        //}
 
-        public List<Banner> GetAllBannerTXT()
-        {
-            var result = from banner in _context.Banners
-                         where banner is BannerTextoFijo
-                         select banner;
-            List<Banner> bannerActivo = result.Where(x => x.Estado == true).ToList();
-            if(bannerActivo.Count() == 0)
-            {
-                throw new Exception("No se han encontrado Banners");
-            }
-            return bannerActivo;
-        }
+        //public List<Banner> GetAllBannerRSS()
+        //{
+        //    var result = from banner in _context.Banners
+        //                 where banner is BannerRSS
+        //                 select banner;
+        //    List<Banner> bannerActivo = result.ToList();
+        //    if(bannerActivo.Count() == 0)
+        //    {
+        //        throw new Exception("No se han encontrado Banners");
+        //    }
+        //    return bannerActivo;
+        //}
+
+        //public List<Banner> GetAllBannerTXT()
+        //{
+        //    var result = from banner in _context.Banners
+        //                 where banner is BannerTextoFijo
+        //                 select banner;
+        //    List<Banner> bannerActivo = result.ToList();
+        //    if(bannerActivo.Count() == 0)
+        //    {
+        //        throw new Exception("No se han encontrado Banners");
+        //    }
+        //    return bannerActivo;
+        //}
     }
 }

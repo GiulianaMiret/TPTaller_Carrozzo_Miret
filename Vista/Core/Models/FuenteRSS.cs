@@ -4,23 +4,17 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Vista.Core.Models;
 
 namespace Core.Models
 {
-    public class FuenteRSS
+    public class FuenteRSS : Fuente
     {
-        public int Id { get; set; }
-
-        public bool Estado { get; set; }
 
         [DataType(DataType.Url)]
 
         public string URL { get; set; }
 
-        public DateTime Fecha { get; set; }
-
-        public string Titulo { get; set; }
-
-        public string Descripcion { get; set; }
+        public override string Valor { get; set; }
     }
 }

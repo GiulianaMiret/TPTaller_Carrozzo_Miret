@@ -33,11 +33,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CodeHollow.FeedReader, Version=1.2.1.0, Culture=neutral, PublicKeyToken=66d870f2b3d70f48, processorArchitecture=MSIL">
+      <HintPath>..\packages\CodeHollow.FeedReader.1.2.1\lib\net452\CodeHollow.FeedReader.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.5.1.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.5.1\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
@@ -60,31 +66,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CompositionRoot.cs" />
+    <Compile Include="Core\Models\Fuente.cs" />
     <Compile Include="DigitalBillboardContext.cs" />
     <Compile Include="Logger\Logger4net.cs" />
     <Compile Include="Logger\ILogger.cs" />
-    <Compile Include="Migrations\201905272309087_Initial.cs" />
-    <Compile Include="Migrations\201905272309087_Initial.Designer.cs">
-      <DependentUpon>201905272309087_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905272330546_Initial_2.cs" />
-    <Compile Include="Migrations\201905272330546_Initial_2.Designer.cs">
-      <DependentUpon>201905272330546_Initial_2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905280039152_borrar_campoEstado_de_imagen.cs" />
-    <Compile Include="Migrations\201905280039152_borrar_campoEstado_de_imagen.Designer.cs">
-      <DependentUpon>201905280039152_borrar_campoEstado_de_imagen.cs</DependentUpon>
+    <Compile Include="Migrations\201906252357276_inicial2.cs" />
+    <Compile Include="Migrations\201906252357276_inicial2.Designer.cs">
+      <DependentUpon>201906252357276_inicial2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="EntityFramework\ModelsMap\BannerMap.cs" />
-    <Compile Include="EntityFramework\ModelsMap\BannerRSSMap.cs" />
-    <Compile Include="EntityFramework\ModelsMap\BannerTextoFijoMap.cs" />
     <Compile Include="EntityFramework\ModelsMap\CampaniaMap.cs" />
-    <Compile Include="EntityFramework\ModelsMap\FuenteRSSMap.cs" />
+    <Compile Include="EntityFramework\ModelsMap\FuenteMap.cs" />
     <Compile Include="EntityFramework\ModelsMap\ImagenMap.cs" />
     <Compile Include="EntityFramework\Services\BannerRepository.cs" />
     <Compile Include="EntityFramework\Services\CampaniaRepository.cs" />
-    <Compile Include="EntityFramework\Services\FuenteRSSRepository.cs" />
+    <Compile Include="EntityFramework\Services\FuenteRepository.cs" />
     <Compile Include="EntityFramework\Services\IBannerRepository.cs" />
     <Compile Include="EntityFramework\Services\ICampaniaRepository.cs" />
     <Compile Include="EntityFramework\Services\ImagenRepository.cs" />
@@ -96,11 +93,11 @@
     <Compile Include="FrmAgregarCampania.Designer.cs">
       <DependentUpon>FrmAgregarCampania.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmAgregarFuente.cs">
+    <Compile Include="FrmAgregarFuenteRSSTXT.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmAgregarFuente.Designer.cs">
-      <DependentUpon>FrmAgregarFuente.cs</DependentUpon>
+    <Compile Include="FrmAgregarFuenteRSSTXT.Designer.cs">
+      <DependentUpon>FrmAgregarFuenteRSSTXT.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmAgregarBanner.cs">
       <SubType>Form</SubType>
@@ -128,8 +125,7 @@
     </Compile>
     <Compile Include="InjectModule.cs" />
     <Compile Include="Core\Models\Banner.cs" />
-    <Compile Include="Core\Models\BannerRSS.cs" />
-    <Compile Include="Core\Models\BannerTextoFijo.cs" />
+    <Compile Include="Core\Models\FuenteTextoFijo.cs" />
     <Compile Include="Core\Models\Campania.cs" />
     <Compile Include="Core\Models\FuenteRSS.cs" />
     <Compile Include="Core\Models\Imagen.cs" />
@@ -139,8 +135,8 @@
     <EmbeddedResource Include="FrmAgregarCampania.resx">
       <DependentUpon>FrmAgregarCampania.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmAgregarFuente.resx">
-      <DependentUpon>FrmAgregarFuente.cs</DependentUpon>
+    <EmbeddedResource Include="FrmAgregarFuenteRSSTXT.resx">
+      <DependentUpon>FrmAgregarFuenteRSSTXT.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmAgregarBanner.resx">
       <DependentUpon>FrmAgregarBanner.cs</DependentUpon>
@@ -154,14 +150,8 @@
     <EmbeddedResource Include="FrmPrincipal.resx">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905272309087_Initial.resx">
-      <DependentUpon>201905272309087_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905272330546_Initial_2.resx">
-      <DependentUpon>201905272330546_Initial_2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905280039152_borrar_campoEstado_de_imagen.resx">
-      <DependentUpon>201905280039152_borrar_campoEstado_de_imagen.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201906252357276_inicial2.resx">
+      <DependentUpon>201906252357276_inicial2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

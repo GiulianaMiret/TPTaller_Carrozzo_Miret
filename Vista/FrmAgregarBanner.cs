@@ -29,5 +29,9 @@ namespace Vista
             groupBoxRSS.Visible = true;
         }
 
+        private void btnBannerGuardar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

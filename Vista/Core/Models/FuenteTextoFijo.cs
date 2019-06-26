@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Vista.Core.Models;
 
 namespace Core.Models
 {
-    public class BannerTextoFijo : Banner
+    public class FuenteTextoFijo : Fuente
     {
-        public string Texto { get; set; }
+        public override string Valor { get; set; }
     }
 }

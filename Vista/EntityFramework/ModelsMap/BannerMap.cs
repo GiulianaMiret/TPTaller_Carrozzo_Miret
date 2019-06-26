@@ -23,9 +23,8 @@ namespace EntityFramework.ModelsMap
                             .IsRequired()
                             .HasMaxLength(50);
 
-            this.Property(p => p.Estado)
-                            .HasColumnName("Estado")
-                            .IsRequired();
+            this.HasRequired(x => x.Fuente);
+            
         }
     }
 }

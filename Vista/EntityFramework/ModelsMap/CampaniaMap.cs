@@ -21,9 +21,6 @@ namespace Core.ModelsMap
             this.Property(p => p.Nombre)
                 .HasMaxLength(50)
                 .IsRequired();
-
-            this.Property(p => p.Estado)
-                .IsRequired();
         }
 
     }
