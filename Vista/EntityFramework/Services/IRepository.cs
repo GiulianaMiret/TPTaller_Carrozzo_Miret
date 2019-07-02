@@ -13,13 +13,6 @@ namespace EntityFramework.Services
     public interface IRepository<T> where T : class
     {
         /// <summary>
-        /// Este metodo devuelve un conjunto de T (Banners, Campanias, etc) obtenidos segun la expresion pasada como parámetro
-        /// </summary>
-        /// <param name="predicate"></param>
-        /// <returns> conjunto de T "entity" </returns>
-        IQueryable<T> Get(Expression<Func<T, bool>> predicate);
-
-        /// <summary>
         /// Este método devuelve la lista completa de entidades ACTIVAS (Estado == true)
         /// </summary>
         IEnumerable<T> GetAll();

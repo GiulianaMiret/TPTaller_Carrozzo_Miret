@@ -33,6 +33,8 @@
             this.menuStripFrmPrincipal = new System.Windows.Forms.MenuStrip();
             this.administraciónDeFuentesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestiónDeImagenesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.gestiónDeCampañaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.administraciónDeBannersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.administraciónDeFuentesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.agregarFuenteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -68,7 +70,9 @@
             // administraciónDeFuentesToolStripMenuItem
             // 
             this.administraciónDeFuentesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.gestiónDeImagenesToolStripMenuItem});
+            this.gestiónDeImagenesToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.gestiónDeCampañaToolStripMenuItem});
             this.administraciónDeFuentesToolStripMenuItem.Name = "administraciónDeFuentesToolStripMenuItem";
             this.administraciónDeFuentesToolStripMenuItem.Size = new System.Drawing.Size(175, 20);
             this.administraciónDeFuentesToolStripMenuItem.Text = "Administración de Campañas";
@@ -79,6 +83,18 @@
             this.gestiónDeImagenesToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.gestiónDeImagenesToolStripMenuItem.Text = "Gestión de Imagenes";
             this.gestiónDeImagenesToolStripMenuItem.Click += new System.EventHandler(this.gestiónDeImagenesToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(181, 6);
+            // 
+            // gestiónDeCampañaToolStripMenuItem
+            // 
+            this.gestiónDeCampañaToolStripMenuItem.Name = "gestiónDeCampañaToolStripMenuItem";
+            this.gestiónDeCampañaToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.gestiónDeCampañaToolStripMenuItem.Text = "Agregar Campaña";
+            this.gestiónDeCampañaToolStripMenuItem.Click += new System.EventHandler(this.gestiónDeCampañaToolStripMenuItem_Click);
             // 
             // administraciónDeBannersToolStripMenuItem
             // 
@@ -135,6 +151,8 @@
         private System.Windows.Forms.ToolStripMenuItem administraciónDeFuentesToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem agregarFuenteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gestiónDeImagenesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem gestiónDeCampañaToolStripMenuItem;
     }
 }
 
