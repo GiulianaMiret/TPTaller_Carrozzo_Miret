@@ -93,5 +93,10 @@ namespace Vista
         {
             this.Close();
         }
+
+        private void buttonConsultarDisponibilidad_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

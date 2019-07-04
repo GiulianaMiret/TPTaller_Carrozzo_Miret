@@ -265,6 +265,7 @@
             this.buttonConsultarDisponibilidad.TabIndex = 26;
             this.buttonConsultarDisponibilidad.Text = "Ver Horarios Disponibles";
             this.buttonConsultarDisponibilidad.UseVisualStyleBackColor = false;
+            this.buttonConsultarDisponibilidad.Click += new System.EventHandler(this.buttonConsultarDisponibilidad_Click);
             // 
             // groupBoxImagenes
             // 

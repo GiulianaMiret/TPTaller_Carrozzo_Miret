@@ -71,6 +71,18 @@
     <Compile Include="EntityFramework\Services\IFuenteRepository.cs" />
     <Compile Include="EntityFramework\Services\IImagenRepository.cs" />
     <Compile Include="EntityFramework\Services\RepositoryBase.cs" />
+    <Compile Include="FrmBorrarCampania.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmBorrarCampania.Designer.cs">
+      <DependentUpon>FrmBorrarCampania.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmModificarCampania.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmModificarCampania.Designer.cs">
+      <DependentUpon>FrmModificarCampania.cs</DependentUpon>
+    </Compile>
     <Compile Include="Logger\Logger4net.cs" />
     <Compile Include="Logger\ILogger.cs" />
     <Compile Include="Migrations\201906252357276_inicial2.cs" />
@@ -144,8 +156,14 @@
     <EmbeddedResource Include="FrmAgregarBanner.resx">
       <DependentUpon>FrmAgregarBanner.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmBorrarCampania.resx">
+      <DependentUpon>FrmBorrarCampania.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmGestionImagenes.resx">
       <DependentUpon>FrmGestionImagenes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmModificarCampania.resx">
+      <DependentUpon>FrmModificarCampania.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmOperacion.resx">
       <DependentUpon>FrmOperacion.cs</DependentUpon>
