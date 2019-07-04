@@ -28,20 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAgregarCampania));
             this.btnCampaniaGuardar = new System.Windows.Forms.Button();
             this.btnCampaniaCancelar = new System.Windows.Forms.Button();
             this.labelNuevaCampania = new System.Windows.Forms.Label();
             this.labelNombre = new System.Windows.Forms.Label();
             this.groupBoxFechaHora = new System.Windows.Forms.GroupBox();
+            this.comboBoxCampaniaHoraFin = new System.Windows.Forms.ComboBox();
+            this.comboBoxCampaniHoraInicio = new System.Windows.Forms.ComboBox();
             this.dateTimePickerCampaniaFechaFin = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePickerCampaniaHoraFin = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePickerCampaniaHoraInicio = new System.Windows.Forms.DateTimePicker();
             this.dateTimePickerCampaniaFechaInicio = new System.Windows.Forms.DateTimePicker();
             this.labelFechaHoraFin = new System.Windows.Forms.Label();
             this.labelFHInicio = new System.Windows.Forms.Label();
             this.textBoxCampaniaNombre = new System.Windows.Forms.TextBox();
+            this.groupBoxImagenes = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.dataGridViewImagenesSeleccionadas = new System.Windows.Forms.DataGridView();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTodasLasImagenes = new System.Windows.Forms.DataGridView();
+            this.pictureBoxVistaPreviaImagenes = new System.Windows.Forms.PictureBox();
+            this.Nombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBoxFechaHora.SuspendLayout();
+            this.groupBoxImagenes.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewImagenesSeleccionadas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTodasLasImagenes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxVistaPreviaImagenes)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCampaniaGuardar
@@ -49,24 +65,26 @@
             this.btnCampaniaGuardar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnCampaniaGuardar.AutoSize = true;
             this.btnCampaniaGuardar.Font = new System.Drawing.Font("Copperplate Gothic Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCampaniaGuardar.Location = new System.Drawing.Point(229, 386);
+            this.btnCampaniaGuardar.Location = new System.Drawing.Point(270, 558);
             this.btnCampaniaGuardar.Name = "btnCampaniaGuardar";
             this.btnCampaniaGuardar.Size = new System.Drawing.Size(134, 33);
             this.btnCampaniaGuardar.TabIndex = 16;
             this.btnCampaniaGuardar.Text = "Guardar";
             this.btnCampaniaGuardar.UseVisualStyleBackColor = true;
+            this.btnCampaniaGuardar.Click += new System.EventHandler(this.btnCampaniaGuardar_Click);
             // 
             // btnCampaniaCancelar
             // 
             this.btnCampaniaCancelar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnCampaniaCancelar.Font = new System.Drawing.Font("Copperplate Gothic Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCampaniaCancelar.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.btnCampaniaCancelar.Location = new System.Drawing.Point(416, 386);
+            this.btnCampaniaCancelar.Location = new System.Drawing.Point(459, 558);
             this.btnCampaniaCancelar.Name = "btnCampaniaCancelar";
             this.btnCampaniaCancelar.Size = new System.Drawing.Size(134, 33);
             this.btnCampaniaCancelar.TabIndex = 17;
             this.btnCampaniaCancelar.Text = "Cancelar";
             this.btnCampaniaCancelar.UseVisualStyleBackColor = true;
+            this.btnCampaniaCancelar.Click += new System.EventHandler(this.btnCampaniaCancelar_Click);
             // 
             // labelNuevaCampania
             // 
@@ -75,7 +93,7 @@
             this.labelNuevaCampania.BackColor = System.Drawing.Color.Transparent;
             this.labelNuevaCampania.Font = new System.Drawing.Font("Lucida Calligraphy", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelNuevaCampania.ForeColor = System.Drawing.Color.SandyBrown;
-            this.labelNuevaCampania.Location = new System.Drawing.Point(39, 23);
+            this.labelNuevaCampania.Location = new System.Drawing.Point(126, 23);
             this.labelNuevaCampania.Name = "labelNuevaCampania";
             this.labelNuevaCampania.Size = new System.Drawing.Size(336, 45);
             this.labelNuevaCampania.TabIndex = 18;
@@ -88,7 +106,7 @@
             this.labelNombre.BackColor = System.Drawing.Color.Transparent;
             this.labelNombre.Font = new System.Drawing.Font("Perpetua Titling MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelNombre.ForeColor = System.Drawing.Color.White;
-            this.labelNombre.Location = new System.Drawing.Point(43, 122);
+            this.labelNombre.Location = new System.Drawing.Point(43, 92);
             this.labelNombre.Name = "labelNombre";
             this.labelNombre.Size = new System.Drawing.Size(77, 19);
             this.labelNombre.TabIndex = 19;
@@ -99,20 +117,86 @@
             this.groupBoxFechaHora.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.groupBoxFechaHora.AutoSize = true;
             this.groupBoxFechaHora.BackColor = System.Drawing.Color.Transparent;
+            this.groupBoxFechaHora.Controls.Add(this.comboBoxCampaniaHoraFin);
+            this.groupBoxFechaHora.Controls.Add(this.comboBoxCampaniHoraInicio);
             this.groupBoxFechaHora.Controls.Add(this.dateTimePickerCampaniaFechaFin);
-            this.groupBoxFechaHora.Controls.Add(this.dateTimePickerCampaniaHoraFin);
-            this.groupBoxFechaHora.Controls.Add(this.dateTimePickerCampaniaHoraInicio);
             this.groupBoxFechaHora.Controls.Add(this.dateTimePickerCampaniaFechaInicio);
             this.groupBoxFechaHora.Controls.Add(this.labelFechaHoraFin);
             this.groupBoxFechaHora.Controls.Add(this.labelFHInicio);
             this.groupBoxFechaHora.Font = new System.Drawing.Font("Perpetua Titling MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxFechaHora.ForeColor = System.Drawing.Color.White;
-            this.groupBoxFechaHora.Location = new System.Drawing.Point(47, 198);
+            this.groupBoxFechaHora.Location = new System.Drawing.Point(47, 186);
             this.groupBoxFechaHora.Name = "groupBoxFechaHora";
-            this.groupBoxFechaHora.Size = new System.Drawing.Size(511, 134);
+            this.groupBoxFechaHora.Size = new System.Drawing.Size(434, 135);
             this.groupBoxFechaHora.TabIndex = 20;
             this.groupBoxFechaHora.TabStop = false;
             this.groupBoxFechaHora.Text = "Fecha y Hora";
+            // 
+            // comboBoxCampaniaHoraFin
+            // 
+            this.comboBoxCampaniaHoraFin.FormattingEnabled = true;
+            this.comboBoxCampaniaHoraFin.Items.AddRange(new object[] {
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24"});
+            this.comboBoxCampaniaHoraFin.Location = new System.Drawing.Point(286, 83);
+            this.comboBoxCampaniaHoraFin.Name = "comboBoxCampaniaHoraFin";
+            this.comboBoxCampaniaHoraFin.Size = new System.Drawing.Size(81, 27);
+            this.comboBoxCampaniaHoraFin.TabIndex = 10;
+            // 
+            // comboBoxCampaniHoraInicio
+            // 
+            this.comboBoxCampaniHoraInicio.FormattingEnabled = true;
+            this.comboBoxCampaniHoraInicio.Items.AddRange(new object[] {
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24"});
+            this.comboBoxCampaniHoraInicio.Location = new System.Drawing.Point(286, 26);
+            this.comboBoxCampaniHoraInicio.Name = "comboBoxCampaniHoraInicio";
+            this.comboBoxCampaniHoraInicio.Size = new System.Drawing.Size(81, 27);
+            this.comboBoxCampaniHoraInicio.TabIndex = 10;
             // 
             // dateTimePickerCampaniaFechaFin
             // 
@@ -123,28 +207,6 @@
             this.dateTimePickerCampaniaFechaFin.Name = "dateTimePickerCampaniaFechaFin";
             this.dateTimePickerCampaniaFechaFin.Size = new System.Drawing.Size(161, 26);
             this.dateTimePickerCampaniaFechaFin.TabIndex = 9;
-            // 
-            // dateTimePickerCampaniaHoraFin
-            // 
-            this.dateTimePickerCampaniaHoraFin.CustomFormat = "hh:mm";
-            this.dateTimePickerCampaniaHoraFin.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePickerCampaniaHoraFin.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerCampaniaHoraFin.Location = new System.Drawing.Point(340, 83);
-            this.dateTimePickerCampaniaHoraFin.Name = "dateTimePickerCampaniaHoraFin";
-            this.dateTimePickerCampaniaHoraFin.ShowUpDown = true;
-            this.dateTimePickerCampaniaHoraFin.Size = new System.Drawing.Size(96, 26);
-            this.dateTimePickerCampaniaHoraFin.TabIndex = 6;
-            // 
-            // dateTimePickerCampaniaHoraInicio
-            // 
-            this.dateTimePickerCampaniaHoraInicio.CustomFormat = "hh:mm";
-            this.dateTimePickerCampaniaHoraInicio.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePickerCampaniaHoraInicio.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerCampaniaHoraInicio.Location = new System.Drawing.Point(340, 25);
-            this.dateTimePickerCampaniaHoraInicio.Name = "dateTimePickerCampaniaHoraInicio";
-            this.dateTimePickerCampaniaHoraInicio.ShowUpDown = true;
-            this.dateTimePickerCampaniaHoraInicio.Size = new System.Drawing.Size(96, 26);
-            this.dateTimePickerCampaniaHoraInicio.TabIndex = 6;
             // 
             // dateTimePickerCampaniaFechaInicio
             // 
@@ -174,7 +236,7 @@
             this.labelFHInicio.BackColor = System.Drawing.Color.Transparent;
             this.labelFHInicio.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelFHInicio.ForeColor = System.Drawing.Color.White;
-            this.labelFHInicio.Location = new System.Drawing.Point(9, 25);
+            this.labelFHInicio.Location = new System.Drawing.Point(6, 26);
             this.labelFHInicio.Name = "labelFHInicio";
             this.labelFHInicio.Size = new System.Drawing.Size(49, 22);
             this.labelFHInicio.TabIndex = 5;
@@ -185,10 +247,126 @@
             this.textBoxCampaniaNombre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxCampaniaNombre.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxCampaniaNombre.Location = new System.Drawing.Point(144, 115);
+            this.textBoxCampaniaNombre.Location = new System.Drawing.Point(144, 85);
             this.textBoxCampaniaNombre.Name = "textBoxCampaniaNombre";
-            this.textBoxCampaniaNombre.Size = new System.Drawing.Size(382, 30);
+            this.textBoxCampaniaNombre.Size = new System.Drawing.Size(469, 30);
             this.textBoxCampaniaNombre.TabIndex = 21;
+            // 
+            // groupBoxImagenes
+            // 
+            this.groupBoxImagenes.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.groupBoxImagenes.AutoSize = true;
+            this.groupBoxImagenes.BackColor = System.Drawing.Color.Transparent;
+            this.groupBoxImagenes.Controls.Add(this.button2);
+            this.groupBoxImagenes.Controls.Add(this.button1);
+            this.groupBoxImagenes.Controls.Add(this.dataGridViewImagenesSeleccionadas);
+            this.groupBoxImagenes.Controls.Add(this.dataGridViewTodasLasImagenes);
+            this.groupBoxImagenes.Controls.Add(this.pictureBoxVistaPreviaImagenes);
+            this.groupBoxImagenes.Font = new System.Drawing.Font("Perpetua Titling MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBoxImagenes.ForeColor = System.Drawing.Color.White;
+            this.groupBoxImagenes.Location = new System.Drawing.Point(47, 337);
+            this.groupBoxImagenes.Name = "groupBoxImagenes";
+            this.groupBoxImagenes.Size = new System.Drawing.Size(791, 215);
+            this.groupBoxImagenes.TabIndex = 20;
+            this.groupBoxImagenes.TabStop = false;
+            this.groupBoxImagenes.Text = "Imágenes";
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.DarkGray;
+            this.button2.Font = new System.Drawing.Font("Trebuchet MS", 12F);
+            this.button2.ForeColor = System.Drawing.Color.Black;
+            this.button2.Location = new System.Drawing.Point(415, 121);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(99, 33);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "<- Quitar";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.buttonQuitarImagen_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.DarkGray;
+            this.button1.Font = new System.Drawing.Font("Trebuchet MS", 12F);
+            this.button1.ForeColor = System.Drawing.Color.Black;
+            this.button1.Location = new System.Drawing.Point(415, 56);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(99, 33);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Agregar ->";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.buttonAgregarImagen_Click);
+            // 
+            // dataGridViewImagenesSeleccionadas
+            // 
+            this.dataGridViewImagenesSeleccionadas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewImagenesSeleccionadas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Nombre});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewImagenesSeleccionadas.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridViewImagenesSeleccionadas.Location = new System.Drawing.Point(545, 40);
+            this.dataGridViewImagenesSeleccionadas.Name = "dataGridViewImagenesSeleccionadas";
+            this.dataGridViewImagenesSeleccionadas.ReadOnly = true;
+            this.dataGridViewImagenesSeleccionadas.Size = new System.Drawing.Size(240, 150);
+            this.dataGridViewImagenesSeleccionadas.TabIndex = 1;
+            // 
+            // Nombre
+            // 
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            this.Nombre.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            // 
+            // dataGridViewTodasLasImagenes
+            // 
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Perpetua Titling MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTodasLasImagenes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridViewTodasLasImagenes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewTodasLasImagenes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Nombres});
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTodasLasImagenes.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dataGridViewTodasLasImagenes.Location = new System.Drawing.Point(150, 40);
+            this.dataGridViewTodasLasImagenes.Name = "dataGridViewTodasLasImagenes";
+            this.dataGridViewTodasLasImagenes.ReadOnly = true;
+            this.dataGridViewTodasLasImagenes.Size = new System.Drawing.Size(240, 150);
+            this.dataGridViewTodasLasImagenes.TabIndex = 1;
+            this.dataGridViewTodasLasImagenes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTodasLasImagenes_CellClick);
+            // 
+            // pictureBoxVistaPreviaImagenes
+            // 
+            this.pictureBoxVistaPreviaImagenes.Location = new System.Drawing.Point(13, 40);
+            this.pictureBoxVistaPreviaImagenes.Name = "pictureBoxVistaPreviaImagenes";
+            this.pictureBoxVistaPreviaImagenes.Size = new System.Drawing.Size(122, 90);
+            this.pictureBoxVistaPreviaImagenes.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxVistaPreviaImagenes.TabIndex = 0;
+            this.pictureBoxVistaPreviaImagenes.TabStop = false;
+            // 
+            // Nombres
+            // 
+            this.Nombres.HeaderText = "Nombre";
+            this.Nombres.Name = "Nombres";
+            this.Nombres.ReadOnly = true;
             // 
             // FrmAgregarCampania
             // 
@@ -196,8 +374,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(887, 612);
             this.Controls.Add(this.textBoxCampaniaNombre);
+            this.Controls.Add(this.groupBoxImagenes);
             this.Controls.Add(this.groupBoxFechaHora);
             this.Controls.Add(this.labelNombre);
             this.Controls.Add(this.labelNuevaCampania);
@@ -207,9 +386,14 @@
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmAgregarCampania";
-            this.Text = "Shout News";
+            this.Text = " ";
+            this.Load += new System.EventHandler(this.FrmAgregarCampania_Load);
             this.groupBoxFechaHora.ResumeLayout(false);
             this.groupBoxFechaHora.PerformLayout();
+            this.groupBoxImagenes.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewImagenesSeleccionadas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTodasLasImagenes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxVistaPreviaImagenes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -223,11 +407,19 @@
         private System.Windows.Forms.Label labelNombre;
         private System.Windows.Forms.GroupBox groupBoxFechaHora;
         private System.Windows.Forms.DateTimePicker dateTimePickerCampaniaFechaFin;
-        private System.Windows.Forms.DateTimePicker dateTimePickerCampaniaHoraFin;
-        private System.Windows.Forms.DateTimePicker dateTimePickerCampaniaHoraInicio;
         private System.Windows.Forms.DateTimePicker dateTimePickerCampaniaFechaInicio;
         private System.Windows.Forms.Label labelFechaHoraFin;
         private System.Windows.Forms.Label labelFHInicio;
         private System.Windows.Forms.TextBox textBoxCampaniaNombre;
+        private System.Windows.Forms.GroupBox groupBoxImagenes;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataGridView dataGridViewImagenesSeleccionadas;
+        private System.Windows.Forms.DataGridView dataGridViewTodasLasImagenes;
+        private System.Windows.Forms.PictureBox pictureBoxVistaPreviaImagenes;
+        private System.Windows.Forms.ComboBox comboBoxCampaniaHoraFin;
+        private System.Windows.Forms.ComboBox comboBoxCampaniHoraInicio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombres;
     }
 }
