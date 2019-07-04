@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Core.Models;
 using System.Linq.Expressions;
 using System.Data.Entity;
+using Vista.EntityFramework.Services;
 
 namespace EntityFramework.Services
 {
@@ -14,16 +15,16 @@ namespace EntityFramework.Services
     /// </summary>
     public class BannerRepository : IBannerRepository
     {
-        private readonly DigitalBillboardContext _context;
-
+        private readonly DigitalBillboardContext cBillBoardContext;
+        
         public BannerRepository()
         {
-            _context = new DigitalBillboardContext();            
+            cBillBoardContext = new DigitalBillboardContext();            
         }
         
         public IQueryable<Banner> Get(Expression<Func<Banner, bool>> predicate)
         {
-            IQueryable<Banner> query = _context.Banners.TakeWhile(predicate);
+            IQueryable<Banner> query = cBillBoardContext.Banners.TakeWhile(predicate);
             if (query.Count() == 0)
             {
                 throw new Exception("No hay Banners");
@@ -34,7 +35,7 @@ namespace EntityFramework.Services
 
         public IEnumerable<Banner> GetAll()
         {
-            List<Banner> listaBanners = _context.Banners.ToList();
+            List<Banner> listaBanners = cBillBoardContext.Banners.ToList();
             List<Banner> activos = new List<Banner>();
             foreach (Banner item in listaBanners)
             {
@@ -52,7 +53,7 @@ namespace EntityFramework.Services
 
         public Banner GetById(int pId)
         {
-            Banner banner = _context.Banners.Find(pId);
+            Banner banner = cBillBoardContext.Banners.Find(pId);
             if ((banner == null))
             {
                 throw new Exception("No se ha encontrado el Banner");
@@ -62,65 +63,53 @@ namespace EntityFramework.Services
 
         public void Insert(Banner pBanner)
         {
-            Banner banner = _context.Banners.Find(pBanner.Id);
+            Banner banner = cBillBoardContext.Banners.Find(pBanner.Id);
             if (banner != null)
             {
-               
                 
-              
-                    _context.Banners.Attach(banner);
-            
-                
-                    throw new Exception("El banner ya existe");
-               
             }
             else
             {
-                _context.Banners.Add(pBanner);
+                cBillBoardContext.Banners.Add(pBanner);
             }
             
         }
 
         public void Delete(Banner pBanner)
         {
-            Banner encontrado = _context.Banners.Find(pBanner.Id);
+            Banner encontrado = cBillBoardContext.Banners.Find(pBanner.Id);
             if ((encontrado == null))
             {
                 throw new Exception("El banner no se ha encontrado");
             }
-            _context.Banners.Attach(pBanner);
+            cBillBoardContext.Banners.Attach(pBanner);
                         
         }
 
         public void DeleteById(int pId)
         {
-            Banner pBanner = _context.Banners.Find(pId);
+            Banner pBanner = cBillBoardContext.Banners.Find(pId);
             if ((pBanner == null))
             {
                 throw new Exception("El banner no se ha encontrado");
             }
-   
-            _context.Banners.Attach(pBanner);
+
+            cBillBoardContext.Banners.Attach(pBanner);
         }
 
         public void Update(Banner pBanner)
         {
-            Banner bannerAnterior = _context.Banners.Find(pBanner.Id);
+            Banner bannerAnterior = cBillBoardContext.Banners.Find(pBanner.Id);
             if (bannerAnterior == null)
             {
                 throw new Exception("No se ha encontrado el banner que se quiere modificar");
             }
-            _context.Banners.Attach(pBanner);
-        }
-
-        public void Save()
-        {
-            _context.SaveChanges();
+            cBillBoardContext.Banners.Attach(pBanner);
         }
 
         public Banner GetBannerNow()
         {
-            Banner mBanner = _context.Banners.Where(x=> x.FechaInicio < DateTime.Now && x.FechaFin > DateTime.Now).FirstOrDefault();
+            Banner mBanner = cBillBoardContext.Banners.Where(x=> x.FechaInicio < DateTime.Now && x.FechaFin > DateTime.Now).FirstOrDefault();
             return mBanner;
         }
 

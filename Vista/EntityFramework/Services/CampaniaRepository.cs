@@ -15,90 +15,66 @@ namespace EntityFramework.Services
     /// </summary>
     public class CampaniaRepository : ICampaniaRepository
     {
-        private readonly DigitalBillboardContext _context;
-        
+        private readonly DigitalBillboardContext cBillBoardContext;
+        private readonly IRepository<Campania> cRepositoryBase;
+
         public CampaniaRepository()
         {
-            _context = new DigitalBillboardContext();
+            cBillBoardContext = new DigitalBillboardContext();
         }
 
         public IEnumerable<Campania> GetAll()
         {
-            List<Campania> listaCampanias = _context.Campanias.ToList();
-            List<Campania> activos = new List<Campania>();
-            foreach (Campania item in listaCampanias)
-            {
-                
-                    activos.Add(item);
-                
-            }
-            return activos;
+            return new List<Campania>();
         }
 
         public Campania GetById(int pId)
         {
-            Campania campania = _context.Campanias.Find(pId);
-            return campania;
+            return new Campania();
         }
 
         public void Insert(Campania pCampania)
         {
-            Campania campania = _context.Campanias.Find(pCampania.Id);
-            if (campania != null)
-            {
-                    _context.Campanias.Attach(campania);
-            }
-            else
-            {
-                _context.Campanias.Add(pCampania);
-            }
+
         }
 
         public void Delete(Campania pCampania)
         {
-            Campania encontrado = _context.Campanias.Find(pCampania.Id);
-            _context.Campanias.Attach(pCampania);
+
         }
 
         public void DeleteById(int pId)
         {
-            Campania pCampania = _context.Campanias.Find(pId);
-            _context.Campanias.Attach(pCampania);
+
         }
 
         public void Update(Campania pCampania)
         {
-            Campania campaniaAnterior = _context.Campanias.Find(pCampania.Id);
-            _context.Campanias.Attach(pCampania);
+
         }
-
-        public void Save()
-        {
-            _context.SaveChanges();
-        }
-
-
 
         public List<Imagen> GetImagenes (int pIdCampania)
         {
-            Campania pCampania = _context.Campanias.Find(pIdCampania);
+            Campania pCampania = cBillBoardContext.Campanias.Find(pIdCampania);
+            if (pCampania == null)
+            {
+                throw new Exception("No se ha encontrado la Campaña");
+            }
+            if (pCampania.Imagenes.Count() == 0)
+            {
+                throw new Exception("La campaña no contiene imágenes");
+            }
             return pCampania.Imagenes.ToList();
         }
 
         public void DeleteImagenes(int pIdImagen, int pIdCampania)
         {
-            Campania pCampania = _context.Campanias.Find(pIdCampania);
-            Imagen pImagen = pCampania.Imagenes.Where(x => x.Id == pIdImagen).First();
-            _context.Imagenes.Attach(pImagen);
-            _context.Campanias.Attach(pCampania); //no sé si es necesario esto.. porque ya está dada de baja la imagen
+            throw new NotImplementedException();
         }
 
         public void AddImagenes(int pIdImagen, int pIdCampania)
         {
-            Campania pCampania = _context.Campanias.Find(pIdCampania);
-            Imagen pImagen = pCampania.Imagenes.Where(x => x.Id == pIdImagen).First();
-            pCampania.Imagenes.Add(pImagen);
-            _context.Campanias.Attach(pCampania);
+            throw new NotImplementedException();
         }
     }
 }

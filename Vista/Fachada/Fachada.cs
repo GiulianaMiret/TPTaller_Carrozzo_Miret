@@ -9,9 +9,15 @@ using System.Linq.Expressions;
 using System.Windows.Forms;
 using Vista;
 using Vista.Logger;
+using Vista.EntityFramework.Services;
 
 namespace Controlador
 {
+    //Como hacer un select en TPH, BankAccount es de tipo BillingDetails.
+    //IQueryable<BankAccount> query = from b in context.BillingDetails.OfType<BankAccount>() 
+    //select b;
+
+
     /// <summary>
     /// Clase fachada, de donde se va a llamar a los repositorios para realizar las operaciones, entre otras cosas
     /// </summary>
@@ -22,8 +28,13 @@ namespace Controlador
         /// </summary>
         private readonly IBannerRepository iBannerRepository;
         private readonly ICampaniaRepository iCampaniaRepository;
-        private readonly FuenteRepository iFuenteRepository;
-        private readonly ImagenRepository iImagenRepository;
+        private readonly IFuenteRepository iFuenteRepository;
+        private readonly IImagenRepository iImagenRepository;
+        private readonly IRepository<Banner> cRepositoryBaseBanner;
+        private readonly IRepository<Campania> cRepositoryBaseCampania;
+        private readonly IRepository<FuenteRSS> cRepositoryBaseRSS;
+        private readonly IRepository<FuenteTextoFijo> cRepositoryBaseTXT;
+        private readonly IRepository<Imagen> cRepositoryBaseImagen;
         private readonly ILogger iLogger;
         /// <summary>
         /// Constructor de la clase Fachada que basicamente inyecta las dependencias de los repositorios con Ninject.
@@ -39,35 +50,28 @@ namespace Controlador
             iLogger = logger;
         }
 
-        //--------------------------------------------------------------------------------------------
+
         /// <summary>
         /// Métodos relacionados a Fuentes
         /// </summary>
-        public void VerificarBanner()
+        /// 
+        public void AddFuenteTXT(FuenteTextoFijo pFuenteTextoFijo)
         {
-            
+        //    iFuenteRepository.AddFuenteTXT(pFuenteTextoFijo);
         }
 
 
         public void AddFuenteRSS(FuenteRSS pFuenteRSS)
-        {
-            try
-            {
+        {           
                 if (Utilidades.InternetDisponible())
                 {
                     pFuenteRSS.Valor = Utilidades.GetStringFromXMLRSSUrl(pFuenteRSS.URL);
+                    iFuenteRepository.AddFuenteRSS(pFuenteRSS);
                 }
                 else
                 {
-                    iLogger.Debug("No pudo descargarse el feed RSS por falta de conectividad.");
-                }
-                
-                iFuenteRepository.AddFuenteRSS(pFuenteRSS);
-            }
-            catch (Exception mExcepcion)
-            {
-                throw mExcepcion;
-            }            
+                    throw new Exception("No pudo descargarse el feed RSS por falta de conectividad.");
+                }                           
         }
 
         public string GetTextOfActualBanner()
@@ -79,69 +83,541 @@ namespace Controlador
             return iBannerRepository.GetBannerNow().Fuente.Valor;
         }
 
-        //--------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+        
+
         /// <summary>
-        /// Métodos relacionados a Banners
+        /// New - Delete - Delete by id - Update - Get by id - Get all - Find by id - Find - Save
+        /// 
+        /// metodos para crear nuevas entidades:
+        ///     newBannerRSS
+        ///     newBannerTXT
+        ///     newFuente
+        ///     newCampania
+        ///     newImagen
         /// </summary>
-        public void AddBanner(Banner pBanner)
+        //public void AddBannerRSS(string pNombre, DateTime pFechaInicio, DateTime pFechaFin, TimeSpan pHoraInicio, TimeSpan pHoraFin, int pCodigo, string pValor, FuenteRSS pFuente)
+        //{
+        //    BannerRSS banner = new BannerRSS();
+        //    //banner.Id
+        //    banner.Nombre = pNombre;
+        //    banner.FechaInicio = pFechaInicio;
+        //    banner.FechaFin = pFechaFin;
+        //    banner.HoraInicio = pHoraInicio;
+        //    banner.HoraFin = pHoraFin;
+        //    banner.Valor = pValor;
+        //    banner.Fuente = pFuente;
+        //    try
+        //    {
+        //        iBannerRepository.Insert(banner);
+        //    }
+        //    catch (Exception exc)
+        //    {
+        //        throw exc;
+        //    }
+        //}
+
+        //public void AddBannerTXT(string pNombre, DateTime pFechaInicio, DateTime pFechaFin, TimeSpan pHoraInicio, TimeSpan pHoraFin, string pTexto)
+        //{
+        //    BannerTextoFijo banner = new BannerTextoFijo();
+        //    //banner.Id
+        //    banner.Nombre = pNombre;
+        //    banner.FechaInicio = pFechaInicio;
+        //    banner.FechaFin = pFechaFin;
+        //    banner.HoraInicio = pHoraInicio;
+        //    banner.HoraFin = pHoraFin;
+        //    banner.Texto = pTexto;
+        //    try
+        //    {
+        //        iBannerRepository.Insert(banner);
+        //    }
+        //    catch (Exception exc)
+        //    {
+        //        throw exc;
+        //    }
+        //}
+
+        //public void AddFuente(FuenteRSS pFuente)
+        //{
+        //    try
+        //    {
+        //        iFuenteRepository.Insert(pFuente);
+        //    }
+        //    catch (Exception exc)
+        //    {
+        //        throw exc;
+        //    }
+        //}
+
+        //public void AddCampania(string pNombre, DateTime pFechaInicio, DateTime pFechaFin, TimeSpan pHoraInicio, TimeSpan pHoraFin, ICollection<Imagen> pImagenes)
+        //{
+        //    Campania campania = new Campania();
+        //    //campania.Id
+        //    campania.Nombre = pNombre;
+        //    campania.FechaInicio = pFechaInicio;
+        //    campania.FechaFin = pFechaFin;
+        //    campania.HoraInicio = pHoraInicio;
+        //    campania.HoraFin = pHoraFin;
+        //    campania.Imagenes = pImagenes;
+        //    try
+        //    {
+        //        iCampaniaRepository.Insert(campania);
+        //    }
+        //    catch (Exception exc)
+        //    {
+        //        throw exc;
+        //    }
+        //}
+
+        public void AddImagen(Imagen pImagen)
         {
             try
             {
-                iBannerRepository.Insert(pBanner);
+                iImagenRepository.Insert(pImagen);
             }
-            catch (Exception mExcepcion)
+            catch (Exception exc)
             {
-                throw mExcepcion;
+                throw exc;
             }
         }
 
-        public void DeleteBanner(Banner pBanner)
+        /// <summary>
+        /// Métodos para dar de baja lógica a una entidad, pasando la entidad:
+        ///     deleteBannerRSS
+        ///     deleteBannerTXT
+        ///     deleteFuente
+        ///     deleteCampania
+        ///     deleteImagen
+        /// </summary>
+        //public void DeleteBannerRSS(BannerRSS pBanner)
+        //{
+        //    try
+        //    {
+        //        iBannerRepository.Delete(pBanner);
+        //    }
+        //    catch (Exception exc)
+        //    {
+        //        throw exc;
+        //    }
+        //}
+
+        //public void DeleteBannerTXT(BannerTextoFijo pBanner)
+        //{
+        //    try
+        //    {
+        //        iBannerRepository.Delete(pBanner);
+        //    }
+        //    catch (Exception exc)
+        //    {
+        //        throw exc;
+        //    }
+        //}
+
+        //public void DeleteFuenteRSS(FuenteRSS pFuente)
+        //{
+        //    try
+        //    {
+        //        iFuenteRepository.Delete(pFuente);
+        //    }
+        //    catch (Exception exc)
+        //    {
+        //        throw exc;
+        //    }
+        //}
+
+        //public void DeleteCampania(Campania pCampania)
+        //{
+        //    try
+        //    {
+        //        iCampaniaRepository.Delete(pCampania);
+        //    }
+        //    catch (Exception exc)
+        //    {
+        //        throw exc;
+        //    }
+        //}
+
+        public void DeleteImagen(Imagen pImagen)
         {
             try
             {
-                iBannerRepository.Delete(pBanner);
+                iImagenRepository.Delete(pImagen);
             }
-            catch (Exception mExcepcion)
+            catch (Exception exc)
             {
-                throw mExcepcion;
+                throw exc;
             }
         }
 
-        public void DeleteByIdBanner(int pId)
+        public void DeleteImagenByHash(byte[] pHash)
         {
             try
             {
-                iBannerRepository.DeleteById(pId);
+                iImagenRepository.DeleteByHash(pHash);
             }
-            catch (Exception mExcepcion)
+            catch (Exception exc)
             {
-                throw mExcepcion;
+                throw exc;
             }
         }
 
-        public Banner GetBannerById(int pId)
+        public void DeleteImagenByPictureBox(PictureBox pImagen)
         {
             try
             {
-                return iBannerRepository.GetById(pId);
+                Imagen mImagen = iImagenRepository.GetByHash(Utilidades.ImageToByteArray(pImagen));
+                iImagenRepository.DeleteById(mImagen.Id);
             }
-            catch (Exception mExcepcion)
+            catch (Exception exc)
             {
-                throw mExcepcion;
+                throw exc;
+            }
+        }
+        /// <summary>
+        /// Métodos para dar de baja lógica a una entidad, pasando el ID:
+        ///     deleteByIdBannerRSS
+        ///     deleteByIdBannerTXT
+        ///     deleteByIdFuente
+        ///     deleteByIdCampania
+        ///     deleteByIdImagen
+        /// </summary>
+        //public void DeleteByIdBannerRSS(int pId)
+        //{
+        //    try
+        //    {
+        //        iBannerRepository.DeleteById(pId);
+        //    }
+        //    catch (Exception exc)
+        //    {
+        //        throw exc;
+        //    }
+        //}
+
+        //public void DeleteByIdBannerTXT(int pId)
+        //{
+        //    try
+        //    {
+        //        iBannerRepository.DeleteById(pId);
+        //    }
+        //    catch (Exception exc)
+        //    {
+        //        throw exc;
+        //    }
+        //}
+
+        //public void DeleteByIdFuente(int pId)
+        //{
+        //    try
+        //    {
+        //        iFuenteRepository.DeleteById(pId);
+        //    }
+        //    catch (Exception exc)
+        //    {
+        //        throw exc;
+        //    }
+        //}
+
+        //public void DeleteByIdCampania(int pId)
+        //{
+        //    try
+        //    {
+        //        iCampaniaRepository.DeleteById(pId);
+        //    }
+        //    catch (Exception exc)
+        //    {
+        //        throw exc;
+        //    }
+        //}
+
+        public void DeleteImagenByName(string pName)
+        {
+            try
+            {
+                iImagenRepository.DeleteByName(pName);
+            }
+            catch (Exception exc)
+            {
+                throw exc;
             }
         }
 
-        public IEnumerable<Banner> GetAllBanner()
+        /// <summary>
+        /// Métodos para modificar una entidad:
+        ///     updateBannerRSS
+        ///     updateBannerTXT
+        ///     updateFuente
+        ///     updateCampania
+        ///     updateImagen
+        /// </summary>
+        //public void UpdateBannerRSS (BannerRSS pBanner)
+        //{
+        //    try
+        //    {
+        //        iBannerRepository.Update(pBanner);
+        //    }
+        //    catch(Exception exc)
+        //    {
+        //        throw exc;
+        //    }
+        //}
+
+        //public void UpdateBannerTXT (BannerTextoFijo pBanner)
+        //{
+        //    try
+        //    {
+        //        iBannerRepository.Update(pBanner);
+        //    }
+        //    catch (Exception exc)
+        //    {
+        //        throw exc;
+        //    }
+        //}
+
+        //public void UpdateFuente (FuenteRSS pFuente)
+        //{
+        //    try
+        //    {
+        //        iFuenteRepository.Update(pFuente);
+        //    }
+        //    catch (Exception exc)
+        //    {
+        //        throw exc;
+        //    }
+        //}
+
+        //public void UpdateCampania (Campania pCampania)
+        //{
+        //    try
+        //    {
+        //        iCampaniaRepository.Update(pCampania);
+        //    }
+        //    catch (Exception exc)
+        //    {
+        //        throw exc;
+        //    }
+        //}
+
+        public void UpdateImagen (Imagen pImagen)
         {
             try
             {
-                return iBannerRepository.GetAll();
+                iImagenRepository.Update(pImagen);
             }
-            catch (Exception mExcepcion)
+            catch (Exception exc)
             {
-                throw mExcepcion;
+                throw exc;
             }
         }
+
+        /// <summary>
+        /// Métodos para obtener una entidad mediante su ID:
+        ///     getBannerById
+        ///     getFuenteById
+        ///     getCampaniaById
+        ///     getImagenById
+        /// </summary>
+        //public Banner GetBannerById(int pId)
+        //{
+        //    try
+        //    {
+        //        return iBannerRepository.GetById(pId);
+        //    }
+        //    catch (Exception exc)
+        //    {
+        //        throw exc;
+        //    }
+        //}
+
+        //public FuenteRSS GetFuenteById(int pId)
+        //{
+        //    try
+        //    {
+        //        return iFuenteRepository.GetById(pId);
+        //    }
+        //    catch (Exception exc)
+        //    {
+        //        throw exc;
+        //    }
+        //}
+
+        //public Campania GetCampaniaById(int pId)
+        //{
+        //    try
+        //    {
+        //        return iCampaniaRepository.GetById(pId);
+        //    }
+        //    catch (Exception exc)
+        //    {
+        //        throw exc;
+        //    }
+        //}
+
+        public Imagen GetImagenById(int pId)
+        {
+            try
+            {
+                return iImagenRepository.GetById(pId);
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
+        }
+
+        public Imagen GetImagenByName(string pNombreImagen)
+        {
+            try
+            {
+                return iImagenRepository.GetByName(pNombreImagen);
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
+        }
+
+        public List<string> GetAllNamesFromImages()
+        {
+            try
+            {
+                return iImagenRepository.GetAllNamesFromImages();
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
+        }
+        /// <summary>
+        /// Métodos para obtener todas las entidades de un tipo:
+        ///     getAllBanner
+        ///     getAllFuente
+        ///     getAllCampania
+        ///     getAllImagen
+        /// </summary>
+        //public IEnumerable<Banner> GetAllBanner()
+        //{
+        //    try
+        //    {
+        //        return iBannerRepository.GetAll();
+        //    }
+        //    catch (Exception exc)
+        //    {
+        //        throw exc;
+        //    }
+        //}
+
+        //public IEnumerable<FuenteRSS> GetAllFuente()
+        //{
+        //    try
+        //    {
+        //        return iFuenteRepository.GetAll();
+        //    }
+        //    catch (Exception exc)
+        //    {
+        //        throw exc;
+        //    }
+        //}
+
+        //public IEnumerable<Campania> GetAllCampania()
+        //{
+        //    try
+        //    {
+        //        return iCampaniaRepository.GetAll();
+        //    }
+        //    catch (Exception exc)
+        //    {
+        //        throw exc;
+        //    }
+        //}
+
+        public IEnumerable<Imagen> GetAllImagen()
+        {
+            try
+            {
+                return iImagenRepository.GetAll();
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
+        }
+
+        /// <summary>
+        /// Métodos para buscar todas las entidades que cumplan con la expresión indicada
+        ///     GetBanner
+        ///     GetFuente
+        ///     GetCampania
+        ///     GetImagen
+        /// </summary>
+        //public IQueryable<Banner> GetBanner (Expression<Func<Banner, bool>> predicate)
+        //{
+        //    try
+        //    {
+        //        return iBannerRepository.Get(predicate);
+        //    }
+        //    catch(Exception exc)
+        //    {
+        //        throw exc;
+        //    }
+        //}
+
+        //public IQueryable<FuenteRSS> GetFuente(Expression<Func<FuenteRSS, bool>> predicate)
+        //{
+        //    try
+        //    {
+        //        return iFuenteRepository.Get(predicate);
+        //    }
+        //    catch (Exception exc)
+        //    {
+        //        throw exc;
+        //    }
+        //}
+
+        //public IQueryable<Campania> GetCampania (Expression<Func<Campania, bool>> predicate)
+        //{
+        //    try
+        //    {
+        //        return iCampaniaRepository.Get(predicate);
+        //    }
+        //    catch (Exception exc)
+        //    {
+        //        throw exc;
+        //    }
+        //}
+
+        public IQueryable<Imagen> GetImagen(Expression<Func<Imagen, bool>> predicate)
+        {
+            try
+            {
+                return iImagenRepository.Get(predicate);
+            }
+            catch (Exception exc)
+            {
+                throw exc;
+            }
+        }
+
+        /// <summary>
+        /// Métodos para guardar los cambios en la base de datos
+        /// </summary>
+        //public void Save()
+        //{
+        //    iBannerRepository.Save();
+        //    iFuenteRepository.Save();
+        //    iCampaniaRepository.Save();
+        //    iImagenRepository.Save();
+        //}
+
+        // -------------- Métodos del IBannerRepository -------------- //
 
         /// <summary>
         /// Obtiene todos los bannersRSS ACTIVOS
@@ -207,180 +683,57 @@ namespace Controlador
         //    }
         //}
 
-
-
-        //--------------------------------------------------------------------------------------------
-        /// <summary>
-        /// Métodos relacionados a Campañas
-        /// </summary>
-        public void AddCampania(Campania pCampania)
-        {
-            iCampaniaRepository.Insert(pCampania);
-        }
-
-        //public void DeleteCampania(Campania pCampania)
-        //{
-        //    try
-        //    {
-        //        iCampaniaRepository.Delete(pCampania);
-        //    }
-        //    catch (Exception mExcepcion)
-        //    {
-        //        throw mExcepcion;
-        //    }
-        //}
-
-        //public void DeleteByIdCampania(int pId)
-        //{
-        //    try
-        //    {
-        //        iCampaniaRepository.DeleteById(pId);
-        //    }
-        //    catch (Exception mExcepcion)
-        //    {
-        //        throw mExcepcion;
-        //    }
-        //}
-
-        //public void UpdateCampania(Campania pCampania)
-        //{
-        //    try
-        //    {
-        //        iCampaniaRepository.Update(pCampania);
-        //    }
-        //    catch (Exception mExcepcion)
-        //    {
-        //        throw mExcepcion;
-        //    }
-        //}
-
-        //public Campania GetCampaniaById(int pId)
-        //{
-        //    try
-        //    {
-        //        return iCampaniaRepository.GetById(pId);
-        //    }
-        //    catch (Exception mExcepcion)
-        //    {
-        //        throw mExcepcion;
-        //    }
-        //}
-
-        //public IEnumerable<Campania> GetAllCampania()
-        //{
-        //    try
-        //    {
-        //        return iCampaniaRepository.GetAll();
-        //    }
-        //    catch (Exception mExcepcion)
-        //    {
-        //        throw mExcepcion;
-        //    }
-        //}
-
+        // -------------- Métodos del ICampaniaRepository -------------- //
 
         /// <summary>
         /// Obtiene todas las imagenes de una campaña
         /// </summary>
-        //public List<Imagen> GetImagenes(int pIdCampania)
-        //{
-        //    try
-        //    {
-        //        return iCampaniaRepository.GetImagenes(pIdCampania);
-        //    }
-        //    catch (Exception mExcepcion)
-        //    {
-        //        throw mExcepcion;
-        //    }
-        //}
+        /// <param name="pIdCampania"></param>
+        /// <returns>lista de imágenes</returns>
+        public List<Imagen> GetImagenes(int pIdCampania)
+        {
+            try
+            {
+                return iCampaniaRepository.GetImagenes(pIdCampania);
+            }
+            catch(Exception exc)
+            {
+                throw exc;
+            }
+        }
 
         /// <summary>
         /// Desactiva (Estado = false) una imagen de una campaña
         /// </summary>
-        //public void DeleteImagenes(int pIdImagen, int pIdCampania)
-        //{
-        //    try
-        //    {
-        //        iCampaniaRepository.DeleteImagenes(pIdImagen, pIdCampania);
-        //    }
-        //    catch (Exception mExcepcion)
-        //    {
-        //        throw mExcepcion;
-        //    }
-        //}
+        /// <param name="pIdImagen"></param>
+        /// <param name="pIdCampania"></param>
+        public void DeleteImagenes(int pIdImagen, int pIdCampania)
+        {
+            try
+            {
+                iCampaniaRepository.DeleteImagenes(pIdImagen, pIdCampania);
+            }
+            catch(Exception exc)
+            {
+                throw exc;
+            }
+        }
 
         /// <summary>
         /// Agrega una imágen a una campaña
         /// </summary>
-        //public void AddImagenes(int pIdImagen, int pIdCampania)
-        //{
-        //    try
-        //    {
-        //        iCampaniaRepository.AddImagenes(pIdImagen, pIdCampania);
-        //    }
-        //    catch (Exception mExcepcion)
-        //    {
-        //        throw mExcepcion;
-        //    }
-        //}
-
-
-        //--------------------------------------------------------------------------------------------
-        /// <summary>
-        /// Métodos relacionados a Imagenes
-        /// </summary>
-        public void AddImagen(Imagen pImagen)
+        /// <param name="pIdImagen"></param>
+        /// <param name="pIdCampania"></param>
+        public void AddImagenes(int pIdImagen, int pIdCampania)
         {
-            iImagenRepository.Insert(pImagen);
+            try
+            {
+                iCampaniaRepository.AddImagenes(pIdImagen, pIdCampania);
+            }
+            catch(Exception exc)
+            {
+                throw exc;
+            }
         }
-
-        public void DeleteImagen(Imagen pImagen)
-        {
-            iImagenRepository.Delete(pImagen);
-
-        }
-
-        public void DeleteImagenByHash(byte[] pHash)
-        {
-            iImagenRepository.DeleteByHash(pHash);
-        }
-
-        public void DeleteImagenByPictureBox(PictureBox pImagen)
-        {
-            Imagen mImagen = iImagenRepository.GetByHash(Utilidades.ImageToByteArray(pImagen));
-            iImagenRepository.DeleteById(mImagen.Id);
-        }
-
-        public void DeleteImagenByName(string pName)
-        {
-            iImagenRepository.DeleteByName(pName);
-
-        }
-
-        public void UpdateImagen(Imagen pImagen)
-        {
-            iImagenRepository.Update(pImagen);
-        }
-
-        public Imagen GetImagenById(int pId)
-        {
-            return iImagenRepository.GetById(pId);
-        }
-
-        public Imagen GetImagenByName(string pNombreImagen)
-        {
-            return iImagenRepository.GetByName(pNombreImagen);
-        }
-
-        public List<string> GetAllNamesFromImages()
-        {
-            return iImagenRepository.GetAllNamesFromImages();
-        }
-
-        public IEnumerable<Imagen> GetAllImagen()
-        {
-            return iImagenRepository.GetAll();
-        }
-
     }
 }

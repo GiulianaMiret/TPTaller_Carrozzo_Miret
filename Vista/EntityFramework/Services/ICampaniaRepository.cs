@@ -7,7 +7,7 @@ using Core.Models;
 
 namespace EntityFramework.Services
 {
-    public interface ICampaniaRepository : IRepository<Campania>
+    public interface ICampaniaRepository
     {
         List<Imagen> GetImagenes(int pIdCampania);
 
