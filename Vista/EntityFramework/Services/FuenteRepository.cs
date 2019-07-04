@@ -17,18 +17,10 @@ namespace EntityFramework.Services
     public class FuenteRepository : IFuenteRepository
     {
         private readonly DigitalBillboardContext cBillBoardContext;
-        private readonly IRepository<FuenteRSS> cRepositoryRSS;
-        private readonly IRepository<FuenteTextoFijo> cRepositoryTXT;
 
         public FuenteRepository()
         {
             cBillBoardContext = new DigitalBillboardContext();
-        }
-
-        public void AddFuenteRSS(FuenteRSS pFuenteRSS)
-        {
-                cBillBoardContext.Fuentes.Add(pFuenteRSS);
-                cBillBoardContext.SaveChanges();
         }        
     }
 }

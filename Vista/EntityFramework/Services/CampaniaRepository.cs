@@ -16,7 +16,6 @@ namespace EntityFramework.Services
     public class CampaniaRepository : ICampaniaRepository
     {
         private readonly DigitalBillboardContext cBillBoardContext;
-        private readonly IRepository<Campania> cRepositoryBase;
 
         public CampaniaRepository()
         {

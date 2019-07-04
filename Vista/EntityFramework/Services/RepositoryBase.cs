@@ -12,9 +12,15 @@ namespace Vista.EntityFramework.Services
     {
         private readonly DigitalBillboardContext cBillBoardContext;
 
+        public RepositoryBase(DigitalBillboardContext pContext)
+        {
+            cBillBoardContext = pContext;
+        }
+
+
         public void DeleteById(int pId)
         {
-            cBillBoardContext.T
+
         }
 
         public IEnumerable<T> GetAll()

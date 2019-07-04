@@ -26,10 +26,10 @@ namespace Controlador
         /// <summary>
         /// Declaramos las variables repositorios de solo lectura, que se inyectarán con Ninject.
         /// </summary>
-        private readonly IBannerRepository iBannerRepository;
-        private readonly ICampaniaRepository iCampaniaRepository;
-        private readonly IFuenteRepository iFuenteRepository;
-        private readonly IImagenRepository iImagenRepository;
+        private readonly IBannerRepository cBannerRepository;
+        private readonly ICampaniaRepository cCampaniaRepository;
+        private readonly IFuenteRepository cFuenteRepository;
+        private readonly IImagenRepository cImagenRepository;
         private readonly IRepository<Banner> cRepositoryBaseBanner;
         private readonly IRepository<Campania> cRepositoryBaseCampania;
         private readonly IRepository<FuenteRSS> cRepositoryBaseRSS;
@@ -41,12 +41,25 @@ namespace Controlador
         /// </summary>
         /// <param name="bannerRepository"></param>
         /// <param name="campaniaRepository"></param>
-        public Fachada(IBannerRepository bannerRepository, ICampaniaRepository campaniaRepository, FuenteRepository fuenteRepository, ImagenRepository imagenRepository, ILogger logger)
+        public Fachada(IBannerRepository pBannerRepository, 
+                       ICampaniaRepository pCampaniaRepository, 
+                       IFuenteRepository pFuenteRepository, 
+                       IImagenRepository pImagenRepository,
+                       IRepository<Banner> pRepositoryBaseBanner,
+                       IRepository<Campania> pRepositoryBaseCampania,
+                       IRepository<FuenteRSS> pRepositoryBaseRSS,
+                       IRepository<FuenteTextoFijo> pRepositoryBaseTXT,
+                       IRepository<Imagen> pRepositoryBaseImagen,
+                       ILogger logger)
         {
-            iBannerRepository = bannerRepository;
-            iCampaniaRepository = campaniaRepository;
-            iFuenteRepository = fuenteRepository;
-            iImagenRepository = imagenRepository;
+            cBannerRepository = pBannerRepository;
+            cCampaniaRepository = pCampaniaRepository;
+            cFuenteRepository = pFuenteRepository;
+            cImagenRepository = pImagenRepository;
+            cRepositoryBaseBanner = pRepositoryBaseBanner;
+            cRepositoryBaseCampania = pRepositoryBaseCampania;
+            cRepositoryBaseRSS = pRepositoryBaseRSS;
+            cRepositoryBaseTXT = pRepositoryBaseTXT;
             iLogger = logger;
         }
 
@@ -82,101 +95,9 @@ namespace Controlador
             }
             return iBannerRepository.GetBannerNow().Fuente.Valor;
         }
+               
 
 
-
-
-
-
-
-
-
-
-
-        
-
-        /// <summary>
-        /// New - Delete - Delete by id - Update - Get by id - Get all - Find by id - Find - Save
-        /// 
-        /// metodos para crear nuevas entidades:
-        ///     newBannerRSS
-        ///     newBannerTXT
-        ///     newFuente
-        ///     newCampania
-        ///     newImagen
-        /// </summary>
-        //public void AddBannerRSS(string pNombre, DateTime pFechaInicio, DateTime pFechaFin, TimeSpan pHoraInicio, TimeSpan pHoraFin, int pCodigo, string pValor, FuenteRSS pFuente)
-        //{
-        //    BannerRSS banner = new BannerRSS();
-        //    //banner.Id
-        //    banner.Nombre = pNombre;
-        //    banner.FechaInicio = pFechaInicio;
-        //    banner.FechaFin = pFechaFin;
-        //    banner.HoraInicio = pHoraInicio;
-        //    banner.HoraFin = pHoraFin;
-        //    banner.Valor = pValor;
-        //    banner.Fuente = pFuente;
-        //    try
-        //    {
-        //        iBannerRepository.Insert(banner);
-        //    }
-        //    catch (Exception exc)
-        //    {
-        //        throw exc;
-        //    }
-        //}
-
-        //public void AddBannerTXT(string pNombre, DateTime pFechaInicio, DateTime pFechaFin, TimeSpan pHoraInicio, TimeSpan pHoraFin, string pTexto)
-        //{
-        //    BannerTextoFijo banner = new BannerTextoFijo();
-        //    //banner.Id
-        //    banner.Nombre = pNombre;
-        //    banner.FechaInicio = pFechaInicio;
-        //    banner.FechaFin = pFechaFin;
-        //    banner.HoraInicio = pHoraInicio;
-        //    banner.HoraFin = pHoraFin;
-        //    banner.Texto = pTexto;
-        //    try
-        //    {
-        //        iBannerRepository.Insert(banner);
-        //    }
-        //    catch (Exception exc)
-        //    {
-        //        throw exc;
-        //    }
-        //}
-
-        //public void AddFuente(FuenteRSS pFuente)
-        //{
-        //    try
-        //    {
-        //        iFuenteRepository.Insert(pFuente);
-        //    }
-        //    catch (Exception exc)
-        //    {
-        //        throw exc;
-        //    }
-        //}
-
-        //public void AddCampania(string pNombre, DateTime pFechaInicio, DateTime pFechaFin, TimeSpan pHoraInicio, TimeSpan pHoraFin, ICollection<Imagen> pImagenes)
-        //{
-        //    Campania campania = new Campania();
-        //    //campania.Id
-        //    campania.Nombre = pNombre;
-        //    campania.FechaInicio = pFechaInicio;
-        //    campania.FechaFin = pFechaFin;
-        //    campania.HoraInicio = pHoraInicio;
-        //    campania.HoraFin = pHoraFin;
-        //    campania.Imagenes = pImagenes;
-        //    try
-        //    {
-        //        iCampaniaRepository.Insert(campania);
-        //    }
-        //    catch (Exception exc)
-        //    {
-        //        throw exc;
-        //    }
-        //}
 
         public void AddImagen(Imagen pImagen)
         {
@@ -190,61 +111,6 @@ namespace Controlador
             }
         }
 
-        /// <summary>
-        /// Métodos para dar de baja lógica a una entidad, pasando la entidad:
-        ///     deleteBannerRSS
-        ///     deleteBannerTXT
-        ///     deleteFuente
-        ///     deleteCampania
-        ///     deleteImagen
-        /// </summary>
-        //public void DeleteBannerRSS(BannerRSS pBanner)
-        //{
-        //    try
-        //    {
-        //        iBannerRepository.Delete(pBanner);
-        //    }
-        //    catch (Exception exc)
-        //    {
-        //        throw exc;
-        //    }
-        //}
-
-        //public void DeleteBannerTXT(BannerTextoFijo pBanner)
-        //{
-        //    try
-        //    {
-        //        iBannerRepository.Delete(pBanner);
-        //    }
-        //    catch (Exception exc)
-        //    {
-        //        throw exc;
-        //    }
-        //}
-
-        //public void DeleteFuenteRSS(FuenteRSS pFuente)
-        //{
-        //    try
-        //    {
-        //        iFuenteRepository.Delete(pFuente);
-        //    }
-        //    catch (Exception exc)
-        //    {
-        //        throw exc;
-        //    }
-        //}
-
-        //public void DeleteCampania(Campania pCampania)
-        //{
-        //    try
-        //    {
-        //        iCampaniaRepository.Delete(pCampania);
-        //    }
-        //    catch (Exception exc)
-        //    {
-        //        throw exc;
-        //    }
-        //}
 
         public void DeleteImagen(Imagen pImagen)
         {
