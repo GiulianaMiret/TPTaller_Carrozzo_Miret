@@ -34,6 +34,12 @@ namespace Vista
                 dataGridViewTodasLasImagenes.Rows.Add(mNombre);
             }
             dataGridViewTodasLasImagenes.Show();
+            if (dataGridViewTodasLasImagenes.CurrentRow.Cells[0].Value != null)
+            {
+                string mNombreImagen = dataGridViewTodasLasImagenes.CurrentRow.Cells[0].Value.ToString();
+                Imagen mImagen = iFachada.GetImagenByName(mNombreImagen);
+                pictureBoxVistaPreviaImagenes.Image = Utilidades.ByteToImage(mImagen.Hash);
+            }
         }
 
         private void dataGridViewTodasLasImagenes_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -49,49 +55,36 @@ namespace Vista
 
         private void buttonAgregarImagen_Click(object sender, EventArgs e)
         {
-            //Obtengo el string
-            string mNombreImagen = dataGridViewTodasLasImagenes.CurrentRow.Cells[0].Value.ToString();
-            //Lo agrego al datagrid2
-            dataGridViewImagenesSeleccionadas.Rows.Add(mNombreImagen);
-            dataGridViewImagenesSeleccionadas.Show();
-            //Paso el contenido del datagrid1 a una lista
-            List<string> mListaNombresNueva = new List<string>();
+            if(dataGridViewTodasLasImagenes.CurrentRow.Cells[0].Value != null)
+            {
+                string mNombreImagen = dataGridViewTodasLasImagenes.CurrentRow.Cells[0].Value.ToString();
 
-            //foreach (DataGridViewRow fila in dataGridViewTodasLasImagenes.Rows)
-            //{
-            //    mListaNombresNueva.Add(fila.Cells[0].Value.ToString());
-            //}
-            //Elimino el string de la lista
-            mListaNombresNueva.Remove(mNombreImagen);
-            //Cargo la lista al datagrid1
-            dataGridViewTodasLasImagenes.DataSource = mListaNombresNueva.Select(x => new { Nombre = x }).ToList();
-            dataGridViewTodasLasImagenes.Show();
+                dataGridViewImagenesSeleccionadas.Rows.Add(mNombreImagen);
+                dataGridViewImagenesSeleccionadas.Show();
+
+                dataGridViewTodasLasImagenes.Rows.Remove(dataGridViewTodasLasImagenes.CurrentRow);
+                dataGridViewTodasLasImagenes.Show();
+            }
+
         }
 
         private void buttonQuitarImagen_Click(object sender, EventArgs e)
         {
-            //Obtengo el string
-            string mNombreImagen = dataGridViewImagenesSeleccionadas.CurrentRow.Cells[0].Value.ToString();
-            //Lo agrego al datagrid2
-            List<string> mListaNombreAgregado = new List<string>();
-            foreach (DataGridViewRow fila in dataGridViewTodasLasImagenes.Rows)
+            if (dataGridViewImagenesSeleccionadas.CurrentRow.Cells[0].Value != null)
             {
-                mListaNombreAgregado.Add(fila.Cells[0].Value.ToString());
+                string mNombreImagen = dataGridViewImagenesSeleccionadas.CurrentRow.Cells[0].Value.ToString();
+
+                dataGridViewTodasLasImagenes.Rows.Add(mNombreImagen);
+                dataGridViewTodasLasImagenes.Show();
+
+                dataGridViewImagenesSeleccionadas.Rows.Remove(dataGridViewImagenesSeleccionadas.CurrentRow);
+                dataGridViewImagenesSeleccionadas.Show();
             }
-            mListaNombreAgregado.Add(mNombreImagen);
-            dataGridViewTodasLasImagenes.DataSource = mListaNombreAgregado.Select(x => new { Nombre = x }).ToList();
-            dataGridViewTodasLasImagenes.Show();
-            //Paso el contenido del datagrid1 a una lista
-            List<string> mListaNombreBorrado = new List<string>();
-            foreach (DataGridViewRow fila in dataGridViewImagenesSeleccionadas.Rows)
-            {
-                mListaNombreBorrado.Add(fila.Cells[0].Value.ToString());
-            }
-            //Elimino el string de la lista
-            mListaNombreBorrado.Remove(mNombreImagen);
-            //Cargo la lista al datagrid1
-            dataGridViewImagenesSeleccionadas.DataSource = mListaNombreBorrado.Select(x => new { Nombre = x }).ToList();
-            dataGridViewImagenesSeleccionadas.Show();
+
+        }
+
+        private void buttonConsultarDisponibilidad_Click(object sender, EventArgs e)
+        {
 
         }
 
@@ -166,10 +159,10 @@ namespace Vista
 
         }
 
+
         private void btnCampaniaCancelar_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
-
     }
 }

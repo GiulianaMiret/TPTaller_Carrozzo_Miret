@@ -68,6 +68,18 @@
     <Compile Include="CompositionRoot.cs" />
     <Compile Include="Core\Models\Fuente.cs" />
     <Compile Include="DigitalBillboardContext.cs" />
+    <Compile Include="FrmBorrarCampania.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmBorrarCampania.Designer.cs">
+      <DependentUpon>FrmBorrarCampania.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmModificarCampania.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmModificarCampania.Designer.cs">
+      <DependentUpon>FrmModificarCampania.cs</DependentUpon>
+    </Compile>
     <Compile Include="Logger\Logger4net.cs" />
     <Compile Include="Logger\ILogger.cs" />
     <Compile Include="Migrations\201906252357276_inicial2.cs" />
@@ -141,8 +153,14 @@
     <EmbeddedResource Include="FrmAgregarBanner.resx">
       <DependentUpon>FrmAgregarBanner.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmBorrarCampania.resx">
+      <DependentUpon>FrmBorrarCampania.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmGestionImagenes.resx">
       <DependentUpon>FrmGestionImagenes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmModificarCampania.resx">
+      <DependentUpon>FrmModificarCampania.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmOperacion.resx">
       <DependentUpon>FrmOperacion.cs</DependentUpon>
@@ -161,6 +179,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -177,6 +196,12 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FondoSlogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ShoutNews.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

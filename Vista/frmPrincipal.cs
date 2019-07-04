@@ -45,5 +45,10 @@ namespace Vista
         {
             CompositionRoot.Resolve<FrmAgregarCampania>().ShowDialog();
         }
+
+        private void modificarCampañaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CompositionRoot.Resolve<FrmModificarCampania>().ShowDialog();
+        }
     }
 }

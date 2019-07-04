@@ -38,6 +38,7 @@
             this.administraciónDeBannersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.administraciónDeFuentesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.agregarFuenteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modificarCampañaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripFrmPrincipal.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,7 +73,8 @@
             this.administraciónDeFuentesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.gestiónDeImagenesToolStripMenuItem,
             this.toolStripSeparator1,
-            this.gestiónDeCampañaToolStripMenuItem});
+            this.gestiónDeCampañaToolStripMenuItem,
+            this.modificarCampañaToolStripMenuItem});
             this.administraciónDeFuentesToolStripMenuItem.Name = "administraciónDeFuentesToolStripMenuItem";
             this.administraciónDeFuentesToolStripMenuItem.Size = new System.Drawing.Size(175, 20);
             this.administraciónDeFuentesToolStripMenuItem.Text = "Administración de Campañas";
@@ -117,6 +119,13 @@
             this.agregarFuenteToolStripMenuItem.Text = "Agregar fuente";
             this.agregarFuenteToolStripMenuItem.Click += new System.EventHandler(this.agregarFuenteToolStripMenuItem_Click);
             // 
+            // modificarCampañaToolStripMenuItem
+            // 
+            this.modificarCampañaToolStripMenuItem.Name = "modificarCampañaToolStripMenuItem";
+            this.modificarCampañaToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.modificarCampañaToolStripMenuItem.Text = "Modificar Campaña";
+            this.modificarCampañaToolStripMenuItem.Click += new System.EventHandler(this.modificarCampañaToolStripMenuItem_Click);
+            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -153,6 +162,7 @@
         private System.Windows.Forms.ToolStripMenuItem gestiónDeImagenesToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem gestiónDeCampañaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem modificarCampañaToolStripMenuItem;
     }
 }
 

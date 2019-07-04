@@ -28,10 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAgregarCampania));
             this.btnCampaniaGuardar = new System.Windows.Forms.Button();
             this.btnCampaniaCancelar = new System.Windows.Forms.Button();
@@ -52,6 +51,7 @@
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTodasLasImagenes = new System.Windows.Forms.DataGridView();
             this.pictureBoxVistaPreviaImagenes = new System.Windows.Forms.PictureBox();
+            this.buttonConsultarDisponibilidad = new System.Windows.Forms.Button();
             this.Nombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBoxFechaHora.SuspendLayout();
             this.groupBoxImagenes.SuspendLayout();
@@ -299,21 +299,14 @@
             // 
             // dataGridViewImagenesSeleccionadas
             // 
+            this.dataGridViewImagenesSeleccionadas.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dataGridViewImagenesSeleccionadas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewImagenesSeleccionadas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Nombre});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewImagenesSeleccionadas.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewImagenesSeleccionadas.Location = new System.Drawing.Point(545, 40);
             this.dataGridViewImagenesSeleccionadas.Name = "dataGridViewImagenesSeleccionadas";
             this.dataGridViewImagenesSeleccionadas.ReadOnly = true;
-            this.dataGridViewImagenesSeleccionadas.Size = new System.Drawing.Size(240, 150);
+            this.dataGridViewImagenesSeleccionadas.Size = new System.Drawing.Size(175, 150);
             this.dataGridViewImagenesSeleccionadas.TabIndex = 1;
             // 
             // Nombre
@@ -327,29 +320,23 @@
             // 
             // dataGridViewTodasLasImagenes
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Perpetua Titling MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTodasLasImagenes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridViewTodasLasImagenes.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Perpetua Titling MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTodasLasImagenes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewTodasLasImagenes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewTodasLasImagenes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Nombres});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTodasLasImagenes.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dataGridViewTodasLasImagenes.Location = new System.Drawing.Point(150, 40);
+            this.dataGridViewTodasLasImagenes.GridColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dataGridViewTodasLasImagenes.Location = new System.Drawing.Point(189, 40);
             this.dataGridViewTodasLasImagenes.Name = "dataGridViewTodasLasImagenes";
             this.dataGridViewTodasLasImagenes.ReadOnly = true;
-            this.dataGridViewTodasLasImagenes.Size = new System.Drawing.Size(240, 150);
+            this.dataGridViewTodasLasImagenes.Size = new System.Drawing.Size(178, 150);
             this.dataGridViewTodasLasImagenes.TabIndex = 1;
             this.dataGridViewTodasLasImagenes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTodasLasImagenes_CellClick);
             // 
@@ -362,8 +349,24 @@
             this.pictureBoxVistaPreviaImagenes.TabIndex = 0;
             this.pictureBoxVistaPreviaImagenes.TabStop = false;
             // 
+            // buttonConsultarDisponibilidad
+            // 
+            this.buttonConsultarDisponibilidad.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.buttonConsultarDisponibilidad.AutoSize = true;
+            this.buttonConsultarDisponibilidad.BackColor = System.Drawing.Color.SandyBrown;
+            this.buttonConsultarDisponibilidad.Font = new System.Drawing.Font("Copperplate Gothic Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonConsultarDisponibilidad.Location = new System.Drawing.Point(533, 225);
+            this.buttonConsultarDisponibilidad.Name = "buttonConsultarDisponibilidad";
+            this.buttonConsultarDisponibilidad.Size = new System.Drawing.Size(299, 44);
+            this.buttonConsultarDisponibilidad.TabIndex = 22;
+            this.buttonConsultarDisponibilidad.Text = "Ver Horarios Disponibles";
+            this.buttonConsultarDisponibilidad.UseVisualStyleBackColor = false;
+            this.buttonConsultarDisponibilidad.Click += new System.EventHandler(this.buttonConsultarDisponibilidad_Click);
+            // 
             // Nombres
             // 
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            this.Nombres.DefaultCellStyle = dataGridViewCellStyle3;
             this.Nombres.HeaderText = "Nombre";
             this.Nombres.Name = "Nombres";
             this.Nombres.ReadOnly = true;
@@ -375,6 +378,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(887, 612);
+            this.Controls.Add(this.buttonConsultarDisponibilidad);
             this.Controls.Add(this.textBoxCampaniaNombre);
             this.Controls.Add(this.groupBoxImagenes);
             this.Controls.Add(this.groupBoxFechaHora);
@@ -420,6 +424,7 @@
         private System.Windows.Forms.ComboBox comboBoxCampaniaHoraFin;
         private System.Windows.Forms.ComboBox comboBoxCampaniHoraInicio;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.Button buttonConsultarDisponibilidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombres;
     }
 }
