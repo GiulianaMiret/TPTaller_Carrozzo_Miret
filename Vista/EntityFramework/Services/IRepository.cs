@@ -13,47 +13,25 @@ namespace EntityFramework.Services
     public interface IRepository<T> where T : class
     {
         /// <summary>
-        /// Este metodo devuelve un conjunto de T (Banners, Campanias, etc) obtenidos segun la expresion pasada como parámetro
-        /// </summary>
-        /// <param name="predicate"></param>
-        /// <returns> conjunto de T "entity" </returns>
-        IQueryable<T> Get(Expression<Func<T, bool>> predicate);
-
-        /// <summary>
-        /// Este método devuelve la lista completa de entidades ACTIVAS (Estado == true)
+        /// Este método devuelve la lista completa de entidades
         /// </summary>
         IEnumerable<T> GetAll();
 
         /// <summary>
-        /// Este método obtiene una entidad (T) mediante el id si la entidad se encuentra ACTIVA (Estado == true)
+        /// Este método obtiene una entidad (T) mediante el id
         /// </summary>
         /// <param name="pId"></param>
         /// <returns> T "entity" </returns>
         T GetById(int pId);
 
         /// <summary>
-        /// Este método obtiene una entidad (T) mediante el id si la entidad se encuentra ACTIVA (Estado == true)
-        /// </summary>
-        /// <param name="pId"></param>
-        /// <returns> T "entity" </returns>
-     //   T GetByName(int pId);
-
-        /// <summary>
-        /// Agrega una entidad (T) verificando que no exista o no esté activa.
-        /// Si la entidad habia sido borrada (Estado == false), se la vuelve a activar (Estado == true)
+        /// Agrega una entidad (T)
         /// </summary>
         /// /// <param name="entity"></param>
         void Insert(T entity);
 
         /// <summary>
-        /// Da de baja lógica (Estado == false) un nuevo elemento de la lista de ACTIVOS (Estado == true) pasando la entidad
-        /// </summary>
-        /// <param name="entity"></param>
-        void Delete(T entity);
-
-
-        /// <summary>
-        /// Da de baja lógica (Estado == false) un nuevo elemento de la lista de ACTIVOS (Estado == true) pasando el ID
+        /// Borra una entidad por ID
         /// </summary>
         /// <param name="pId"></param>
         void DeleteById(int pId);
@@ -63,10 +41,5 @@ namespace EntityFramework.Services
         /// </summary>
         /// <param name="entity"></param>
         void Update(T entity);
-
-        /// <summary>
-        /// Guarda los cambios en la base de datos
-        /// </summary>
-        void Save();
     }
 }

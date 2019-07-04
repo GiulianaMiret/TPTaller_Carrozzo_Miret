@@ -9,7 +9,7 @@ using System.Data.Entity;
 
 namespace EntityFramework.Services
 {
-    public interface IBannerRepository : IRepository<Banner>
+    public interface IBannerRepository
     {
         //void CambiarFuente(int pIdBannerRSS, FuenteRSS pFuente);
 

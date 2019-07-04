@@ -68,6 +68,9 @@
     <Compile Include="CompositionRoot.cs" />
     <Compile Include="Core\Models\Fuente.cs" />
     <Compile Include="DigitalBillboardContext.cs" />
+    <Compile Include="EntityFramework\Services\IFuenteRepository.cs" />
+    <Compile Include="EntityFramework\Services\IImagenRepository.cs" />
+    <Compile Include="EntityFramework\Services\RepositoryBase.cs" />
     <Compile Include="Logger\Logger4net.cs" />
     <Compile Include="Logger\ILogger.cs" />
     <Compile Include="Migrations\201906252357276_inicial2.cs" />

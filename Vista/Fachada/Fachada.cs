@@ -9,9 +9,15 @@ using System.Linq.Expressions;
 using System.Windows.Forms;
 using Vista;
 using Vista.Logger;
+using Vista.EntityFramework.Services;
 
 namespace Controlador
 {
+    //Como hacer un select en TPH, BankAccount es de tipo BillingDetails.
+    //IQueryable<BankAccount> query = from b in context.BillingDetails.OfType<BankAccount>() 
+    //select b;
+
+
     /// <summary>
     /// Clase fachada, de donde se va a llamar a los repositorios para realizar las operaciones, entre otras cosas
     /// </summary>
@@ -22,8 +28,13 @@ namespace Controlador
         /// </summary>
         private readonly IBannerRepository iBannerRepository;
         private readonly ICampaniaRepository iCampaniaRepository;
-        private readonly FuenteRepository iFuenteRepository;
-        private readonly ImagenRepository iImagenRepository;
+        private readonly IFuenteRepository iFuenteRepository;
+        private readonly IImagenRepository iImagenRepository;
+        private readonly IRepository<Banner> cRepositoryBaseBanner;
+        private readonly IRepository<Campania> cRepositoryBaseCampania;
+        private readonly IRepository<FuenteRSS> cRepositoryBaseRSS;
+        private readonly IRepository<FuenteTextoFijo> cRepositoryBaseTXT;
+        private readonly IRepository<Imagen> cRepositoryBaseImagen;
         private readonly ILogger iLogger;
         /// <summary>
         /// Constructor de la clase Fachada que basicamente inyecta las dependencias de los repositorios con Ninject.
@@ -43,31 +54,24 @@ namespace Controlador
         /// <summary>
         /// Métodos relacionados a Fuentes
         /// </summary>
-        public void VerificarBanner()
+        /// 
+        public void AddFuenteTXT(FuenteTextoFijo pFuenteTextoFijo)
         {
-            
+        //    iFuenteRepository.AddFuenteTXT(pFuenteTextoFijo);
         }
 
 
         public void AddFuenteRSS(FuenteRSS pFuenteRSS)
-        {
-            try
-            {
+        {           
                 if (Utilidades.InternetDisponible())
                 {
                     pFuenteRSS.Valor = Utilidades.GetStringFromXMLRSSUrl(pFuenteRSS.URL);
+                    iFuenteRepository.AddFuenteRSS(pFuenteRSS);
                 }
                 else
                 {
-                    iLogger.Debug("No pudo descargarse el feed RSS por falta de conectividad.");
-                }
-                
-                iFuenteRepository.AddFuenteRSS(pFuenteRSS);
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }            
+                    throw new Exception("No pudo descargarse el feed RSS por falta de conectividad.");
+                }                           
         }
 
         public string GetTextOfActualBanner()
@@ -154,25 +158,25 @@ namespace Controlador
         //    }
         //}
 
-        public void AddCampania(string pNombre, DateTime pFechaInicio, DateTime pFechaFin, TimeSpan pHoraInicio, TimeSpan pHoraFin, ICollection<Imagen> pImagenes)
-        {
-            Campania campania = new Campania();
-            //campania.Id
-            campania.Nombre = pNombre;
-            campania.FechaInicio = pFechaInicio;
-            campania.FechaFin = pFechaFin;
-            campania.HoraInicio = pHoraInicio;
-            campania.HoraFin = pHoraFin;
-            campania.Imagenes = pImagenes;
-            try
-            {
-                iCampaniaRepository.Insert(campania);
-            }
-            catch (Exception exc)
-            {
-                throw exc;
-            }
-        }
+        //public void AddCampania(string pNombre, DateTime pFechaInicio, DateTime pFechaFin, TimeSpan pHoraInicio, TimeSpan pHoraFin, ICollection<Imagen> pImagenes)
+        //{
+        //    Campania campania = new Campania();
+        //    //campania.Id
+        //    campania.Nombre = pNombre;
+        //    campania.FechaInicio = pFechaInicio;
+        //    campania.FechaFin = pFechaFin;
+        //    campania.HoraInicio = pHoraInicio;
+        //    campania.HoraFin = pHoraFin;
+        //    campania.Imagenes = pImagenes;
+        //    try
+        //    {
+        //        iCampaniaRepository.Insert(campania);
+        //    }
+        //    catch (Exception exc)
+        //    {
+        //        throw exc;
+        //    }
+        //}
 
         public void AddImagen(Imagen pImagen)
         {
@@ -230,17 +234,17 @@ namespace Controlador
         //    }
         //}
 
-        public void DeleteCampania(Campania pCampania)
-        {
-            try
-            {
-                iCampaniaRepository.Delete(pCampania);
-            }
-            catch (Exception exc)
-            {
-                throw exc;
-            }
-        }
+        //public void DeleteCampania(Campania pCampania)
+        //{
+        //    try
+        //    {
+        //        iCampaniaRepository.Delete(pCampania);
+        //    }
+        //    catch (Exception exc)
+        //    {
+        //        throw exc;
+        //    }
+        //}
 
         public void DeleteImagen(Imagen pImagen)
         {
@@ -286,29 +290,29 @@ namespace Controlador
         ///     deleteByIdCampania
         ///     deleteByIdImagen
         /// </summary>
-        public void DeleteByIdBannerRSS(int pId)
-        {
-            try
-            {
-                iBannerRepository.DeleteById(pId);
-            }
-            catch (Exception exc)
-            {
-                throw exc;
-            }
-        }
+        //public void DeleteByIdBannerRSS(int pId)
+        //{
+        //    try
+        //    {
+        //        iBannerRepository.DeleteById(pId);
+        //    }
+        //    catch (Exception exc)
+        //    {
+        //        throw exc;
+        //    }
+        //}
 
-        public void DeleteByIdBannerTXT(int pId)
-        {
-            try
-            {
-                iBannerRepository.DeleteById(pId);
-            }
-            catch (Exception exc)
-            {
-                throw exc;
-            }
-        }
+        //public void DeleteByIdBannerTXT(int pId)
+        //{
+        //    try
+        //    {
+        //        iBannerRepository.DeleteById(pId);
+        //    }
+        //    catch (Exception exc)
+        //    {
+        //        throw exc;
+        //    }
+        //}
 
         //public void DeleteByIdFuente(int pId)
         //{
@@ -322,17 +326,17 @@ namespace Controlador
         //    }
         //}
 
-        public void DeleteByIdCampania(int pId)
-        {
-            try
-            {
-                iCampaniaRepository.DeleteById(pId);
-            }
-            catch (Exception exc)
-            {
-                throw exc;
-            }
-        }
+        //public void DeleteByIdCampania(int pId)
+        //{
+        //    try
+        //    {
+        //        iCampaniaRepository.DeleteById(pId);
+        //    }
+        //    catch (Exception exc)
+        //    {
+        //        throw exc;
+        //    }
+        //}
 
         public void DeleteImagenByName(string pName)
         {
@@ -390,17 +394,17 @@ namespace Controlador
         //    }
         //}
 
-        public void UpdateCampania (Campania pCampania)
-        {
-            try
-            {
-                iCampaniaRepository.Update(pCampania);
-            }
-            catch (Exception exc)
-            {
-                throw exc;
-            }
-        }
+        //public void UpdateCampania (Campania pCampania)
+        //{
+        //    try
+        //    {
+        //        iCampaniaRepository.Update(pCampania);
+        //    }
+        //    catch (Exception exc)
+        //    {
+        //        throw exc;
+        //    }
+        //}
 
         public void UpdateImagen (Imagen pImagen)
         {
@@ -421,17 +425,17 @@ namespace Controlador
         ///     getCampaniaById
         ///     getImagenById
         /// </summary>
-        public Banner GetBannerById(int pId)
-        {
-            try
-            {
-                return iBannerRepository.GetById(pId);
-            }
-            catch (Exception exc)
-            {
-                throw exc;
-            }
-        }
+        //public Banner GetBannerById(int pId)
+        //{
+        //    try
+        //    {
+        //        return iBannerRepository.GetById(pId);
+        //    }
+        //    catch (Exception exc)
+        //    {
+        //        throw exc;
+        //    }
+        //}
 
         //public FuenteRSS GetFuenteById(int pId)
         //{
@@ -445,17 +449,17 @@ namespace Controlador
         //    }
         //}
 
-        public Campania GetCampaniaById(int pId)
-        {
-            try
-            {
-                return iCampaniaRepository.GetById(pId);
-            }
-            catch (Exception exc)
-            {
-                throw exc;
-            }
-        }
+        //public Campania GetCampaniaById(int pId)
+        //{
+        //    try
+        //    {
+        //        return iCampaniaRepository.GetById(pId);
+        //    }
+        //    catch (Exception exc)
+        //    {
+        //        throw exc;
+        //    }
+        //}
 
         public Imagen GetImagenById(int pId)
         {
@@ -499,17 +503,17 @@ namespace Controlador
         ///     getAllCampania
         ///     getAllImagen
         /// </summary>
-        public IEnumerable<Banner> GetAllBanner()
-        {
-            try
-            {
-                return iBannerRepository.GetAll();
-            }
-            catch (Exception exc)
-            {
-                throw exc;
-            }
-        }
+        //public IEnumerable<Banner> GetAllBanner()
+        //{
+        //    try
+        //    {
+        //        return iBannerRepository.GetAll();
+        //    }
+        //    catch (Exception exc)
+        //    {
+        //        throw exc;
+        //    }
+        //}
 
         //public IEnumerable<FuenteRSS> GetAllFuente()
         //{
@@ -523,17 +527,17 @@ namespace Controlador
         //    }
         //}
 
-        public IEnumerable<Campania> GetAllCampania()
-        {
-            try
-            {
-                return iCampaniaRepository.GetAll();
-            }
-            catch (Exception exc)
-            {
-                throw exc;
-            }
-        }
+        //public IEnumerable<Campania> GetAllCampania()
+        //{
+        //    try
+        //    {
+        //        return iCampaniaRepository.GetAll();
+        //    }
+        //    catch (Exception exc)
+        //    {
+        //        throw exc;
+        //    }
+        //}
 
         public IEnumerable<Imagen> GetAllImagen()
         {
@@ -554,17 +558,17 @@ namespace Controlador
         ///     GetCampania
         ///     GetImagen
         /// </summary>
-        public IQueryable<Banner> GetBanner (Expression<Func<Banner, bool>> predicate)
-        {
-            try
-            {
-                return iBannerRepository.Get(predicate);
-            }
-            catch(Exception exc)
-            {
-                throw exc;
-            }
-        }
+        //public IQueryable<Banner> GetBanner (Expression<Func<Banner, bool>> predicate)
+        //{
+        //    try
+        //    {
+        //        return iBannerRepository.Get(predicate);
+        //    }
+        //    catch(Exception exc)
+        //    {
+        //        throw exc;
+        //    }
+        //}
 
         //public IQueryable<FuenteRSS> GetFuente(Expression<Func<FuenteRSS, bool>> predicate)
         //{
@@ -578,17 +582,17 @@ namespace Controlador
         //    }
         //}
 
-        public IQueryable<Campania> GetCampania (Expression<Func<Campania, bool>> predicate)
-        {
-            try
-            {
-                return iCampaniaRepository.Get(predicate);
-            }
-            catch (Exception exc)
-            {
-                throw exc;
-            }
-        }
+        //public IQueryable<Campania> GetCampania (Expression<Func<Campania, bool>> predicate)
+        //{
+        //    try
+        //    {
+        //        return iCampaniaRepository.Get(predicate);
+        //    }
+        //    catch (Exception exc)
+        //    {
+        //        throw exc;
+        //    }
+        //}
 
         public IQueryable<Imagen> GetImagen(Expression<Func<Imagen, bool>> predicate)
         {

@@ -40,11 +40,10 @@ namespace Vista
                             FuenteRSS mFuenteRSS = new FuenteRSS { Titulo = textBoxTitulo.Text, URL = textBoxURLfuente.Text };
                             iFachada.AddFuenteRSS(mFuenteRSS);
                             Utilidades.MostrarMensajePopup("La fuente RSS se agregó con éxito");
-                            textBox1.Text = mFuenteRSS.Valor;
                         }
                         else
                         {
-                            FuenteTextoFijo mFuenteTextoFijo = new FuenteTextoFijo { Titulo = textBoxTitulo.Text, Valor = textBoxTextoFijo.Text };
+                            FuenteTextoFijo mFuenteTextoFijo = new FuenteTextoFijo { Titulo = textBoxTitulo.Text, Valor = textBoxTextoFijo.Text };                            
                             
                         }
                         

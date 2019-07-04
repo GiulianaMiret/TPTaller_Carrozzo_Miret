@@ -1,18 +1,19 @@
 namespace Vista.Migrations
 {
+    using global::EntityFramework;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<EntityFramework.DigitalBillboardContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<DigitalBillboardContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(EntityFramework.DigitalBillboardContext context)
+        protected override void Seed(DigitalBillboardContext context)
         {
             //  This method will be called after migrating to the latest version.
 
