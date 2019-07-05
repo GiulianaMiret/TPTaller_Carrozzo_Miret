@@ -15,16 +15,16 @@ namespace EntityFramework.Services
     /// </summary>
     public class ImagenRepository : IImagenRepository
     {
-        private readonly DigitalBillboardContext cBillBoardContext;
+        private DbSet<Imagen> cDbSetImagen;
 
-        public ImagenRepository()
+        public ImagenRepository(DigitalBillboardContext pContext)
         {
-            cBillBoardContext = new DigitalBillboardContext();
+            cDbSetImagen = pContext.Set<Imagen>();
         }
 
         public Imagen GetByName(string pNombreImagen)
         {
-            Imagen mImagen = cBillBoardContext.Imagenes.Where(x => x.Nombre == pNombreImagen).FirstOrDefault();
+            Imagen mImagen = cDbSetImagen.Where(x => x.Nombre == pNombreImagen).FirstOrDefault();
             if (mImagen == null)
             {
                 throw new Exception("No se ha encontrado la Imagen");
@@ -32,16 +32,9 @@ namespace EntityFramework.Services
             return mImagen;
         }
 
-        ///este metodo deberia eliminarse una vez que se haga el repositorio generico
-        public Imagen GetById(int pId)
-        {
-            Imagen mImagen = cBillBoardContext.Imagenes.Where(x => x.Id == pId).FirstOrDefault();
-            return mImagen;
-        }
-
         public Imagen GetByHash (byte[] pImagen)
         {
-            Imagen mImagen = cBillBoardContext.Imagenes.Where(x => x.Hash == pImagen).FirstOrDefault();
+            Imagen mImagen = cDbSetImagen.Where(x => x.Hash == pImagen).FirstOrDefault();
             if (mImagen == null)
             {
                 throw new Exception("No se ha encontrado la Imagen");
@@ -53,7 +46,7 @@ namespace EntityFramework.Services
         {
             List<string> mListasDeNombres = new List<string>();
 
-            foreach (var item in cBillBoardContext.Imagenes.ToList())
+            foreach (var item in cDbSetImagen.ToList())
             {
                 mListasDeNombres.Add(item.Nombre);
             }
@@ -61,69 +54,26 @@ namespace EntityFramework.Services
             return mListasDeNombres;
         }
 
-        ///este metodo deberia eliminarse una vez que se haga el repositorio generico
-        public void Insert(Imagen pImagen)
-        {
-            Imagen mBusquedaDeImagenPorHash = cBillBoardContext.Imagenes.Where(x => x.Hash == pImagen.Hash).FirstOrDefault();
-            Imagen mBusquedaDeImagenPorNombre = cBillBoardContext.Imagenes.Where(x => x.Nombre == pImagen.Nombre).FirstOrDefault();
-            
-            if (mBusquedaDeImagenPorHash != null)
-            {
-                throw new Exception("La imagen ya existe");
-            }
-            if (mBusquedaDeImagenPorNombre != null)
-            {
-                throw new Exception("Una imagen con ese nombre ya existe, elija otro.");
-            }
-
-           cBillBoardContext.Imagenes.Add(pImagen);
-           cBillBoardContext.SaveChanges();
-            
-        }
-        ///este metodo deberia eliminarse una vez que se haga el repositorio generico
-        public void Delete(Imagen pImagen)
-        {
-            Imagen mImagen = cBillBoardContext.Imagenes.Find(pImagen.Id);
-            if (mImagen == null)
-            {
-                throw new Exception("La Imagen no se ha encontrado");
-            }
-            cBillBoardContext.Imagenes.Remove(mImagen);
-            cBillBoardContext.SaveChanges();
-        }
-
         public void DeleteByName(string pName)
         {
-            Imagen mImagen = cBillBoardContext.Imagenes.Where(x => x.Nombre == pName).FirstOrDefault();
+            Imagen mImagen = cDbSetImagen.Where(x => x.Nombre == pName).FirstOrDefault();
             if (mImagen == null)
             {
                 throw new Exception("La Imagen no se ha encontrado");
             }
             
-            cBillBoardContext.Imagenes.Remove(mImagen);
-            cBillBoardContext.SaveChanges();
+            cDbSetImagen.Remove(mImagen);
         }
-        public void DeleteById(int pId)
-        {
-            Imagen mImagen = cBillBoardContext.Imagenes.Where(x => x.Id == pId).FirstOrDefault();
-            if (mImagen == null)
-            {
-                throw new Exception("La Imagen no se ha encontrado");
-            }
 
-            cBillBoardContext.Imagenes.Remove(mImagen);
-            cBillBoardContext.SaveChanges();
-        }
         public void DeleteByHash(byte[] pHash)
         {
-            Imagen mImagen = cBillBoardContext.Imagenes.Where(x => x.Hash == pHash).FirstOrDefault();
+            Imagen mImagen = cDbSetImagen.Where(x => x.Hash == pHash).FirstOrDefault();
             if (mImagen == null)
             {
                 throw new Exception("La Imagen no se ha encontrado");
             }
-            //  pImagen.Estado = false;
-            cBillBoardContext.Imagenes.Remove(mImagen);
-            cBillBoardContext.SaveChanges();
+            
+            cDbSetImagen.Remove(mImagen);            
         }        
         
 

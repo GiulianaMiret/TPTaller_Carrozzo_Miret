@@ -1,3 +1,7 @@
 ﻿2019-06-18 19:09:29,295 DEBUG [1] Vista.Logger.Logger4net.Debug - System.InvalidOperationException: The model backing the 'DigitalBillboardContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
    en Controlador.Fachada.AddFuenteRSS(FuenteRSS pFuenteRSS) en C:\Users\carro\Source\Repos\GiulianaMiret\TPTaller_Carrozzo_Miret\Vista\Fachada\Fachada.cs:línea 64
    en Vista.FrmAgregarFuenteRSSTXT.btnFuenteGuardar_Click(Object sender, EventArgs e) en C:\Users\carro\Source\Repos\GiulianaMiret\TPTaller_Carrozzo_Miret\Vista\FrmAgregarFuenteRSSTXT.cs:línea 41
+2019-07-04 23:15:30,447 DEBUG [1] Vista.Logger.Logger4net.Debug - System.NullReferenceException: Referencia a objeto no establecida como instancia de un objeto.
+   en Controlador.Fachada.AddFuenteRSS(FuenteRSS pFuenteRSS) en C:\Users\carro\Source\Repos\GiulianaMiret\TPTaller_Carrozzo_Miret\Vista\Fachada\Fachada.cs:línea 83
+   en Vista.FrmAgregarFuenteRSSTXT.btnFuenteGuardar_Click(Object sender, EventArgs e) en C:\Users\carro\Source\Repos\GiulianaMiret\TPTaller_Carrozzo_Miret\Vista\FrmAgregarFuenteRSSTXT.cs:línea 41
+2019-07-04 23:20:05,186 ERROR [1] Vista.Logger.Logger4net.Error - Referencia a objeto no establecida como instancia de un objeto.

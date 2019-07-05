@@ -15,7 +15,7 @@ namespace EntityFramework.Services
         /// <summary>
         /// Este método devuelve la lista completa de entidades
         /// </summary>
-        IEnumerable<T> GetAll();
+        IQueryable<T> GetAll();
 
         /// <summary>
         /// Este método obtiene una entidad (T) mediante el id
@@ -28,7 +28,7 @@ namespace EntityFramework.Services
         /// Agrega una entidad (T)
         /// </summary>
         /// /// <param name="entity"></param>
-        void Insert(T entity);
+        void Add(T entity);
 
         /// <summary>
         /// Borra una entidad por ID
@@ -37,9 +37,27 @@ namespace EntityFramework.Services
         void DeleteById(int pId);
 
         /// <summary>
+        /// Borra una entidad por ID
+        /// </summary>
+        /// <param name="pEntity"></param>
+        void Delete(T pEntity);
+
+        /// <summary>
         /// Modifica una entidad existente y Activa
         /// </summary>
         /// <param name="entity"></param>
         void Update(T entity);
+
+        /// <summary>
+        /// Devuelve un objecto queryable filtrado por la expresion lambda
+        /// </summary>
+        /// <param name="pExpresion"></param>
+        /// <returns></returns>
+        IQueryable<T> Filter(Expression<Func<T, bool>> pExpresion);
+
+        /// <summary>
+        /// Guarda los cambios.
+        /// </summary>
+        void SaveChanges();
     }
 }

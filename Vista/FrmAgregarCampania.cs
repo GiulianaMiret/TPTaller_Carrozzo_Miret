@@ -148,7 +148,7 @@ namespace Vista
                     mCampania.Imagenes.Add(iFachada.GetImagenByName(mNombreImagen));
                 }
 
-                iFachada.AddCampania(mCampania);
+                //iFachada.AddCampania(mCampania);
 
             }
             catch (Exception mExcepcion)

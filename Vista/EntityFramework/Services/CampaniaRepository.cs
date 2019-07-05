@@ -15,46 +15,16 @@ namespace EntityFramework.Services
     /// </summary>
     public class CampaniaRepository : ICampaniaRepository
     {
-        private readonly DigitalBillboardContext cBillBoardContext;
+        private DbSet<Campania> cDbSetCampania;
 
-        public CampaniaRepository()
+        public CampaniaRepository(DigitalBillboardContext pContext)
         {
-            cBillBoardContext = new DigitalBillboardContext();
-        }
-
-        public IEnumerable<Campania> GetAll()
-        {
-            return new List<Campania>();
-        }
-
-        public Campania GetById(int pId)
-        {
-            return new Campania();
-        }
-
-        public void Insert(Campania pCampania)
-        {
-
-        }
-
-        public void Delete(Campania pCampania)
-        {
-
-        }
-
-        public void DeleteById(int pId)
-        {
-
-        }
-
-        public void Update(Campania pCampania)
-        {
-
-        }
+            cDbSetCampania = pContext.Set<Campania>();
+        }        
 
         public List<Imagen> GetImagenes (int pIdCampania)
         {
-            Campania pCampania = cBillBoardContext.Campanias.Find(pIdCampania);
+            Campania pCampania = cDbSetCampania.Find(pIdCampania);
             if (pCampania == null)
             {
                 throw new Exception("No se ha encontrado la Campaña");
