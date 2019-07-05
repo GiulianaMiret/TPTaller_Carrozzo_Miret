@@ -1,6 +1,6 @@
 ﻿namespace Vista
 {
-    partial class FrmAgregarBanner
+    partial class FrmBannerAgregar
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAgregarBanner));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmBannerAgregar));
             this.labelNuevoBanner = new System.Windows.Forms.Label();
             this.labelNombre = new System.Windows.Forms.Label();
             this.textBoxBannerNombre = new System.Windows.Forms.TextBox();

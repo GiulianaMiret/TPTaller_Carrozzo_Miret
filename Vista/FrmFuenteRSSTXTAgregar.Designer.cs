@@ -1,6 +1,6 @@
 ﻿namespace Vista
 {
-    partial class FrmAgregarFuenteRSSTXT
+    partial class FrmFuenteRSSTXTAgregar
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAgregarFuenteRSSTXT));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmFuenteRSSTXTAgregar));
             this.textBoxURLfuente = new System.Windows.Forms.TextBox();
             this.labelNuevaFuente = new System.Windows.Forms.Label();
             this.lblURL = new System.Windows.Forms.Label();

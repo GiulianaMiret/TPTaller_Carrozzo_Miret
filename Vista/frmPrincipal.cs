@@ -28,12 +28,12 @@ namespace Vista
         
         private void agregarFuenteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CompositionRoot.Resolve<FrmAgregarFuenteRSSTXT>().ShowDialog();
+            CompositionRoot.Resolve<FrmFuenteRSSTXTAgregar>().ShowDialog();
         }
 
         private void gestiónDeImagenesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CompositionRoot.Resolve<FrmGestionImagenes>().ShowDialog();
+            CompositionRoot.Resolve<FrmImagenesGestion>().ShowDialog();
         }
 
         private void btnOperacion_Click(object sender, EventArgs e)
@@ -43,12 +43,13 @@ namespace Vista
 
         private void gestiónDeCampañaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CompositionRoot.Resolve<FrmAgregarCampania>().ShowDialog();
+            CompositionRoot.Resolve<FrmCampaniaAgregar>().ShowDialog();
         }
 
         private void modificarCampañaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CompositionRoot.Resolve<FrmModificarCampania>().ShowDialog();
+            CompositionRoot.Resolve<FrmCampaniaModificar>().ShowDialog();
         }
+
     }
 }

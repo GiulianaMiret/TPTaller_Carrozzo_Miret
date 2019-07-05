@@ -13,11 +13,11 @@ using System.Windows.Forms;
 
 namespace Vista
 {
-    public partial class FrmGestionImagenes : Form
+    public partial class FrmImagenesGestion : Form
     {
         private readonly Fachada iFachada;
         private readonly Logger.ILogger iLogger;
-        public FrmGestionImagenes(Fachada fachada, Logger.ILogger logger)
+        public FrmImagenesGestion(Fachada fachada, Logger.ILogger logger)
         {
             iFachada = fachada;
             iLogger = logger;
