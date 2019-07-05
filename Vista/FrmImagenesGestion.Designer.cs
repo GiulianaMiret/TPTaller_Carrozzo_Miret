@@ -1,6 +1,6 @@
 ﻿namespace Vista
 {
-    partial class FrmGestionImagenes
+    partial class FrmImagenesGestion
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmGestionImagenes));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmImagenesGestion));
             this.labelNuevaImagen = new System.Windows.Forms.Label();
             this.btnExplorarBtn = new System.Windows.Forms.Button();
             this.comboBoxImagen = new System.Windows.Forms.ComboBox();
@@ -126,7 +126,7 @@
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmGestionImagenes";
-            this.Text = " ";
+            this.Text = " Shout News";
             this.Load += new System.EventHandler(this.FrmGestionImagenes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImagen)).EndInit();
             this.ResumeLayout(false);

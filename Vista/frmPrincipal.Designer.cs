@@ -35,18 +35,19 @@
             this.gestiónDeImagenesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.gestiónDeCampañaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modificarCampañaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.borrarCampañaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.administraciónDeBannersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.administraciónDeFuentesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.agregarFuenteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.modificarCampañaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripFrmPrincipal.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnOperacion
             // 
             this.btnOperacion.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnOperacion.BackColor = System.Drawing.Color.White;
-            this.btnOperacion.Font = new System.Drawing.Font("Perpetua Titling MT", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOperacion.BackColor = System.Drawing.Color.Peru;
+            this.btnOperacion.Font = new System.Drawing.Font("Perpetua Titling MT", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOperacion.Location = new System.Drawing.Point(118, 115);
             this.btnOperacion.Name = "btnOperacion";
             this.btnOperacion.Size = new System.Drawing.Size(239, 79);
@@ -74,7 +75,8 @@
             this.gestiónDeImagenesToolStripMenuItem,
             this.toolStripSeparator1,
             this.gestiónDeCampañaToolStripMenuItem,
-            this.modificarCampañaToolStripMenuItem});
+            this.modificarCampañaToolStripMenuItem,
+            this.borrarCampañaToolStripMenuItem});
             this.administraciónDeFuentesToolStripMenuItem.Name = "administraciónDeFuentesToolStripMenuItem";
             this.administraciónDeFuentesToolStripMenuItem.Size = new System.Drawing.Size(175, 20);
             this.administraciónDeFuentesToolStripMenuItem.Text = "Administración de Campañas";
@@ -98,6 +100,19 @@
             this.gestiónDeCampañaToolStripMenuItem.Text = "Agregar Campaña";
             this.gestiónDeCampañaToolStripMenuItem.Click += new System.EventHandler(this.gestiónDeCampañaToolStripMenuItem_Click);
             // 
+            // modificarCampañaToolStripMenuItem
+            // 
+            this.modificarCampañaToolStripMenuItem.Name = "modificarCampañaToolStripMenuItem";
+            this.modificarCampañaToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.modificarCampañaToolStripMenuItem.Text = "Modificar Campaña";
+            this.modificarCampañaToolStripMenuItem.Click += new System.EventHandler(this.modificarCampañaToolStripMenuItem_Click);
+            // 
+            // borrarCampañaToolStripMenuItem
+            // 
+            this.borrarCampañaToolStripMenuItem.Name = "borrarCampañaToolStripMenuItem";
+            this.borrarCampañaToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.borrarCampañaToolStripMenuItem.Text = "Borrar Campaña";
+            // 
             // administraciónDeBannersToolStripMenuItem
             // 
             this.administraciónDeBannersToolStripMenuItem.Name = "administraciónDeBannersToolStripMenuItem";
@@ -118,13 +133,6 @@
             this.agregarFuenteToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.agregarFuenteToolStripMenuItem.Text = "Agregar fuente";
             this.agregarFuenteToolStripMenuItem.Click += new System.EventHandler(this.agregarFuenteToolStripMenuItem_Click);
-            // 
-            // modificarCampañaToolStripMenuItem
-            // 
-            this.modificarCampañaToolStripMenuItem.Name = "modificarCampañaToolStripMenuItem";
-            this.modificarCampañaToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.modificarCampañaToolStripMenuItem.Text = "Modificar Campaña";
-            this.modificarCampañaToolStripMenuItem.Click += new System.EventHandler(this.modificarCampañaToolStripMenuItem_Click);
             // 
             // FrmPrincipal
             // 
@@ -163,6 +171,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem gestiónDeCampañaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modificarCampañaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem borrarCampañaToolStripMenuItem;
     }
 }
 

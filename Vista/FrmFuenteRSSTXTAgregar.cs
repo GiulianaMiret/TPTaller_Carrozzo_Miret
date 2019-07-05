@@ -7,11 +7,11 @@ using Vista.Logger;
 
 namespace Vista
 {
-    public partial class FrmAgregarFuenteRSSTXT : Form
+    public partial class FrmFuenteRSSTXTAgregar : Form
     {
         private readonly Fachada iFachada;
         private readonly ILogger iLogger;
-        public FrmAgregarFuenteRSSTXT(Fachada fachada, ILogger logger)
+        public FrmFuenteRSSTXTAgregar(Fachada fachada, ILogger logger)
         {
             iFachada = fachada;
             iLogger = logger;

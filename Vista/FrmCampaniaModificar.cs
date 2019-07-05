@@ -12,12 +12,12 @@ using Core.Models;
 
 namespace Vista
 {
-    public partial class FrmModificarCampania : Form
+    public partial class FrmCampaniaModificar : Form
     {
         private readonly Fachada iFachada;
         private readonly Logger.ILogger iLogger;
 
-        public FrmModificarCampania(Fachada fachada, Logger.ILogger logger)
+        public FrmCampaniaModificar(Fachada fachada, Logger.ILogger logger)
         {
             iFachada = fachada;
             iLogger = logger;

@@ -71,17 +71,17 @@
     <Compile Include="EntityFramework\Services\IFuenteRepository.cs" />
     <Compile Include="EntityFramework\Services\IImagenRepository.cs" />
     <Compile Include="EntityFramework\Services\RepositoryBase.cs" />
-    <Compile Include="FrmBorrarCampania.cs">
+    <Compile Include="FrmCampaniaBorrar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmBorrarCampania.Designer.cs">
-      <DependentUpon>FrmBorrarCampania.cs</DependentUpon>
+    <Compile Include="FrmCampaniaBorrar.Designer.cs">
+      <DependentUpon>FrmCampaniaBorrar.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmModificarCampania.cs">
+    <Compile Include="FrmCampaniaModificar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmModificarCampania.Designer.cs">
-      <DependentUpon>FrmModificarCampania.cs</DependentUpon>
+    <Compile Include="FrmCampaniaModificar.Designer.cs">
+      <DependentUpon>FrmCampaniaModificar.cs</DependentUpon>
     </Compile>
     <Compile Include="Logger\Logger4net.cs" />
     <Compile Include="Logger\ILogger.cs" />
@@ -102,29 +102,29 @@
     <Compile Include="EntityFramework\Services\ImagenRepository.cs" />
     <Compile Include="EntityFramework\Services\IRepository.cs" />
     <Compile Include="Fachada\Fachada.cs" />
-    <Compile Include="FrmAgregarCampania.cs">
+    <Compile Include="FrmCampaniaAgregar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmAgregarCampania.Designer.cs">
-      <DependentUpon>FrmAgregarCampania.cs</DependentUpon>
+    <Compile Include="FrmCampaniaAgregar.Designer.cs">
+      <DependentUpon>FrmCampaniaAgregar.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmAgregarFuenteRSSTXT.cs">
+    <Compile Include="FrmFuenteRSSTXTAgregar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmAgregarFuenteRSSTXT.Designer.cs">
-      <DependentUpon>FrmAgregarFuenteRSSTXT.cs</DependentUpon>
+    <Compile Include="FrmFuenteRSSTXTAgregar.Designer.cs">
+      <DependentUpon>FrmFuenteRSSTXTAgregar.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmAgregarBanner.cs">
+    <Compile Include="FrmBannerAgregar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmAgregarBanner.Designer.cs">
-      <DependentUpon>FrmAgregarBanner.cs</DependentUpon>
+    <Compile Include="FrmBannerAgregar.Designer.cs">
+      <DependentUpon>FrmBannerAgregar.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmGestionImagenes.cs">
+    <Compile Include="FrmImagenesGestion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmGestionImagenes.Designer.cs">
-      <DependentUpon>FrmGestionImagenes.cs</DependentUpon>
+    <Compile Include="FrmImagenesGestion.Designer.cs">
+      <DependentUpon>FrmImagenesGestion.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmOperacion.cs">
       <SubType>Form</SubType>
@@ -147,23 +147,23 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilidades.cs" />
-    <EmbeddedResource Include="FrmAgregarCampania.resx">
-      <DependentUpon>FrmAgregarCampania.cs</DependentUpon>
+    <EmbeddedResource Include="FrmCampaniaAgregar.resx">
+      <DependentUpon>FrmCampaniaAgregar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmAgregarFuenteRSSTXT.resx">
-      <DependentUpon>FrmAgregarFuenteRSSTXT.cs</DependentUpon>
+    <EmbeddedResource Include="FrmFuenteRSSTXTAgregar.resx">
+      <DependentUpon>FrmFuenteRSSTXTAgregar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmAgregarBanner.resx">
-      <DependentUpon>FrmAgregarBanner.cs</DependentUpon>
+    <EmbeddedResource Include="FrmBannerAgregar.resx">
+      <DependentUpon>FrmBannerAgregar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmBorrarCampania.resx">
-      <DependentUpon>FrmBorrarCampania.cs</DependentUpon>
+    <EmbeddedResource Include="FrmCampaniaBorrar.resx">
+      <DependentUpon>FrmCampaniaBorrar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmGestionImagenes.resx">
-      <DependentUpon>FrmGestionImagenes.cs</DependentUpon>
+    <EmbeddedResource Include="FrmImagenesGestion.resx">
+      <DependentUpon>FrmImagenesGestion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmModificarCampania.resx">
-      <DependentUpon>FrmModificarCampania.cs</DependentUpon>
+    <EmbeddedResource Include="FrmCampaniaModificar.resx">
+      <DependentUpon>FrmCampaniaModificar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmOperacion.resx">
       <DependentUpon>FrmOperacion.cs</DependentUpon>

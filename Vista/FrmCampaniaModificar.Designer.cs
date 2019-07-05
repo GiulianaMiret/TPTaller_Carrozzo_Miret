@@ -1,6 +1,6 @@
 ﻿namespace Vista
 {
-    partial class FrmModificarCampania
+    partial class FrmCampaniaModificar
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmModificarCampania));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCampaniaModificar));
             this.labelModificarCampania = new System.Windows.Forms.Label();
             this.labelNombreModificarCampania = new System.Windows.Forms.Label();
             this.textBoxNombreCampania = new System.Windows.Forms.TextBox();
@@ -386,7 +386,7 @@
             this.pictureBoxVistaPreviaImagenes.TabIndex = 0;
             this.pictureBoxVistaPreviaImagenes.TabStop = false;
             // 
-            // FrmModificarCampania
+            // FrmCampaniaModificar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -404,8 +404,8 @@
             this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "FrmModificarCampania";
-            this.Text = "FrmModificarCampania";
+            this.Name = "FrmCampaniaModificar";
+            this.Text = "Shout News";
             this.Load += new System.EventHandler(this.FrmModificarCampania_Load);
             this.groupBoxFechaHoraModificarCampaña.ResumeLayout(false);
             this.groupBoxFechaHoraModificarCampaña.PerformLayout();

@@ -12,13 +12,13 @@ using Core.Models;
 
 namespace Vista
 {
-    public partial class FrmAgregarCampania : Form
+    public partial class FrmCampaniaAgregar : Form
     {
         private readonly Fachada iFachada;
         private readonly Logger.ILogger iLogger;
         private List<string> iImagenesSeleccionadas;
 
-        public FrmAgregarCampania(Fachada fachada, Logger.ILogger logger)
+        public FrmCampaniaAgregar(Fachada fachada, Logger.ILogger logger)
         {
             iFachada = fachada;
             iLogger = logger;

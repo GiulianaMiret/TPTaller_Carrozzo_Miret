@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Vista
 {
-    public partial class FrmAgregarBanner : Form
+    public partial class FrmBannerAgregar : Form
     {
-        public FrmAgregarBanner()
+        public FrmBannerAgregar()
         {
             InitializeComponent();
         }

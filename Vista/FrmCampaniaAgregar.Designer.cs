@@ -1,6 +1,6 @@
 ﻿namespace Vista
 {
-    partial class FrmAgregarCampania
+    partial class FrmCampaniaAgregar
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAgregarCampania));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCampaniaAgregar));
             this.btnCampaniaGuardar = new System.Windows.Forms.Button();
             this.btnCampaniaCancelar = new System.Windows.Forms.Button();
             this.labelNuevaCampania = new System.Windows.Forms.Label();
@@ -50,9 +50,9 @@
             this.dataGridViewImagenesSeleccionadas = new System.Windows.Forms.DataGridView();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTodasLasImagenes = new System.Windows.Forms.DataGridView();
+            this.Nombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pictureBoxVistaPreviaImagenes = new System.Windows.Forms.PictureBox();
             this.buttonConsultarDisponibilidad = new System.Windows.Forms.Button();
-            this.Nombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBoxFechaHora.SuspendLayout();
             this.groupBoxImagenes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewImagenesSeleccionadas)).BeginInit();
@@ -340,6 +340,14 @@
             this.dataGridViewTodasLasImagenes.TabIndex = 1;
             this.dataGridViewTodasLasImagenes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTodasLasImagenes_CellClick);
             // 
+            // Nombres
+            // 
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            this.Nombres.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Nombres.HeaderText = "Nombre";
+            this.Nombres.Name = "Nombres";
+            this.Nombres.ReadOnly = true;
+            // 
             // pictureBoxVistaPreviaImagenes
             // 
             this.pictureBoxVistaPreviaImagenes.Location = new System.Drawing.Point(13, 40);
@@ -363,14 +371,6 @@
             this.buttonConsultarDisponibilidad.UseVisualStyleBackColor = false;
             this.buttonConsultarDisponibilidad.Click += new System.EventHandler(this.buttonConsultarDisponibilidad_Click);
             // 
-            // Nombres
-            // 
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            this.Nombres.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Nombres.HeaderText = "Nombre";
-            this.Nombres.Name = "Nombres";
-            this.Nombres.ReadOnly = true;
-            // 
             // FrmAgregarCampania
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -390,7 +390,7 @@
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmAgregarCampania";
-            this.Text = " ";
+            this.Text = " Shout News";
             this.Load += new System.EventHandler(this.FrmAgregarCampania_Load);
             this.groupBoxFechaHora.ResumeLayout(false);
             this.groupBoxFechaHora.PerformLayout();
