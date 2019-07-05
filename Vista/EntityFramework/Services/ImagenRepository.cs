@@ -16,39 +16,10 @@ namespace EntityFramework.Services
     public class ImagenRepository : IImagenRepository
     {
         private readonly DigitalBillboardContext cBillBoardContext;
-        private readonly IRepository<Imagen> cRepositoryBase;
 
         public ImagenRepository()
         {
             cBillBoardContext = new DigitalBillboardContext();
-        }
-
-        public IQueryable<Imagen> Get(Expression<Func<Imagen, bool>> predicate)
-        {
-            IQueryable<Imagen> query = cBillBoardContext.Imagenes.TakeWhile(predicate);
-            if (query.Count() == 0)
-            {
-                throw new Exception("No hay Imagenes");
-            }
-            return query;
-        }
-
-        public IEnumerable<Imagen> GetAll()
-        {
-            List<Imagen> listaImagenes = cBillBoardContext.Imagenes.ToList();
-            List<Imagen> activos = new List<Imagen>();
-            foreach (Imagen item in listaImagenes)
-            {
-                //if (item.Estado)
-                //{
-                //    activos.Add(item);
-                //}
-            }
-            if (activos.Count() == 0)
-            {
-                throw new Exception("No hay Imagenes");
-            }
-            return activos;
         }
 
         public Imagen GetByName(string pNombreImagen)
@@ -61,6 +32,7 @@ namespace EntityFramework.Services
             return mImagen;
         }
 
+        ///este metodo deberia eliminarse una vez que se haga el repositorio generico
         public Imagen GetById(int pId)
         {
             Imagen mImagen = cBillBoardContext.Imagenes.Where(x => x.Id == pId).FirstOrDefault();
@@ -89,6 +61,7 @@ namespace EntityFramework.Services
             return mListasDeNombres;
         }
 
+        ///este metodo deberia eliminarse una vez que se haga el repositorio generico
         public void Insert(Imagen pImagen)
         {
             Imagen mBusquedaDeImagenPorHash = cBillBoardContext.Imagenes.Where(x => x.Hash == pImagen.Hash).FirstOrDefault();
@@ -107,7 +80,7 @@ namespace EntityFramework.Services
            cBillBoardContext.SaveChanges();
             
         }
-
+        ///este metodo deberia eliminarse una vez que se haga el repositorio generico
         public void Delete(Imagen pImagen)
         {
             Imagen mImagen = cBillBoardContext.Imagenes.Find(pImagen.Id);
@@ -151,21 +124,8 @@ namespace EntityFramework.Services
             //  pImagen.Estado = false;
             cBillBoardContext.Imagenes.Remove(mImagen);
             cBillBoardContext.SaveChanges();
-        }
-        public void Update(Imagen pImagen)
-        {
-            Imagen imagenAnterior = cBillBoardContext.Imagenes.Find(pImagen.Id);
-            if (imagenAnterior == null)
-            {
-                throw new Exception("No se ha encontrado el banner que se quiere modificar");
-            }
-            cBillBoardContext.Imagenes.Attach(pImagen);
-        }
-
-        public void Save()
-        {
-            cBillBoardContext.SaveChanges();
-        }
+        }        
+        
 
     }
 
