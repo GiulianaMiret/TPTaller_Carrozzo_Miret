@@ -21,6 +21,15 @@ namespace Core.ModelsMap
             this.Property(p => p.Nombre)
                 .HasMaxLength(50)
                 .IsRequired();
+
+            this.HasMany(i => i.Imagenes)
+                .WithMany(c => c.Campanias)
+                .Map(ci =>
+                {
+                    ci.MapLeftKey("CampaniaId");
+                    ci.MapRightKey("ImagenId");
+                    ci.ToTable("CampaniaImagenes");
+                });
         }
 
     }

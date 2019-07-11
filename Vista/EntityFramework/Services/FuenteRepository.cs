@@ -16,11 +16,11 @@ namespace EntityFramework.Services
     /// </summary>
     public class FuenteRepository : IFuenteRepository
     {
-        private readonly DigitalBillboardContext cBillBoardContext;
+        private DbSet<Fuente> cDbSetFuente;        
 
-        public FuenteRepository()
+        public FuenteRepository(DigitalBillboardContext pContext)
         {
-            cBillBoardContext = new DigitalBillboardContext();
-        }        
+            cDbSetFuente = pContext.Set<Fuente>();
+        }
     }
 }

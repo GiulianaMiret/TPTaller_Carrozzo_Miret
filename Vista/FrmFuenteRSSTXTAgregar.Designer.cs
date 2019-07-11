@@ -45,7 +45,12 @@
             this.lblTextoFijo = new System.Windows.Forms.Label();
             this.textBoxTextoFijo = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rSSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.actualizarValoresDeFuentesRSSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBoxURLfuente
@@ -240,7 +245,40 @@
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 28;
             // 
-            // FrmAgregarFuenteRSSTXT
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.archivoToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1241, 24);
+            this.menuStrip1.TabIndex = 29;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // archivoToolStripMenuItem
+            // 
+            this.archivoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.rSSToolStripMenuItem});
+            this.archivoToolStripMenuItem.Name = "archivoToolStripMenuItem";
+            this.archivoToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
+            this.archivoToolStripMenuItem.Text = "Archivo";
+            // 
+            // rSSToolStripMenuItem
+            // 
+            this.rSSToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.actualizarValoresDeFuentesRSSToolStripMenuItem});
+            this.rSSToolStripMenuItem.Name = "rSSToolStripMenuItem";
+            this.rSSToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.rSSToolStripMenuItem.Text = "RSS";
+            // 
+            // actualizarValoresDeFuentesRSSToolStripMenuItem
+            // 
+            this.actualizarValoresDeFuentesRSSToolStripMenuItem.Name = "actualizarValoresDeFuentesRSSToolStripMenuItem";
+            this.actualizarValoresDeFuentesRSSToolStripMenuItem.Size = new System.Drawing.Size(248, 22);
+            this.actualizarValoresDeFuentesRSSToolStripMenuItem.Text = "Actualizar valores de Fuentes RSS";
+            this.actualizarValoresDeFuentesRSSToolStripMenuItem.Click += new System.EventHandler(this.actualizarValoresDeFuentesRSSToolStripMenuItem_Click);
+            // 
+            // FrmFuenteRSSTXTAgregar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -261,13 +299,17 @@
             this.Controls.Add(this.lblURL);
             this.Controls.Add(this.labelNuevaFuente);
             this.Controls.Add(this.textBoxURLfuente);
+            this.Controls.Add(this.menuStrip1);
             this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.Color.SandyBrown;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "FrmAgregarFuenteRSSTXT";
+            this.MainMenuStrip = this.menuStrip1;
+            this.Name = "FrmFuenteRSSTXTAgregar";
             this.Text = "Shout News";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -291,5 +333,9 @@
         private System.Windows.Forms.Label lblTextoFijo;
         private System.Windows.Forms.TextBox textBoxTextoFijo;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem archivoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rSSToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem actualizarValoresDeFuentesRSSToolStripMenuItem;
     }
 }

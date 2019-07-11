@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Vista;
 using Vista.Logger;
 using Vista.EntityFramework.Services;
+using Vista.Core.Models;
 
 namespace Controlador
 {
@@ -32,6 +33,7 @@ namespace Controlador
         private readonly IImagenRepository cImagenRepository;
         private readonly IRepository<Banner> cRepositoryBaseBanner;
         private readonly IRepository<Campania> cRepositoryBaseCampania;
+        private readonly IRepository<Fuente> cRepositoryBaseFuente;
         private readonly IRepository<FuenteRSS> cRepositoryBaseRSS;
         private readonly IRepository<FuenteTextoFijo> cRepositoryBaseTXT;
         private readonly IRepository<Imagen> cRepositoryBaseImagen;
@@ -60,6 +62,7 @@ namespace Controlador
             cRepositoryBaseCampania = pRepositoryBaseCampania;
             cRepositoryBaseRSS = pRepositoryBaseRSS;
             cRepositoryBaseTXT = pRepositoryBaseTXT;
+            cRepositoryBaseImagen = pRepositoryBaseImagen;
             iLogger = logger;
         }
 
@@ -73,14 +76,45 @@ namespace Controlador
         //    iFuenteRepository.AddFuenteTXT(pFuenteTextoFijo);
         }
 
+        /// <summary>
+        /// updateo el valor de la fuente RSS
+        /// </summary>
+        /// <param name="pFuenteRSS"></param>
+        public void UpdateValueRSS (FuenteRSS pFuenteRSS)
+        {
+            if (Utilidades.InternetDisponible())
+            {
+                pFuenteRSS.Valor = Utilidades.GetStringFromXMLRSSUrl(pFuenteRSS.URL);
+            }
+            else
+            {
+                throw new Exception("No pudo descargarse el feed RSS por falta de conectividad.");
+            }
+            cRepositoryBaseRSS.Update(pFuenteRSS);
+            cRepositoryBaseRSS.SaveChanges();
+        }
+
+        public IEnumerable<FuenteRSS> GetAllRSS()
+        {
+            return cRepositoryBaseRSS.GetAll().ToList();
+        }
 
         public void AddFuenteRSS(FuenteRSS pFuenteRSS)
         {           
                 if (Utilidades.InternetDisponible())
                 {
-                    pFuenteRSS.Valor = Utilidades.GetStringFromXMLRSSUrl(pFuenteRSS.URL);
-                    cRepositoryBaseRSS.Add(pFuenteRSS);
-                    cRepositoryBaseImagen.SaveChanges();
+                    //si no existe una con el mismo nombre
+                    if (cRepositoryBaseRSS.Filter(x => x.Titulo == pFuenteRSS.Titulo) != null)
+                    {
+                        //convierto en string la URL de la fuente RSS y la agrego
+                      pFuenteRSS.Valor = Utilidades.GetStringFromXMLRSSUrl(pFuenteRSS.URL);
+                      cRepositoryBaseRSS.Add(pFuenteRSS);
+                      cRepositoryBaseImagen.SaveChanges();
+                    }
+                    else
+                    {
+                    throw new Exception("Una fuente con ese nombre ya existe.");
+                    }
                 }
                 else
                 {
@@ -119,14 +153,7 @@ namespace Controlador
 
         public void DeleteImagenByHash(byte[] pHash)
         {
-            try
-            {
                 cImagenRepository.DeleteByHash(pHash);
-            }
-            catch (Exception exc)
-            {
-                throw exc;
-            }
         }
 
         public void DeleteImagenByPictureBox(PictureBox pImagen)

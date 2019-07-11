@@ -7,13 +7,13 @@ namespace Vista.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class inicial2 : IMigrationMetadata
+    public sealed partial class Inicial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(inicial2));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Inicial));
         
         string IMigrationMetadata.Id
         {
-            get { return "201906252357276_inicial2"; }
+            get { return "201907110204294_Inicial"; }
         }
         
         string IMigrationMetadata.Source

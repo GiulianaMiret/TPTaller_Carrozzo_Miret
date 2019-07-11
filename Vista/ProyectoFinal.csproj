@@ -85,9 +85,9 @@
     </Compile>
     <Compile Include="Logger\Logger4net.cs" />
     <Compile Include="Logger\ILogger.cs" />
-    <Compile Include="Migrations\201906252357276_inicial2.cs" />
-    <Compile Include="Migrations\201906252357276_inicial2.Designer.cs">
-      <DependentUpon>201906252357276_inicial2.cs</DependentUpon>
+    <Compile Include="Migrations\201907110204294_Inicial.cs" />
+    <Compile Include="Migrations\201907110204294_Inicial.Designer.cs">
+      <DependentUpon>201907110204294_Inicial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="EntityFramework\ModelsMap\BannerMap.cs" />
@@ -171,8 +171,8 @@
     <EmbeddedResource Include="FrmPrincipal.resx">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906252357276_inicial2.resx">
-      <DependentUpon>201906252357276_inicial2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201907110204294_Inicial.resx">
+      <DependentUpon>201907110204294_Inicial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -17,9 +17,5 @@ namespace Core.Models
         public DateTime FechaInicio { get; set; }
 
         public DateTime FechaFin { get; set; }
-
-        public TimeSpan HoraInicio { get; set; }
-
-        public TimeSpan HoraFin { get; set; }
     }
 }

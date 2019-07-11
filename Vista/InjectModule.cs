@@ -13,6 +13,8 @@ using log4net;
 using log4net.Core;
 using Vista.Logger;
 using Vista.EntityFramework.Services;
+using System.Data.Entity;
+using Vista.Core.Models;
 
 namespace Vista
 {
@@ -32,7 +34,7 @@ namespace Vista
             Bind<IRepository<Banner>>().To<RepositoryBase<Banner>>().InSingletonScope();
             Bind<IRepository<Imagen>>().To<RepositoryBase<Imagen>>().InSingletonScope();
             Bind<Fachada>().ToSelf().InSingletonScope();
-            Bind<DigitalBillboardContext>().ToSelf().InSingletonScope();
+            Bind<DigitalBillboardContext>().To<DigitalBillboardContext>().InSingletonScope();
             Bind<Vista.Logger.ILogger>().To<Logger4net>().InSingletonScope();
 
         }

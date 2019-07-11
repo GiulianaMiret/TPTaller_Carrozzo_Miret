@@ -22,10 +22,6 @@ namespace EntityFramework.ModelsMap
             this
                 .Property(x => x.Id)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-
-            this
-                .Property(x => x.Id)
-                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
         }
 
     }

@@ -5,3 +5,18 @@
    en Controlador.Fachada.AddFuenteRSS(FuenteRSS pFuenteRSS) en C:\Users\carro\Source\Repos\GiulianaMiret\TPTaller_Carrozzo_Miret\Vista\Fachada\Fachada.cs:línea 83
    en Vista.FrmAgregarFuenteRSSTXT.btnFuenteGuardar_Click(Object sender, EventArgs e) en C:\Users\carro\Source\Repos\GiulianaMiret\TPTaller_Carrozzo_Miret\Vista\FrmAgregarFuenteRSSTXT.cs:línea 41
 2019-07-04 23:20:05,186 ERROR [1] Vista.Logger.Logger4net.Error - Referencia a objeto no establecida como instancia de un objeto.
+2019-07-04 23:28:33,539 DEBUG [1] Vista.Logger.Logger4net.Debug - System.NullReferenceException: Referencia a objeto no establecida como instancia de un objeto.
+   en Controlador.Fachada.AddFuenteRSS(FuenteRSS pFuenteRSS) en C:\Users\carro\Source\Repos\GiulianaMiret\TPTaller_Carrozzo_Miret\Vista\Fachada\Fachada.cs:línea 83
+   en Vista.FrmFuenteRSSTXTAgregar.btnFuenteGuardar_Click(Object sender, EventArgs e) en C:\Users\carro\Source\Repos\GiulianaMiret\TPTaller_Carrozzo_Miret\Vista\FrmFuenteRSSTXTAgregar.cs:línea 41
+2019-07-04 23:29:38,989 DEBUG [1] Vista.Logger.Logger4net.Debug - System.NullReferenceException: Referencia a objeto no establecida como instancia de un objeto.
+   en Controlador.Fachada.AddFuenteRSS(FuenteRSS pFuenteRSS) en C:\Users\carro\Source\Repos\GiulianaMiret\TPTaller_Carrozzo_Miret\Vista\Fachada\Fachada.cs:línea 83
+   en Vista.FrmFuenteRSSTXTAgregar.btnFuenteGuardar_Click(Object sender, EventArgs e) en C:\Users\carro\Source\Repos\GiulianaMiret\TPTaller_Carrozzo_Miret\Vista\FrmFuenteRSSTXTAgregar.cs:línea 41
+2019-07-04 23:31:32,147 DEBUG [1] Vista.Logger.Logger4net.Debug - System.NullReferenceException: Referencia a objeto no establecida como instancia de un objeto.
+   en Controlador.Fachada.AddFuenteRSS(FuenteRSS pFuenteRSS) en C:\Users\carro\Source\Repos\GiulianaMiret\TPTaller_Carrozzo_Miret\Vista\Fachada\Fachada.cs:línea 83
+   en Vista.FrmFuenteRSSTXTAgregar.btnFuenteGuardar_Click(Object sender, EventArgs e) en C:\Users\carro\Source\Repos\GiulianaMiret\TPTaller_Carrozzo_Miret\Vista\FrmFuenteRSSTXTAgregar.cs:línea 41
+2019-07-04 23:33:59,378 DEBUG [1] Vista.Logger.Logger4net.Debug - System.NullReferenceException: Referencia a objeto no establecida como instancia de un objeto.
+   en Controlador.Fachada.AddFuenteRSS(FuenteRSS pFuenteRSS) en C:\Users\carro\Source\Repos\GiulianaMiret\TPTaller_Carrozzo_Miret\Vista\Fachada\Fachada.cs:línea 83
+   en Vista.FrmFuenteRSSTXTAgregar.btnFuenteGuardar_Click(Object sender, EventArgs e) en C:\Users\carro\Source\Repos\GiulianaMiret\TPTaller_Carrozzo_Miret\Vista\FrmFuenteRSSTXTAgregar.cs:línea 41
+2019-07-04 23:37:09,883 ERROR [1] Vista.Logger.Logger4net.Error - Referencia a objeto no establecida como instancia de un objeto.
+2019-07-04 23:40:30,480 ERROR [1] Vista.Logger.Logger4net.Error - Referencia a objeto no establecida como instancia de un objeto.
+2019-07-09 16:11:44,036 ERROR [1] Vista.Logger.Logger4net.Error - La imagen ya existe

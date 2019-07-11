@@ -11,6 +11,13 @@ namespace Vista
     {
         private readonly Fachada iFachada;
         private readonly ILogger iLogger;
+
+        /// <summary>
+        /// realizamos la injeccion de dependencias en el constructor
+        /// ponemos en predeterminado el agregado de una fuente RSS
+        /// </summary>
+        /// <param name="fachada"></param>
+        /// <param name="logger"></param>
         public FrmFuenteRSSTXTAgregar(Fachada fachada, ILogger logger)
         {
             iFachada = fachada;
@@ -18,11 +25,16 @@ namespace Vista
             InitializeComponent();
             radioButtonRSS.Checked = true;
         }
-
+        /// <summary>
+        /// guarda una fuente en la base de datos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnFuenteGuardar_Click(object sender, EventArgs e)
         {
             try
             {
+                //se realizan controles de valor nulo y de url valida
                 if (textBoxTitulo.Text == "")
                 {
                     MessageBox.Show("Por favor, ingrese un titulo para la fuente RSS.");
@@ -35,6 +47,7 @@ namespace Vista
                     }
                     else
                     {
+                        ///me fijo si es fuente rss o fuenteTXT
                         if (radioButtonRSS.Checked)
                         {
                             FuenteRSS mFuenteRSS = new FuenteRSS { Titulo = textBoxTitulo.Text, URL = textBoxURLfuente.Text };
@@ -73,6 +86,24 @@ namespace Vista
             textBoxTextoFijo.Visible = true;
             lblURL.Visible = false;
             textBoxURLfuente.Visible = false;
+        }
+
+        private void actualizarValoresDeFuentesRSSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //traigo todas las fuentes RSS y las mando a la fachada a updatearse
+            var mListOfRSS = iFachada.GetAllRSS();
+            try
+            {
+                foreach (var mRSS in mListOfRSS)
+                {
+                    iFachada.UpdateValueRSS(mRSS);
+                }
+            }
+            catch (Exception exc)
+            {
+                iLogger.Debug(exc.Message);
+                MessageBox.Show("Ha ocurrido un error " + exc.Message);
+            }            
         }
     }
 }

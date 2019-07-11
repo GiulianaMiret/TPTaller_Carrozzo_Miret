@@ -17,10 +17,6 @@ namespace Core.Models
 
         public DateTime FechaFin { get; set; }
 
-        public TimeSpan HoraInicio { get; set; }
-
-        public TimeSpan HoraFin { get; set; }
-
         public virtual Fuente Fuente { get; set; }
     }
 }
