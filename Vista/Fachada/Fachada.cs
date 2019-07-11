@@ -60,6 +60,7 @@ namespace Controlador
             cRepositoryBaseCampania = pRepositoryBaseCampania;
             cRepositoryBaseRSS = pRepositoryBaseRSS;
             cRepositoryBaseTXT = pRepositoryBaseTXT;
+            cRepositoryBaseImagen = pRepositoryBaseImagen;
             iLogger = logger;
         }
 
@@ -102,19 +103,20 @@ namespace Controlador
 
         public void AddImagen(Imagen pImagen)
         {
-                Imagen mBusquedaDeImagenPorHash = cRepositoryBaseImagen.Filter(x => x.Hash == pImagen.Hash).FirstOrDefault();
-                Imagen mBusquedaDeImagenPorNombre = cRepositoryBaseImagen.Filter(x => x.Nombre == pImagen.Nombre).FirstOrDefault();
+            Imagen mBusquedaDeImagenPorHash = cRepositoryBaseImagen.Filter(x => x.Hash == pImagen.Hash).FirstOrDefault();
+            Imagen mBusquedaDeImagenPorNombre = cRepositoryBaseImagen.Filter(x => x.Nombre == pImagen.Nombre).FirstOrDefault();
 
-                if (mBusquedaDeImagenPorHash != null)
-                {
-                    throw new Exception("La imagen ya existe");
-                }
-                if (mBusquedaDeImagenPorNombre != null)
-                {
-                    throw new Exception("Una imagen con ese nombre ya existe, elija otro.");
-                }
-                cRepositoryBaseImagen.Add(pImagen);
-                cRepositoryBaseImagen.SaveChanges();
+            if (mBusquedaDeImagenPorHash != null)
+            {
+                throw new Exception("La imagen ya existe");
+            }
+            if (mBusquedaDeImagenPorNombre != null)
+            {
+                throw new Exception("Una imagen con ese nombre ya existe, elija otro.");
+            }
+            cRepositoryBaseImagen.Add(pImagen);
+            
+            cRepositoryBaseImagen.SaveChanges();
         }
 
         public void DeleteImagenByHash(byte[] pHash)
@@ -131,19 +133,19 @@ namespace Controlador
 
         public void DeleteImagenByPictureBox(PictureBox pImagen)
         {
-                Imagen mImagen = cImagenRepository.GetByHash(Utilidades.ImageToByteArray(pImagen));
-                cRepositoryBaseImagen.DeleteById(mImagen.Id);
-                cRepositoryBaseImagen.SaveChanges();
+            Imagen mImagen = cImagenRepository.GetByHash(Utilidades.ImageToByteArray(pImagen));
+            cRepositoryBaseImagen.DeleteById(mImagen.Id);
+            cRepositoryBaseImagen.SaveChanges();
         }
 
         public void DeleteImagenByName(string pName)
         {
-                cImagenRepository.DeleteByName(pName);
+            cImagenRepository.DeleteByName(pName);
         }
 
         public void UpdateImagen (Imagen pImagen)
         {
-                cRepositoryBaseImagen.Update(pImagen);
+            cRepositoryBaseImagen.Update(pImagen);
         }
 
 
@@ -154,22 +156,46 @@ namespace Controlador
 
         public Imagen GetImagenByName(string pNombreImagen)
         {
-                return cImagenRepository.GetByName(pNombreImagen);
+            return cImagenRepository.GetByName(pNombreImagen);
         }
 
         public List<string> GetAllNamesFromImages()
         {
-                return cImagenRepository.GetAllNamesFromImages();
+            return cImagenRepository.GetAllNamesFromImages();
         }
 
         public IEnumerable<Imagen> GetAllImagen()
         {
-                return cRepositoryBaseImagen.GetAll().ToList();
+            return cRepositoryBaseImagen.GetAll().ToList();
         }
 
         public List<Imagen> GetImagenes()
         {
             return cRepositoryBaseImagen.GetAll().ToList();
+        }
+
+
+
+        /// <summary>
+        /// Métodos relacionados a Campaña
+        /// </summary>
+
+        public void AddCampania(Campania pCampania)
+        {
+            Campania mBusquedaDeCampaniaPorNombre = cRepositoryBaseCampania.Filter(x => x.Nombre == pCampania.Nombre).FirstOrDefault();
+
+            if (mBusquedaDeCampaniaPorNombre != null)
+            {
+                throw new Exception("Una campania con ese nombre ya existe, elija otro.");
+            }
+            cRepositoryBaseCampania.Add(pCampania);
+
+            cRepositoryBaseCampania.SaveChanges();
+        }
+
+        public IQueryable<Campania> FilterCampania(Expression<Func<Campania, bool>> pExpresion)
+        {
+            return cRepositoryBaseCampania.Filter(pExpresion);
         }
     }
 }

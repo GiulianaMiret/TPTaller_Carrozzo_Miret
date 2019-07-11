@@ -53,11 +53,13 @@
             this.Nombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pictureBoxVistaPreviaImagenes = new System.Windows.Forms.PictureBox();
             this.buttonConsultarDisponibilidad = new System.Windows.Forms.Button();
+            this.dataGridViewHorariosDisponibles = new System.Windows.Forms.DataGridView();
             this.groupBoxFechaHora.SuspendLayout();
             this.groupBoxImagenes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewImagenesSeleccionadas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTodasLasImagenes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxVistaPreviaImagenes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHorariosDisponibles)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCampaniaGuardar
@@ -125,7 +127,7 @@
             this.groupBoxFechaHora.Controls.Add(this.labelFHInicio);
             this.groupBoxFechaHora.Font = new System.Drawing.Font("Perpetua Titling MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxFechaHora.ForeColor = System.Drawing.Color.White;
-            this.groupBoxFechaHora.Location = new System.Drawing.Point(47, 186);
+            this.groupBoxFechaHora.Location = new System.Drawing.Point(47, 134);
             this.groupBoxFechaHora.Name = "groupBoxFechaHora";
             this.groupBoxFechaHora.Size = new System.Drawing.Size(434, 135);
             this.groupBoxFechaHora.TabIndex = 20;
@@ -363,7 +365,7 @@
             this.buttonConsultarDisponibilidad.AutoSize = true;
             this.buttonConsultarDisponibilidad.BackColor = System.Drawing.Color.SandyBrown;
             this.buttonConsultarDisponibilidad.Font = new System.Drawing.Font("Copperplate Gothic Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonConsultarDisponibilidad.Location = new System.Drawing.Point(533, 225);
+            this.buttonConsultarDisponibilidad.Location = new System.Drawing.Point(182, 275);
             this.buttonConsultarDisponibilidad.Name = "buttonConsultarDisponibilidad";
             this.buttonConsultarDisponibilidad.Size = new System.Drawing.Size(299, 44);
             this.buttonConsultarDisponibilidad.TabIndex = 22;
@@ -371,13 +373,24 @@
             this.buttonConsultarDisponibilidad.UseVisualStyleBackColor = false;
             this.buttonConsultarDisponibilidad.Click += new System.EventHandler(this.buttonConsultarDisponibilidad_Click);
             // 
-            // FrmAgregarCampania
+            // dataGridViewHorariosDisponibles
+            // 
+            this.dataGridViewHorariosDisponibles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewHorariosDisponibles.Location = new System.Drawing.Point(518, 134);
+            this.dataGridViewHorariosDisponibles.Name = "dataGridViewHorariosDisponibles";
+            this.dataGridViewHorariosDisponibles.Size = new System.Drawing.Size(336, 185);
+            this.dataGridViewHorariosDisponibles.TabIndex = 23;
+            this.dataGridViewHorariosDisponibles.Visible = false;
+            this.dataGridViewHorariosDisponibles.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewHorariosDisponibles_CellFormatting);
+            // 
+            // FrmCampaniaAgregar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(887, 612);
+            this.Controls.Add(this.dataGridViewHorariosDisponibles);
             this.Controls.Add(this.buttonConsultarDisponibilidad);
             this.Controls.Add(this.textBoxCampaniaNombre);
             this.Controls.Add(this.groupBoxImagenes);
@@ -389,7 +402,7 @@
             this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "FrmAgregarCampania";
+            this.Name = "FrmCampaniaAgregar";
             this.Text = " Shout News";
             this.Load += new System.EventHandler(this.FrmAgregarCampania_Load);
             this.groupBoxFechaHora.ResumeLayout(false);
@@ -398,6 +411,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewImagenesSeleccionadas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTodasLasImagenes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxVistaPreviaImagenes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHorariosDisponibles)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -426,5 +440,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.Button buttonConsultarDisponibilidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombres;
+        private System.Windows.Forms.DataGridView dataGridViewHorariosDisponibles;
     }
 }
