@@ -34,13 +34,15 @@ namespace Vista
                 dataGridViewTodasLasImagenes.Rows.Add(mNombre);
             }
             dataGridViewTodasLasImagenes.Show();
-            if (dataGridViewTodasLasImagenes.CurrentRow.Cells[0].Value != null)
-            {
-                string mNombreImagen = dataGridViewTodasLasImagenes.CurrentRow.Cells[0].Value.ToString();
-                Imagen mImagen = iFachada.GetImagenByName(mNombreImagen);
-                pictureBoxVistaPreviaImagenes.Image = Utilidades.ByteToImage(mImagen.Hash);
+            if(dataGridViewTodasLasImagenes.CurrentRow != null)
+            { 
+                if (dataGridViewTodasLasImagenes.CurrentRow.Cells[0].Value != null)
+                {
+                    string mNombreImagen = dataGridViewTodasLasImagenes.CurrentRow.Cells[0].Value.ToString();
+                    Imagen mImagen = iFachada.GetImagenByName(mNombreImagen);
+                    pictureBoxVistaPreviaImagenes.Image = Utilidades.ByteToImage(mImagen.Hash);
+                }
             }
-            
         }
 
         private void dataGridViewTodasLasImagenes_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -104,7 +106,7 @@ namespace Vista
                 DataGridViewColumn column = new DataGridViewColumn()
                 {
                     Name = (i+1).ToString(),
-                    Width = 20,
+                    Width = 30,
                     ValueType = typeof(string),
                     CellTemplate = new DataGridViewTextBoxCell()
                 };
@@ -114,7 +116,7 @@ namespace Vista
             {
                 DataGridViewRow fila = new DataGridViewRow();
                 this.dataGridViewHorariosDisponibles.Rows.Add(fila);
-                this.dataGridViewHorariosDisponibles.Rows[i].HeaderCell.Value = (i+1).ToString();
+                this.dataGridViewHorariosDisponibles.Rows[i].HeaderCell.Value = (i).ToString();
             }
             //DGV Rangos Horarios Seleccionados
             this.dataGridViewHorariosDisponibles.AutoGenerateColumns = false;
@@ -122,19 +124,17 @@ namespace Vista
 
             //Opción 1
             List<Campania> mListaCampanias1 = iFachada.FilterCampania(x =>
-                                                    x.FechaInicio >= mFechaInicio &&
+                                                    x.FechaInicio > mFechaInicio &&
                                                     x.FechaInicio <= mFechaFin).ToList();
 
             foreach (Campania mCampania in mListaCampanias1)
             {
-                int mHoraInicioCampania = mCampania.FechaInicio.Hour;
-                int mHoraFinCampania = mCampania.FechaFin.Hour;
                 int mDiferenciaDiasInicio = (mCampania.FechaInicio - mFechaInicio).Days;
                 if (mFechaFin.Date <= mCampania.FechaFin.Date)
                 {
-                    for (int i = mDiferenciaDiasInicio; i == mDias; i++)
+                    for (int i = mDiferenciaDiasInicio; i <= mDias; i++)
                     {
-                        for (int j = mCampania.FechaInicio.Hour; j == mCampania.FechaFin.Hour; j++)
+                        for (int j = (mCampania.FechaInicio.Hour); j <= (mCampania.FechaFin.Hour); j++)
                         {
                             dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
                         }
@@ -143,10 +143,11 @@ namespace Vista
                 }
                 else
                 {
-                    int mDiferenciaDiasFin = (mFechaFin - mCampania.FechaFin).Days;
-                    for (int i = mDiferenciaDiasInicio; i == mDiferenciaDiasFin; i++)
+                    int mCantidadDiasOcupados = (mCampania.FechaFin - mCampania.FechaInicio).Days;
+                    mCantidadDiasOcupados = mCantidadDiasOcupados + mDiferenciaDiasInicio;
+                    for (int i = mDiferenciaDiasInicio; i <= mCantidadDiasOcupados; i++)
                     {
-                        for (int j = mCampania.FechaInicio.Hour; j == mCampania.FechaFin.Hour; j++)
+                        for (int j = (mCampania.FechaInicio.Hour); j <= (mCampania.FechaFin.Hour); j++)
                         {
                             dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
                         }
@@ -157,34 +158,17 @@ namespace Vista
 
             //Opci+on 2
             List<Campania> mListaCampanias2 = iFachada.FilterCampania(x =>
-                                                    x.FechaFin >= mFechaInicio &&
+                                                    x.FechaFin > mFechaInicio &&
                                                     x.FechaFin <= mFechaFin &&
                                                     x.FechaInicio < mFechaInicio).ToList();
             foreach (Campania mCampania in mListaCampanias2)
             {
-                int mHoraInicioCampania = mCampania.FechaInicio.Hour;
-                int mHoraFinCampania = mCampania.FechaFin.Hour;
-                int mDiferenciaDiasInicio = (mFechaInicio - mCampania.FechaInicio).Days;
-                if (mFechaFin.Date <= mCampania.FechaFin.Date)
+                int mDiferenciaDiasFin = (mFechaInicio - mCampania.FechaFin).Days;
+                for (int i = 0; i == mDiferenciaDiasFin; i++)
                 {
-                    for (int i = mDiferenciaDiasInicio; i == mDias; i++)
+                    for (int j = mCampania.FechaInicio.Hour; j == mCampania.FechaFin.Hour; j++)
                     {
-                        for (int j = mCampania.FechaInicio.Hour; j == mCampania.FechaFin.Hour; j++)
-                        {
-                            dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
-                        }
-
-                    }
-                }
-                else
-                {
-                    int mDiferenciaDiasFin = (mFechaFin - mCampania.FechaFin).Days;
-                    for (int i = mDiferenciaDiasInicio; i == mDiferenciaDiasFin; i++)
-                    {
-                        for (int j = mCampania.FechaInicio.Hour; j == mCampania.FechaFin.Hour; j++)
-                        {
-                            dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
-                        }
+                        dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
                     }
                 }
             }
@@ -196,115 +180,41 @@ namespace Vista
 
             foreach (Campania mCampania in mListaCampanias3)
             {
-                int mHoraInicioCampania = mCampania.FechaInicio.Hour;
-                int mHoraFinCampania = mCampania.FechaFin.Hour;
-
-                if(mFechaInicio.Date >= mCampania.FechaInicio.Date)
+                for (int i = 0; i == mDias; i++)
                 {
-                    int mDiferenciaDiasInicio = (mFechaInicio - mCampania.FechaInicio).Days;
-                    for(int i = mDiferenciaDiasInicio; i == mDias; i++)
+                    for (int j = mCampania.FechaInicio.Hour; j == mCampania.FechaFin.Hour; j++)
                     {
-                        for(int j = mCampania.FechaInicio.Hour; j == mCampania.FechaFin.Hour; j++)
-                        {
-                            dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
-                        }
-
+                        dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
                     }
-                }
-                else //mFechaInicio.Date < mCampania.FechaInicio.Date
-                {
-                    int mDiferenciaDiasInicio = (mCampania.FechaInicio - mFechaInicio).Days;
-                    if (mFechaFin.Date <= mCampania.FechaFin.Date)
-                    {
-                        for (int i = mDiferenciaDiasInicio; i == mDias; i++)
-                        {
-                            for (int j = mCampania.FechaInicio.Hour; j == mCampania.FechaFin.Hour; j++)
-                            {
-                                dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
-                            }
-
-                        }
-                    }
-                    else
-                    {
-                        int mDiferenciaDiasFin = (mFechaFin - mCampania.FechaFin).Days;
-                        for (int i = mDiferenciaDiasInicio; i == mDiferenciaDiasFin; i++)
-                        {
-                            for (int j = mCampania.FechaInicio.Hour; j == mCampania.FechaFin.Hour; j++)
-                            {
-                                dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
-                            }
-                        }
-                    }
-
-                }
-
-            }
-
-                
-                
-
-                //dataGridViewHorariosDisponibles.Rows[mHoraInicio].Cells[i.ToString()].Style.BackColor = Color.Red;
-                //dataGridViewHorariosDisponibles.Rows[mHoraFin].Cells[i.ToString()].Style.BackColor = Color.Red;
-            
-
-
-            for (int i = 0; i <= mDias; i++)
-            {
-                for (int j = 0; j < 24; j++)
-                {
-
                 }
             }
-
-
-            //for (int i = 0; i <= mDias; i++) //for (DateTime mColumnas = mFechaInicio; mColumnas > mFechaFin; mColumnas.AddDays(1))
-            //{
-            //    dataGridViewHorariosDisponibles.Columns.Add(i.ToString(), i.ToString());
-            //    dataGridViewHorariosDisponibles.Columns[i].Width = 20;
-            //    dataGridViewHorariosDisponibles.Rows.Add(24);
-
-
-            //    mListaAuxiliar = mListaCampanias.Where(x => mColumnas.Date >= x.FechaInicio.Date || 
-            //                                                mColumnas.Date <= x.FechaFin.Date).ToList();
-            //    if(mListaAuxiliar.Count() > 0)
-            //    {
-            //        int mHoraInicio = mListaAuxiliar.First().FechaInicio.Hour;
-            //        int mHoraFin = mListaAuxiliar.First().FechaFin.Hour;
-
-            //        dataGridViewHorariosDisponibles.Rows[mHoraInicio].Cells[i.ToString()].Style.BackColor = Color.Red;
-            //        dataGridViewHorariosDisponibles.Rows[mHoraFin].Cells[i.ToString()].Style.BackColor = Color.Red;
-            //        //dataGridViewHorariosDisponibles.Rows[mHoraInicio].DefaultCellStyle.BackColor = Color.Red;
-            //        //dataGridViewHorariosDisponibles.Columns[i].DefaultCellStyle.BackColor = Color.Red;
-            //        //dataGridViewHorariosDisponibles.DefaultCellStyle.BackColor = Color.Red;
-            //        //dataGridViewHorariosDisponibles.Columns[i].DefaultCellStyle.ForeColor = Color.Red;
-            //    }
-
-            //}
-
-
-
-
 
         }
+
 
         private void btnCampaniaGuardar_Click(object sender, EventArgs e)
         {
             try
             {
+                //Verificar si la hora seleccionada está disponible..
+
+
+
+
+
                 if (textBoxCampaniaNombre.Text == "")
                 {
                     throw new Exception("Falta ingresar el nombre de la campaña");
                 }
 
-                if ((Convert.ToInt32(comboBoxCampaniHoraInicio.Text) < 1) || 
-                    (Convert.ToInt32(comboBoxCampaniHoraInicio.Text) > 24))
+                if ((Convert.ToInt32(comboBoxCampaniHoraInicio.Text) < 0) || 
+                    (Convert.ToInt32(comboBoxCampaniHoraInicio.Text) > 23))
                 {
                     throw new Exception("La hora de inicio ingresada no es válida");
                 }
 
-                if ((Convert.ToInt32(comboBoxCampaniaHoraFin.Text) < 1) || 
-                    (Convert.ToInt32(comboBoxCampaniaHoraFin.Text) > 24))
+                if ((Convert.ToInt32(comboBoxCampaniaHoraFin.Text) < 0) || 
+                    (Convert.ToInt32(comboBoxCampaniaHoraFin.Text) > 23))
                 {
                     throw new Exception("La hora de fin ingresada no es válida");
                 }
@@ -354,6 +264,8 @@ namespace Vista
                 }
 
                 iFachada.AddCampania(mCampania);
+                MessageBox.Show("La campaña se ha guardado con éxito");
+                this.Close();
 
             }
             catch (Exception mExcepcion)

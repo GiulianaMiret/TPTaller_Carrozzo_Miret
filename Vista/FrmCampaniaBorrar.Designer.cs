@@ -40,13 +40,6 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.dataGridViewCampanias = new System.Windows.Forms.DataGridView();
-            this.labelNombre = new System.Windows.Forms.Label();
-            this.textBoxNombreCampania = new System.Windows.Forms.TextBox();
-            this.dateTimePickerFechaFin = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePickerFechaInicio = new System.Windows.Forms.DateTimePicker();
-            this.labelFechaInicio = new System.Windows.Forms.Label();
-            this.labelFechaFin = new System.Windows.Forms.Label();
-            this.buttonBuscar = new System.Windows.Forms.Button();
             this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HoraInicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,6 +47,13 @@
             this.FechaInicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FechaFin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Borrar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.labelNombre = new System.Windows.Forms.Label();
+            this.textBoxNombreCampania = new System.Windows.Forms.TextBox();
+            this.dateTimePickerFechaFin = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerFechaInicio = new System.Windows.Forms.DateTimePicker();
+            this.labelFechaInicio = new System.Windows.Forms.Label();
+            this.labelFechaFin = new System.Windows.Forms.Label();
+            this.buttonBuscar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCampanias)).BeginInit();
             this.SuspendLayout();
             // 
@@ -113,6 +113,79 @@
             this.dataGridViewCampanias.ReadOnly = true;
             this.dataGridViewCampanias.Size = new System.Drawing.Size(743, 172);
             this.dataGridViewCampanias.TabIndex = 28;
+            // 
+            // Estado
+            // 
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Blue;
+            this.Estado.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Estado.HeaderText = "Estado";
+            this.Estado.Name = "Estado";
+            this.Estado.ReadOnly = true;
+            // 
+            // Nombre
+            // 
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Blue;
+            this.Nombre.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            // 
+            // HoraInicio
+            // 
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Blue;
+            this.HoraInicio.DefaultCellStyle = dataGridViewCellStyle3;
+            this.HoraInicio.HeaderText = "Hora Inicio";
+            this.HoraInicio.Name = "HoraInicio";
+            this.HoraInicio.ReadOnly = true;
+            // 
+            // HoraFin
+            // 
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Blue;
+            this.HoraFin.DefaultCellStyle = dataGridViewCellStyle4;
+            this.HoraFin.HeaderText = "Hora Fin";
+            this.HoraFin.Name = "HoraFin";
+            this.HoraFin.ReadOnly = true;
+            // 
+            // FechaInicio
+            // 
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Blue;
+            this.FechaInicio.DefaultCellStyle = dataGridViewCellStyle5;
+            this.FechaInicio.HeaderText = "Fecha Inicio";
+            this.FechaInicio.Name = "FechaInicio";
+            this.FechaInicio.ReadOnly = true;
+            // 
+            // FechaFin
+            // 
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Blue;
+            this.FechaFin.DefaultCellStyle = dataGridViewCellStyle6;
+            this.FechaFin.HeaderText = "Fecha Fin";
+            this.FechaFin.Name = "FechaFin";
+            this.FechaFin.ReadOnly = true;
+            // 
+            // Borrar
+            // 
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Blue;
+            this.Borrar.DefaultCellStyle = dataGridViewCellStyle7;
+            this.Borrar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.Borrar.HeaderText = "Borrar";
+            this.Borrar.Name = "Borrar";
+            this.Borrar.ReadOnly = true;
+            this.Borrar.Text = "Borrar";
             // 
             // labelNombre
             // 
@@ -193,79 +266,6 @@
             this.buttonBuscar.Text = "Buscar";
             this.buttonBuscar.UseVisualStyleBackColor = false;
             this.buttonBuscar.Click += new System.EventHandler(this.buttonBuscar_Click);
-            // 
-            // Estado
-            // 
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Blue;
-            this.Estado.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Estado.HeaderText = "Estado";
-            this.Estado.Name = "Estado";
-            this.Estado.ReadOnly = true;
-            // 
-            // Nombre
-            // 
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Blue;
-            this.Nombre.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.Name = "Nombre";
-            this.Nombre.ReadOnly = true;
-            // 
-            // HoraInicio
-            // 
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Blue;
-            this.HoraInicio.DefaultCellStyle = dataGridViewCellStyle3;
-            this.HoraInicio.HeaderText = "Hora Inicio";
-            this.HoraInicio.Name = "HoraInicio";
-            this.HoraInicio.ReadOnly = true;
-            // 
-            // HoraFin
-            // 
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Blue;
-            this.HoraFin.DefaultCellStyle = dataGridViewCellStyle4;
-            this.HoraFin.HeaderText = "Hora Fin";
-            this.HoraFin.Name = "HoraFin";
-            this.HoraFin.ReadOnly = true;
-            // 
-            // FechaInicio
-            // 
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Blue;
-            this.FechaInicio.DefaultCellStyle = dataGridViewCellStyle5;
-            this.FechaInicio.HeaderText = "Fecha Inicio";
-            this.FechaInicio.Name = "FechaInicio";
-            this.FechaInicio.ReadOnly = true;
-            // 
-            // FechaFin
-            // 
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Blue;
-            this.FechaFin.DefaultCellStyle = dataGridViewCellStyle6;
-            this.FechaFin.HeaderText = "Fecha Fin";
-            this.FechaFin.Name = "FechaFin";
-            this.FechaFin.ReadOnly = true;
-            // 
-            // Borrar
-            // 
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Blue;
-            this.Borrar.DefaultCellStyle = dataGridViewCellStyle7;
-            this.Borrar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.Borrar.HeaderText = "Borrar";
-            this.Borrar.Name = "Borrar";
-            this.Borrar.ReadOnly = true;
-            this.Borrar.Text = "Borrar";
             // 
             // FrmCampaniaBorrar
             // 

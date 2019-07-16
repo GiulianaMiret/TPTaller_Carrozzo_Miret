@@ -33,7 +33,6 @@ namespace Controlador
         private readonly IImagenRepository cImagenRepository;
         private readonly IRepository<Banner> cRepositoryBaseBanner;
         private readonly IRepository<Campania> cRepositoryBaseCampania;
-        private readonly IRepository<Fuente> cRepositoryBaseFuente;
         private readonly IRepository<FuenteRSS> cRepositoryBaseRSS;
         private readonly IRepository<FuenteTextoFijo> cRepositoryBaseTXT;
         private readonly IRepository<Imagen> cRepositoryBaseImagen;
@@ -52,7 +51,7 @@ namespace Controlador
                        IRepository<FuenteRSS> pRepositoryBaseRSS,
                        IRepository<FuenteTextoFijo> pRepositoryBaseTXT,
                        IRepository<Imagen> pRepositoryBaseImagen,
-                       ILogger logger)
+                       ILogger pLogger)
         {
             cBannerRepository = pBannerRepository;
             cCampaniaRepository = pCampaniaRepository;
@@ -63,7 +62,7 @@ namespace Controlador
             cRepositoryBaseRSS = pRepositoryBaseRSS;
             cRepositoryBaseTXT = pRepositoryBaseTXT;
             cRepositoryBaseImagen = pRepositoryBaseImagen;
-            iLogger = logger;
+            iLogger = pLogger;
         }
 
 
@@ -222,6 +221,11 @@ namespace Controlador
         public IQueryable<Campania> FilterCampania(Expression<Func<Campania, bool>> pExpresion)
         {
             return cRepositoryBaseCampania.Filter(pExpresion);
+        }
+
+        public List<Campania> GetAllCampania()
+        {
+            return cRepositoryBaseCampania.GetAll().ToList();
         }
     }
 }

@@ -10,16 +10,16 @@ namespace Vista
 {
     public class CompositionRoot
     {
-        private static IKernel _ninjectKernel;
+        private static IKernel cNinjectKernel;
 
-        public static void Wire(INinjectModule module)
+        public static void Wire(INinjectModule pModule)
         {
-            _ninjectKernel = new StandardKernel(module);
+            cNinjectKernel = new StandardKernel(pModule);
         }
 
         public static T Resolve<T>()
         {
-            return _ninjectKernel.Get<T>();
+            return cNinjectKernel.Get<T>();
         }
     }
 }

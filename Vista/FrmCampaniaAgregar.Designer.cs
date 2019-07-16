@@ -67,7 +67,7 @@
             this.btnCampaniaGuardar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnCampaniaGuardar.AutoSize = true;
             this.btnCampaniaGuardar.Font = new System.Drawing.Font("Copperplate Gothic Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCampaniaGuardar.Location = new System.Drawing.Point(270, 558);
+            this.btnCampaniaGuardar.Location = new System.Drawing.Point(453, 558);
             this.btnCampaniaGuardar.Name = "btnCampaniaGuardar";
             this.btnCampaniaGuardar.Size = new System.Drawing.Size(134, 33);
             this.btnCampaniaGuardar.TabIndex = 16;
@@ -80,7 +80,7 @@
             this.btnCampaniaCancelar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnCampaniaCancelar.Font = new System.Drawing.Font("Copperplate Gothic Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCampaniaCancelar.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.btnCampaniaCancelar.Location = new System.Drawing.Point(459, 558);
+            this.btnCampaniaCancelar.Location = new System.Drawing.Point(642, 558);
             this.btnCampaniaCancelar.Name = "btnCampaniaCancelar";
             this.btnCampaniaCancelar.Size = new System.Drawing.Size(134, 33);
             this.btnCampaniaCancelar.TabIndex = 17;
@@ -95,7 +95,7 @@
             this.labelNuevaCampania.BackColor = System.Drawing.Color.Transparent;
             this.labelNuevaCampania.Font = new System.Drawing.Font("Lucida Calligraphy", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelNuevaCampania.ForeColor = System.Drawing.Color.SandyBrown;
-            this.labelNuevaCampania.Location = new System.Drawing.Point(126, 23);
+            this.labelNuevaCampania.Location = new System.Drawing.Point(491, 23);
             this.labelNuevaCampania.Name = "labelNuevaCampania";
             this.labelNuevaCampania.Size = new System.Drawing.Size(336, 45);
             this.labelNuevaCampania.TabIndex = 18;
@@ -138,6 +138,7 @@
             // 
             this.comboBoxCampaniaHoraFin.FormattingEnabled = true;
             this.comboBoxCampaniaHoraFin.Items.AddRange(new object[] {
+            "00",
             "01",
             "02",
             "03",
@@ -160,8 +161,7 @@
             "20",
             "21",
             "22",
-            "23",
-            "24"});
+            "23"});
             this.comboBoxCampaniaHoraFin.Location = new System.Drawing.Point(286, 83);
             this.comboBoxCampaniaHoraFin.Name = "comboBoxCampaniaHoraFin";
             this.comboBoxCampaniaHoraFin.Size = new System.Drawing.Size(81, 27);
@@ -171,6 +171,7 @@
             // 
             this.comboBoxCampaniHoraInicio.FormattingEnabled = true;
             this.comboBoxCampaniHoraInicio.Items.AddRange(new object[] {
+            "00",
             "01",
             "02",
             "03",
@@ -193,8 +194,7 @@
             "20",
             "21",
             "22",
-            "23",
-            "24"});
+            "23"});
             this.comboBoxCampaniHoraInicio.Location = new System.Drawing.Point(286, 26);
             this.comboBoxCampaniHoraInicio.Name = "comboBoxCampaniHoraInicio";
             this.comboBoxCampaniHoraInicio.Size = new System.Drawing.Size(81, 27);
@@ -251,7 +251,7 @@
             this.textBoxCampaniaNombre.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxCampaniaNombre.Location = new System.Drawing.Point(144, 85);
             this.textBoxCampaniaNombre.Name = "textBoxCampaniaNombre";
-            this.textBoxCampaniaNombre.Size = new System.Drawing.Size(469, 30);
+            this.textBoxCampaniaNombre.Size = new System.Drawing.Size(834, 30);
             this.textBoxCampaniaNombre.TabIndex = 21;
             // 
             // groupBoxImagenes
@@ -365,7 +365,7 @@
             this.buttonConsultarDisponibilidad.AutoSize = true;
             this.buttonConsultarDisponibilidad.BackColor = System.Drawing.Color.SandyBrown;
             this.buttonConsultarDisponibilidad.Font = new System.Drawing.Font("Copperplate Gothic Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonConsultarDisponibilidad.Location = new System.Drawing.Point(182, 275);
+            this.buttonConsultarDisponibilidad.Location = new System.Drawing.Point(528, 183);
             this.buttonConsultarDisponibilidad.Name = "buttonConsultarDisponibilidad";
             this.buttonConsultarDisponibilidad.Size = new System.Drawing.Size(299, 44);
             this.buttonConsultarDisponibilidad.TabIndex = 22;
@@ -376,9 +376,9 @@
             // dataGridViewHorariosDisponibles
             // 
             this.dataGridViewHorariosDisponibles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewHorariosDisponibles.Location = new System.Drawing.Point(518, 134);
+            this.dataGridViewHorariosDisponibles.Location = new System.Drawing.Point(865, 134);
             this.dataGridViewHorariosDisponibles.Name = "dataGridViewHorariosDisponibles";
-            this.dataGridViewHorariosDisponibles.Size = new System.Drawing.Size(336, 185);
+            this.dataGridViewHorariosDisponibles.Size = new System.Drawing.Size(336, 457);
             this.dataGridViewHorariosDisponibles.TabIndex = 23;
             this.dataGridViewHorariosDisponibles.Visible = false;
             this.dataGridViewHorariosDisponibles.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewHorariosDisponibles_CellFormatting);
@@ -389,7 +389,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(887, 612);
+            this.ClientSize = new System.Drawing.Size(1252, 612);
             this.Controls.Add(this.dataGridViewHorariosDisponibles);
             this.Controls.Add(this.buttonConsultarDisponibilidad);
             this.Controls.Add(this.textBoxCampaniaNombre);

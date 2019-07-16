@@ -7,20 +7,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Core.Models;
+using Controlador;
 
 namespace Vista
 {
     public partial class FrmCampaniaBorrar : Form
     {
-        public FrmCampaniaBorrar()
+        private readonly Fachada iFachada;
+        private readonly Logger.ILogger iLogger;
+
+
+        public FrmCampaniaBorrar(Fachada fachada, Logger.ILogger logger)
         {
+            iFachada = fachada;
+            iLogger = logger;
             InitializeComponent();
         }
 
 
         private void buttonBuscar_Click(object sender, EventArgs e)
         {
-            //Filtrar las campañas con los datos ingresados
+            List<Campania> mListaResultadoBusqueda = new List<Campania>();
+            if (textBoxNombreCampania.Text != "")
+            {
+                mListaResultadoBusqueda = iFachada.FilterCampania(x => x.Nombre == textBoxNombreCampania.Text).ToList();
+            }
+            
+
 
         }
 

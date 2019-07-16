@@ -9,52 +9,52 @@ namespace Vista.Logger
 {
     public class Logger4net : ILogger
     {
-        private readonly ILog iLogger;
+        private readonly ILog cLogger;
         public Logger4net()
         {
-            iLogger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+            cLogger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         }
         public void Info(string pMensaje, Exception pException)
         {
-            iLogger.Info(pMensaje, pException);
+            cLogger.Info(pMensaje, pException);
         }
         public void Debug(string pMensaje, Exception pException)
         {
-            iLogger.Debug(pMensaje, pException);
+            cLogger.Debug(pMensaje, pException);
         }
         public void Warn(string pMensaje, Exception pException)
         {
-            iLogger.Warn(pMensaje, pException);
+            cLogger.Warn(pMensaje, pException);
         }
         public void Fatal(string pMensaje, Exception pException)
         {
-            iLogger.Fatal(pMensaje, pException);
+            cLogger.Fatal(pMensaje, pException);
         }
         public void Error(string pMensaje, Exception pException)
         {
-            iLogger.Error(pMensaje, pException);
+            cLogger.Error(pMensaje, pException);
         }
 
 
         public void Info(string pMensaje)
         {
-            iLogger.Info(pMensaje);
+            cLogger.Info(pMensaje);
         }
         public void Debug(string pMensaje)
         {
-            iLogger.Debug(pMensaje);
+            cLogger.Debug(pMensaje);
         }
         public void Warn(string pMensaje)
         {
-            iLogger.Warn(pMensaje);
+            cLogger.Warn(pMensaje);
         }
         public void Fatal(string pMensaje)
         {
-            iLogger.Fatal(pMensaje);
+            cLogger.Fatal(pMensaje);
         }
         public void Error(string pMensaje)
         {
-            iLogger.Error(pMensaje);
+            cLogger.Error(pMensaje);
         }
     }
 }
