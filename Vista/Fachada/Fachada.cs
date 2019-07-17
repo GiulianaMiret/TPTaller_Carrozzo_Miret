@@ -227,5 +227,10 @@ namespace Controlador
         {
             return cRepositoryBaseCampania.GetAll().ToList();
         }
+
+        public Dictionary<string, List<Campania>> AvailableTimes(DateTime pFechaInicio, DateTime pFechaFin)
+        {
+            return cCampaniaRepository.AvailableTimes(pFechaInicio, pFechaFin);
+        }
     }
 }

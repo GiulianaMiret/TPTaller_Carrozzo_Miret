@@ -28,7 +28,6 @@ namespace Vista
         private void FrmAgregarCampania_Load(object sender, EventArgs e)
         {
             IList<string> mListaNombres = iFachada.GetAllNamesFromImages();
-            //dataGridViewTodasLasImagenes.DataSource = mListaNombres.Select(x => new { Nombre = x }).ToList();
             foreach(string mNombre in mListaNombres)
             {
                 dataGridViewTodasLasImagenes.Rows.Add(mNombre);
@@ -92,103 +91,124 @@ namespace Vista
 
         private void buttonConsultarDisponibilidad_Click(object sender, EventArgs e)
         {
-            //dataGridViewHorariosDisponibles = null;
+            dataGridViewHorariosDisponibles = new DataGridView();
             dataGridViewHorariosDisponibles.Visible = true;
+            
 
-            DateTime mFechaInicio = dateTimePickerCampaniaFechaInicio.Value.Date;
-            DateTime mFechaFin = dateTimePickerCampaniaFechaFin.Value.Date;
-
-            int mDias = (mFechaFin - mFechaInicio).Days;
-            //DateTime mColumnas = mFechaInicio;
-
-            for (int i = 0; i <= mDias; i++)
+            if (dateTimePickerCampaniaFechaInicio.Value.Date >= DateTime.Now.Date)
             {
-                DataGridViewColumn column = new DataGridViewColumn()
+                if (dateTimePickerCampaniaFechaInicio.Value.Date <= dateTimePickerCampaniaFechaFin.Value.Date)
                 {
-                    Name = (i+1).ToString(),
-                    Width = 30,
-                    ValueType = typeof(string),
-                    CellTemplate = new DataGridViewTextBoxCell()
-                };
-                this.dataGridViewHorariosDisponibles.Columns.Add(column);
-            }
-            for (int i = 0; i < 24; i++)
-            {
-                DataGridViewRow fila = new DataGridViewRow();
-                this.dataGridViewHorariosDisponibles.Rows.Add(fila);
-                this.dataGridViewHorariosDisponibles.Rows[i].HeaderCell.Value = (i).ToString();
-            }
-            //DGV Rangos Horarios Seleccionados
-            this.dataGridViewHorariosDisponibles.AutoGenerateColumns = false;
-            this.dataGridViewHorariosDisponibles.AutoSize = false;
+                    DateTime mFechaInicio = dateTimePickerCampaniaFechaInicio.Value;
+                    DateTime mFechaFin = dateTimePickerCampaniaFechaFin.Value;
+                    int mCantidadColumnas = (mFechaFin - mFechaInicio).Days;
 
-            //Opción 1
-            List<Campania> mListaCampanias1 = iFachada.FilterCampania(x =>
-                                                    x.FechaInicio > mFechaInicio &&
-                                                    x.FechaInicio <= mFechaFin).ToList();
-
-            foreach (Campania mCampania in mListaCampanias1)
-            {
-                int mDiferenciaDiasInicio = (mCampania.FechaInicio - mFechaInicio).Days;
-                if (mFechaFin.Date <= mCampania.FechaFin.Date)
-                {
-                    for (int i = mDiferenciaDiasInicio; i <= mDias; i++)
+                    for (int i = 0; i <= mCantidadColumnas; i++)
                     {
-                        for (int j = (mCampania.FechaInicio.Hour); j <= (mCampania.FechaFin.Hour); j++)
+                        DataGridViewColumn mColumna = new DataGridViewColumn()
                         {
-                            dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                            //Name = (i + 1).ToString(),
+                            Name = (mFechaInicio.Day + i).ToString(),
+                            Width = 30,
+                            ValueType = typeof(string),
+                            CellTemplate = new DataGridViewTextBoxCell()
+                        };
+                        dataGridViewHorariosDisponibles.Columns.Add(mColumna);
+                    }
+                    for (int i = 0; i < 24; i++)
+                    {
+                        DataGridViewRow fila = new DataGridViewRow();
+                        dataGridViewHorariosDisponibles.Rows.Add(fila);
+                        dataGridViewHorariosDisponibles.Rows[i].HeaderCell.Value = (i).ToString();
+                        
+                    }
+                    //DGV Rangos Horarios Seleccionados
+                    dataGridViewHorariosDisponibles.AutoGenerateColumns = false;
+                    dataGridViewHorariosDisponibles.AutoSize = false;
+
+
+                    Dictionary<string, List<Campania>> mDiccionario = iFachada.AvailableTimes(dateTimePickerCampaniaFechaInicio.Value, dateTimePickerCampaniaFechaFin.Value);
+                    List<Campania> mListaCampaniasMenoresIguales = new List<Campania>();
+                    mListaCampaniasMenoresIguales = mDiccionario["MenoresIguales"];
+                    List<Campania> mListaCampaniasIntermedias = new List<Campania>();
+                    mListaCampaniasIntermedias = mDiccionario["Intermedias"];
+                    List<Campania> mListaCampaniasMayores = new List<Campania>();
+                    mListaCampaniasMayores = mDiccionario["Mayores"];
+
+
+                    //List<Campania> mListaTodasLasCampanias = iFachada.GetAllCampania().ToList();
+
+                    //Opción 1: 
+                    //List<Campania> mListaCampaniasMenoresIguales = mListaTodasLasCampanias.Where(x => (x.FechaFin <= mFechaFin) && (x.FechaFin >= mFechaInicio)).ToList();
+                    int mCantidadDias = 0;
+                    foreach (Campania mCampania in mListaCampaniasMenoresIguales)
+                    {
+                        if (mCampania.FechaInicio < mFechaInicio)
+                        {
+                            mCantidadDias = (mCampania.FechaFin.Date - mFechaInicio.Date).Days;
+                            for (int i = 0; i <= mCantidadDias; i++)
+                            {
+                                for (int j = (mCampania.FechaInicio.Hour); j <= (mCampania.FechaFin.Hour); j++)
+                                {
+                                    dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            mCantidadDias = (mCampania.FechaFin.Date - mCampania.FechaInicio.Date).Days;
+                            int mDiaInicio = (mCampania.FechaInicio.Date - mFechaInicio.Date).Days;
+                            mCantidadDias = mCantidadDias + mDiaInicio;
+                            for (int i = mDiaInicio; i <= mCantidadDias; i++)
+                            {
+                                for (int j = (mCampania.FechaInicio.Hour); j <= (mCampania.FechaFin.Hour); j++)
+                                {
+                                    dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                                }
+                            }
+                        }
+                    }
+
+                    //Opción 2:
+                    //List<Campania> mListaCampaniasIntermedias = mListaTodasLasCampanias.Where(x => (x.FechaFin > mFechaFin) && (x.FechaInicio <= mFechaFin) && (x.FechaInicio >= mFechaInicio)).ToList();
+                    foreach (Campania mCampania in mListaCampaniasIntermedias)
+                    {
+                        mCantidadDias = (mCampania.FechaInicio.Date - mFechaInicio.Date).Days;
+                        
+                        for (int i = mCantidadDias; i <= mCantidadColumnas; i++)
+                        {
+                            for (int j = (mCampania.FechaInicio.Hour); j <= (mCampania.FechaFin.Hour); j++)
+                            {
+                                dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                            }
+
+                        }
+                    }
+
+                    //Opción 3:
+                    //List<Campania> mListaCampaniasMayores = mListaTodasLasCampanias.Where(x => (x.FechaInicio < mFechaInicio) && (x.FechaFin > mFechaFin)).ToList();
+                    foreach (Campania mCampania in mListaCampaniasMayores)
+                    {
+                        for (int i = 0; i <= mCantidadColumnas; i++)
+                        {
+                            for (int j = (mCampania.FechaInicio.Hour); j <= (mCampania.FechaFin.Hour); j++)
+                            {
+                                dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                            }
                         }
 
+                            
                     }
                 }
                 else
                 {
-                    int mCantidadDiasOcupados = (mCampania.FechaFin - mCampania.FechaInicio).Days;
-                    mCantidadDiasOcupados = mCantidadDiasOcupados + mDiferenciaDiasInicio;
-                    for (int i = mDiferenciaDiasInicio; i <= mCantidadDiasOcupados; i++)
-                    {
-                        for (int j = (mCampania.FechaInicio.Hour); j <= (mCampania.FechaFin.Hour); j++)
-                        {
-                            dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
-                        }
-                    }
+                    MessageBox.Show("La fecha de inicio debe ser menor a la fecha fin");
                 }
-
             }
-
-            //Opci+on 2
-            List<Campania> mListaCampanias2 = iFachada.FilterCampania(x =>
-                                                    x.FechaFin > mFechaInicio &&
-                                                    x.FechaFin <= mFechaFin &&
-                                                    x.FechaInicio < mFechaInicio).ToList();
-            foreach (Campania mCampania in mListaCampanias2)
+            else
             {
-                int mDiferenciaDiasFin = (mFechaInicio - mCampania.FechaFin).Days;
-                for (int i = 0; i == mDiferenciaDiasFin; i++)
-                {
-                    for (int j = mCampania.FechaInicio.Hour; j == mCampania.FechaFin.Hour; j++)
-                    {
-                        dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
-                    }
-                }
+                MessageBox.Show("La fecha de inicio ya ha pasado");
             }
-
-            //Opción 3
-            List<Campania> mListaCampanias3 = iFachada.FilterCampania(x =>
-                                                    x.FechaInicio <= mFechaInicio &&
-                                                    x.FechaFin >= mFechaFin).ToList();
-
-            foreach (Campania mCampania in mListaCampanias3)
-            {
-                for (int i = 0; i == mDias; i++)
-                {
-                    for (int j = mCampania.FechaInicio.Hour; j == mCampania.FechaFin.Hour; j++)
-                    {
-                        dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
-                    }
-                }
-            }
-
         }
 
 
@@ -197,12 +217,25 @@ namespace Vista
             try
             {
                 //Verificar si la hora seleccionada está disponible..
+                Dictionary<string, List<Campania>> mDiccionario = iFachada.AvailableTimes(dateTimePickerCampaniaFechaInicio.Value, dateTimePickerCampaniaFechaFin.Value);
+                List<Campania> mListaCampaniasMenoresIguales = new List<Campania>();
+                mListaCampaniasMenoresIguales = mDiccionario["MenoresIguales"];
+                List<Campania> mListaCampaniasIntermedias = new List<Campania>();
+                mListaCampaniasIntermedias = mDiccionario["Intermedias"];
+                List<Campania> mListaCampaniasMayores = new List<Campania>();
+                mListaCampaniasMayores = mDiccionario["Mayores"];
+                //OP 1
+                foreach (Campania mItemCampania in mListaCampaniasMenoresIguales)
+                {
+                    //if(mItemCampania.FechaFin.Hour )
+                }
+                //OP 2
+                //OP 3
 
 
 
 
-
-                if (textBoxCampaniaNombre.Text == "")
+                    if (textBoxCampaniaNombre.Text == "")
                 {
                     throw new Exception("Falta ingresar el nombre de la campaña");
                 }

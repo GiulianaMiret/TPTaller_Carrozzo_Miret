@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using Core.Models;
 using System.Linq.Expressions;
 using System.Data.Entity;
+using System.Windows.Forms;
+using System.Drawing;
 
 namespace EntityFramework.Services
 {
@@ -44,6 +46,29 @@ namespace EntityFramework.Services
         public void AddImagenes(int pIdImagen, int pIdCampania)
         {
             throw new NotImplementedException();
+        }
+        
+        public Dictionary<string, List<Campania>> AvailableTimes(DateTime pFechaInicio, DateTime pFechaFin)
+        {
+            List<Campania> mListaTodasLasCampanias = cDbSetCampania.ToList();
+
+            //Opción 1: 
+            List<Campania> mListaCampaniasMenoresIguales = mListaTodasLasCampanias.Where(x => (x.FechaFin <= pFechaFin) && (x.FechaFin >= pFechaInicio)).ToList();
+
+            //Opción 2:
+            List<Campania> mListaCampaniasIntermedias = mListaTodasLasCampanias.Where(x => (x.FechaFin > pFechaFin) && (x.FechaInicio <= pFechaFin) && (x.FechaInicio >= pFechaInicio)).ToList();
+
+            //Opción 3:
+            List<Campania> mListaCampaniasMayores = mListaTodasLasCampanias.Where(x => (x.FechaInicio < pFechaInicio) && (x.FechaFin > pFechaFin)).ToList();
+
+            Dictionary<string, List<Campania>> mDiccionarioDeListas = new Dictionary<string, List<Campania>>();
+            mDiccionarioDeListas.Add("MenoresIguales", mListaCampaniasMenoresIguales);
+            mDiccionarioDeListas.Add("Intermedias", mListaCampaniasIntermedias);
+            mDiccionarioDeListas.Add("Mayores", mListaCampaniasMayores);
+
+
+            return mDiccionarioDeListas;
+
         }
     }
 }
