@@ -282,7 +282,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(99, 33);
             this.button2.TabIndex = 2;
-            this.button2.Text = "<- Quitar";
+            this.button2.Text = "← Quitar";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.buttonQuitarImagen_Click);
             // 
@@ -295,7 +295,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(99, 33);
             this.button1.TabIndex = 2;
-            this.button1.Text = "Agregar ->";
+            this.button1.Text = "Agregar →";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.buttonAgregarImagen_Click);
             // 

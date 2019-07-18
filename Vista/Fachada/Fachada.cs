@@ -42,9 +42,9 @@ namespace Controlador
         /// </summary>
         /// <param name="bannerRepository"></param>
         /// <param name="campaniaRepository"></param>
-        public Fachada(IBannerRepository pBannerRepository, 
-                       ICampaniaRepository pCampaniaRepository, 
-                       IFuenteRepository pFuenteRepository, 
+        public Fachada(IBannerRepository pBannerRepository,
+                       ICampaniaRepository pCampaniaRepository,
+                       IFuenteRepository pFuenteRepository,
                        IImagenRepository pImagenRepository,
                        IRepository<Banner> pRepositoryBaseBanner,
                        IRepository<Campania> pRepositoryBaseCampania,
@@ -72,14 +72,14 @@ namespace Controlador
         /// 
         public void AddFuenteTXT(FuenteTextoFijo pFuenteTextoFijo)
         {
-        //    iFuenteRepository.AddFuenteTXT(pFuenteTextoFijo);
+            //    iFuenteRepository.AddFuenteTXT(pFuenteTextoFijo);
         }
 
         /// <summary>
         /// updateo el valor de la fuente RSS
         /// </summary>
         /// <param name="pFuenteRSS"></param>
-        public void UpdateValueRSS (FuenteRSS pFuenteRSS)
+        public void UpdateValueRSS(FuenteRSS pFuenteRSS)
         {
             if (Utilidades.InternetDisponible())
             {
@@ -104,26 +104,26 @@ namespace Controlador
         }
 
         public void AddFuenteRSS(FuenteRSS pFuenteRSS)
-        {           
-                if (Utilidades.InternetDisponible())
+        {
+            if (Utilidades.InternetDisponible())
+            {
+                //si no existe una con el mismo nombre
+                if (cRepositoryBaseRSS.Filter(x => x.Titulo == pFuenteRSS.Titulo) != null)
                 {
-                    //si no existe una con el mismo nombre
-                    if (cRepositoryBaseRSS.Filter(x => x.Titulo == pFuenteRSS.Titulo) != null)
-                    {
-                        //convierto en string la URL de la fuente RSS y la agrego
-                      pFuenteRSS.Valor = Utilidades.GetStringFromXMLRSSUrl(pFuenteRSS.URL);
-                      cRepositoryBaseRSS.Add(pFuenteRSS);
-                      cRepositoryBaseImagen.SaveChanges();
-                    }
-                    else
-                    {
-                    throw new Exception("Una fuente con ese nombre ya existe.");
-                    }
+                    //convierto en string la URL de la fuente RSS y la agrego
+                    pFuenteRSS.Valor = Utilidades.GetStringFromXMLRSSUrl(pFuenteRSS.URL);
+                    cRepositoryBaseRSS.Add(pFuenteRSS);
+                    cRepositoryBaseImagen.SaveChanges();
                 }
                 else
                 {
-                    throw new Exception("No pudo descargarse el feed RSS por falta de conectividad.");
-                }                           
+                    throw new Exception("Una fuente con ese nombre ya existe.");
+                }
+            }
+            else
+            {
+                throw new Exception("No pudo descargarse el feed RSS por falta de conectividad.");
+            }
         }
 
         public string GetTextOfActualBanner()
@@ -134,7 +134,7 @@ namespace Controlador
             }
             return cBannerRepository.GetBannerNow().Fuente.Valor;
         }
-               
+
         public void DeleteFuenteRSS(FuenteRSS pFuenteRSS)
         {
             cRepositoryBaseRSS.DeleteById(pFuenteRSS.Id);
@@ -160,11 +160,11 @@ namespace Controlador
             {
                 throw new Exception("Una imagen con ese nombre ya existe, elija otro.");
             }
-            cRepositoryBaseImagen.Add(pImagen);            
+            cRepositoryBaseImagen.Add(pImagen);
             cRepositoryBaseImagen.SaveChanges();
         }
 
-        public void DeleteImagen (Imagen pImagen)
+        public void DeleteImagen(Imagen pImagen)
         {
             if (pImagen.Nombre != "")
             {
@@ -177,9 +177,10 @@ namespace Controlador
             cRepositoryBaseImagen.SaveChanges();
         }
 
-        public void UpdateImagen (Imagen pImagen)
+        public void UpdateImagen(Imagen pImagen)
         {
             cRepositoryBaseImagen.Update(pImagen);
+            cRepositoryBaseImagen.SaveChanges();
         }
 
 
@@ -223,7 +224,6 @@ namespace Controlador
                 throw new Exception("Una campania con ese nombre ya existe, elija otro.");
             }
             cRepositoryBaseCampania.Add(pCampania);
-
             cRepositoryBaseCampania.SaveChanges();
         }
 
@@ -232,9 +232,31 @@ namespace Controlador
             return cRepositoryBaseCampania.GetAll().ToList();
         }
 
+        public Campania GetCampania(Campania pCampania)
+        {
+            return cRepositoryBaseCampania.GetById(pCampania.Id);
+        }
+
         public Dictionary<string, List<Campania>> AvailableTimes(DateTime pFechaInicio, DateTime pFechaFin)
         {
             return cCampaniaRepository.AvailableTimes(pFechaInicio, pFechaFin);
+        }
+
+        public void DeleteCampania(Campania pCampania)
+        {
+            cRepositoryBaseCampania.DeleteById(pCampania.Id);
+            cRepositoryBaseCampania.SaveChanges();
+        }
+
+        public List<Imagen> GetImagesOfCampania(Campania pCampania)
+        {
+            return cCampaniaRepository.GetImagenes(pCampania);
+        }
+
+        public void UpdateCampania(Campania pCampania)
+        {
+            cRepositoryBaseCampania.Update(pCampania);
+            cRepositoryBaseCampania.SaveChanges();
         }
     }
 }

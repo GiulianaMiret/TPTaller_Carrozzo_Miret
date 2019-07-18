@@ -14,20 +14,20 @@ namespace Vista
 {
     public partial class FrmCampaniaAgregar : Form
     {
-        private readonly Fachada iFachada;
-        private readonly Logger.ILogger iLogger;
-        private List<string> iImagenesSeleccionadas = new List<string>();
+        private readonly Fachada cFachada;
+        private readonly Logger.ILogger cLogger;
+        private List<string> cImagenesSeleccionadas = new List<string>();
 
         public FrmCampaniaAgregar(Fachada fachada, Logger.ILogger logger)
         {
-            iFachada = fachada;
-            iLogger = logger;
+            cFachada = fachada;
+            cLogger = logger;
             InitializeComponent();
         }
 
         private void FrmAgregarCampania_Load(object sender, EventArgs e)
         {
-            IList<string> mListaNombres = iFachada.GetAllNamesFromImages();
+            IList<string> mListaNombres = cFachada.GetAllNamesFromImages();
             foreach(string mNombre in mListaNombres)
             {
                 dataGridViewTodasLasImagenes.Rows.Add(mNombre);
@@ -38,7 +38,7 @@ namespace Vista
                 if (dataGridViewTodasLasImagenes.CurrentRow.Cells[0].Value != null)
                 {
                     string mNombreImagen = dataGridViewTodasLasImagenes.CurrentRow.Cells[0].Value.ToString();
-                    Imagen mImagen = iFachada.GetImagenByName(mNombreImagen);
+                    Imagen mImagen = cFachada.GetImagenByName(mNombreImagen);
                     pictureBoxVistaPreviaImagenes.Image = Utilidades.ByteToImage(mImagen.Hash);
                 }
             }
@@ -49,7 +49,7 @@ namespace Vista
             if(dataGridViewTodasLasImagenes.CurrentRow.Cells[0].Value != null)
             {
                 string mNombreImagen = dataGridViewTodasLasImagenes.CurrentRow.Cells[0].Value.ToString();
-                Imagen mImagen = iFachada.GetImagenByName(mNombreImagen);
+                Imagen mImagen = cFachada.GetImagenByName(mNombreImagen);
                 pictureBoxVistaPreviaImagenes.Image = Utilidades.ByteToImage(mImagen.Hash);
             }
 
@@ -67,7 +67,7 @@ namespace Vista
                 dataGridViewTodasLasImagenes.Rows.Remove(dataGridViewTodasLasImagenes.CurrentRow);
                 dataGridViewTodasLasImagenes.Show();
 
-                iImagenesSeleccionadas.Add(mNombreImagen);
+                cImagenesSeleccionadas.Add(mNombreImagen);
             }
 
         }
@@ -84,7 +84,7 @@ namespace Vista
                 dataGridViewImagenesSeleccionadas.Rows.Remove(dataGridViewImagenesSeleccionadas.CurrentRow);
                 dataGridViewImagenesSeleccionadas.Show();
 
-                iImagenesSeleccionadas.Remove(mNombreImagen);
+                cImagenesSeleccionadas.Remove(mNombreImagen);
             }
 
         }
@@ -130,7 +130,7 @@ namespace Vista
                     dataGridViewHorariosDisponibles.AutoSize = false;
 
 
-                    Dictionary<string, List<Campania>> mDiccionario = iFachada.AvailableTimes(dateTimePickerCampaniaFechaInicio.Value, dateTimePickerCampaniaFechaFin.Value);
+                    Dictionary<string, List<Campania>> mDiccionario = cFachada.AvailableTimes(dateTimePickerCampaniaFechaInicio.Value, dateTimePickerCampaniaFechaFin.Value);
                     List<Campania> mListaCampaniasMenoresIguales = new List<Campania>();
                     mListaCampaniasMenoresIguales = mDiccionario["MenoresIguales"];
                     List<Campania> mListaCampaniasIntermedias = new List<Campania>();
@@ -249,13 +249,13 @@ namespace Vista
                 }
 
                 //Verifica si se han seleccionado imágenes
-                if (iImagenesSeleccionadas == null)
+                if (cImagenesSeleccionadas == null)
                 {
                     throw new Exception("Debe seleccionar al menos una imágen");
                 }
 
                 //Verifica si la hora seleccionada está disponible
-                Dictionary<string, List<Campania>> mDiccionario = iFachada.AvailableTimes(dateTimePickerCampaniaFechaInicio.Value, dateTimePickerCampaniaFechaFin.Value);
+                Dictionary<string, List<Campania>> mDiccionario = cFachada.AvailableTimes(dateTimePickerCampaniaFechaInicio.Value, dateTimePickerCampaniaFechaFin.Value);
                 List<Campania> mListaCampaniasMenoresIguales = new List<Campania>();
                 mListaCampaniasMenoresIguales = mDiccionario["MenoresIguales"];
 
@@ -325,14 +325,14 @@ namespace Vista
                 mCampania.FechaFin = mFechaFin;
                 List<Imagen> mListaImagenes = new List<Imagen>();
 
-                foreach (string mNombreImagen in iImagenesSeleccionadas)
+                foreach (string mNombreImagen in cImagenesSeleccionadas)
                 {
-                    Imagen mImagen = iFachada.GetImagenByName(mNombreImagen);
+                    Imagen mImagen = cFachada.GetImagenByName(mNombreImagen);
                     mListaImagenes.Add(mImagen);
                 }
                 mCampania.Imagenes = mListaImagenes;
 
-                iFachada.AddCampania(mCampania);
+                cFachada.AddCampania(mCampania);
                 MessageBox.Show("La campaña se ha guardado con éxito");
                 this.Close();
 
@@ -340,7 +340,7 @@ namespace Vista
             catch (Exception mExcepcion)
             {
                 MessageBox.Show(mExcepcion.Message);
-                iLogger.Debug(mExcepcion.Message);
+                cLogger.Debug(mExcepcion.Message);
             }
 
         }

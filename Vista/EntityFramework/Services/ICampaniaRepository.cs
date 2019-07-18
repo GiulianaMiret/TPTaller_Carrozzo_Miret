@@ -10,7 +10,7 @@ namespace EntityFramework.Services
 {
     public interface ICampaniaRepository
     {
-        List<Imagen> GetImagenes(int pIdCampania);
+        List<Imagen> GetImagenes(Campania pCampania);
 
         void DeleteImagenes(int pIdImagen, int pIdCampania);
 

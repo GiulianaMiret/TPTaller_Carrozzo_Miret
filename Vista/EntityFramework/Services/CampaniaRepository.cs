@@ -24,18 +24,18 @@ namespace EntityFramework.Services
             cDbSetCampania = pContext.Set<Campania>();
         }        
 
-        public List<Imagen> GetImagenes (int pIdCampania)
+        public List<Imagen> GetImagenes (Campania pCampania)
         {
-            Campania pCampania = cDbSetCampania.Find(pIdCampania);
-            if (pCampania == null)
+            Campania mCampania = cDbSetCampania.Find(pCampania.Id);
+            if (mCampania == null)
             {
                 throw new Exception("No se ha encontrado la Campaña");
             }
-            if (pCampania.Imagenes.Count() == 0)
+            if (mCampania.Imagenes.Count() == 0)
             {
                 throw new Exception("La campaña no contiene imágenes");
             }
-            return pCampania.Imagenes.ToList();
+            return mCampania.Imagenes.ToList();
         }
 
         public void DeleteImagenes(int pIdImagen, int pIdCampania)
