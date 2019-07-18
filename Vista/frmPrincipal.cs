@@ -51,5 +51,9 @@ namespace Vista
             CompositionRoot.Resolve<FrmCampaniaModificar>().ShowDialog();
         }
 
+        private void borrarCampañaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CompositionRoot.Resolve<FrmCampaniaBorrar>().ShowDialog();
+        }
     }
 }

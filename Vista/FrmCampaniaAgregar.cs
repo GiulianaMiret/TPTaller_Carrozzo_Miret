@@ -91,9 +91,8 @@ namespace Vista
 
         private void buttonConsultarDisponibilidad_Click(object sender, EventArgs e)
         {
-            dataGridViewHorariosDisponibles = new DataGridView();
+            dataGridViewHorariosDisponibles.Columns.Clear();
             dataGridViewHorariosDisponibles.Visible = true;
-            
 
             if (dateTimePickerCampaniaFechaInicio.Value.Date >= DateTime.Now.Date)
             {
@@ -102,25 +101,29 @@ namespace Vista
                     DateTime mFechaInicio = dateTimePickerCampaniaFechaInicio.Value;
                     DateTime mFechaFin = dateTimePickerCampaniaFechaFin.Value;
                     int mCantidadColumnas = (mFechaFin - mFechaInicio).Days;
+                    DateTime mFechaAuxiliar = new DateTime();
+                    mFechaAuxiliar = mFechaInicio;
 
                     for (int i = 0; i <= mCantidadColumnas; i++)
                     {
                         DataGridViewColumn mColumna = new DataGridViewColumn()
                         {
                             //Name = (i + 1).ToString(),
-                            Name = (mFechaInicio.Day + i).ToString(),
-                            Width = 30,
+                            Name = ((mFechaAuxiliar.Day).ToString() + "/" + (mFechaAuxiliar.Month).ToString()),
+                            Width = 40,
                             ValueType = typeof(string),
                             CellTemplate = new DataGridViewTextBoxCell()
                         };
                         dataGridViewHorariosDisponibles.Columns.Add(mColumna);
+                        mFechaAuxiliar = mFechaAuxiliar.AddDays(1);
                     }
                     for (int i = 0; i < 24; i++)
                     {
                         DataGridViewRow fila = new DataGridViewRow();
                         dataGridViewHorariosDisponibles.Rows.Add(fila);
-                        dataGridViewHorariosDisponibles.Rows[i].HeaderCell.Value = (i).ToString();
-                        
+                        dataGridViewHorariosDisponibles.Rows[i].HeaderCell.Value = ((i).ToString() + " hs.");
+                        dataGridViewHorariosDisponibles.AutoResizeRowHeadersWidth(
+                                                        DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders);
                     }
                     //DGV Rangos Horarios Seleccionados
                     dataGridViewHorariosDisponibles.AutoGenerateColumns = false;
@@ -135,11 +138,7 @@ namespace Vista
                     List<Campania> mListaCampaniasMayores = new List<Campania>();
                     mListaCampaniasMayores = mDiccionario["Mayores"];
 
-
-                    //List<Campania> mListaTodasLasCampanias = iFachada.GetAllCampania().ToList();
-
                     //Opción 1: 
-                    //List<Campania> mListaCampaniasMenoresIguales = mListaTodasLasCampanias.Where(x => (x.FechaFin <= mFechaFin) && (x.FechaFin >= mFechaInicio)).ToList();
                     int mCantidadDias = 0;
                     foreach (Campania mCampania in mListaCampaniasMenoresIguales)
                     {
@@ -163,14 +162,17 @@ namespace Vista
                             {
                                 for (int j = (mCampania.FechaInicio.Hour); j <= (mCampania.FechaFin.Hour); j++)
                                 {
-                                    dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                                    if(i < dataGridViewHorariosDisponibles.ColumnCount)
+                                    {
+                                        dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                                    }
+                                    
                                 }
                             }
                         }
                     }
 
                     //Opción 2:
-                    //List<Campania> mListaCampaniasIntermedias = mListaTodasLasCampanias.Where(x => (x.FechaFin > mFechaFin) && (x.FechaInicio <= mFechaFin) && (x.FechaInicio >= mFechaInicio)).ToList();
                     foreach (Campania mCampania in mListaCampaniasIntermedias)
                     {
                         mCantidadDias = (mCampania.FechaInicio.Date - mFechaInicio.Date).Days;
@@ -186,7 +188,6 @@ namespace Vista
                     }
 
                     //Opción 3:
-                    //List<Campania> mListaCampaniasMayores = mListaTodasLasCampanias.Where(x => (x.FechaInicio < mFechaInicio) && (x.FechaFin > mFechaFin)).ToList();
                     foreach (Campania mCampania in mListaCampaniasMayores)
                     {
                         for (int i = 0; i <= mCantidadColumnas; i++)
@@ -216,43 +217,93 @@ namespace Vista
         {
             try
             {
-                //Verificar si la hora seleccionada está disponible..
-                Dictionary<string, List<Campania>> mDiccionario = iFachada.AvailableTimes(dateTimePickerCampaniaFechaInicio.Value, dateTimePickerCampaniaFechaFin.Value);
-                List<Campania> mListaCampaniasMenoresIguales = new List<Campania>();
-                mListaCampaniasMenoresIguales = mDiccionario["MenoresIguales"];
-                List<Campania> mListaCampaniasIntermedias = new List<Campania>();
-                mListaCampaniasIntermedias = mDiccionario["Intermedias"];
-                List<Campania> mListaCampaniasMayores = new List<Campania>();
-                mListaCampaniasMayores = mDiccionario["Mayores"];
-                //OP 1
-                foreach (Campania mItemCampania in mListaCampaniasMenoresIguales)
-                {
-                    //if(mItemCampania.FechaFin.Hour )
-                }
-                //OP 2
-                //OP 3
-
-
-
-
-                    if (textBoxCampaniaNombre.Text == "")
+                //Verifia si tiene nombre
+                if (textBoxCampaniaNombre.Text == "")
                 {
                     throw new Exception("Falta ingresar el nombre de la campaña");
                 }
 
-                if ((Convert.ToInt32(comboBoxCampaniHoraInicio.Text) < 0) || 
+                //Verifica si la hora de inicio está en el rango aceptado
+                if ((Convert.ToInt32(comboBoxCampaniHoraInicio.Text) < 0) ||
                     (Convert.ToInt32(comboBoxCampaniHoraInicio.Text) > 23))
                 {
                     throw new Exception("La hora de inicio ingresada no es válida");
                 }
 
-                if ((Convert.ToInt32(comboBoxCampaniaHoraFin.Text) < 0) || 
+                //Verifica si la hora de fin está en el rango aceptado
+                if ((Convert.ToInt32(comboBoxCampaniaHoraFin.Text) < 0) ||
                     (Convert.ToInt32(comboBoxCampaniaHoraFin.Text) > 23))
                 {
                     throw new Exception("La hora de fin ingresada no es válida");
                 }
 
-                //paso la info del datePicker y el combo a una sola variable
+                //Verifica si las fechas forman un rango aceptable
+                if (dateTimePickerCampaniaFechaInicio.Value.Date < DateTime.Now.Date)
+                {
+                    throw new Exception("No se admiten Fechas de Inicios pasadas");
+                }
+
+                if (dateTimePickerCampaniaFechaFin.Value.Date < dateTimePickerCampaniaFechaInicio.Value.Date)
+                {
+                    throw new Exception("La Fecha Final debe ser mayor a la Fecha de Inicio");
+                }
+
+                //Verifica si se han seleccionado imágenes
+                if (iImagenesSeleccionadas == null)
+                {
+                    throw new Exception("Debe seleccionar al menos una imágen");
+                }
+
+                //Verifica si la hora seleccionada está disponible
+                Dictionary<string, List<Campania>> mDiccionario = iFachada.AvailableTimes(dateTimePickerCampaniaFechaInicio.Value, dateTimePickerCampaniaFechaFin.Value);
+                List<Campania> mListaCampaniasMenoresIguales = new List<Campania>();
+                mListaCampaniasMenoresIguales = mDiccionario["MenoresIguales"];
+
+                List<Campania> mListaCampaniaAuxiliar = new List<Campania>();
+                foreach (Campania mItemCampania in mListaCampaniasMenoresIguales)
+                {
+                    //Convert.ToInt32(comboBoxCampaniHoraInicio.Text);
+                    mListaCampaniaAuxiliar = mListaCampaniasMenoresIguales.Where(x =>
+                                                (x.FechaFin.Hour <= Convert.ToInt32(comboBoxCampaniaHoraFin.Text)) &&
+                                                (x.FechaFin.Hour >= Convert.ToInt32(comboBoxCampaniHoraInicio.Text))).ToList();
+                    if (mListaCampaniaAuxiliar.Count() == 0)
+                    {
+                        List<Campania> mListaCampaniasIntermedias = new List<Campania>();
+                        mListaCampaniasIntermedias = mDiccionario["Intermedias"];
+                        foreach (Campania mItemCampania2 in mListaCampaniasIntermedias)
+                        {
+                            mListaCampaniaAuxiliar = mListaCampaniasIntermedias.Where(x =>
+                                                    (x.FechaFin.Hour > Convert.ToInt32(comboBoxCampaniaHoraFin.Text)) &&
+                                                    (x.FechaInicio.Hour <= Convert.ToInt32(comboBoxCampaniaHoraFin.Text)) &&
+                                                    (x.FechaInicio.Hour >= Convert.ToInt32(comboBoxCampaniHoraInicio.Text))).ToList();
+                            if (mListaCampaniaAuxiliar.Count() == 0)
+                            {
+                                List<Campania> mListaCampaniasMayores = new List<Campania>();
+                                mListaCampaniasMayores = mDiccionario["Mayores"];
+                                foreach (Campania mItemCampania3 in mListaCampaniasMayores)
+                                {
+                                    mListaCampaniaAuxiliar = mListaCampaniasMayores.Where(x =>
+                                                             (x.FechaInicio.Hour < Convert.ToInt32(comboBoxCampaniHoraInicio.Text)) &&
+                                                             (x.FechaFin.Hour > Convert.ToInt32(comboBoxCampaniaHoraFin.Text))).ToList();
+                                }
+                                if (mListaCampaniaAuxiliar.Count() > 0)
+                                {
+                                    throw new Exception("El horario no está disponible. Por favor verifique la disponibilidad");
+                                }
+                            }
+                            else
+                            {
+                                throw new Exception("El horario no está disponible. Por favor verifique la disponibilidad");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        throw new Exception("El horario no está disponible. Por favor verifique la disponibilidad");
+                    }
+                }
+
+                //Pasa la info del datePicker y el combo a una sola variable
                 DateTime mFechaInicio = new DateTime(
                                                     dateTimePickerCampaniaFechaInicio.Value.Year,
                                                     dateTimePickerCampaniaFechaInicio.Value.Month,
@@ -268,16 +319,6 @@ namespace Vista
                                                  0,
                                                  0);
 
-                if (mFechaInicio.Date < DateTime.Now.Date)
-                {
-                    throw new Exception("No se admiten Fechas de Inicios pasadas");
-                }
-
-                if (mFechaFin.Date < mFechaInicio.Date)
-                {
-                    throw new Exception("La Fecha Final debe ser mayor a la Fecha de Inicio");
-                }
-
                 Campania mCampania = new Campania();
                 mCampania.Nombre = textBoxCampaniaNombre.Text;
                 mCampania.FechaInicio = mFechaInicio;
@@ -290,11 +331,6 @@ namespace Vista
                     mListaImagenes.Add(mImagen);
                 }
                 mCampania.Imagenes = mListaImagenes;
-
-                if (iImagenesSeleccionadas == null)
-                {
-                    throw new Exception("Debe seleccionar al menos una imágen");
-                }
 
                 iFachada.AddCampania(mCampania);
                 MessageBox.Show("La campaña se ha guardado con éxito");
@@ -315,10 +351,5 @@ namespace Vista
             this.Close();
         }
 
-        private void dataGridViewHorariosDisponibles_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            //e.CellStyle.ForeColor = Color.Red;
-            
-        }
     }
 }

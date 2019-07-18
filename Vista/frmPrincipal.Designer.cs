@@ -112,6 +112,7 @@
             this.borrarCampañaToolStripMenuItem.Name = "borrarCampañaToolStripMenuItem";
             this.borrarCampañaToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.borrarCampañaToolStripMenuItem.Text = "Borrar Campaña";
+            this.borrarCampañaToolStripMenuItem.Click += new System.EventHandler(this.borrarCampañaToolStripMenuItem_Click);
             // 
             // administraciónDeBannersToolStripMenuItem
             // 

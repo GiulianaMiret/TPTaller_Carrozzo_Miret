@@ -31,11 +31,9 @@ namespace Vista
             List<Campania> mListaResultadoBusqueda = new List<Campania>();
             if (textBoxNombreCampania.Text != "")
             {
-                mListaResultadoBusqueda = iFachada.FilterCampania(x => x.Nombre == textBoxNombreCampania.Text).ToList();
+                mListaResultadoBusqueda = iFachada.GetAllCampania().Where(x => x.Nombre == textBoxNombreCampania.Text).ToList();
+                dataGridViewCampanias.DataSource = mListaResultadoBusqueda;
             }
-            
-
-
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)

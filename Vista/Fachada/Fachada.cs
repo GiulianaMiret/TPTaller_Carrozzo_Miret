@@ -218,11 +218,6 @@ namespace Controlador
             cRepositoryBaseCampania.SaveChanges();
         }
 
-        public IQueryable<Campania> FilterCampania(Expression<Func<Campania, bool>> pExpresion)
-        {
-            return cRepositoryBaseCampania.Filter(pExpresion);
-        }
-
         public List<Campania> GetAllCampania()
         {
             return cRepositoryBaseCampania.GetAll().ToList();

@@ -361,7 +361,7 @@
             // 
             // buttonConsultarDisponibilidad
             // 
-            this.buttonConsultarDisponibilidad.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.buttonConsultarDisponibilidad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonConsultarDisponibilidad.AutoSize = true;
             this.buttonConsultarDisponibilidad.BackColor = System.Drawing.Color.SandyBrown;
             this.buttonConsultarDisponibilidad.Font = new System.Drawing.Font("Copperplate Gothic Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -375,13 +375,15 @@
             // 
             // dataGridViewHorariosDisponibles
             // 
+            this.dataGridViewHorariosDisponibles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewHorariosDisponibles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewHorariosDisponibles.Location = new System.Drawing.Point(865, 134);
             this.dataGridViewHorariosDisponibles.Name = "dataGridViewHorariosDisponibles";
             this.dataGridViewHorariosDisponibles.Size = new System.Drawing.Size(336, 457);
             this.dataGridViewHorariosDisponibles.TabIndex = 23;
             this.dataGridViewHorariosDisponibles.Visible = false;
-            this.dataGridViewHorariosDisponibles.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewHorariosDisponibles_CellFormatting);
             // 
             // FrmCampaniaAgregar
             // 
