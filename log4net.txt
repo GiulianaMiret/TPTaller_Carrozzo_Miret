@@ -20,3 +20,6 @@
 2019-07-04 23:37:09,883 ERROR [1] Vista.Logger.Logger4net.Error - Referencia a objeto no establecida como instancia de un objeto.
 2019-07-04 23:40:30,480 ERROR [1] Vista.Logger.Logger4net.Error - Referencia a objeto no establecida como instancia de un objeto.
 2019-07-09 16:11:44,036 ERROR [1] Vista.Logger.Logger4net.Error - La imagen ya existe
+2019-07-17 20:11:39,163 ERROR [1] Vista.Logger.Logger4net.Error - La imagen ya existe
+2019-07-17 20:12:18,112 ERROR [1] Vista.Logger.Logger4net.Error - La imagen ya existe
+2019-07-17 20:29:03,174 DEBUG [1] Vista.Logger.Logger4net.Debug - La Imagen no se ha encontrado

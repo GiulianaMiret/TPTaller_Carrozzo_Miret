@@ -9,8 +9,8 @@ namespace Vista
 {
     public partial class FrmFuenteRSSTXTAgregar : Form
     {
-        private readonly Fachada iFachada;
-        private readonly ILogger iLogger;
+        private readonly Fachada cFachada;
+        private readonly ILogger cLogger;
 
         /// <summary>
         /// realizamos la injeccion de dependencias en el constructor
@@ -18,10 +18,10 @@ namespace Vista
         /// </summary>
         /// <param name="fachada"></param>
         /// <param name="logger"></param>
-        public FrmFuenteRSSTXTAgregar(Fachada fachada, ILogger logger)
+        public FrmFuenteRSSTXTAgregar(Fachada pFachada, ILogger pLogger)
         {
-            iFachada = fachada;
-            iLogger = logger;
+            cFachada = pFachada;
+            cLogger = pLogger;
             InitializeComponent();
             radioButtonRSS.Checked = true;
         }
@@ -51,7 +51,7 @@ namespace Vista
                         if (radioButtonRSS.Checked)
                         {
                             FuenteRSS mFuenteRSS = new FuenteRSS { Titulo = textBoxTitulo.Text, URL = textBoxURLfuente.Text };
-                            iFachada.AddFuenteRSS(mFuenteRSS);
+                            cFachada.AddFuenteRSS(mFuenteRSS);
                             Utilidades.MostrarMensajePopup("La fuente RSS se agregó con éxito");
                         }
                         else
@@ -66,7 +66,7 @@ namespace Vista
             catch (Exception bError)
             {
                 MessageBox.Show("No se ha podido cargar la fuente RSS, por favor verifique el Log para mas detalles.");
-                iLogger.Debug(bError.ToString());
+                cLogger.Debug(bError.ToString());
             }
             
             
@@ -91,17 +91,17 @@ namespace Vista
         private void actualizarValoresDeFuentesRSSToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //traigo todas las fuentes RSS y las mando a la fachada a updatearse
-            var mListOfRSS = iFachada.GetAllRSS();
+            var mListOfRSS = cFachada.GetAllRSS();
             try
             {
                 foreach (var mRSS in mListOfRSS)
                 {
-                    iFachada.UpdateValueRSS(mRSS);
+                    cFachada.UpdateValueRSS(mRSS);
                 }
             }
             catch (Exception exc)
             {
-                iLogger.Debug(exc.Message);
+                cLogger.Debug(exc.Message);
                 MessageBox.Show("Ha ocurrido un error " + exc.Message);
             }            
         }
