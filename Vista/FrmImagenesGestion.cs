@@ -53,6 +53,13 @@ namespace Vista
         {
             //se crea una nueva imagen para insertarla a traves de la fachada
             //se utiliza el procedimiento ImageToByteArray
+
+            if (comboBoxImagen.Text == "COLOQUE AQUÍ EL NOMBRE DE LA IMAGEN")
+            {
+                MessageBox.Show("Por favor, elija un nombre para la imagen");
+                return;
+            }
+
             Imagen mImagenAInsertar = new Imagen();
             mImagenAInsertar.Hash = Utilidades.ImageToByteArray(pictureBoxImagen);
             mImagenAInsertar.Nombre = comboBoxImagen.Text; 
@@ -113,23 +120,16 @@ namespace Vista
         {
             try
             {
-                iFachada.DeleteImagenByHash(Utilidades.ImageToByteArray(pictureBoxImagen));
+                Imagen mImagenABorrar = new Imagen();
+                mImagenABorrar.Nombre = comboBoxImagen.Text;
+                iFachada.DeleteImagen(mImagenABorrar);
                 Utilidades.MostrarMensajePopup("Se borró correctamente la imagen.");
                 FrmGestionImagenes_Load(sender, e);
             }
-            catch (Exception)
+            catch (Exception exc)
             {
-                try
-                { 
-                iFachada.DeleteImagenByName(comboBoxImagen.Text);
-                Utilidades.MostrarMensajePopup("Se borró correctamente la imagen.");
-                FrmGestionImagenes_Load(sender, e);
-                }
-                catch (Exception exc)
-                {
                     iLogger.Debug(exc.Message);
                     MessageBox.Show("Ha ocurrido un error: " + exc.Message);
-                }
             }
         }
     }

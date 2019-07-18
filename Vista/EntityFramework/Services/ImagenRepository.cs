@@ -74,8 +74,7 @@ namespace EntityFramework.Services
             }
             
             cDbSetImagen.Remove(mImagen);            
-        }        
-        
+        }                
 
     }
 

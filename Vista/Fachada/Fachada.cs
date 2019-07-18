@@ -98,6 +98,11 @@ namespace Controlador
             return cRepositoryBaseRSS.GetAll().ToList();
         }
 
+        public IEnumerable<FuenteTextoFijo> GetAllTXT()
+        {
+            return cRepositoryBaseTXT.GetAll().ToList();
+        }
+
         public void AddFuenteRSS(FuenteRSS pFuenteRSS)
         {           
                 if (Utilidades.InternetDisponible())
@@ -130,8 +135,17 @@ namespace Controlador
             return cBannerRepository.GetBannerNow().Fuente.Valor;
         }
                
+        public void DeleteFuenteRSS(FuenteRSS pFuenteRSS)
+        {
+            cRepositoryBaseRSS.DeleteById(pFuenteRSS.Id);
+            cRepositoryBaseRSS.SaveChanges();
+        }
 
-
+        public void DeleteFuenteTXT(FuenteTextoFijo pFuenteTXT)
+        {
+            cRepositoryBaseTXT.DeleteById(pFuenteTXT.Id);
+            cRepositoryBaseTXT.SaveChanges();
+        }
 
         public void AddImagen(Imagen pImagen)
         {
@@ -146,26 +160,21 @@ namespace Controlador
             {
                 throw new Exception("Una imagen con ese nombre ya existe, elija otro.");
             }
-            cRepositoryBaseImagen.Add(pImagen);
-            
+            cRepositoryBaseImagen.Add(pImagen);            
             cRepositoryBaseImagen.SaveChanges();
         }
 
-        public void DeleteImagenByHash(byte[] pHash)
+        public void DeleteImagen (Imagen pImagen)
         {
-                cImagenRepository.DeleteByHash(pHash);
-        }
-
-        public void DeleteImagenByPictureBox(PictureBox pImagen)
-        {
-            Imagen mImagen = cImagenRepository.GetByHash(Utilidades.ImageToByteArray(pImagen));
-            cRepositoryBaseImagen.DeleteById(mImagen.Id);
+            if (pImagen.Nombre != "")
+            {
+                cImagenRepository.DeleteByName(pImagen.Nombre);
+            }
+            else
+            {
+                cImagenRepository.DeleteByHash(pImagen.Hash);
+            }
             cRepositoryBaseImagen.SaveChanges();
-        }
-
-        public void DeleteImagenByName(string pName)
-        {
-            cImagenRepository.DeleteByName(pName);
         }
 
         public void UpdateImagen (Imagen pImagen)
