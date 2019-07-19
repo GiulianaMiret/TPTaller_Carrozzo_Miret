@@ -35,7 +35,6 @@
             this.btnFuenteGuardar = new System.Windows.Forms.Button();
             this.btnFuenteCancelar = new System.Windows.Forms.Button();
             this.lblTitulo = new System.Windows.Forms.Label();
-            this.textBoxTitulo = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.radioButtonRSS = new System.Windows.Forms.RadioButton();
@@ -49,6 +48,7 @@
             this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rSSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.actualizarValoresDeFuentesRSSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.textBoxTitulo = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -65,7 +65,8 @@
             // 
             // labelNuevaFuente
             // 
-            this.labelNuevaFuente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelNuevaFuente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.labelNuevaFuente.AutoSize = true;
             this.labelNuevaFuente.BackColor = System.Drawing.Color.Transparent;
             this.labelNuevaFuente.Font = new System.Drawing.Font("Lucida Calligraphy", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -96,9 +97,9 @@
             this.btnFuenteGuardar.AutoSize = true;
             this.btnFuenteGuardar.Font = new System.Drawing.Font("Copperplate Gothic Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFuenteGuardar.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.btnFuenteGuardar.Location = new System.Drawing.Point(326, 468);
+            this.btnFuenteGuardar.Location = new System.Drawing.Point(381, 494);
             this.btnFuenteGuardar.Name = "btnFuenteGuardar";
-            this.btnFuenteGuardar.Size = new System.Drawing.Size(243, 70);
+            this.btnFuenteGuardar.Size = new System.Drawing.Size(188, 44);
             this.btnFuenteGuardar.TabIndex = 16;
             this.btnFuenteGuardar.Text = "Guardar";
             this.btnFuenteGuardar.UseVisualStyleBackColor = true;
@@ -109,12 +110,13 @@
             this.btnFuenteCancelar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnFuenteCancelar.Font = new System.Drawing.Font("Copperplate Gothic Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFuenteCancelar.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.btnFuenteCancelar.Location = new System.Drawing.Point(645, 468);
+            this.btnFuenteCancelar.Location = new System.Drawing.Point(608, 494);
             this.btnFuenteCancelar.Name = "btnFuenteCancelar";
-            this.btnFuenteCancelar.Size = new System.Drawing.Size(259, 70);
+            this.btnFuenteCancelar.Size = new System.Drawing.Size(188, 44);
             this.btnFuenteCancelar.TabIndex = 17;
             this.btnFuenteCancelar.Text = "Cancelar";
             this.btnFuenteCancelar.UseVisualStyleBackColor = true;
+            this.btnFuenteCancelar.Click += new System.EventHandler(this.btnFuenteCancelar_Click);
             // 
             // lblTitulo
             // 
@@ -128,15 +130,6 @@
             this.lblTitulo.Size = new System.Drawing.Size(70, 19);
             this.lblTitulo.TabIndex = 18;
             this.lblTitulo.Text = "Titulo";
-            // 
-            // textBoxTitulo
-            // 
-            this.textBoxTitulo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxTitulo.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxTitulo.Location = new System.Drawing.Point(173, 207);
-            this.textBoxTitulo.Name = "textBoxTitulo";
-            this.textBoxTitulo.Size = new System.Drawing.Size(1035, 30);
-            this.textBoxTitulo.TabIndex = 19;
             // 
             // label2
             // 
@@ -170,6 +163,7 @@
             // 
             this.radioButtonRSS.AutoSize = true;
             this.radioButtonRSS.Font = new System.Drawing.Font("Perpetua Titling MT", 12F);
+            this.radioButtonRSS.ForeColor = System.Drawing.Color.White;
             this.radioButtonRSS.Location = new System.Drawing.Point(3, 9);
             this.radioButtonRSS.Name = "radioButtonRSS";
             this.radioButtonRSS.Size = new System.Drawing.Size(118, 23);
@@ -182,6 +176,7 @@
             // 
             this.radioButtonTXT.AutoSize = true;
             this.radioButtonTXT.Font = new System.Drawing.Font("Perpetua Titling MT", 12F);
+            this.radioButtonTXT.ForeColor = System.Drawing.Color.White;
             this.radioButtonTXT.Location = new System.Drawing.Point(3, 38);
             this.radioButtonTXT.Name = "radioButtonTXT";
             this.radioButtonTXT.Size = new System.Drawing.Size(121, 23);
@@ -193,6 +188,7 @@
             // groupBox1
             // 
             this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.groupBox1.BackColor = System.Drawing.Color.Transparent;
             this.groupBox1.Controls.Add(this.radioButtonRSS);
             this.groupBox1.Controls.Add(this.radioButtonTXT);
             this.groupBox1.Location = new System.Drawing.Point(170, 102);
@@ -268,7 +264,7 @@
             this.rSSToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.actualizarValoresDeFuentesRSSToolStripMenuItem});
             this.rSSToolStripMenuItem.Name = "rSSToolStripMenuItem";
-            this.rSSToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.rSSToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
             this.rSSToolStripMenuItem.Text = "RSS";
             // 
             // actualizarValoresDeFuentesRSSToolStripMenuItem
@@ -277,6 +273,15 @@
             this.actualizarValoresDeFuentesRSSToolStripMenuItem.Size = new System.Drawing.Size(248, 22);
             this.actualizarValoresDeFuentesRSSToolStripMenuItem.Text = "Actualizar valores de Fuentes RSS";
             this.actualizarValoresDeFuentesRSSToolStripMenuItem.Click += new System.EventHandler(this.actualizarValoresDeFuentesRSSToolStripMenuItem_Click);
+            // 
+            // textBoxTitulo
+            // 
+            this.textBoxTitulo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxTitulo.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxTitulo.Location = new System.Drawing.Point(173, 207);
+            this.textBoxTitulo.Name = "textBoxTitulo";
+            this.textBoxTitulo.Size = new System.Drawing.Size(1035, 30);
+            this.textBoxTitulo.TabIndex = 19;
             // 
             // FrmFuenteRSSTXTAgregar
             // 
@@ -323,7 +328,6 @@
         private System.Windows.Forms.Button btnFuenteGuardar;
         private System.Windows.Forms.Button btnFuenteCancelar;
         private System.Windows.Forms.Label lblTitulo;
-        private System.Windows.Forms.TextBox textBoxTitulo;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.RadioButton radioButtonRSS;
@@ -337,5 +341,6 @@
         private System.Windows.Forms.ToolStripMenuItem archivoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rSSToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem actualizarValoresDeFuentesRSSToolStripMenuItem;
+        private System.Windows.Forms.TextBox textBoxTitulo;
     }
 }

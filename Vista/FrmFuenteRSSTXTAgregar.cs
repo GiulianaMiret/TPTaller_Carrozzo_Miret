@@ -37,36 +37,35 @@ namespace Vista
                 //se realizan controles de valor nulo y de url valida
                 if (textBoxTitulo.Text == "")
                 {
-                    MessageBox.Show("Por favor, ingrese un titulo para la fuente RSS.");
+                    throw new Exception("Por favor, ingrese un titulo para la fuente.");
                 }
                 else
                 {
-                    if (!Utilidades.UrlValida(textBoxURLfuente.Text))
+                    if (radioButtonRSS.Checked)
                     {
-                        MessageBox.Show("La URL no es válida. Por favor verifíquela.");
-                    }
-                    else
-                    {
-                        ///me fijo si es fuente rss o fuenteTXT
-                        if (radioButtonRSS.Checked)
+                        if (!Utilidades.UrlValida(textBoxURLfuente.Text))
                         {
-                            FuenteRSS mFuenteRSS = new FuenteRSS { Titulo = textBoxTitulo.Text, URL = textBoxURLfuente.Text };
-                            cFachada.AddFuenteRSS(mFuenteRSS);
-                            Utilidades.MostrarMensajePopup("La fuente RSS se agregó con éxito");
+                            throw new Exception("La URL no es válida. Por favor verifíquela.");
                         }
                         else
                         {
-                            FuenteTextoFijo mFuenteTextoFijo = new FuenteTextoFijo { Titulo = textBoxTitulo.Text, Valor = textBoxTextoFijo.Text };                            
-                            
+                            FuenteRSS mFuenteRSS = new FuenteRSS { Titulo = textBoxTitulo.Text, URL = textBoxURLfuente.Text };
+                            cFachada.AddFuenteRSS(mFuenteRSS);
+                            MessageBox.Show("La fuente RSS se agregó con éxito");
                         }
-                        
+                    }
+                    else
+                    {
+                        FuenteTextoFijo mFuenteTextoFijo = new FuenteTextoFijo { Titulo = textBoxTitulo.Text, Valor = textBoxTextoFijo.Text };
+                        cFachada.AddFuenteTXT(mFuenteTextoFijo);
+                        MessageBox.Show("La fuente se agregó con éxito");
                     }
                 }
             }
-            catch (Exception bError)
+            catch (Exception mException)
             {
-                MessageBox.Show("No se ha podido cargar la fuente RSS, por favor verifique el Log para mas detalles.");
-                cLogger.Debug(bError.ToString());
+                MessageBox.Show(mException.Message);
+                cLogger.Debug(mException.ToString());
             }
             
             
@@ -104,6 +103,11 @@ namespace Vista
                 cLogger.Debug(exc.Message);
                 MessageBox.Show("Ha ocurrido un error " + exc.Message);
             }            
+        }
+
+        private void btnFuenteCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

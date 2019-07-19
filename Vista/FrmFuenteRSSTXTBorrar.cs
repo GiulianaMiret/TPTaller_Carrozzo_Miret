@@ -62,5 +62,10 @@ namespace Vista
                 MessageBox.Show("Ocurrio un error: " + exc.Message);
             }            
         }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

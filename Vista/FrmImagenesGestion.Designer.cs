@@ -88,13 +88,14 @@
             // 
             this.btnInsertarImagen.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnInsertarImagen.AutoSize = true;
+            this.btnInsertarImagen.BackColor = System.Drawing.Color.SandyBrown;
             this.btnInsertarImagen.Font = new System.Drawing.Font("Copperplate Gothic Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInsertarImagen.Location = new System.Drawing.Point(265, 606);
+            this.btnInsertarImagen.Location = new System.Drawing.Point(271, 606);
             this.btnInsertarImagen.Name = "btnInsertarImagen";
             this.btnInsertarImagen.Size = new System.Drawing.Size(148, 45);
             this.btnInsertarImagen.TabIndex = 16;
             this.btnInsertarImagen.Text = "Insertar";
-            this.btnInsertarImagen.UseVisualStyleBackColor = true;
+            this.btnInsertarImagen.UseVisualStyleBackColor = false;
             this.btnInsertarImagen.Click += new System.EventHandler(this.btnInsertarImagen_Click);
             // 
             // btnBorrarImagen
@@ -110,7 +111,7 @@
             this.btnBorrarImagen.UseVisualStyleBackColor = true;
             this.btnBorrarImagen.Click += new System.EventHandler(this.btnBorrarImagen_Click);
             // 
-            // FrmGestionImagenes
+            // FrmImagenesGestion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -125,7 +126,7 @@
             this.Controls.Add(this.btnInsertarImagen);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "FrmGestionImagenes";
+            this.Name = "FrmImagenesGestion";
             this.Text = " Shout News";
             this.Load += new System.EventHandler(this.FrmGestionImagenes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImagen)).EndInit();

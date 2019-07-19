@@ -89,6 +89,12 @@
     <Compile Include="FrmFuenteRSSTXTBorrar.Designer.cs">
       <DependentUpon>FrmFuenteRSSTXTBorrar.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmFuenteRSSTXTModificar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmFuenteRSSTXTModificar.Designer.cs">
+      <DependentUpon>FrmFuenteRSSTXTModificar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Logger\Logger4net.cs" />
     <Compile Include="Logger\ILogger.cs" />
     <Compile Include="Migrations\201907110204294_Inicial.cs" />
@@ -167,6 +173,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmFuenteRSSTXTBorrar.resx">
       <DependentUpon>FrmFuenteRSSTXTBorrar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmFuenteRSSTXTModificar.resx">
+      <DependentUpon>FrmFuenteRSSTXTModificar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmImagenesGestion.resx">
       <DependentUpon>FrmImagenesGestion.cs</DependentUpon>

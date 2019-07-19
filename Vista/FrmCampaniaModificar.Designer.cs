@@ -92,6 +92,7 @@
             // 
             // labelNombreModificarCampania
             // 
+            this.labelNombreModificarCampania.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.labelNombreModificarCampania.AutoSize = true;
             this.labelNombreModificarCampania.BackColor = System.Drawing.Color.Transparent;
             this.labelNombreModificarCampania.Font = new System.Drawing.Font("Perpetua Titling MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -104,6 +105,7 @@
             // 
             // textBoxNombreCampania
             // 
+            this.textBoxNombreCampania.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.textBoxNombreCampania.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxNombreCampania.Location = new System.Drawing.Point(567, 286);
             this.textBoxNombreCampania.Name = "textBoxNombreCampania";
@@ -268,7 +270,7 @@
             // 
             // buttonConsultarDisponibilidad
             // 
-            this.buttonConsultarDisponibilidad.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.buttonConsultarDisponibilidad.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.buttonConsultarDisponibilidad.AutoSize = true;
             this.buttonConsultarDisponibilidad.BackColor = System.Drawing.Color.SandyBrown;
             this.buttonConsultarDisponibilidad.Font = new System.Drawing.Font("Copperplate Gothic Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -282,7 +284,7 @@
             // 
             // groupBoxImagenes
             // 
-            this.groupBoxImagenes.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.groupBoxImagenes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxImagenes.AutoSize = true;
             this.groupBoxImagenes.BackColor = System.Drawing.Color.Transparent;
             this.groupBoxImagenes.Controls.Add(this.pictureBoxImagenesActuales);
@@ -303,7 +305,7 @@
             // pictureBoxImagenesActuales
             // 
             this.pictureBoxImagenesActuales.InitialImage = null;
-            this.pictureBoxImagenesActuales.Location = new System.Drawing.Point(549, 25);
+            this.pictureBoxImagenesActuales.Location = new System.Drawing.Point(549, 40);
             this.pictureBoxImagenesActuales.Name = "pictureBoxImagenesActuales";
             this.pictureBoxImagenesActuales.Size = new System.Drawing.Size(122, 90);
             this.pictureBoxImagenesActuales.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -401,11 +403,11 @@
             // 
             // buttonBuscar
             // 
-            this.buttonBuscar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.buttonBuscar.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.buttonBuscar.AutoSize = true;
             this.buttonBuscar.BackColor = System.Drawing.Color.SandyBrown;
             this.buttonBuscar.Font = new System.Drawing.Font("Copperplate Gothic Light", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonBuscar.Location = new System.Drawing.Point(787, 279);
+            this.buttonBuscar.Location = new System.Drawing.Point(787, 286);
             this.buttonBuscar.Name = "buttonBuscar";
             this.buttonBuscar.Size = new System.Drawing.Size(94, 33);
             this.buttonBuscar.TabIndex = 28;
@@ -416,6 +418,7 @@
             // dataGridViewCampanias
             // 
             this.dataGridViewCampanias.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridViewCampanias.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewCampanias.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dataGridViewCampanias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewCampanias.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -456,7 +459,6 @@
             this.dataGridViewTextBoxColumn1.HeaderText = "Nombre";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 200;
             // 
             // FechaInicio
             // 
@@ -468,7 +470,6 @@
             this.FechaInicio.HeaderText = "Fecha Inicio";
             this.FechaInicio.Name = "FechaInicio";
             this.FechaInicio.ReadOnly = true;
-            this.FechaInicio.Width = 200;
             // 
             // FechaFin
             // 
@@ -480,10 +481,10 @@
             this.FechaFin.HeaderText = "Fecha Fin";
             this.FechaFin.Name = "FechaFin";
             this.FechaFin.ReadOnly = true;
-            this.FechaFin.Width = 200;
             // 
             // dataGridViewHorariosDisponibles
             // 
+            this.dataGridViewHorariosDisponibles.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.dataGridViewHorariosDisponibles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewHorariosDisponibles.Location = new System.Drawing.Point(39, 232);
             this.dataGridViewHorariosDisponibles.Name = "dataGridViewHorariosDisponibles";

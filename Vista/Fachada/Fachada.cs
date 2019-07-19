@@ -72,7 +72,15 @@ namespace Controlador
         /// 
         public void AddFuenteTXT(FuenteTextoFijo pFuenteTextoFijo)
         {
-            //    iFuenteRepository.AddFuenteTXT(pFuenteTextoFijo);
+            if (cRepositoryBaseTXT.Filter(x => x.Titulo == pFuenteTextoFijo.Titulo) != null)
+            {
+                cRepositoryBaseTXT.Add(pFuenteTextoFijo);
+                cRepositoryBaseTXT.SaveChanges();
+            }
+            else
+            {
+                throw new Exception("Ya existe una fuente con ese nombre.");
+            }
         }
 
         /// <summary>
@@ -113,7 +121,7 @@ namespace Controlador
                     //convierto en string la URL de la fuente RSS y la agrego
                     pFuenteRSS.Valor = Utilidades.GetStringFromXMLRSSUrl(pFuenteRSS.URL);
                     cRepositoryBaseRSS.Add(pFuenteRSS);
-                    cRepositoryBaseImagen.SaveChanges();
+                    cRepositoryBaseRSS.SaveChanges();
                 }
                 else
                 {
@@ -144,6 +152,28 @@ namespace Controlador
         public void DeleteFuenteTXT(FuenteTextoFijo pFuenteTXT)
         {
             cRepositoryBaseTXT.DeleteById(pFuenteTXT.Id);
+            cRepositoryBaseTXT.SaveChanges();
+        }
+
+        public FuenteRSS GetFuenteRSS(FuenteRSS pFuenteRSS)
+        {
+            return cRepositoryBaseRSS.GetById(pFuenteRSS.Id);
+        }
+
+        public FuenteTextoFijo GetFuenteTXT(FuenteTextoFijo pFuenteTXT)
+        {
+            return cRepositoryBaseTXT.GetById(pFuenteTXT.Id);
+        }
+
+        public void UpdateFuenteRSS(FuenteRSS pFuenteRSS)
+        {
+            cRepositoryBaseRSS.Update(pFuenteRSS);
+            cRepositoryBaseRSS.SaveChanges();
+        }
+
+        public void UpdateFuenteTXT(FuenteTextoFijo pFuenteTXT)
+        {
+            cRepositoryBaseTXT.Update(pFuenteTXT);
             cRepositoryBaseTXT.SaveChanges();
         }
 

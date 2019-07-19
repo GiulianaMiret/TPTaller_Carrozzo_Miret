@@ -41,6 +41,7 @@
             this.administraciónDeFuentesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.agregarFuenteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eliminarFuenteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modificarFuenteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripFrmPrincipal.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -125,7 +126,8 @@
             // 
             this.administraciónDeFuentesToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.agregarFuenteToolStripMenuItem,
-            this.eliminarFuenteToolStripMenuItem});
+            this.eliminarFuenteToolStripMenuItem,
+            this.modificarFuenteToolStripMenuItem});
             this.administraciónDeFuentesToolStripMenuItem1.Name = "administraciónDeFuentesToolStripMenuItem1";
             this.administraciónDeFuentesToolStripMenuItem1.Size = new System.Drawing.Size(160, 20);
             this.administraciónDeFuentesToolStripMenuItem1.Text = "Administración de Fuentes";
@@ -143,6 +145,13 @@
             this.eliminarFuenteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.eliminarFuenteToolStripMenuItem.Text = "Eliminar Fuente";
             this.eliminarFuenteToolStripMenuItem.Click += new System.EventHandler(this.eliminarFuenteToolStripMenuItem_Click);
+            // 
+            // modificarFuenteToolStripMenuItem
+            // 
+            this.modificarFuenteToolStripMenuItem.Name = "modificarFuenteToolStripMenuItem";
+            this.modificarFuenteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.modificarFuenteToolStripMenuItem.Text = "Modificar Fuente";
+            this.modificarFuenteToolStripMenuItem.Click += new System.EventHandler(this.modificarFuenteToolStripMenuItem_Click);
             // 
             // FrmPrincipal
             // 
@@ -183,6 +192,7 @@
         private System.Windows.Forms.ToolStripMenuItem modificarCampañaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem borrarCampañaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem eliminarFuenteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem modificarFuenteToolStripMenuItem;
     }
 }
 

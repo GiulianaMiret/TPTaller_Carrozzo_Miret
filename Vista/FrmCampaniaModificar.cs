@@ -394,6 +394,10 @@ namespace Vista
                     MessageBox.Show("La campaña se ha modificado con éxito");
                     dataGridViewCampanias.DataSource = cFachada.GetAllCampania();
                 }
+                else
+                {
+                    throw new Exception("No hay modificaciones para guardar");
+                }
             }
             catch (Exception mExcepcion)
             {

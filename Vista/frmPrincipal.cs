@@ -60,5 +60,10 @@ namespace Vista
         {
             CompositionRoot.Resolve<FrmCampaniaBorrar>().ShowDialog();
         }
+
+        private void modificarFuenteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CompositionRoot.Resolve<FrmFuenteRSSTXTModificar>().ShowDialog();
+        }
     }
 }
