@@ -32,41 +32,46 @@
             this.labelNuevoBanner = new System.Windows.Forms.Label();
             this.labelNombre = new System.Windows.Forms.Label();
             this.textBoxBannerNombre = new System.Windows.Forms.TextBox();
+            this.btnBannerCancelar = new System.Windows.Forms.Button();
+            this.btnBannerGuardar = new System.Windows.Forms.Button();
             this.groupBoxFechaHora = new System.Windows.Forms.GroupBox();
+            this.comboBoxBannerHoraFin = new System.Windows.Forms.ComboBox();
+            this.comboBoxBannerHoraInicio = new System.Windows.Forms.ComboBox();
             this.dateTimePickerBannerFechaFin = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePickerBannerHoraFin = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePickerBannerHoraInicio = new System.Windows.Forms.DateTimePicker();
             this.dateTimePickerBannerFechaInicio = new System.Windows.Forms.DateTimePicker();
             this.labelFechaHoraFin = new System.Windows.Forms.Label();
             this.labelFHInicio = new System.Windows.Forms.Label();
-            this.groupBoxTipoBanner = new System.Windows.Forms.GroupBox();
-            this.radioButtonRSS = new System.Windows.Forms.RadioButton();
-            this.radioButtonTextoFijo = new System.Windows.Forms.RadioButton();
-            this.groupBoxTextoFijo = new System.Windows.Forms.GroupBox();
-            this.textBoxTXTTexto = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.groupBoxRSS = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.btnBannerCancelar = new System.Windows.Forms.Button();
-            this.btnBannerGuardar = new System.Windows.Forms.Button();
-            this.dataGridViewNewBanner = new System.Windows.Forms.DataGridView();
+            this.buttonConsultarDisponibilidad = new System.Windows.Forms.Button();
+            this.dataGridViewHorariosDisponibles = new System.Windows.Forms.DataGridView();
+            this.dataGridViewFuentes = new System.Windows.Forms.DataGridView();
+            this.Titulo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.URL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.buttonSeleccionarFuente = new System.Windows.Forms.Button();
+            this.groupBoxFuente = new System.Windows.Forms.GroupBox();
+            this.textBoxId = new System.Windows.Forms.TextBox();
+            this.comboBoxTipoFuente = new System.Windows.Forms.ComboBox();
+            this.textBoxValorFuente = new System.Windows.Forms.TextBox();
+            this.textBoxTituloFuente = new System.Windows.Forms.TextBox();
+            this.labelTipo = new System.Windows.Forms.Label();
+            this.labelValor = new System.Windows.Forms.Label();
+            this.labelTitulo = new System.Windows.Forms.Label();
             this.groupBoxFechaHora.SuspendLayout();
-            this.groupBoxTipoBanner.SuspendLayout();
-            this.groupBoxTextoFijo.SuspendLayout();
-            this.groupBoxRSS.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewNewBanner)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHorariosDisponibles)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFuentes)).BeginInit();
+            this.groupBoxFuente.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelNuevoBanner
             // 
-            this.labelNuevoBanner.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelNuevoBanner.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.labelNuevoBanner.AutoSize = true;
             this.labelNuevoBanner.BackColor = System.Drawing.Color.Transparent;
             this.labelNuevoBanner.Font = new System.Drawing.Font("Lucida Calligraphy", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelNuevoBanner.ForeColor = System.Drawing.Color.SandyBrown;
-            this.labelNuevoBanner.Location = new System.Drawing.Point(24, 20);
+            this.labelNuevoBanner.Location = new System.Drawing.Point(363, 9);
             this.labelNuevoBanner.Name = "labelNuevoBanner";
             this.labelNuevoBanner.Size = new System.Drawing.Size(295, 45);
             this.labelNuevoBanner.TabIndex = 0;
@@ -75,13 +80,12 @@
             // 
             // labelNombre
             // 
-            this.labelNombre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelNombre.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.labelNombre.AutoSize = true;
             this.labelNombre.BackColor = System.Drawing.Color.Transparent;
             this.labelNombre.Font = new System.Drawing.Font("Perpetua Titling MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelNombre.ForeColor = System.Drawing.Color.White;
-            this.labelNombre.Location = new System.Drawing.Point(28, 88);
+            this.labelNombre.Location = new System.Drawing.Point(14, 88);
             this.labelNombre.Name = "labelNombre";
             this.labelNombre.Size = new System.Drawing.Size(77, 19);
             this.labelNombre.TabIndex = 1;
@@ -89,73 +93,145 @@
             // 
             // textBoxBannerNombre
             // 
-            this.textBoxBannerNombre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxBannerNombre.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.textBoxBannerNombre.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxBannerNombre.Location = new System.Drawing.Point(111, 83);
+            this.textBoxBannerNombre.Location = new System.Drawing.Point(97, 83);
             this.textBoxBannerNombre.Name = "textBoxBannerNombre";
-            this.textBoxBannerNombre.Size = new System.Drawing.Size(382, 30);
+            this.textBoxBannerNombre.Size = new System.Drawing.Size(377, 30);
             this.textBoxBannerNombre.TabIndex = 2;
+            // 
+            // btnBannerCancelar
+            // 
+            this.btnBannerCancelar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnBannerCancelar.Font = new System.Drawing.Font("Copperplate Gothic Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBannerCancelar.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.btnBannerCancelar.Location = new System.Drawing.Point(524, 532);
+            this.btnBannerCancelar.Name = "btnBannerCancelar";
+            this.btnBannerCancelar.Size = new System.Drawing.Size(134, 33);
+            this.btnBannerCancelar.TabIndex = 14;
+            this.btnBannerCancelar.Text = "Cancelar";
+            this.btnBannerCancelar.UseVisualStyleBackColor = true;
+            this.btnBannerCancelar.Click += new System.EventHandler(this.btnBannerCancelar_Click);
+            // 
+            // btnBannerGuardar
+            // 
+            this.btnBannerGuardar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnBannerGuardar.AutoSize = true;
+            this.btnBannerGuardar.Font = new System.Drawing.Font("Copperplate Gothic Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBannerGuardar.Location = new System.Drawing.Point(752, 532);
+            this.btnBannerGuardar.Name = "btnBannerGuardar";
+            this.btnBannerGuardar.Size = new System.Drawing.Size(134, 33);
+            this.btnBannerGuardar.TabIndex = 15;
+            this.btnBannerGuardar.Text = "Guardar";
+            this.btnBannerGuardar.UseVisualStyleBackColor = true;
+            this.btnBannerGuardar.Click += new System.EventHandler(this.btnBannerGuardar_Click);
             // 
             // groupBoxFechaHora
             // 
+            this.groupBoxFechaHora.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.groupBoxFechaHora.AutoSize = true;
             this.groupBoxFechaHora.BackColor = System.Drawing.Color.Transparent;
+            this.groupBoxFechaHora.Controls.Add(this.comboBoxBannerHoraFin);
+            this.groupBoxFechaHora.Controls.Add(this.comboBoxBannerHoraInicio);
             this.groupBoxFechaHora.Controls.Add(this.dateTimePickerBannerFechaFin);
-            this.groupBoxFechaHora.Controls.Add(this.dateTimePickerBannerHoraFin);
-            this.groupBoxFechaHora.Controls.Add(this.dateTimePickerBannerHoraInicio);
             this.groupBoxFechaHora.Controls.Add(this.dateTimePickerBannerFechaInicio);
             this.groupBoxFechaHora.Controls.Add(this.labelFechaHoraFin);
             this.groupBoxFechaHora.Controls.Add(this.labelFHInicio);
             this.groupBoxFechaHora.Font = new System.Drawing.Font("Perpetua Titling MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxFechaHora.ForeColor = System.Drawing.Color.White;
-            this.groupBoxFechaHora.Location = new System.Drawing.Point(32, 180);
+            this.groupBoxFechaHora.Location = new System.Drawing.Point(32, 138);
             this.groupBoxFechaHora.Name = "groupBoxFechaHora";
-            this.groupBoxFechaHora.Size = new System.Drawing.Size(298, 112);
-            this.groupBoxFechaHora.TabIndex = 4;
+            this.groupBoxFechaHora.Size = new System.Drawing.Size(456, 113);
+            this.groupBoxFechaHora.TabIndex = 21;
             this.groupBoxFechaHora.TabStop = false;
             this.groupBoxFechaHora.Text = "Fecha y Hora";
+            // 
+            // comboBoxBannerHoraFin
+            // 
+            this.comboBoxBannerHoraFin.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxBannerHoraFin.FormattingEnabled = true;
+            this.comboBoxBannerHoraFin.Items.AddRange(new object[] {
+            "00",
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23"});
+            this.comboBoxBannerHoraFin.Location = new System.Drawing.Point(272, 61);
+            this.comboBoxBannerHoraFin.Name = "comboBoxBannerHoraFin";
+            this.comboBoxBannerHoraFin.Size = new System.Drawing.Size(81, 27);
+            this.comboBoxBannerHoraFin.TabIndex = 10;
+            // 
+            // comboBoxBannerHoraInicio
+            // 
+            this.comboBoxBannerHoraInicio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxBannerHoraInicio.FormattingEnabled = true;
+            this.comboBoxBannerHoraInicio.Items.AddRange(new object[] {
+            "00",
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23"});
+            this.comboBoxBannerHoraInicio.Location = new System.Drawing.Point(272, 27);
+            this.comboBoxBannerHoraInicio.Name = "comboBoxBannerHoraInicio";
+            this.comboBoxBannerHoraInicio.Size = new System.Drawing.Size(81, 27);
+            this.comboBoxBannerHoraInicio.TabIndex = 10;
             // 
             // dateTimePickerBannerFechaFin
             // 
             this.dateTimePickerBannerFechaFin.CustomFormat = "dd/MM/yyyy";
             this.dateTimePickerBannerFechaFin.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePickerBannerFechaFin.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerBannerFechaFin.Location = new System.Drawing.Point(64, 61);
+            this.dateTimePickerBannerFechaFin.Location = new System.Drawing.Point(79, 61);
             this.dateTimePickerBannerFechaFin.Name = "dateTimePickerBannerFechaFin";
-            this.dateTimePickerBannerFechaFin.Size = new System.Drawing.Size(121, 26);
+            this.dateTimePickerBannerFechaFin.Size = new System.Drawing.Size(161, 26);
             this.dateTimePickerBannerFechaFin.TabIndex = 9;
-            // 
-            // dateTimePickerBannerHoraFin
-            // 
-            this.dateTimePickerBannerHoraFin.CustomFormat = "hh:mm";
-            this.dateTimePickerBannerHoraFin.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePickerBannerHoraFin.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerBannerHoraFin.Location = new System.Drawing.Point(202, 61);
-            this.dateTimePickerBannerHoraFin.Name = "dateTimePickerBannerHoraFin";
-            this.dateTimePickerBannerHoraFin.ShowUpDown = true;
-            this.dateTimePickerBannerHoraFin.Size = new System.Drawing.Size(72, 26);
-            this.dateTimePickerBannerHoraFin.TabIndex = 6;
-            // 
-            // dateTimePickerBannerHoraInicio
-            // 
-            this.dateTimePickerBannerHoraInicio.CustomFormat = "hh:mm";
-            this.dateTimePickerBannerHoraInicio.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePickerBannerHoraInicio.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerBannerHoraInicio.Location = new System.Drawing.Point(202, 21);
-            this.dateTimePickerBannerHoraInicio.Name = "dateTimePickerBannerHoraInicio";
-            this.dateTimePickerBannerHoraInicio.ShowUpDown = true;
-            this.dateTimePickerBannerHoraInicio.Size = new System.Drawing.Size(72, 26);
-            this.dateTimePickerBannerHoraInicio.TabIndex = 6;
             // 
             // dateTimePickerBannerFechaInicio
             // 
             this.dateTimePickerBannerFechaInicio.CustomFormat = "dd/MM/yyyy";
             this.dateTimePickerBannerFechaInicio.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePickerBannerFechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerBannerFechaInicio.Location = new System.Drawing.Point(64, 21);
+            this.dateTimePickerBannerFechaInicio.Location = new System.Drawing.Point(79, 27);
             this.dateTimePickerBannerFechaInicio.Name = "dateTimePickerBannerFechaInicio";
-            this.dateTimePickerBannerFechaInicio.Size = new System.Drawing.Size(121, 26);
+            this.dateTimePickerBannerFechaInicio.Size = new System.Drawing.Size(161, 26);
             this.dateTimePickerBannerFechaInicio.TabIndex = 6;
             // 
             // labelFechaHoraFin
@@ -164,7 +240,7 @@
             this.labelFechaHoraFin.BackColor = System.Drawing.Color.Transparent;
             this.labelFechaHoraFin.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelFechaHoraFin.ForeColor = System.Drawing.Color.White;
-            this.labelFechaHoraFin.Location = new System.Drawing.Point(9, 61);
+            this.labelFechaHoraFin.Location = new System.Drawing.Point(24, 59);
             this.labelFechaHoraFin.Name = "labelFechaHoraFin";
             this.labelFechaHoraFin.Size = new System.Drawing.Size(31, 22);
             this.labelFechaHoraFin.TabIndex = 5;
@@ -176,164 +252,191 @@
             this.labelFHInicio.BackColor = System.Drawing.Color.Transparent;
             this.labelFHInicio.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelFHInicio.ForeColor = System.Drawing.Color.White;
-            this.labelFHInicio.Location = new System.Drawing.Point(9, 25);
+            this.labelFHInicio.Location = new System.Drawing.Point(10, 28);
             this.labelFHInicio.Name = "labelFHInicio";
             this.labelFHInicio.Size = new System.Drawing.Size(49, 22);
             this.labelFHInicio.TabIndex = 5;
             this.labelFHInicio.Text = "Inicio";
             // 
-            // groupBoxTipoBanner
+            // buttonConsultarDisponibilidad
             // 
-            this.groupBoxTipoBanner.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.groupBoxTipoBanner.AutoSize = true;
-            this.groupBoxTipoBanner.BackColor = System.Drawing.Color.Transparent;
-            this.groupBoxTipoBanner.Controls.Add(this.radioButtonRSS);
-            this.groupBoxTipoBanner.Controls.Add(this.radioButtonTextoFijo);
-            this.groupBoxTipoBanner.Font = new System.Drawing.Font("Perpetua Titling MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxTipoBanner.ForeColor = System.Drawing.Color.White;
-            this.groupBoxTipoBanner.Location = new System.Drawing.Point(32, 317);
-            this.groupBoxTipoBanner.Name = "groupBoxTipoBanner";
-            this.groupBoxTipoBanner.Size = new System.Drawing.Size(185, 107);
-            this.groupBoxTipoBanner.TabIndex = 8;
-            this.groupBoxTipoBanner.TabStop = false;
-            this.groupBoxTipoBanner.Text = "Tipo de Banner";
+            this.buttonConsultarDisponibilidad.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.buttonConsultarDisponibilidad.AutoSize = true;
+            this.buttonConsultarDisponibilidad.BackColor = System.Drawing.Color.SandyBrown;
+            this.buttonConsultarDisponibilidad.Font = new System.Drawing.Font("Copperplate Gothic Light", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonConsultarDisponibilidad.Location = new System.Drawing.Point(82, 253);
+            this.buttonConsultarDisponibilidad.Name = "buttonConsultarDisponibilidad";
+            this.buttonConsultarDisponibilidad.Size = new System.Drawing.Size(229, 39);
+            this.buttonConsultarDisponibilidad.TabIndex = 23;
+            this.buttonConsultarDisponibilidad.Text = "Ver Horarios Disponibles";
+            this.buttonConsultarDisponibilidad.UseVisualStyleBackColor = false;
+            this.buttonConsultarDisponibilidad.Click += new System.EventHandler(this.buttonConsultarDisponibilidad_Click);
             // 
-            // radioButtonRSS
+            // dataGridViewHorariosDisponibles
             // 
-            this.radioButtonRSS.AutoSize = true;
-            this.radioButtonRSS.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButtonRSS.Location = new System.Drawing.Point(27, 54);
-            this.radioButtonRSS.Name = "radioButtonRSS";
-            this.radioButtonRSS.Size = new System.Drawing.Size(123, 28);
-            this.radioButtonRSS.TabIndex = 7;
-            this.radioButtonRSS.TabStop = true;
-            this.radioButtonRSS.Text = "Fuente RSS";
-            this.radioButtonRSS.UseVisualStyleBackColor = true;
-            this.radioButtonRSS.Click += new System.EventHandler(this.radioButtonRSS_Click);
+            this.dataGridViewHorariosDisponibles.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.dataGridViewHorariosDisponibles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewHorariosDisponibles.Location = new System.Drawing.Point(56, 295);
+            this.dataGridViewHorariosDisponibles.Name = "dataGridViewHorariosDisponibles";
+            this.dataGridViewHorariosDisponibles.Size = new System.Drawing.Size(271, 270);
+            this.dataGridViewHorariosDisponibles.TabIndex = 24;
+            this.dataGridViewHorariosDisponibles.Visible = false;
             // 
-            // radioButtonTextoFijo
+            // dataGridViewFuentes
             // 
-            this.radioButtonTextoFijo.AutoSize = true;
-            this.radioButtonTextoFijo.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButtonTextoFijo.Location = new System.Drawing.Point(27, 25);
-            this.radioButtonTextoFijo.Name = "radioButtonTextoFijo";
-            this.radioButtonTextoFijo.Size = new System.Drawing.Size(113, 28);
-            this.radioButtonTextoFijo.TabIndex = 6;
-            this.radioButtonTextoFijo.TabStop = true;
-            this.radioButtonTextoFijo.Text = "Texto Fijo";
-            this.radioButtonTextoFijo.UseVisualStyleBackColor = true;
-            this.radioButtonTextoFijo.Click += new System.EventHandler(this.radioButtonTextoFijo_Click);
+            this.dataGridViewFuentes.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.dataGridViewFuentes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewFuentes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewFuentes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Titulo,
+            this.Id,
+            this.Valor,
+            this.URL});
+            this.dataGridViewFuentes.Location = new System.Drawing.Point(371, 367);
+            this.dataGridViewFuentes.Name = "dataGridViewFuentes";
+            this.dataGridViewFuentes.Size = new System.Drawing.Size(390, 142);
+            this.dataGridViewFuentes.TabIndex = 25;
             // 
-            // groupBoxTextoFijo
+            // Titulo
             // 
-            this.groupBoxTextoFijo.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.groupBoxTextoFijo.BackColor = System.Drawing.Color.Transparent;
-            this.groupBoxTextoFijo.Controls.Add(this.textBoxTXTTexto);
-            this.groupBoxTextoFijo.Controls.Add(this.label2);
-            this.groupBoxTextoFijo.Font = new System.Drawing.Font("Perpetua Titling MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxTextoFijo.ForeColor = System.Drawing.Color.White;
-            this.groupBoxTextoFijo.Location = new System.Drawing.Point(258, 301);
-            this.groupBoxTextoFijo.Name = "groupBoxTextoFijo";
-            this.groupBoxTextoFijo.Size = new System.Drawing.Size(580, 160);
-            this.groupBoxTextoFijo.TabIndex = 9;
-            this.groupBoxTextoFijo.TabStop = false;
-            this.groupBoxTextoFijo.Text = "Propiedades";
-            this.groupBoxTextoFijo.Visible = false;
+            this.Titulo.DataPropertyName = "Titulo";
+            this.Titulo.HeaderText = "Titulo";
+            this.Titulo.Name = "Titulo";
             // 
-            // textBoxTXTTexto
+            // Id
             // 
-            this.textBoxTXTTexto.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxTXTTexto.Location = new System.Drawing.Point(17, 52);
-            this.textBoxTXTTexto.Name = "textBoxTXTTexto";
-            this.textBoxTXTTexto.Size = new System.Drawing.Size(557, 30);
-            this.textBoxTXTTexto.TabIndex = 10;
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.Visible = false;
             // 
-            // label2
+            // Valor
             // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(13, 22);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(57, 24);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "Texto";
+            this.Valor.DataPropertyName = "Valor";
+            this.Valor.HeaderText = "Valor";
+            this.Valor.Name = "Valor";
             // 
-            // groupBoxRSS
+            // URL
             // 
-            this.groupBoxRSS.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.groupBoxRSS.AutoSize = true;
-            this.groupBoxRSS.BackColor = System.Drawing.Color.Transparent;
-            this.groupBoxRSS.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.groupBoxRSS.Controls.Add(this.label3);
-            this.groupBoxRSS.Controls.Add(this.dataGridView1);
-            this.groupBoxRSS.Font = new System.Drawing.Font("Perpetua Titling MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxRSS.ForeColor = System.Drawing.Color.White;
-            this.groupBoxRSS.Location = new System.Drawing.Point(258, 301);
-            this.groupBoxRSS.Name = "groupBoxRSS";
-            this.groupBoxRSS.Size = new System.Drawing.Size(592, 164);
-            this.groupBoxRSS.TabIndex = 11;
-            this.groupBoxRSS.TabStop = false;
-            this.groupBoxRSS.Text = "Propiedades";
-            this.groupBoxRSS.Visible = false;
+            this.URL.DataPropertyName = "URL";
+            this.URL.HeaderText = "URL";
+            this.URL.Name = "URL";
+            this.URL.Visible = false;
             // 
-            // label3
+            // buttonSeleccionarFuente
             // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(13, 22);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(157, 22);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Seleccione la Fuente";
+            this.buttonSeleccionarFuente.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.buttonSeleccionarFuente.AutoSize = true;
+            this.buttonSeleccionarFuente.BackColor = System.Drawing.Color.SandyBrown;
+            this.buttonSeleccionarFuente.Font = new System.Drawing.Font("Copperplate Gothic Light", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSeleccionarFuente.Location = new System.Drawing.Point(776, 398);
+            this.buttonSeleccionarFuente.Name = "buttonSeleccionarFuente";
+            this.buttonSeleccionarFuente.Size = new System.Drawing.Size(184, 33);
+            this.buttonSeleccionarFuente.TabIndex = 32;
+            this.buttonSeleccionarFuente.Text = "Seleccionar Fuente";
+            this.buttonSeleccionarFuente.UseVisualStyleBackColor = false;
+            this.buttonSeleccionarFuente.Click += new System.EventHandler(this.buttonSeleccionarFuente_Click);
             // 
-            // dataGridView1
+            // groupBoxFuente
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(15, 49);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(558, 90);
-            this.dataGridView1.TabIndex = 0;
+            this.groupBoxFuente.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.groupBoxFuente.AutoSize = true;
+            this.groupBoxFuente.BackColor = System.Drawing.Color.Transparent;
+            this.groupBoxFuente.Controls.Add(this.textBoxId);
+            this.groupBoxFuente.Controls.Add(this.comboBoxTipoFuente);
+            this.groupBoxFuente.Controls.Add(this.textBoxValorFuente);
+            this.groupBoxFuente.Controls.Add(this.textBoxTituloFuente);
+            this.groupBoxFuente.Controls.Add(this.labelTipo);
+            this.groupBoxFuente.Controls.Add(this.labelValor);
+            this.groupBoxFuente.Controls.Add(this.labelTitulo);
+            this.groupBoxFuente.Font = new System.Drawing.Font("Perpetua Titling MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBoxFuente.ForeColor = System.Drawing.Color.White;
+            this.groupBoxFuente.Location = new System.Drawing.Point(494, 83);
+            this.groupBoxFuente.Name = "groupBoxFuente";
+            this.groupBoxFuente.Size = new System.Drawing.Size(493, 272);
+            this.groupBoxFuente.TabIndex = 22;
+            this.groupBoxFuente.TabStop = false;
+            this.groupBoxFuente.Text = "Fuente";
             // 
-            // btnBannerCancelar
+            // textBoxId
             // 
-            this.btnBannerCancelar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnBannerCancelar.Font = new System.Drawing.Font("Copperplate Gothic Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBannerCancelar.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.btnBannerCancelar.Location = new System.Drawing.Point(463, 467);
-            this.btnBannerCancelar.Name = "btnBannerCancelar";
-            this.btnBannerCancelar.Size = new System.Drawing.Size(134, 33);
-            this.btnBannerCancelar.TabIndex = 14;
-            this.btnBannerCancelar.Text = "Cancelar";
-            this.btnBannerCancelar.UseVisualStyleBackColor = true;
+            this.textBoxId.Location = new System.Drawing.Point(242, 74);
+            this.textBoxId.Name = "textBoxId";
+            this.textBoxId.Size = new System.Drawing.Size(42, 26);
+            this.textBoxId.TabIndex = 37;
+            this.textBoxId.Visible = false;
             // 
-            // btnBannerGuardar
+            // comboBoxTipoFuente
             // 
-            this.btnBannerGuardar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnBannerGuardar.AutoSize = true;
-            this.btnBannerGuardar.Font = new System.Drawing.Font("Copperplate Gothic Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBannerGuardar.Location = new System.Drawing.Point(258, 467);
-            this.btnBannerGuardar.Name = "btnBannerGuardar";
-            this.btnBannerGuardar.Size = new System.Drawing.Size(134, 33);
-            this.btnBannerGuardar.TabIndex = 15;
-            this.btnBannerGuardar.Text = "Guardar";
-            this.btnBannerGuardar.UseVisualStyleBackColor = true;
-            this.btnBannerGuardar.Click += new System.EventHandler(this.btnBannerGuardar_Click);
+            this.comboBoxTipoFuente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxTipoFuente.FormattingEnabled = true;
+            this.comboBoxTipoFuente.Items.AddRange(new object[] {
+            "RSS",
+            "Texto Fijo"});
+            this.comboBoxTipoFuente.Location = new System.Drawing.Point(74, 73);
+            this.comboBoxTipoFuente.Name = "comboBoxTipoFuente";
+            this.comboBoxTipoFuente.Size = new System.Drawing.Size(121, 27);
+            this.comboBoxTipoFuente.TabIndex = 36;
+            this.comboBoxTipoFuente.SelectedIndexChanged += new System.EventHandler(this.comboBoxTipoFuente_SelectedIndexChanged);
             // 
-            // dataGridViewNewBanner
+            // textBoxValorFuente
             // 
-            this.dataGridViewNewBanner.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridViewNewBanner.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewNewBanner.Location = new System.Drawing.Point(397, 184);
-            this.dataGridViewNewBanner.Name = "dataGridViewNewBanner";
-            this.dataGridViewNewBanner.Size = new System.Drawing.Size(468, 100);
-            this.dataGridViewNewBanner.TabIndex = 16;
+            this.textBoxValorFuente.Location = new System.Drawing.Point(74, 115);
+            this.textBoxValorFuente.Multiline = true;
+            this.textBoxValorFuente.Name = "textBoxValorFuente";
+            this.textBoxValorFuente.ReadOnly = true;
+            this.textBoxValorFuente.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxValorFuente.Size = new System.Drawing.Size(399, 132);
+            this.textBoxValorFuente.TabIndex = 35;
             // 
-            // FrmAgregarBanner
+            // textBoxTituloFuente
+            // 
+            this.textBoxTituloFuente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxTituloFuente.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxTituloFuente.Location = new System.Drawing.Point(74, 33);
+            this.textBoxTituloFuente.Name = "textBoxTituloFuente";
+            this.textBoxTituloFuente.ReadOnly = true;
+            this.textBoxTituloFuente.Size = new System.Drawing.Size(399, 30);
+            this.textBoxTituloFuente.TabIndex = 33;
+            // 
+            // labelTipo
+            // 
+            this.labelTipo.AutoSize = true;
+            this.labelTipo.BackColor = System.Drawing.Color.Transparent;
+            this.labelTipo.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTipo.ForeColor = System.Drawing.Color.White;
+            this.labelTipo.Location = new System.Drawing.Point(11, 73);
+            this.labelTipo.Name = "labelTipo";
+            this.labelTipo.Size = new System.Drawing.Size(41, 22);
+            this.labelTipo.TabIndex = 13;
+            this.labelTipo.Text = "Tipo";
+            // 
+            // labelValor
+            // 
+            this.labelValor.AutoSize = true;
+            this.labelValor.BackColor = System.Drawing.Color.Transparent;
+            this.labelValor.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelValor.ForeColor = System.Drawing.Color.White;
+            this.labelValor.Location = new System.Drawing.Point(11, 115);
+            this.labelValor.Name = "labelValor";
+            this.labelValor.Size = new System.Drawing.Size(45, 22);
+            this.labelValor.TabIndex = 12;
+            this.labelValor.Text = "Valor";
+            // 
+            // labelTitulo
+            // 
+            this.labelTitulo.AutoSize = true;
+            this.labelTitulo.BackColor = System.Drawing.Color.Transparent;
+            this.labelTitulo.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTitulo.ForeColor = System.Drawing.Color.White;
+            this.labelTitulo.Location = new System.Drawing.Point(6, 33);
+            this.labelTitulo.Name = "labelTitulo";
+            this.labelTitulo.Size = new System.Drawing.Size(50, 22);
+            this.labelTitulo.TabIndex = 11;
+            this.labelTitulo.Text = "Titulo";
+            // 
+            // FrmBannerAgregar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -341,33 +444,31 @@
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(877, 512);
-            this.Controls.Add(this.dataGridViewNewBanner);
-            this.Controls.Add(this.btnBannerGuardar);
-            this.Controls.Add(this.groupBoxTextoFijo);
-            this.Controls.Add(this.btnBannerCancelar);
-            this.Controls.Add(this.groupBoxRSS);
-            this.Controls.Add(this.groupBoxTipoBanner);
+            this.ClientSize = new System.Drawing.Size(999, 577);
+            this.Controls.Add(this.groupBoxFuente);
+            this.Controls.Add(this.buttonSeleccionarFuente);
+            this.Controls.Add(this.dataGridViewFuentes);
+            this.Controls.Add(this.dataGridViewHorariosDisponibles);
+            this.Controls.Add(this.buttonConsultarDisponibilidad);
             this.Controls.Add(this.groupBoxFechaHora);
+            this.Controls.Add(this.btnBannerGuardar);
+            this.Controls.Add(this.btnBannerCancelar);
             this.Controls.Add(this.textBoxBannerNombre);
             this.Controls.Add(this.labelNombre);
             this.Controls.Add(this.labelNuevoBanner);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "FrmAgregarBanner";
+            this.Name = "FrmBannerAgregar";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Shout News";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.FrmBannerAgregar_Load);
             this.groupBoxFechaHora.ResumeLayout(false);
             this.groupBoxFechaHora.PerformLayout();
-            this.groupBoxTipoBanner.ResumeLayout(false);
-            this.groupBoxTipoBanner.PerformLayout();
-            this.groupBoxTextoFijo.ResumeLayout(false);
-            this.groupBoxTextoFijo.PerformLayout();
-            this.groupBoxRSS.ResumeLayout(false);
-            this.groupBoxRSS.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewNewBanner)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHorariosDisponibles)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFuentes)).EndInit();
+            this.groupBoxFuente.ResumeLayout(false);
+            this.groupBoxFuente.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -378,24 +479,30 @@
         private System.Windows.Forms.Label labelNuevoBanner;
         private System.Windows.Forms.Label labelNombre;
         private System.Windows.Forms.TextBox textBoxBannerNombre;
-        private System.Windows.Forms.GroupBox groupBoxFechaHora;
-        private System.Windows.Forms.Label labelFechaHoraFin;
-        private System.Windows.Forms.Label labelFHInicio;
-        private System.Windows.Forms.DateTimePicker dateTimePickerBannerFechaInicio;
-        private System.Windows.Forms.GroupBox groupBoxTipoBanner;
-        private System.Windows.Forms.RadioButton radioButtonRSS;
-        private System.Windows.Forms.RadioButton radioButtonTextoFijo;
-        private System.Windows.Forms.DateTimePicker dateTimePickerBannerFechaFin;
-        private System.Windows.Forms.DateTimePicker dateTimePickerBannerHoraFin;
-        private System.Windows.Forms.DateTimePicker dateTimePickerBannerHoraInicio;
-        private System.Windows.Forms.GroupBox groupBoxTextoFijo;
-        private System.Windows.Forms.TextBox textBoxTXTTexto;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.GroupBox groupBoxRSS;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnBannerCancelar;
         private System.Windows.Forms.Button btnBannerGuardar;
-        private System.Windows.Forms.DataGridView dataGridViewNewBanner;
+        private System.Windows.Forms.GroupBox groupBoxFechaHora;
+        private System.Windows.Forms.ComboBox comboBoxBannerHoraFin;
+        private System.Windows.Forms.ComboBox comboBoxBannerHoraInicio;
+        private System.Windows.Forms.DateTimePicker dateTimePickerBannerFechaFin;
+        private System.Windows.Forms.DateTimePicker dateTimePickerBannerFechaInicio;
+        private System.Windows.Forms.Label labelFechaHoraFin;
+        private System.Windows.Forms.Label labelFHInicio;
+        private System.Windows.Forms.Button buttonConsultarDisponibilidad;
+        private System.Windows.Forms.DataGridView dataGridViewHorariosDisponibles;
+        private System.Windows.Forms.DataGridView dataGridViewFuentes;
+        private System.Windows.Forms.Button buttonSeleccionarFuente;
+        private System.Windows.Forms.GroupBox groupBoxFuente;
+        private System.Windows.Forms.Label labelTipo;
+        private System.Windows.Forms.Label labelValor;
+        private System.Windows.Forms.Label labelTitulo;
+        private System.Windows.Forms.TextBox textBoxValorFuente;
+        private System.Windows.Forms.TextBox textBoxTituloFuente;
+        protected System.Windows.Forms.ComboBox comboBoxTipoFuente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Titulo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Valor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn URL;
+        private System.Windows.Forms.TextBox textBoxId;
     }
 }

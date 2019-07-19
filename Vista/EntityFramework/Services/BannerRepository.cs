@@ -28,6 +28,29 @@ namespace EntityFramework.Services
             return mBanner;
         }
 
+        public Dictionary<string, List<Banner>> AvailableTimes(DateTime pFechaInicio, DateTime pFechaFin)
+        {
+            List<Banner> mListaTodasLosBanners = cDbSetBanner.ToList();
+
+            //Opción 1: 
+            List<Banner> mListaBannersMenoresIguales = mListaTodasLosBanners.Where(x => (x.FechaFin <= pFechaFin) && (x.FechaFin >= pFechaInicio)).ToList();
+
+            //Opción 2:
+            List<Banner> mListaBannersIntermedias = mListaTodasLosBanners.Where(x => (x.FechaFin > pFechaFin) && (x.FechaInicio <= pFechaFin) && (x.FechaInicio >= pFechaInicio)).ToList();
+
+            //Opción 3:
+            List<Banner> mListaBannersMayores = mListaTodasLosBanners.Where(x => (x.FechaInicio < pFechaInicio) && (x.FechaFin > pFechaFin)).ToList();
+
+            Dictionary<string, List<Banner>> mDiccionarioDeListas = new Dictionary<string, List<Banner>>();
+            mDiccionarioDeListas.Add("MenoresIguales", mListaBannersMenoresIguales);
+            mDiccionarioDeListas.Add("Intermedias", mListaBannersIntermedias);
+            mDiccionarioDeListas.Add("Mayores", mListaBannersMayores);
+
+
+            return mDiccionarioDeListas;
+
+        }
+
         //public void CambiarFuente(int pIdBanner, FuenteRSS pFuente)
         //{
         //    BannerRSS bannerRss = _context.Banners.OfType<BannerRSS>().Where(x => x.Id == pIdBanner).First();

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Controlador;
+using Core.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,26 +14,312 @@ namespace Vista
 {
     public partial class FrmBannerAgregar : Form
     {
-        public FrmBannerAgregar()
+        private readonly Fachada cFachada;
+        private readonly Logger.ILogger cLogger;
+
+        public FrmBannerAgregar(Fachada fachada, Logger.ILogger logger)
         {
+            cFachada = fachada;
+            cLogger = logger;
             InitializeComponent();
         }
 
-        private void radioButtonTextoFijo_Click(object sender, EventArgs e)
+        private void FrmBannerAgregar_Load(object sender, EventArgs e)
         {
-            groupBoxRSS.Visible = false;
-            groupBoxTextoFijo.Visible = true;
+            comboBoxTipoFuente.Text = "RSS";
+            List<FuenteRSS> mListaFuenteRSS = cFachada.GetAllRSS().ToList();
+            dataGridViewFuentes.DataSource = mListaFuenteRSS;
+            
         }
 
-        private void radioButtonRSS_Click(object sender, EventArgs e)
+
+        private void buttonConsultarDisponibilidad_Click(object sender, EventArgs e)
         {
-            groupBoxTextoFijo.Visible = false;
-            groupBoxRSS.Visible = true;
+            dataGridViewHorariosDisponibles.Columns.Clear();
+            dataGridViewHorariosDisponibles.Visible = true;
+
+            if (dateTimePickerBannerFechaInicio.Value.Date >= DateTime.Now.Date)
+            {
+                if (dateTimePickerBannerFechaInicio.Value.Date <= dateTimePickerBannerFechaFin.Value.Date)
+                {
+                    DateTime mFechaInicio = dateTimePickerBannerFechaInicio.Value;
+                    DateTime mFechaFin = dateTimePickerBannerFechaFin.Value;
+                    int mCantidadColumnas = (mFechaFin - mFechaInicio).Days;
+                    DateTime mFechaAuxiliar = new DateTime();
+                    mFechaAuxiliar = mFechaInicio;
+
+                    for (int i = 0; i <= mCantidadColumnas; i++)
+                    {
+                        DataGridViewColumn mColumna = new DataGridViewColumn()
+                        {
+                            Name = ((mFechaAuxiliar.Day).ToString() + "/" + (mFechaAuxiliar.Month).ToString()),
+                            Width = 40,
+                            ValueType = typeof(string),
+                            CellTemplate = new DataGridViewTextBoxCell()
+                        };
+                        dataGridViewHorariosDisponibles.Columns.Add(mColumna);
+                        mFechaAuxiliar = mFechaAuxiliar.AddDays(1);
+                    }
+                    for (int i = 0; i < 24; i++)
+                    {
+                        DataGridViewRow fila = new DataGridViewRow();
+                        dataGridViewHorariosDisponibles.Rows.Add(fila);
+                        dataGridViewHorariosDisponibles.Rows[i].HeaderCell.Value = ((i).ToString() + " hs.");
+                        dataGridViewHorariosDisponibles.AutoResizeRowHeadersWidth(
+                                                        DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders);
+                    }
+                    //DGV Rangos Horarios Seleccionados
+                    dataGridViewHorariosDisponibles.AutoGenerateColumns = false;
+                    dataGridViewHorariosDisponibles.AutoSize = false;
+
+
+                    Dictionary<string, List<Banner>> mDiccionario = cFachada.AvailableTimesBanner(dateTimePickerBannerFechaInicio.Value, dateTimePickerBannerFechaFin.Value);
+                    List<Banner> mListaBannersMenoresIguales = new List<Banner>();
+                    mListaBannersMenoresIguales = mDiccionario["MenoresIguales"];
+                    List<Banner> mListaBannersIntermedias = new List<Banner>();
+                    mListaBannersIntermedias = mDiccionario["Intermedias"];
+                    List<Banner> mListaBannersMayores = new List<Banner>();
+                    mListaBannersMayores = mDiccionario["Mayores"];
+
+                    //Opción 1: 
+                    int mCantidadDias = 0;
+                    foreach (Banner mBanner in mListaBannersMenoresIguales)
+                    {
+                        if (mBanner.FechaInicio < mFechaInicio)
+                        {
+                            mCantidadDias = (mBanner.FechaFin.Date - mFechaInicio.Date).Days;
+                            for (int i = 0; i <= mCantidadDias; i++)
+                            {
+                                for (int j = (mBanner.FechaInicio.Hour); j <= (mBanner.FechaFin.Hour); j++)
+                                {
+                                    dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            mCantidadDias = (mBanner.FechaFin.Date - mBanner.FechaInicio.Date).Days;
+                            int mDiaInicio = (mBanner.FechaInicio.Date - mFechaInicio.Date).Days;
+                            mCantidadDias = mCantidadDias + mDiaInicio;
+                            for (int i = mDiaInicio; i <= mCantidadDias; i++)
+                            {
+                                for (int j = (mBanner.FechaInicio.Hour); j <= (mBanner.FechaFin.Hour); j++)
+                                {
+                                    if (i < dataGridViewHorariosDisponibles.ColumnCount)
+                                    {
+                                        dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+
+                    //Opción 2:
+                    foreach (Banner mBanner in mListaBannersIntermedias)
+                    {
+                        mCantidadDias = (mBanner.FechaInicio.Date - mFechaInicio.Date).Days;
+
+                        for (int i = mCantidadDias; i <= mCantidadColumnas; i++)
+                        {
+                            for (int j = (mBanner.FechaInicio.Hour); j <= (mBanner.FechaFin.Hour); j++)
+                            {
+                                dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                            }
+
+                        }
+                    }
+
+                    //Opción 3:
+                    foreach (Banner mBanner in mListaBannersMayores)
+                    {
+                        for (int i = 0; i <= mCantidadColumnas; i++)
+                        {
+                            for (int j = (mBanner.FechaInicio.Hour); j <= (mBanner.FechaFin.Hour); j++)
+                            {
+                                dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                            }
+                        }
+
+
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("La fecha de inicio debe ser menor a la fecha fin");
+                }
+            }
+            else
+            {
+                MessageBox.Show("La fecha de inicio ya ha pasado");
+            }
+
+        }
+
+        private void buttonSeleccionarFuente_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewFuentes.CurrentRow.Index != -1)
+            {
+                
+                if(comboBoxTipoFuente.Text == "RSS")
+                {
+                    FuenteRSS mFuente = new FuenteRSS { Id = Convert.ToInt32(dataGridViewFuentes["Id", dataGridViewFuentes.CurrentRow.Index].Value) };
+                    mFuente = cFachada.GetFuenteRSS(mFuente);
+                    textBoxTituloFuente.Text = mFuente.Titulo;
+                    textBoxValorFuente.Text = mFuente.Valor;
+                    textBoxId.Text = mFuente.Id.ToString();
+                }
+                else
+                {
+                    FuenteTextoFijo mFuente = new FuenteTextoFijo{ Id = Convert.ToInt32(dataGridViewFuentes["Id", dataGridViewFuentes.CurrentRow.Index].Value) };
+                    mFuente = cFachada.GetFuenteTXT(mFuente);
+                    textBoxTituloFuente.Text = mFuente.Titulo;
+                    textBoxValorFuente.Text = mFuente.Valor;
+                    textBoxId.Text = mFuente.Id.ToString();
+                }
+            }
+        }
+
+        private void comboBoxTipoFuente_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(comboBoxTipoFuente.Text == "RSS")
+            {
+                dataGridViewFuentes.DataSource = cFachada.GetAllRSS().ToList();
+                dataGridViewFuentes.Columns["URL"].Visible = false;
+            }
+            else
+            {
+                dataGridViewFuentes.DataSource = cFachada.GetAllTXT().ToList();
+            }
         }
 
         private void btnBannerGuardar_Click(object sender, EventArgs e)
         {
+            try
+            {
+                //Verifia si tiene nombre
+                if (textBoxBannerNombre.Text == "")
+                {
+                    throw new Exception("Falta ingresar el nombre del Banner");
+                }
 
+                //Verifica si las fechas forman un rango aceptable
+                if (dateTimePickerBannerFechaInicio.Value.Date < DateTime.Now.Date)
+                {
+                    throw new Exception("No se admiten Fechas de Inicios pasadas");
+                }
+
+                if (dateTimePickerBannerFechaFin.Value.Date < dateTimePickerBannerFechaInicio.Value.Date)
+                {
+                    throw new Exception("La Fecha Final debe ser mayor a la Fecha de Inicio");
+                }
+
+                //Verifica si se han seleccionado imágenes
+                if (dataGridViewFuentes.CurrentRow.Index < 0)
+                {
+                    throw new Exception("Debe seleccionar al menos una fuente");
+                }
+
+                //Verifica si la hora seleccionada está disponible
+                Dictionary<string, List<Banner>> mDiccionario = cFachada.AvailableTimesBanner(dateTimePickerBannerFechaInicio.Value, dateTimePickerBannerFechaFin.Value);
+                List<Banner> mListaBannersMenoresIguales = new List<Banner>();
+                mListaBannersMenoresIguales = mDiccionario["MenoresIguales"];
+
+                List<Banner> mListaBannerAuxiliar = new List<Banner>();
+                foreach (Banner mItemBanner in mListaBannersMenoresIguales)
+                {
+                    //Convert.ToInt32(comboBoxCampaniHoraInicio.Text);
+                    mListaBannerAuxiliar = mListaBannersMenoresIguales.Where(x =>
+                                                (x.FechaFin.Hour <= Convert.ToInt32(comboBoxBannerHoraFin.Text)) &&
+                                                (x.FechaFin.Hour >= Convert.ToInt32(comboBoxBannerHoraInicio.Text))).ToList();
+                    if (mListaBannerAuxiliar.Count() == 0)
+                    {
+                        List<Banner> mListaBannersIntermedias = new List<Banner>();
+                        mListaBannersIntermedias = mDiccionario["Intermedias"];
+                        foreach (Banner mItemBanner2 in mListaBannersIntermedias)
+                        {
+                            mListaBannerAuxiliar = mListaBannersIntermedias.Where(x =>
+                                                    (x.FechaFin.Hour > Convert.ToInt32(comboBoxBannerHoraFin.Text)) &&
+                                                    (x.FechaInicio.Hour <= Convert.ToInt32(comboBoxBannerHoraFin.Text)) &&
+                                                    (x.FechaInicio.Hour >= Convert.ToInt32(comboBoxBannerHoraInicio.Text))).ToList();
+                            if (mListaBannerAuxiliar.Count() == 0)
+                            {
+                                List<Banner> mListaBannersMayores = new List<Banner>();
+                                mListaBannersMayores = mDiccionario["Mayores"];
+                                foreach (Banner mItemBanner3 in mListaBannersMayores)
+                                {
+                                    mListaBannerAuxiliar = mListaBannersMayores.Where(x =>
+                                                             (x.FechaInicio.Hour < Convert.ToInt32(comboBoxBannerHoraInicio.Text)) &&
+                                                             (x.FechaFin.Hour > Convert.ToInt32(comboBoxBannerHoraFin.Text))).ToList();
+                                }
+                                if (mListaBannerAuxiliar.Count() > 0)
+                                {
+                                    throw new Exception("El horario no está disponible. Por favor verifique la disponibilidad");
+                                }
+                            }
+                            else
+                            {
+                                throw new Exception("El horario no está disponible. Por favor verifique la disponibilidad");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        throw new Exception("El horario no está disponible. Por favor verifique la disponibilidad");
+                    }
+                }
+
+                //Pasa la info del datePicker y el combo a una sola variable
+                DateTime mFechaInicio = new DateTime(
+                                                    dateTimePickerBannerFechaInicio.Value.Year,
+                                                    dateTimePickerBannerFechaInicio.Value.Month,
+                                                    dateTimePickerBannerFechaInicio.Value.Day,
+                                                    Convert.ToInt32(comboBoxBannerHoraInicio.Text),
+                                                    0,
+                                                    0);
+                DateTime mFechaFin = new DateTime(
+                                                 dateTimePickerBannerFechaFin.Value.Year,
+                                                 dateTimePickerBannerFechaFin.Value.Month,
+                                                 dateTimePickerBannerFechaFin.Value.Day,
+                                                 Convert.ToInt32(comboBoxBannerHoraFin.Text),
+                                                 0,
+                                                 0);
+
+                Banner mBanner = new Banner();
+                mBanner.Nombre = textBoxBannerNombre.Text;
+                mBanner.FechaInicio = mFechaInicio;
+                mBanner.FechaFin = mFechaFin;
+
+                if(comboBoxTipoFuente.Text == "RSS")
+                {
+                    FuenteRSS mFuente = new FuenteRSS { Id = Convert.ToInt32(textBoxId.Text)};
+                    mFuente = cFachada.GetFuenteRSS(mFuente);
+                    mBanner.Fuente = mFuente;
+                }
+                else
+                {
+                    FuenteTextoFijo mFuente = new FuenteTextoFijo { Id = Convert.ToInt32(textBoxId.Text) };
+                    mFuente = cFachada.GetFuenteTXT(mFuente);
+                    mBanner.Fuente = mFuente;
+                }
+
+                cFachada.AddBanner(mBanner);
+                MessageBox.Show("El Banner se ha guardado con éxito");
+                this.Close();
+
+            }
+            catch (Exception mExcepcion)
+            {
+                MessageBox.Show(mExcepcion.Message);
+                cLogger.Debug(mExcepcion.Message);
+            }
+
+        }
+
+
+        private void btnBannerCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

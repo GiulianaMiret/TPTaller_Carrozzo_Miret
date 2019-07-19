@@ -38,6 +38,9 @@
             this.modificarCampañaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.borrarCampañaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.administraciónDeBannersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.agregarBannerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modificarBannerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.borrarBannerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.administraciónDeFuentesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.agregarFuenteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eliminarFuenteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -118,9 +121,34 @@
             // 
             // administraciónDeBannersToolStripMenuItem
             // 
+            this.administraciónDeBannersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.agregarBannerToolStripMenuItem,
+            this.modificarBannerToolStripMenuItem,
+            this.borrarBannerToolStripMenuItem});
             this.administraciónDeBannersToolStripMenuItem.Name = "administraciónDeBannersToolStripMenuItem";
             this.administraciónDeBannersToolStripMenuItem.Size = new System.Drawing.Size(161, 20);
             this.administraciónDeBannersToolStripMenuItem.Text = "Administración de Banners";
+            // 
+            // agregarBannerToolStripMenuItem
+            // 
+            this.agregarBannerToolStripMenuItem.Name = "agregarBannerToolStripMenuItem";
+            this.agregarBannerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.agregarBannerToolStripMenuItem.Text = "Agregar Banner";
+            this.agregarBannerToolStripMenuItem.Click += new System.EventHandler(this.agregarBannerToolStripMenuItem_Click);
+            // 
+            // modificarBannerToolStripMenuItem
+            // 
+            this.modificarBannerToolStripMenuItem.Name = "modificarBannerToolStripMenuItem";
+            this.modificarBannerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.modificarBannerToolStripMenuItem.Text = "Modificar Banner";
+            this.modificarBannerToolStripMenuItem.Click += new System.EventHandler(this.modificarBannerToolStripMenuItem_Click);
+            // 
+            // borrarBannerToolStripMenuItem
+            // 
+            this.borrarBannerToolStripMenuItem.Name = "borrarBannerToolStripMenuItem";
+            this.borrarBannerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.borrarBannerToolStripMenuItem.Text = "Borrar Banner";
+            this.borrarBannerToolStripMenuItem.Click += new System.EventHandler(this.borrarBannerToolStripMenuItem_Click);
             // 
             // administraciónDeFuentesToolStripMenuItem1
             // 
@@ -135,21 +163,21 @@
             // agregarFuenteToolStripMenuItem
             // 
             this.agregarFuenteToolStripMenuItem.Name = "agregarFuenteToolStripMenuItem";
-            this.agregarFuenteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.agregarFuenteToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.agregarFuenteToolStripMenuItem.Text = "Agregar fuente";
             this.agregarFuenteToolStripMenuItem.Click += new System.EventHandler(this.agregarFuenteToolStripMenuItem_Click);
             // 
             // eliminarFuenteToolStripMenuItem
             // 
             this.eliminarFuenteToolStripMenuItem.Name = "eliminarFuenteToolStripMenuItem";
-            this.eliminarFuenteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eliminarFuenteToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.eliminarFuenteToolStripMenuItem.Text = "Eliminar Fuente";
             this.eliminarFuenteToolStripMenuItem.Click += new System.EventHandler(this.eliminarFuenteToolStripMenuItem_Click);
             // 
             // modificarFuenteToolStripMenuItem
             // 
             this.modificarFuenteToolStripMenuItem.Name = "modificarFuenteToolStripMenuItem";
-            this.modificarFuenteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.modificarFuenteToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.modificarFuenteToolStripMenuItem.Text = "Modificar Fuente";
             this.modificarFuenteToolStripMenuItem.Click += new System.EventHandler(this.modificarFuenteToolStripMenuItem_Click);
             // 
@@ -193,6 +221,9 @@
         private System.Windows.Forms.ToolStripMenuItem borrarCampañaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem eliminarFuenteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modificarFuenteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem agregarBannerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem modificarBannerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem borrarBannerToolStripMenuItem;
     }
 }
 

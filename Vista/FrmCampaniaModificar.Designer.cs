@@ -134,6 +134,7 @@
             // 
             // comboBoaxHoraFinCampania
             // 
+            this.comboBoaxHoraFinCampania.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoaxHoraFinCampania.FormattingEnabled = true;
             this.comboBoaxHoraFinCampania.Items.AddRange(new object[] {
             "01",
@@ -167,6 +168,7 @@
             // 
             // comboBoxHoraInicioCampania
             // 
+            this.comboBoxHoraInicioCampania.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxHoraInicioCampania.FormattingEnabled = true;
             this.comboBoxHoraInicioCampania.Items.AddRange(new object[] {
             "01",

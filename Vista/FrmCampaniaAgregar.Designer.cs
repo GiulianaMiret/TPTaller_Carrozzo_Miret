@@ -136,6 +136,7 @@
             // 
             // comboBoxCampaniaHoraFin
             // 
+            this.comboBoxCampaniaHoraFin.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxCampaniaHoraFin.FormattingEnabled = true;
             this.comboBoxCampaniaHoraFin.Items.AddRange(new object[] {
             "00",
@@ -169,6 +170,7 @@
             // 
             // comboBoxCampaniHoraInicio
             // 
+            this.comboBoxCampaniHoraInicio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxCampaniHoraInicio.FormattingEnabled = true;
             this.comboBoxCampaniHoraInicio.Items.AddRange(new object[] {
             "00",
@@ -364,10 +366,10 @@
             this.buttonConsultarDisponibilidad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonConsultarDisponibilidad.AutoSize = true;
             this.buttonConsultarDisponibilidad.BackColor = System.Drawing.Color.SandyBrown;
-            this.buttonConsultarDisponibilidad.Font = new System.Drawing.Font("Copperplate Gothic Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonConsultarDisponibilidad.Location = new System.Drawing.Point(528, 183);
+            this.buttonConsultarDisponibilidad.Font = new System.Drawing.Font("Copperplate Gothic Light", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonConsultarDisponibilidad.Location = new System.Drawing.Point(527, 179);
             this.buttonConsultarDisponibilidad.Name = "buttonConsultarDisponibilidad";
-            this.buttonConsultarDisponibilidad.Size = new System.Drawing.Size(299, 44);
+            this.buttonConsultarDisponibilidad.Size = new System.Drawing.Size(228, 40);
             this.buttonConsultarDisponibilidad.TabIndex = 22;
             this.buttonConsultarDisponibilidad.Text = "Ver Horarios Disponibles";
             this.buttonConsultarDisponibilidad.UseVisualStyleBackColor = false;

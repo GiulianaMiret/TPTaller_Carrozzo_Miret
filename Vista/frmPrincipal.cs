@@ -65,5 +65,20 @@ namespace Vista
         {
             CompositionRoot.Resolve<FrmFuenteRSSTXTModificar>().ShowDialog();
         }
+
+        private void agregarBannerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CompositionRoot.Resolve<FrmBannerAgregar>().ShowDialog();
+        }
+
+        private void borrarBannerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CompositionRoot.Resolve<FrmBannerBorrar>().ShowDialog();
+        }
+
+        private void modificarBannerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CompositionRoot.Resolve<FrmBannerModificar>().ShowDialog();
+        }
     }
 }

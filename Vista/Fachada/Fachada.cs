@@ -83,10 +83,6 @@ namespace Controlador
             }
         }
 
-        /// <summary>
-        /// updateo el valor de la fuente RSS
-        /// </summary>
-        /// <param name="pFuenteRSS"></param>
         public void UpdateValueRSS(FuenteRSS pFuenteRSS)
         {
             if (Utilidades.InternetDisponible())
@@ -143,6 +139,7 @@ namespace Controlador
             return cBannerRepository.GetBannerNow().Fuente.Valor;
         }
 
+
         public void DeleteFuenteRSS(FuenteRSS pFuenteRSS)
         {
             cRepositoryBaseRSS.DeleteById(pFuenteRSS.Id);
@@ -176,6 +173,11 @@ namespace Controlador
             cRepositoryBaseTXT.Update(pFuenteTXT);
             cRepositoryBaseTXT.SaveChanges();
         }
+
+
+        /// <summary>
+        /// Métodos relacionados a Imagen
+        /// </summary>
 
         public void AddImagen(Imagen pImagen)
         {
@@ -287,6 +289,51 @@ namespace Controlador
         {
             cRepositoryBaseCampania.Update(pCampania);
             cRepositoryBaseCampania.SaveChanges();
+        }
+
+
+        /// <summary>
+        /// Métodos relacionados a Banners
+        /// </summary>
+        /// 
+        
+        public void AddBanner(Banner pBanner)
+        {
+            Banner mBusquedaDeBannerPorNombre = cRepositoryBaseBanner.Filter(x => x.Nombre == pBanner.Nombre).FirstOrDefault();
+
+            if (mBusquedaDeBannerPorNombre != null)
+            {
+                throw new Exception("Un Banner con ese nombre ya existe, elija otro.");
+            }
+            cRepositoryBaseBanner.Add(pBanner);
+            cRepositoryBaseBanner.SaveChanges();
+        }
+
+        public Dictionary<string, List<Banner>> AvailableTimesBanner(DateTime pFechaInicio, DateTime pFechaFin)
+        {
+            return cBannerRepository.AvailableTimes(pFechaInicio, pFechaFin);
+        }
+
+        public List<Banner> GetAllBanner()
+        {
+            return cRepositoryBaseBanner.GetAll().ToList();
+        }
+
+        public void DeleteBanner(Banner pBanner)
+        {
+            cRepositoryBaseBanner.DeleteById(pBanner.Id);
+            cRepositoryBaseBanner.SaveChanges();
+        }
+
+        public Banner GetBanner(Banner pBanner)
+        {
+            return cRepositoryBaseBanner.GetById(pBanner.Id);
+        }
+
+        public void UpdateBanner(Banner pBanner)
+        {
+            cRepositoryBaseBanner.Update(pBanner);
+            cRepositoryBaseBanner.SaveChanges();
         }
     }
 }

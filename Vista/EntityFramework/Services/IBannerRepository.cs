@@ -15,6 +15,8 @@ namespace EntityFramework.Services
 
         //List<BannerTextoFijo> GetAllTXT();
 
-        Banner GetBannerNow();        
+        Banner GetBannerNow();
+
+        Dictionary<string, List<Banner>> AvailableTimes(DateTime pFechaInicio, DateTime pFechaFin);
     }
 }
