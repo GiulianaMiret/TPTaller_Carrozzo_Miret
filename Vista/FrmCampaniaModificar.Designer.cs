@@ -134,9 +134,9 @@
             // 
             // comboBoaxHoraFinCampania
             // 
-            this.comboBoaxHoraFinCampania.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoaxHoraFinCampania.FormattingEnabled = true;
             this.comboBoaxHoraFinCampania.Items.AddRange(new object[] {
+            "00",
             "01",
             "02",
             "03",
@@ -159,8 +159,7 @@
             "20",
             "21",
             "22",
-            "23",
-            "24"});
+            "23"});
             this.comboBoaxHoraFinCampania.Location = new System.Drawing.Point(228, 59);
             this.comboBoaxHoraFinCampania.Name = "comboBoaxHoraFinCampania";
             this.comboBoaxHoraFinCampania.Size = new System.Drawing.Size(81, 27);
@@ -168,9 +167,9 @@
             // 
             // comboBoxHoraInicioCampania
             // 
-            this.comboBoxHoraInicioCampania.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxHoraInicioCampania.FormattingEnabled = true;
             this.comboBoxHoraInicioCampania.Items.AddRange(new object[] {
+            "00",
             "01",
             "02",
             "03",
@@ -193,8 +192,7 @@
             "20",
             "21",
             "22",
-            "23",
-            "24"});
+            "23"});
             this.comboBoxHoraInicioCampania.Location = new System.Drawing.Point(228, 27);
             this.comboBoxHoraInicioCampania.Name = "comboBoxHoraInicioCampania";
             this.comboBoxHoraInicioCampania.Size = new System.Drawing.Size(81, 27);
@@ -342,6 +340,7 @@
             // 
             // dataGridViewImagenesSeleccionadas
             // 
+            this.dataGridViewImagenesSeleccionadas.AllowUserToAddRows = false;
             this.dataGridViewImagenesSeleccionadas.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dataGridViewImagenesSeleccionadas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewImagenesSeleccionadas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -365,6 +364,7 @@
             // 
             // dataGridViewTodasLasImagenes
             // 
+            this.dataGridViewTodasLasImagenes.AllowUserToAddRows = false;
             this.dataGridViewTodasLasImagenes.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.ActiveCaption;
@@ -419,6 +419,7 @@
             // 
             // dataGridViewCampanias
             // 
+            this.dataGridViewCampanias.AllowUserToAddRows = false;
             this.dataGridViewCampanias.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewCampanias.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewCampanias.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -486,6 +487,10 @@
             // 
             // dataGridViewHorariosDisponibles
             // 
+            this.dataGridViewHorariosDisponibles.AllowUserToAddRows = false;
+            this.dataGridViewHorariosDisponibles.AllowUserToDeleteRows = false;
+            this.dataGridViewHorariosDisponibles.AllowUserToResizeColumns = false;
+            this.dataGridViewHorariosDisponibles.AllowUserToResizeRows = false;
             this.dataGridViewHorariosDisponibles.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.dataGridViewHorariosDisponibles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewHorariosDisponibles.Location = new System.Drawing.Point(39, 232);

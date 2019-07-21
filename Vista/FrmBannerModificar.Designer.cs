@@ -111,6 +111,7 @@
             // 
             this.comboBoxHoraFinBanner.FormattingEnabled = true;
             this.comboBoxHoraFinBanner.Items.AddRange(new object[] {
+            "00",
             "01",
             "02",
             "03",
@@ -133,8 +134,7 @@
             "20",
             "21",
             "22",
-            "23",
-            "24"});
+            "23"});
             this.comboBoxHoraFinBanner.Location = new System.Drawing.Point(228, 59);
             this.comboBoxHoraFinBanner.Name = "comboBoxHoraFinBanner";
             this.comboBoxHoraFinBanner.Size = new System.Drawing.Size(81, 27);
@@ -144,6 +144,7 @@
             // 
             this.comboBoxHoraInicioBanner.FormattingEnabled = true;
             this.comboBoxHoraInicioBanner.Items.AddRange(new object[] {
+            "00",
             "01",
             "02",
             "03",
@@ -166,8 +167,7 @@
             "20",
             "21",
             "22",
-            "23",
-            "24"});
+            "23"});
             this.comboBoxHoraInicioBanner.Location = new System.Drawing.Point(228, 27);
             this.comboBoxHoraInicioBanner.Name = "comboBoxHoraInicioBanner";
             this.comboBoxHoraInicioBanner.Size = new System.Drawing.Size(81, 27);
@@ -233,6 +233,11 @@
             // 
             // dataGridViewHorariosDisponibles
             // 
+            this.dataGridViewHorariosDisponibles.AllowUserToAddRows = false;
+            this.dataGridViewHorariosDisponibles.AllowUserToDeleteRows = false;
+            this.dataGridViewHorariosDisponibles.AllowUserToOrderColumns = true;
+            this.dataGridViewHorariosDisponibles.AllowUserToResizeColumns = false;
+            this.dataGridViewHorariosDisponibles.AllowUserToResizeRows = false;
             this.dataGridViewHorariosDisponibles.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.dataGridViewHorariosDisponibles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewHorariosDisponibles.Location = new System.Drawing.Point(23, 228);
@@ -320,6 +325,7 @@
             // 
             // dataGridViewFuentes
             // 
+            this.dataGridViewFuentes.AllowUserToAddRows = false;
             this.dataGridViewFuentes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewFuentes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewFuentes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -474,6 +480,7 @@
             // 
             // dataGridViewBanners
             // 
+            this.dataGridViewBanners.AllowUserToAddRows = false;
             this.dataGridViewBanners.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewBanners.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
@@ -516,7 +523,7 @@
             // 
             // Fuente_Id
             // 
-            this.Fuente_Id.DataPropertyName = "Fuente_Id";
+            this.Fuente_Id.DataPropertyName = "Fuente";
             this.Fuente_Id.HeaderText = "Fuente";
             this.Fuente_Id.Name = "Fuente_Id";
             this.Fuente_Id.Visible = false;

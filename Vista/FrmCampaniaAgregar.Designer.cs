@@ -303,6 +303,7 @@
             // 
             // dataGridViewImagenesSeleccionadas
             // 
+            this.dataGridViewImagenesSeleccionadas.AllowUserToAddRows = false;
             this.dataGridViewImagenesSeleccionadas.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dataGridViewImagenesSeleccionadas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewImagenesSeleccionadas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -324,6 +325,7 @@
             // 
             // dataGridViewTodasLasImagenes
             // 
+            this.dataGridViewTodasLasImagenes.AllowUserToAddRows = false;
             this.dataGridViewTodasLasImagenes.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.ActiveCaption;
@@ -377,6 +379,11 @@
             // 
             // dataGridViewHorariosDisponibles
             // 
+            this.dataGridViewHorariosDisponibles.AllowUserToAddRows = false;
+            this.dataGridViewHorariosDisponibles.AllowUserToDeleteRows = false;
+            this.dataGridViewHorariosDisponibles.AllowUserToOrderColumns = true;
+            this.dataGridViewHorariosDisponibles.AllowUserToResizeColumns = false;
+            this.dataGridViewHorariosDisponibles.AllowUserToResizeRows = false;
             this.dataGridViewHorariosDisponibles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));

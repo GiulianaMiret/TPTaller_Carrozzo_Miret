@@ -90,9 +90,23 @@ namespace Vista
                             mCantidadDias = (mBanner.FechaFin.Date - mFechaInicio.Date).Days;
                             for (int i = 0; i <= mCantidadDias; i++)
                             {
-                                for (int j = (mBanner.FechaInicio.Hour); j <= (mBanner.FechaFin.Hour); j++)
+                                if (mBanner.FechaInicio.Hour > mBanner.FechaFin.Hour)
                                 {
-                                    dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                                    for (int j = (mBanner.FechaInicio.Hour); j < 24; j++)
+                                    {
+                                        dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                                    }
+                                    for (int j = 0; j <= (mBanner.FechaFin.Hour); j++)
+                                    {
+                                        dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                                    }
+                                }
+                                else
+                                {
+                                    for (int j = (mBanner.FechaInicio.Hour); j <= (mBanner.FechaFin.Hour); j++)
+                                    {
+                                        dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                                    }
                                 }
                             }
                         }
@@ -103,14 +117,35 @@ namespace Vista
                             mCantidadDias = mCantidadDias + mDiaInicio;
                             for (int i = mDiaInicio; i <= mCantidadDias; i++)
                             {
-                                for (int j = (mBanner.FechaInicio.Hour); j <= (mBanner.FechaFin.Hour); j++)
+                                if (mBanner.FechaInicio.Hour > mBanner.FechaFin.Hour)
                                 {
-                                    if (i < dataGridViewHorariosDisponibles.ColumnCount)
+                                    for (int j = (mBanner.FechaInicio.Hour); j < 24; j++)
                                     {
                                         dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
                                     }
-
+                                    for (int j = 0; j <= (mBanner.FechaFin.Hour); j++)
+                                    {
+                                        dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                                    }
                                 }
+                                else
+                                {
+                                    for (int j = (mBanner.FechaInicio.Hour); j <= (mBanner.FechaFin.Hour); j++)
+                                    {
+                                        if (i < dataGridViewHorariosDisponibles.ColumnCount)
+                                        {
+                                            dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                                        }
+                                    }
+                                }
+                                //for (int j = (mBanner.FechaInicio.Hour); j <= (mBanner.FechaFin.Hour); j++)
+                                //{
+                                //    if (i < dataGridViewHorariosDisponibles.ColumnCount)
+                                //    {
+                                //        dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                                //    }
+
+                                //}
                             }
                         }
                     }
@@ -122,9 +157,23 @@ namespace Vista
 
                         for (int i = mCantidadDias; i <= mCantidadColumnas; i++)
                         {
-                            for (int j = (mBanner.FechaInicio.Hour); j <= (mBanner.FechaFin.Hour); j++)
+                            if (mBanner.FechaInicio.Hour > mBanner.FechaFin.Hour)
                             {
-                                dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                                for (int j = (mBanner.FechaInicio.Hour); j < 24; j++)
+                                {
+                                    dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                                }
+                                for (int j = 0; j <= (mBanner.FechaFin.Hour); j++)
+                                {
+                                    dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                                }
+                            }
+                            else
+                            {
+                                for (int j = (mBanner.FechaInicio.Hour); j <= (mBanner.FechaFin.Hour); j++)
+                                {
+                                    dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                                }
                             }
 
                         }
@@ -135,9 +184,23 @@ namespace Vista
                     {
                         for (int i = 0; i <= mCantidadColumnas; i++)
                         {
-                            for (int j = (mBanner.FechaInicio.Hour); j <= (mBanner.FechaFin.Hour); j++)
+                            if (mBanner.FechaInicio.Hour > mBanner.FechaFin.Hour)
                             {
-                                dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                                for (int j = (mBanner.FechaInicio.Hour); j < 24; j++)
+                                {
+                                    dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                                }
+                                for (int j = 0; j <= (mBanner.FechaFin.Hour); j++)
+                                {
+                                    dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                                }
+                            }
+                            else
+                            {
+                                for (int j = (mBanner.FechaInicio.Hour); j <= (mBanner.FechaFin.Hour); j++)
+                                {
+                                    dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                                }
                             }
                         }
 
@@ -220,55 +283,6 @@ namespace Vista
                     throw new Exception("Debe seleccionar al menos una fuente");
                 }
 
-                //Verifica si la hora seleccionada está disponible
-                Dictionary<string, List<Banner>> mDiccionario = cFachada.AvailableTimesBanner(dateTimePickerBannerFechaInicio.Value, dateTimePickerBannerFechaFin.Value);
-                List<Banner> mListaBannersMenoresIguales = new List<Banner>();
-                mListaBannersMenoresIguales = mDiccionario["MenoresIguales"];
-
-                List<Banner> mListaBannerAuxiliar = new List<Banner>();
-                foreach (Banner mItemBanner in mListaBannersMenoresIguales)
-                {
-                    //Convert.ToInt32(comboBoxCampaniHoraInicio.Text);
-                    mListaBannerAuxiliar = mListaBannersMenoresIguales.Where(x =>
-                                                (x.FechaFin.Hour <= Convert.ToInt32(comboBoxBannerHoraFin.Text)) &&
-                                                (x.FechaFin.Hour >= Convert.ToInt32(comboBoxBannerHoraInicio.Text))).ToList();
-                    if (mListaBannerAuxiliar.Count() == 0)
-                    {
-                        List<Banner> mListaBannersIntermedias = new List<Banner>();
-                        mListaBannersIntermedias = mDiccionario["Intermedias"];
-                        foreach (Banner mItemBanner2 in mListaBannersIntermedias)
-                        {
-                            mListaBannerAuxiliar = mListaBannersIntermedias.Where(x =>
-                                                    (x.FechaFin.Hour > Convert.ToInt32(comboBoxBannerHoraFin.Text)) &&
-                                                    (x.FechaInicio.Hour <= Convert.ToInt32(comboBoxBannerHoraFin.Text)) &&
-                                                    (x.FechaInicio.Hour >= Convert.ToInt32(comboBoxBannerHoraInicio.Text))).ToList();
-                            if (mListaBannerAuxiliar.Count() == 0)
-                            {
-                                List<Banner> mListaBannersMayores = new List<Banner>();
-                                mListaBannersMayores = mDiccionario["Mayores"];
-                                foreach (Banner mItemBanner3 in mListaBannersMayores)
-                                {
-                                    mListaBannerAuxiliar = mListaBannersMayores.Where(x =>
-                                                             (x.FechaInicio.Hour < Convert.ToInt32(comboBoxBannerHoraInicio.Text)) &&
-                                                             (x.FechaFin.Hour > Convert.ToInt32(comboBoxBannerHoraFin.Text))).ToList();
-                                }
-                                if (mListaBannerAuxiliar.Count() > 0)
-                                {
-                                    throw new Exception("El horario no está disponible. Por favor verifique la disponibilidad");
-                                }
-                            }
-                            else
-                            {
-                                throw new Exception("El horario no está disponible. Por favor verifique la disponibilidad");
-                            }
-                        }
-                    }
-                    else
-                    {
-                        throw new Exception("El horario no está disponible. Por favor verifique la disponibilidad");
-                    }
-                }
-
                 //Pasa la info del datePicker y el combo a una sola variable
                 DateTime mFechaInicio = new DateTime(
                                                     dateTimePickerBannerFechaInicio.Value.Year,
@@ -290,7 +304,15 @@ namespace Vista
                 mBanner.FechaInicio = mFechaInicio;
                 mBanner.FechaFin = mFechaFin;
 
-                if(comboBoxTipoFuente.Text == "RSS")
+                //Verifica si la hora seleccionada está disponible
+                Dictionary<string, List<Banner>> mDiccionario = cFachada.AvailableTimesBanner(dateTimePickerBannerFechaInicio.Value, dateTimePickerBannerFechaFin.Value);
+                bool mDisponible = cFachada.AvailableHoursBanner(mBanner, mDiccionario);
+                if (!mDisponible)
+                {
+                    throw new Exception("El horario seleccionado no está disponible");
+                }
+
+                if (comboBoxTipoFuente.Text == "RSS")
                 {
                     FuenteRSS mFuente = new FuenteRSS { Id = Convert.ToInt32(textBoxId.Text)};
                     mFuente = cFachada.GetFuenteRSS(mFuente);

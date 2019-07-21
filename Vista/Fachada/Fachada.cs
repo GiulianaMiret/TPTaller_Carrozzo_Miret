@@ -291,12 +291,17 @@ namespace Controlador
             cRepositoryBaseCampania.SaveChanges();
         }
 
+        public bool AvailableHoursCampania(Campania pCampania, Dictionary<string, List<Campania>> pDictionary)
+        {
+            return cCampaniaRepository.AvailableHours(pCampania, pDictionary);
+        }
+
 
         /// <summary>
         /// Métodos relacionados a Banners
         /// </summary>
         /// 
-        
+
         public void AddBanner(Banner pBanner)
         {
             Banner mBusquedaDeBannerPorNombre = cRepositoryBaseBanner.Filter(x => x.Nombre == pBanner.Nombre).FirstOrDefault();
@@ -334,6 +339,11 @@ namespace Controlador
         {
             cRepositoryBaseBanner.Update(pBanner);
             cRepositoryBaseBanner.SaveChanges();
+        }
+
+        public bool AvailableHoursBanner(Banner pBanner, Dictionary<string, List<Banner>> pDictionary)
+        {
+            return cBannerRepository.AvailableHours(pBanner, pDictionary);
         }
     }
 }

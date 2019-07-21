@@ -51,58 +51,68 @@ namespace Vista
         {
             dataGridViewHorariosDisponibles.Columns.Clear();
             dataGridViewHorariosDisponibles.Visible = true;
-
-            if (dateTimePickerBannerFechaInicio.Value.Date >= DateTime.Now.Date)
+            if (dateTimePickerBannerFechaInicio.Value.Date <= dateTimePickerBannerFechaFin.Value.Date)
             {
-                if (dateTimePickerBannerFechaInicio.Value.Date <= dateTimePickerBannerFechaFin.Value.Date)
+                DateTime mFechaInicio = dateTimePickerBannerFechaInicio.Value;
+                DateTime mFechaFin = dateTimePickerBannerFechaFin.Value;
+                int mCantidadColumnas = (mFechaFin - mFechaInicio).Days;
+                DateTime mFechaAuxiliar = new DateTime();
+                mFechaAuxiliar = mFechaInicio;
+
+                for (int i = 0; i <= mCantidadColumnas; i++)
                 {
-                    DateTime mFechaInicio = dateTimePickerBannerFechaInicio.Value;
-                    DateTime mFechaFin = dateTimePickerBannerFechaFin.Value;
-                    int mCantidadColumnas = (mFechaFin - mFechaInicio).Days;
-                    DateTime mFechaAuxiliar = new DateTime();
-                    mFechaAuxiliar = mFechaInicio;
-
-                    for (int i = 0; i <= mCantidadColumnas; i++)
+                    DataGridViewColumn mColumna = new DataGridViewColumn()
                     {
-                        DataGridViewColumn mColumna = new DataGridViewColumn()
+                        Name = ((mFechaAuxiliar.Day).ToString() + "/" + (mFechaAuxiliar.Month).ToString()),
+                        Width = 40,
+                        ValueType = typeof(string),
+                        CellTemplate = new DataGridViewTextBoxCell()
+                    };
+                    dataGridViewHorariosDisponibles.Columns.Add(mColumna);
+                    mFechaAuxiliar = mFechaAuxiliar.AddDays(1);
+                }
+                for (int i = 0; i < 24; i++)
+                {
+                    DataGridViewRow fila = new DataGridViewRow();
+                    dataGridViewHorariosDisponibles.Rows.Add(fila);
+                    dataGridViewHorariosDisponibles.Rows[i].HeaderCell.Value = ((i).ToString() + " hs.");
+                    dataGridViewHorariosDisponibles.AutoResizeRowHeadersWidth(
+                                                    DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders);
+                }
+                //DGV Rangos Horarios Seleccionados
+                dataGridViewHorariosDisponibles.AutoGenerateColumns = false;
+                dataGridViewHorariosDisponibles.AutoSize = false;
+
+
+                Dictionary<string, List<Banner>> mDiccionario = cFachada.AvailableTimesBanner(dateTimePickerBannerFechaInicio.Value, dateTimePickerBannerFechaFin.Value);
+                List<Banner> mListaBannersMenoresIguales = new List<Banner>();
+                mListaBannersMenoresIguales = mDiccionario["MenoresIguales"];
+                List<Banner> mListaBannersIntermedias = new List<Banner>();
+                mListaBannersIntermedias = mDiccionario["Intermedias"];
+                List<Banner> mListaBannersMayores = new List<Banner>();
+                mListaBannersMayores = mDiccionario["Mayores"];
+
+                //Opción 1: 
+                int mCantidadDias = 0;
+                foreach (Banner mBanner in mListaBannersMenoresIguales)
+                {
+                    if (mBanner.FechaInicio < mFechaInicio)
+                    {
+                        mCantidadDias = (mBanner.FechaFin.Date - mFechaInicio.Date).Days;
+                        for (int i = 0; i <= mCantidadDias; i++)
                         {
-                            Name = ((mFechaAuxiliar.Day).ToString() + "/" + (mFechaAuxiliar.Month).ToString()),
-                            Width = 40,
-                            ValueType = typeof(string),
-                            CellTemplate = new DataGridViewTextBoxCell()
-                        };
-                        dataGridViewHorariosDisponibles.Columns.Add(mColumna);
-                        mFechaAuxiliar = mFechaAuxiliar.AddDays(1);
-                    }
-                    for (int i = 0; i < 24; i++)
-                    {
-                        DataGridViewRow fila = new DataGridViewRow();
-                        dataGridViewHorariosDisponibles.Rows.Add(fila);
-                        dataGridViewHorariosDisponibles.Rows[i].HeaderCell.Value = ((i).ToString() + " hs.");
-                        dataGridViewHorariosDisponibles.AutoResizeRowHeadersWidth(
-                                                        DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders);
-                    }
-                    //DGV Rangos Horarios Seleccionados
-                    dataGridViewHorariosDisponibles.AutoGenerateColumns = false;
-                    dataGridViewHorariosDisponibles.AutoSize = false;
-
-
-                    Dictionary<string, List<Banner>> mDiccionario = cFachada.AvailableTimesBanner(dateTimePickerBannerFechaInicio.Value, dateTimePickerBannerFechaFin.Value);
-                    List<Banner> mListaBannersMenoresIguales = new List<Banner>();
-                    mListaBannersMenoresIguales = mDiccionario["MenoresIguales"];
-                    List<Banner> mListaBannersIntermedias = new List<Banner>();
-                    mListaBannersIntermedias = mDiccionario["Intermedias"];
-                    List<Banner> mListaBannersMayores = new List<Banner>();
-                    mListaBannersMayores = mDiccionario["Mayores"];
-
-                    //Opción 1: 
-                    int mCantidadDias = 0;
-                    foreach (Banner mBanner in mListaBannersMenoresIguales)
-                    {
-                        if (mBanner.FechaInicio < mFechaInicio)
-                        {
-                            mCantidadDias = (mBanner.FechaFin.Date - mFechaInicio.Date).Days;
-                            for (int i = 0; i <= mCantidadDias; i++)
+                            if (mBanner.FechaInicio.Hour > mBanner.FechaFin.Hour)
+                            {
+                                for (int j = (mBanner.FechaInicio.Hour); j < 24; j++)
+                                {
+                                    dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                                }
+                                for (int j = 0; j <= (mBanner.FechaFin.Hour); j++)
+                                {
+                                    dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                                }
+                            }
+                            else
                             {
                                 for (int j = (mBanner.FechaInicio.Hour); j <= (mBanner.FechaFin.Hour); j++)
                                 {
@@ -110,12 +120,26 @@ namespace Vista
                                 }
                             }
                         }
-                        else
+                    }
+                    else
+                    {
+                        mCantidadDias = (mBanner.FechaFin.Date - mBanner.FechaInicio.Date).Days;
+                        int mDiaInicio = (mBanner.FechaInicio.Date - mFechaInicio.Date).Days;
+                        mCantidadDias = mCantidadDias + mDiaInicio;
+                        for (int i = mDiaInicio; i <= mCantidadDias; i++)
                         {
-                            mCantidadDias = (mBanner.FechaFin.Date - mBanner.FechaInicio.Date).Days;
-                            int mDiaInicio = (mBanner.FechaInicio.Date - mFechaInicio.Date).Days;
-                            mCantidadDias = mCantidadDias + mDiaInicio;
-                            for (int i = mDiaInicio; i <= mCantidadDias; i++)
+                            if (mBanner.FechaInicio.Hour > mBanner.FechaFin.Hour)
+                            {
+                                for (int j = (mBanner.FechaInicio.Hour); j < 24; j++)
+                                {
+                                    dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                                }
+                                for (int j = 0; j <= (mBanner.FechaFin.Hour); j++)
+                                {
+                                    dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                                }
+                            }
+                            else
                             {
                                 for (int j = (mBanner.FechaInicio.Hour); j <= (mBanner.FechaFin.Hour); j++)
                                 {
@@ -123,48 +147,81 @@ namespace Vista
                                     {
                                         dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
                                     }
-
                                 }
                             }
-                        }
-                    }
 
-                    //Opción 2:
-                    foreach (Banner mBanner in mListaBannersIntermedias)
-                    {
-                        mCantidadDias = (mBanner.FechaInicio.Date - mFechaInicio.Date).Days;
+                            //for (int j = (mBanner.FechaInicio.Hour); j <= (mBanner.FechaFin.Hour); j++)
+                            //{
+                            //    if (i < dataGridViewHorariosDisponibles.ColumnCount)
+                            //    {
+                            //        dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                            //    }
 
-                        for (int i = mCantidadDias; i <= mCantidadColumnas; i++)
-                        {
-                            for (int j = (mBanner.FechaInicio.Hour); j <= (mBanner.FechaFin.Hour); j++)
-                            {
-                                dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
-                            }
-
-                        }
-                    }
-
-                    //Opción 3:
-                    foreach (Banner mBanner in mListaBannersMayores)
-                    {
-                        for (int i = 0; i <= mCantidadColumnas; i++)
-                        {
-                            for (int j = (mBanner.FechaInicio.Hour); j <= (mBanner.FechaFin.Hour); j++)
-                            {
-                                dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
-                            }
+                            //}
                         }
                     }
                 }
-                else
+
+                //Opción 2:
+                foreach (Banner mBanner in mListaBannersIntermedias)
                 {
-                    MessageBox.Show("La fecha de inicio debe ser menor a la fecha fin");
+                    mCantidadDias = (mBanner.FechaInicio.Date - mFechaInicio.Date).Days;
+
+                    for (int i = mCantidadDias; i <= mCantidadColumnas; i++)
+                    {
+                        if (mBanner.FechaInicio.Hour > mBanner.FechaFin.Hour)
+                        {
+                            for (int j = (mBanner.FechaInicio.Hour); j < 24; j++)
+                            {
+                                dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                            }
+                            for (int j = 0; j <= (mBanner.FechaFin.Hour); j++)
+                            {
+                                dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                            }
+                        }
+                        else
+                        {
+                            for (int j = (mBanner.FechaInicio.Hour); j <= (mBanner.FechaFin.Hour); j++)
+                            {
+                                dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                            }
+                        }
+
+                    }
+                }
+
+                //Opción 3:
+                foreach (Banner mBanner in mListaBannersMayores)
+                {
+                    for (int i = 0; i <= mCantidadColumnas; i++)
+                    {
+                        if (mBanner.FechaInicio.Hour > mBanner.FechaFin.Hour)
+                        {
+                            for (int j = (mBanner.FechaInicio.Hour); j < 24; j++)
+                            {
+                                dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                            }
+                            for (int j = 0; j <= (mBanner.FechaFin.Hour); j++)
+                            {
+                                dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                            }
+                        }
+                        else
+                        {
+                            for (int j = (mBanner.FechaInicio.Hour); j <= (mBanner.FechaFin.Hour); j++)
+                            {
+                                dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                            }
+                        }
+                    }
                 }
             }
             else
             {
-                MessageBox.Show("La fecha de inicio ya ha pasado");
+                MessageBox.Show("La fecha de inicio debe ser menor a la fecha fin");
             }
+
         }
 
         private void comboBoxTipoFuente_SelectedIndexChanged(object sender, EventArgs e)
@@ -273,55 +330,6 @@ namespace Vista
                         throw new Exception("La Fecha Final debe ser mayor a la Fecha de Inicio");
                     }
 
-                    //Verifica si la hora seleccionada está disponible
-                    Dictionary<string, List<Banner>> mDiccionario = cFachada.AvailableTimesBanner(dateTimePickerBannerFechaInicio.Value, dateTimePickerBannerFechaFin.Value);
-                    List<Banner> mListaBannersMenoresIguales = new List<Banner>();
-                    mListaBannersMenoresIguales = mDiccionario["MenoresIguales"];
-
-                    List<Banner> mListaBannerAuxiliar = new List<Banner>();
-                    foreach (Banner mItemBanner in mListaBannersMenoresIguales)
-                    {
-                        //Convert.ToInt32(comboBoxCampaniHoraInicio.Text);
-                        mListaBannerAuxiliar = mListaBannersMenoresIguales.Where(x =>
-                                                    (x.FechaFin.Hour <= Convert.ToInt32(comboBoxHoraFinBanner.Text)) &&
-                                                    (x.FechaFin.Hour >= Convert.ToInt32(comboBoxHoraInicioBanner.Text))).ToList();
-                        if (mListaBannerAuxiliar.Count() == 0)
-                        {
-                            List<Banner> mListaBannersIntermedias = new List<Banner>();
-                            mListaBannersIntermedias = mDiccionario["Intermedias"];
-                            foreach (Banner mItemBanner2 in mListaBannersIntermedias)
-                            {
-                                mListaBannerAuxiliar = mListaBannersIntermedias.Where(x =>
-                                                        (x.FechaFin.Hour > Convert.ToInt32(comboBoxHoraFinBanner.Text)) &&
-                                                        (x.FechaInicio.Hour <= Convert.ToInt32(comboBoxHoraFinBanner.Text)) &&
-                                                        (x.FechaInicio.Hour >= Convert.ToInt32(comboBoxHoraInicioBanner.Text))).ToList();
-                                if (mListaBannerAuxiliar.Count() == 0)
-                                {
-                                    List<Banner> mListaBannersMayores = new List<Banner>();
-                                    mListaBannersMayores = mDiccionario["Mayores"];
-                                    foreach (Banner mItemBanner3 in mListaBannersMayores)
-                                    {
-                                        mListaBannerAuxiliar = mListaBannersMayores.Where(x =>
-                                                                 (x.FechaInicio.Hour < Convert.ToInt32(comboBoxHoraInicioBanner.Text)) &&
-                                                                 (x.FechaFin.Hour > Convert.ToInt32(comboBoxHoraFinBanner.Text))).ToList();
-                                    }
-                                    if (mListaBannerAuxiliar.Count() > 0)
-                                    {
-                                        throw new Exception("El horario no está disponible. Por favor verifique la disponibilidad");
-                                    }
-                                }
-                                else
-                                {
-                                    throw new Exception("El horario no está disponible. Por favor verifique la disponibilidad");
-                                }
-                            }
-                        }
-                        else
-                        {
-                            throw new Exception("El horario no está disponible. Por favor verifique la disponibilidad");
-                        }
-                    }
-
                     //Pasa la info del datePicker y el combo a una sola variable
                     DateTime mFechaInicio = new DateTime(
                                                         dateTimePickerBannerFechaInicio.Value.Year,
@@ -338,6 +346,17 @@ namespace Vista
                                                      0,
                                                      0);
 
+                    Banner mBanner = new Banner();
+                    mBanner.Id = cBanner.Id;
+                    mBanner.FechaInicio = cBanner.FechaInicio;
+                    mBanner.FechaFin = cBanner.FechaFin;
+                    //Verifica si la hora seleccionada está disponible
+                    Dictionary<string, List<Banner>> mDiccionario = cFachada.AvailableTimesBanner(dateTimePickerBannerFechaInicio.Value, dateTimePickerBannerFechaFin.Value);
+                    bool mDisponible = cFachada.AvailableHoursBanner(mBanner, mDiccionario);
+                    if (!mDisponible)
+                    {
+                        throw new Exception("El horario seleccionado no está disponible");
+                    }
 
                     cBanner.Nombre = textBoxNombreBanner.Text;
                     cBanner.FechaInicio = mFechaInicio;

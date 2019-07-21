@@ -105,7 +105,7 @@
             this.btnBannerCancelar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnBannerCancelar.Font = new System.Drawing.Font("Copperplate Gothic Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBannerCancelar.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.btnBannerCancelar.Location = new System.Drawing.Point(524, 532);
+            this.btnBannerCancelar.Location = new System.Drawing.Point(627, 532);
             this.btnBannerCancelar.Name = "btnBannerCancelar";
             this.btnBannerCancelar.Size = new System.Drawing.Size(134, 33);
             this.btnBannerCancelar.TabIndex = 14;
@@ -118,7 +118,7 @@
             this.btnBannerGuardar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnBannerGuardar.AutoSize = true;
             this.btnBannerGuardar.Font = new System.Drawing.Font("Copperplate Gothic Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBannerGuardar.Location = new System.Drawing.Point(752, 532);
+            this.btnBannerGuardar.Location = new System.Drawing.Point(403, 532);
             this.btnBannerGuardar.Name = "btnBannerGuardar";
             this.btnBannerGuardar.Size = new System.Drawing.Size(134, 33);
             this.btnBannerGuardar.TabIndex = 15;
@@ -274,6 +274,11 @@
             // 
             // dataGridViewHorariosDisponibles
             // 
+            this.dataGridViewHorariosDisponibles.AllowUserToAddRows = false;
+            this.dataGridViewHorariosDisponibles.AllowUserToDeleteRows = false;
+            this.dataGridViewHorariosDisponibles.AllowUserToOrderColumns = true;
+            this.dataGridViewHorariosDisponibles.AllowUserToResizeColumns = false;
+            this.dataGridViewHorariosDisponibles.AllowUserToResizeRows = false;
             this.dataGridViewHorariosDisponibles.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.dataGridViewHorariosDisponibles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewHorariosDisponibles.Location = new System.Drawing.Point(56, 295);
@@ -284,6 +289,7 @@
             // 
             // dataGridViewFuentes
             // 
+            this.dataGridViewFuentes.AllowUserToAddRows = false;
             this.dataGridViewFuentes.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.dataGridViewFuentes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewFuentes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;

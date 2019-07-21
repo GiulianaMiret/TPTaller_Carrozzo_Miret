@@ -17,5 +17,8 @@ namespace EntityFramework.Services
         void AddImagenes(int pIdImagen, int pIdCampania);
 
         Dictionary<string, List<Campania>> AvailableTimes(DateTime pFechaInicio, DateTime pFechaFin);
+
+        bool AvailableHours(Campania pCampania, Dictionary<string, List<Campania>> pDictionary);
+
     }
 }

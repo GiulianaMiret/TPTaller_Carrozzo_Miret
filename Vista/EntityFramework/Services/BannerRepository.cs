@@ -46,9 +46,128 @@ namespace EntityFramework.Services
             mDiccionarioDeListas.Add("Intermedias", mListaBannersIntermedias);
             mDiccionarioDeListas.Add("Mayores", mListaBannersMayores);
 
-
             return mDiccionarioDeListas;
+        }
 
+
+        public bool AvailableHours(Banner pBanner, Dictionary<string, List<Banner>> pDictionary)
+        {
+            List<Banner> mListaBannersMenoresIguales = new List<Banner>();
+            mListaBannersMenoresIguales = pDictionary["MenoresIguales"];
+            List<Banner> mListaBannersIntermedias = new List<Banner>();
+            mListaBannersIntermedias = pDictionary["Intermedias"];
+            List<Banner> mListaBannersMayores = new List<Banner>();
+            mListaBannersMayores = pDictionary["Mayores"];
+
+            List<Banner> mListaAuxiliar = new List<Banner>();
+            if (mListaBannersMenoresIguales.Count() > 0)
+            {
+                //Opción 1
+                mListaAuxiliar = mListaBannersMenoresIguales.Where(x =>
+                                                        (x.FechaFin.Hour <= pBanner.FechaFin.Hour) &&
+                                                        (x.FechaFin.Hour >= pBanner.FechaInicio.Hour) &&
+                                                        (x.Id != pBanner.Id)).ToList();
+                if (mListaAuxiliar.Count() > 0)
+                {
+                    return false;
+                }
+                //Opción 2
+                mListaAuxiliar = mListaBannersMenoresIguales.Where(x =>
+                                                        (x.FechaFin.Hour > pBanner.FechaFin.Hour) &&
+                                                        (x.FechaInicio.Hour <= pBanner.FechaFin.Hour) &&
+                                                        (x.FechaInicio.Hour >= pBanner.FechaInicio.Hour) &&
+                                                        (x.Id != pBanner.Id)).ToList();
+
+                if (mListaAuxiliar.Count() > 0)
+                {
+                    return false;
+                }
+
+                //Opción 3
+                mListaAuxiliar = mListaBannersMenoresIguales.Where(x =>
+                                                    (x.FechaInicio.Hour < pBanner.FechaInicio.Hour) &&
+                                                    (x.FechaFin.Hour > pBanner.FechaFin.Hour) &&
+                                                    (x.Id != pBanner.Id)).ToList();
+                if (mListaAuxiliar.Count() > 0)
+                {
+                    return false;
+                }
+            }
+            if (mListaBannersIntermedias.Count() > 0)
+            {
+                //Opción 1
+                mListaAuxiliar = mListaBannersIntermedias.Where(x =>
+                                                        (x.FechaFin.Hour <= pBanner.FechaFin.Hour) &&
+                                                        (x.FechaFin.Hour >= pBanner.FechaInicio.Hour) &&
+                                                        (x.Id != pBanner.Id)).ToList();
+                if (mListaAuxiliar.Count() > 0)
+                {
+                    return false;
+                }
+                //Opción 2
+                mListaAuxiliar = mListaBannersIntermedias.Where(x =>
+                                                        (x.FechaFin.Hour > pBanner.FechaFin.Hour) &&
+                                                        (x.FechaInicio.Hour <= pBanner.FechaFin.Hour) &&
+                                                        (x.FechaInicio.Hour >= pBanner.FechaInicio.Hour) &&
+                                                        (x.Id != pBanner.Id)).ToList();
+
+                if (mListaAuxiliar.Count() > 0)
+                {
+                    return false;
+                }
+
+                //Opción 3
+                mListaAuxiliar = mListaBannersIntermedias.Where(x =>
+                                                    (x.FechaInicio.Hour < pBanner.FechaInicio.Hour) &&
+                                                    (x.FechaFin.Hour > pBanner.FechaFin.Hour) &&
+                                                    (x.Id != pBanner.Id)).ToList();
+                if (mListaAuxiliar.Count() > 0)
+                {
+                    return false;
+                }
+            }
+            if (mListaBannersMayores.Count() > 0)
+            {
+                //Opción 1
+                mListaAuxiliar = mListaBannersMayores.Where(x =>
+                                                        (x.FechaFin.Hour <= pBanner.FechaFin.Hour) &&
+                                                        (x.FechaFin.Hour >= pBanner.FechaInicio.Hour) &&
+                                                        (x.Id != pBanner.Id)).ToList();
+                if (mListaAuxiliar.Count() > 0)
+                {
+                    return false;
+                }
+                //Opción 2
+                mListaAuxiliar = mListaBannersMayores.Where(x =>
+                                                        (x.FechaFin.Hour > pBanner.FechaFin.Hour) &&
+                                                        (x.FechaInicio.Hour <= pBanner.FechaFin.Hour) &&
+                                                        (x.FechaInicio.Hour >= pBanner.FechaInicio.Hour) &&
+                                                        (x.Id != pBanner.Id)).ToList();
+
+                if (mListaAuxiliar.Count() > 0)
+                {
+                    return false;
+                }
+
+                //Opción 3
+                mListaAuxiliar = mListaBannersMayores.Where(x =>
+                                                    ((x.FechaInicio.Hour < pBanner.FechaInicio.Hour) &&
+                                                    (x.FechaFin.Hour > pBanner.FechaFin.Hour) &&
+                                                    (x.Id != pBanner.Id))).ToList();
+
+                if (mListaAuxiliar.Count() > 0)
+                {
+                    mListaAuxiliar = mListaAuxiliar.Where(x =>
+                                                    (x.FechaInicio.Hour < pBanner.FechaFin.Hour) &&
+                                                    (x.FechaFin.Hour > pBanner.FechaInicio.Hour)).ToList();
+                    if (mListaAuxiliar.Count() > 0)
+                    {
+                        return false;
+                    }
+
+                }
+            }
+            return true;
         }
 
         //public void CambiarFuente(int pIdBanner, FuenteRSS pFuente)

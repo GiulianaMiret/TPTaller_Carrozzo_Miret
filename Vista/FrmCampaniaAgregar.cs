@@ -145,12 +145,27 @@ namespace Vista
                         if (mCampania.FechaInicio < mFechaInicio)
                         {
                             mCantidadDias = (mCampania.FechaFin.Date - mFechaInicio.Date).Days;
-                            for (int i = 0; i <= mCantidadDias; i++)
+                            for (int i = 0; i < mCantidadDias; i++)
                             {
-                                for (int j = (mCampania.FechaInicio.Hour); j <= (mCampania.FechaFin.Hour); j++)
+                                if(mCampania.FechaInicio.Hour > mCampania.FechaFin.Hour)
                                 {
-                                    dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                                    for (int j = (mCampania.FechaInicio.Hour); j < 24; j++)
+                                    {
+                                        dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                                    }
+                                    for (int j = 0; j <= (mCampania.FechaFin.Hour); j++)
+                                    {
+                                        dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                                    }
                                 }
+                                else
+                                {
+                                    for (int j = (mCampania.FechaInicio.Hour); j <= (mCampania.FechaFin.Hour); j++)
+                                    {
+                                        dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                                    }
+                                }
+                                
                             }
                         }
                         else
@@ -160,14 +175,36 @@ namespace Vista
                             mCantidadDias = mCantidadDias + mDiaInicio;
                             for (int i = mDiaInicio; i <= mCantidadDias; i++)
                             {
-                                for (int j = (mCampania.FechaInicio.Hour); j <= (mCampania.FechaFin.Hour); j++)
+                                if (mCampania.FechaInicio.Hour > mCampania.FechaFin.Hour)
                                 {
-                                    if(i < dataGridViewHorariosDisponibles.ColumnCount)
+                                    for (int j = (mCampania.FechaInicio.Hour); j < 24; j++)
                                     {
                                         dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
                                     }
-                                    
+                                    for (int j = 0; j <= (mCampania.FechaFin.Hour); j++)
+                                    {
+                                        dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                                    }
                                 }
+                                else
+                                {
+                                    for (int j = (mCampania.FechaInicio.Hour); j <= (mCampania.FechaFin.Hour); j++)
+                                    {
+                                        if (i < dataGridViewHorariosDisponibles.ColumnCount)
+                                        {
+                                            dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                                        }
+                                    }
+                                }
+
+                                //for (int j = (mCampania.FechaInicio.Hour); j <= (mCampania.FechaFin.Hour); j++)
+                                //{
+                                //    if(i < dataGridViewHorariosDisponibles.ColumnCount)
+                                //    {
+                                //        dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                                //    }
+                                    
+                                //}
                             }
                         }
                     }
@@ -179,10 +216,29 @@ namespace Vista
                         
                         for (int i = mCantidadDias; i <= mCantidadColumnas; i++)
                         {
-                            for (int j = (mCampania.FechaInicio.Hour); j <= (mCampania.FechaFin.Hour); j++)
+                            if (mCampania.FechaInicio.Hour > mCampania.FechaFin.Hour)
                             {
-                                dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                                for (int j = (mCampania.FechaInicio.Hour); j < 24; j++)
+                                {
+                                    dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                                }
+                                for (int j = 0; j <= (mCampania.FechaFin.Hour); j++)
+                                {
+                                    dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                                }
                             }
+                            else
+                            {
+                                for (int j = (mCampania.FechaInicio.Hour); j <= (mCampania.FechaFin.Hour); j++)
+                                {
+                                    dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                                }
+                            }
+
+                            //for (int j = (mCampania.FechaInicio.Hour); j <= (mCampania.FechaFin.Hour); j++)
+                            //{
+                            //    dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                            //}
 
                         }
                     }
@@ -192,10 +248,29 @@ namespace Vista
                     {
                         for (int i = 0; i <= mCantidadColumnas; i++)
                         {
-                            for (int j = (mCampania.FechaInicio.Hour); j <= (mCampania.FechaFin.Hour); j++)
+                            if (mCampania.FechaInicio.Hour > mCampania.FechaFin.Hour)
                             {
-                                dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                                for (int j = (mCampania.FechaInicio.Hour); j < 24; j++)
+                                {
+                                    dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                                }
+                                for (int j = 0; j <= (mCampania.FechaFin.Hour); j++)
+                                {
+                                    dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                                }
                             }
+                            else
+                            {
+                                for (int j = (mCampania.FechaInicio.Hour); j <= (mCampania.FechaFin.Hour); j++)
+                                {
+                                    dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                                }
+                            }
+
+                            //for (int j = (mCampania.FechaInicio.Hour); j <= (mCampania.FechaFin.Hour); j++)
+                            //{
+                            //    dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
+                            //}
                         }
 
                             
@@ -254,55 +329,6 @@ namespace Vista
                     throw new Exception("Debe seleccionar al menos una imágen");
                 }
 
-                //Verifica si la hora seleccionada está disponible
-                Dictionary<string, List<Campania>> mDiccionario = cFachada.AvailableTimes(dateTimePickerCampaniaFechaInicio.Value, dateTimePickerCampaniaFechaFin.Value);
-                List<Campania> mListaCampaniasMenoresIguales = new List<Campania>();
-                mListaCampaniasMenoresIguales = mDiccionario["MenoresIguales"];
-
-                List<Campania> mListaCampaniaAuxiliar = new List<Campania>();
-                foreach (Campania mItemCampania in mListaCampaniasMenoresIguales)
-                {
-                    //Convert.ToInt32(comboBoxCampaniHoraInicio.Text);
-                    mListaCampaniaAuxiliar = mListaCampaniasMenoresIguales.Where(x =>
-                                                (x.FechaFin.Hour <= Convert.ToInt32(comboBoxCampaniaHoraFin.Text)) &&
-                                                (x.FechaFin.Hour >= Convert.ToInt32(comboBoxCampaniHoraInicio.Text))).ToList();
-                    if (mListaCampaniaAuxiliar.Count() == 0)
-                    {
-                        List<Campania> mListaCampaniasIntermedias = new List<Campania>();
-                        mListaCampaniasIntermedias = mDiccionario["Intermedias"];
-                        foreach (Campania mItemCampania2 in mListaCampaniasIntermedias)
-                        {
-                            mListaCampaniaAuxiliar = mListaCampaniasIntermedias.Where(x =>
-                                                    (x.FechaFin.Hour > Convert.ToInt32(comboBoxCampaniaHoraFin.Text)) &&
-                                                    (x.FechaInicio.Hour <= Convert.ToInt32(comboBoxCampaniaHoraFin.Text)) &&
-                                                    (x.FechaInicio.Hour >= Convert.ToInt32(comboBoxCampaniHoraInicio.Text))).ToList();
-                            if (mListaCampaniaAuxiliar.Count() == 0)
-                            {
-                                List<Campania> mListaCampaniasMayores = new List<Campania>();
-                                mListaCampaniasMayores = mDiccionario["Mayores"];
-                                foreach (Campania mItemCampania3 in mListaCampaniasMayores)
-                                {
-                                    mListaCampaniaAuxiliar = mListaCampaniasMayores.Where(x =>
-                                                             (x.FechaInicio.Hour < Convert.ToInt32(comboBoxCampaniHoraInicio.Text)) &&
-                                                             (x.FechaFin.Hour > Convert.ToInt32(comboBoxCampaniaHoraFin.Text))).ToList();
-                                }
-                                if (mListaCampaniaAuxiliar.Count() > 0)
-                                {
-                                    throw new Exception("El horario no está disponible. Por favor verifique la disponibilidad");
-                                }
-                            }
-                            else
-                            {
-                                throw new Exception("El horario no está disponible. Por favor verifique la disponibilidad");
-                            }
-                        }
-                    }
-                    else
-                    {
-                        throw new Exception("El horario no está disponible. Por favor verifique la disponibilidad");
-                    }
-                }
-
                 //Pasa la info del datePicker y el combo a una sola variable
                 DateTime mFechaInicio = new DateTime(
                                                     dateTimePickerCampaniaFechaInicio.Value.Year,
@@ -323,6 +349,15 @@ namespace Vista
                 mCampania.Nombre = textBoxCampaniaNombre.Text;
                 mCampania.FechaInicio = mFechaInicio;
                 mCampania.FechaFin = mFechaFin;
+
+                //Verifica si la hora seleccionada está disponible
+                Dictionary<string, List<Campania>> mDiccionario = cFachada.AvailableTimes(dateTimePickerCampaniaFechaInicio.Value, dateTimePickerCampaniaFechaFin.Value);
+                bool mDisponible = cFachada.AvailableHoursCampania(mCampania, mDiccionario);
+                if (!mDisponible)
+                {
+                    throw new Exception("El horario seleccionado no está disponible");
+                }
+
                 List<Imagen> mListaImagenes = new List<Imagen>();
 
                 foreach (string mNombreImagen in cImagenesSeleccionadas)

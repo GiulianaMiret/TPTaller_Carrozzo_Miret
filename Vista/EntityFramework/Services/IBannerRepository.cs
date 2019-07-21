@@ -18,5 +18,7 @@ namespace EntityFramework.Services
         Banner GetBannerNow();
 
         Dictionary<string, List<Banner>> AvailableTimes(DateTime pFechaInicio, DateTime pFechaFin);
+
+        bool AvailableHours(Banner pBanner, Dictionary<string, List<Banner>> pDictionary);
     }
 }
