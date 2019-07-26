@@ -52,164 +52,179 @@ namespace EntityFramework.Services
 
         public bool AvailableHours(Banner pBanner, Dictionary<string, List<Banner>> pDictionary)
         {
+            int mDias = (pBanner.FechaFin.Date - pBanner.FechaInicio.Date).Days + 1;
+
+            int[,] mMatrizHorarios = new int[24, mDias];
+
             List<Banner> mListaBannersMenoresIguales = new List<Banner>();
             mListaBannersMenoresIguales = pDictionary["MenoresIguales"];
             List<Banner> mListaBannersIntermedias = new List<Banner>();
             mListaBannersIntermedias = pDictionary["Intermedias"];
             List<Banner> mListaBannersMayores = new List<Banner>();
             mListaBannersMayores = pDictionary["Mayores"];
-
-            List<Banner> mListaAuxiliar = new List<Banner>();
-            if (mListaBannersMenoresIguales.Count() > 0)
+            //Opción 1: 
+            int mCantidadDias = 0;
+            foreach (Banner mBanner in mListaBannersMenoresIguales)
             {
-                //Opción 1
-                mListaAuxiliar = mListaBannersMenoresIguales.Where(x =>
-                                                        (x.FechaFin.Hour <= pBanner.FechaFin.Hour) &&
-                                                        (x.FechaFin.Hour >= pBanner.FechaInicio.Hour) &&
-                                                        (x.Id != pBanner.Id)).ToList();
-                if (mListaAuxiliar.Count() > 0)
+                if (mBanner.FechaInicio < pBanner.FechaInicio)
                 {
-                    return false;
-                }
-                //Opción 2
-                mListaAuxiliar = mListaBannersMenoresIguales.Where(x =>
-                                                        (x.FechaFin.Hour > pBanner.FechaFin.Hour) &&
-                                                        (x.FechaInicio.Hour <= pBanner.FechaFin.Hour) &&
-                                                        (x.FechaInicio.Hour >= pBanner.FechaInicio.Hour) &&
-                                                        (x.Id != pBanner.Id)).ToList();
-
-                if (mListaAuxiliar.Count() > 0)
-                {
-                    return false;
-                }
-
-                //Opción 3
-                mListaAuxiliar = mListaBannersMenoresIguales.Where(x =>
-                                                    (x.FechaInicio.Hour < pBanner.FechaInicio.Hour) &&
-                                                    (x.FechaFin.Hour > pBanner.FechaFin.Hour) &&
-                                                    (x.Id != pBanner.Id)).ToList();
-                if (mListaAuxiliar.Count() > 0)
-                {
-                    return false;
-                }
-            }
-            if (mListaBannersIntermedias.Count() > 0)
-            {
-                //Opción 1
-                mListaAuxiliar = mListaBannersIntermedias.Where(x =>
-                                                        (x.FechaFin.Hour <= pBanner.FechaFin.Hour) &&
-                                                        (x.FechaFin.Hour >= pBanner.FechaInicio.Hour) &&
-                                                        (x.Id != pBanner.Id)).ToList();
-                if (mListaAuxiliar.Count() > 0)
-                {
-                    return false;
-                }
-                //Opción 2
-                mListaAuxiliar = mListaBannersIntermedias.Where(x =>
-                                                        (x.FechaFin.Hour > pBanner.FechaFin.Hour) &&
-                                                        (x.FechaInicio.Hour <= pBanner.FechaFin.Hour) &&
-                                                        (x.FechaInicio.Hour >= pBanner.FechaInicio.Hour) &&
-                                                        (x.Id != pBanner.Id)).ToList();
-
-                if (mListaAuxiliar.Count() > 0)
-                {
-                    return false;
-                }
-
-                //Opción 3
-                mListaAuxiliar = mListaBannersIntermedias.Where(x =>
-                                                    (x.FechaInicio.Hour < pBanner.FechaInicio.Hour) &&
-                                                    (x.FechaFin.Hour > pBanner.FechaFin.Hour) &&
-                                                    (x.Id != pBanner.Id)).ToList();
-                if (mListaAuxiliar.Count() > 0)
-                {
-                    return false;
-                }
-            }
-            if (mListaBannersMayores.Count() > 0)
-            {
-                //Opción 1
-                mListaAuxiliar = mListaBannersMayores.Where(x =>
-                                                        (x.FechaFin.Hour <= pBanner.FechaFin.Hour) &&
-                                                        (x.FechaFin.Hour >= pBanner.FechaInicio.Hour) &&
-                                                        (x.Id != pBanner.Id)).ToList();
-                if (mListaAuxiliar.Count() > 0)
-                {
-                    return false;
-                }
-                //Opción 2
-                mListaAuxiliar = mListaBannersMayores.Where(x =>
-                                                        (x.FechaFin.Hour > pBanner.FechaFin.Hour) &&
-                                                        (x.FechaInicio.Hour <= pBanner.FechaFin.Hour) &&
-                                                        (x.FechaInicio.Hour >= pBanner.FechaInicio.Hour) &&
-                                                        (x.Id != pBanner.Id)).ToList();
-
-                if (mListaAuxiliar.Count() > 0)
-                {
-                    return false;
-                }
-
-                //Opción 3
-                mListaAuxiliar = mListaBannersMayores.Where(x =>
-                                                    ((x.FechaInicio.Hour < pBanner.FechaInicio.Hour) &&
-                                                    (x.FechaFin.Hour > pBanner.FechaFin.Hour) &&
-                                                    (x.Id != pBanner.Id))).ToList();
-
-                if (mListaAuxiliar.Count() > 0)
-                {
-                    mListaAuxiliar = mListaAuxiliar.Where(x =>
-                                                    (x.FechaInicio.Hour < pBanner.FechaFin.Hour) &&
-                                                    (x.FechaFin.Hour > pBanner.FechaInicio.Hour)).ToList();
-                    if (mListaAuxiliar.Count() > 0)
+                    mCantidadDias = (mBanner.FechaFin.Date - pBanner.FechaInicio.Date).Days + 1;
+                    for (int j = 0; j <= mCantidadDias; j++)
                     {
-                        return false;
+                        if (pBanner.Id != mBanner.Id)
+                        {
+                            if (mBanner.FechaInicio.Hour > mBanner.FechaFin.Hour)
+                            {
+                                for (int i = (mBanner.FechaInicio.Hour); i < 24; i++)
+                                {
+                                    mMatrizHorarios[i, j] = 1;
+                                }
+                                for (int i = 0; i <= (mBanner.FechaFin.Hour); i++)
+                                {
+                                    mMatrizHorarios[i, j] = 1;
+                                }
+                            }
+                            else
+                            {
+                                for (int i = (mBanner.FechaInicio.Hour); i <= (mBanner.FechaFin.Hour); i++)
+                                {
+                                    mMatrizHorarios[i, j] = 1;
+                                }
+                            }
+                        }
                     }
+                }
+                else
+                {
+                    mCantidadDias = (mBanner.FechaFin.Date - mBanner.FechaInicio.Date).Days;
+                    int mDiaInicio = (mBanner.FechaInicio.Date - pBanner.FechaInicio.Date).Days;
+                    mCantidadDias = mCantidadDias + mDiaInicio;
+                    for (int j = mDiaInicio; j <= mCantidadDias; j++)
+                    {
+                        if (pBanner.Id != mBanner.Id)
+                        {
+                            if (mBanner.FechaInicio.Hour > mBanner.FechaFin.Hour)
+                            {
+                                for (int i = (mBanner.FechaInicio.Hour); i < 24; i++)
+                                {
+                                    mMatrizHorarios[i, j] = 1;
+                                }
+                                for (int i = 0; i <= (mBanner.FechaFin.Hour); i++)
+                                {
+                                    mMatrizHorarios[i, j] = 1;
+                                }
+                            }
+                            else
+                            {
+                                for (int i = (mBanner.FechaInicio.Hour); i <= (mBanner.FechaFin.Hour); i++)
+                                {
+                                    if (j < mDias)
+                                    {
+                                        mMatrizHorarios[i, j] = 1;
+                                    }
+                                }
+                            }
+                        }
 
+                    }
                 }
             }
+            //Opción 2:
+            foreach (Banner mBanner in mListaBannersIntermedias)
+            {
+                mCantidadDias = (mBanner.FechaInicio.Date - mBanner.FechaInicio.Date).Days;
+
+                for (int j = mCantidadDias; j < mDias; j++)
+                {
+                    if (pBanner.Id != mBanner.Id)
+                    {
+                        if (mBanner.FechaInicio.Hour > mBanner.FechaFin.Hour)
+                        {
+                            for (int i = (mBanner.FechaInicio.Hour); i < 24; i++)
+                            {
+                                mMatrizHorarios[i, j] = 1;
+                            }
+                            for (int i = 0; i <= (mBanner.FechaFin.Hour); i++)
+                            {
+                                mMatrizHorarios[i, j] = 1;
+                            }
+                        }
+                        else
+                        {
+                            for (int i = (mBanner.FechaInicio.Hour); i <= (mBanner.FechaFin.Hour); i++)
+                            {
+                                mMatrizHorarios[i, j] = 1;
+                            }
+                        }
+                    }
+                }
+            }
+
+            //Opción 3:
+            foreach (Banner mBanner in mListaBannersMayores)
+            {
+                for (int j = 0; j <= mDias - 1; j++)
+                {
+                    if (pBanner.Id != mBanner.Id)
+                    {
+                        if (mBanner.FechaInicio.Hour > mBanner.FechaFin.Hour)
+                        {
+                            for (int i = (mBanner.FechaInicio.Hour); i < 24; i++)
+                            {
+                                mMatrizHorarios[i, j] = 1;
+                            }
+                            for (int i = 0; i <= (mBanner.FechaFin.Hour); i++)
+                            {
+                                mMatrizHorarios[i, j] = 1;
+                            }
+                        }
+                        else
+                        {
+                            for (int i = (mBanner.FechaInicio.Hour); i <= (mBanner.FechaFin.Hour); i++)
+                            {
+                                mMatrizHorarios[i, j] = 1;
+                            }
+                        }
+                    }
+                }
+            }
+
+            for (int j = 0; j <= mDias - 1; j++)
+            {
+                if (pBanner.FechaInicio.Hour <= pBanner.FechaFin.Hour)
+                {
+                    for (int i = (pBanner.FechaInicio.Hour); i <= (pBanner.FechaFin.Hour); i++)
+                    {
+                        if (mMatrizHorarios[i, j] == 1)
+                        {
+                            return false;
+                        }
+                    }
+                }
+                else
+                {
+                    if (pBanner.FechaInicio.Hour > pBanner.FechaFin.Hour)
+                    {
+                        for (int i = (pBanner.FechaInicio.Hour); i < 24; i++)
+                        {
+                            if (mMatrizHorarios[i, j] == 1)
+                            {
+                                return false;
+                            }
+                        }
+                        for (int i = 0; i <= (pBanner.FechaFin.Hour); i++)
+                        {
+                            if (mMatrizHorarios[i, j] == 1)
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+
             return true;
         }
-
-        //public void CambiarFuente(int pIdBanner, FuenteRSS pFuente)
-        //{
-        //    BannerRSS bannerRss = _context.Banners.OfType<BannerRSS>().Where(x => x.Id == pIdBanner).First();
-        //    if(bannerRss == null)
-        //    {
-        //        throw new Exception("No se ha encontrado el Banner");
-        //    }
-        //    bannerRss.Fuente = pFuente;
-        //    _context.Banners.Attach(bannerRss);
-        //}
-
-        //public List<BannerRSS> GetAllRss()
-        //{
-        //    List<BannerRSS> lista = _context.Banners.OfType<BannerRSS>().ToList();
-        //    if(lista.Count() == 0)
-        //    {
-        //        throw new Exception("No se han encontrado Banners RSS");
-        //    }
-        //    List<BannerRSS> listaActivos = lista.ToList();
-        //    if (listaActivos.Count() == 0)
-        //    {
-        //        throw new Exception("No se han econtrado banners RSS");
-        //    }
-        //    return listaActivos;
-        //}
-
-        //public List<BannerTextoFijo> GetAllTXT()
-        //{
-        //    List<BannerTextoFijo> lista = _context.Banners.OfType<BannerTextoFijo>().ToList();
-        //    if (lista.Count() == 0)
-        //    {
-        //        throw new Exception("No se han encontrado Banners TXT");
-        //    }
-        //    List<BannerTextoFijo> listaActivos = lista.ToList();
-        //    if (listaActivos.Count() == 0)
-        //    {
-        //        throw new Exception("No se han econtrado banners TXT");
-        //    }
-        //    return listaActivos;
-        //}
 
     }
 }

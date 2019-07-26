@@ -51,13 +51,20 @@
             // btnOperacion
             // 
             this.btnOperacion.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnOperacion.BackColor = System.Drawing.Color.Peru;
+            this.btnOperacion.BackColor = System.Drawing.Color.Transparent;
+            this.btnOperacion.BackgroundImage = global::Vista.Properties.Resources.StartBotton;
+            this.btnOperacion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnOperacion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOperacion.FlatAppearance.BorderSize = 0;
+            this.btnOperacion.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnOperacion.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnOperacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOperacion.Font = new System.Drawing.Font("Perpetua Titling MT", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOperacion.Location = new System.Drawing.Point(118, 115);
+            this.btnOperacion.ForeColor = System.Drawing.Color.Transparent;
+            this.btnOperacion.Location = new System.Drawing.Point(139, 58);
             this.btnOperacion.Name = "btnOperacion";
-            this.btnOperacion.Size = new System.Drawing.Size(239, 79);
+            this.btnOperacion.Size = new System.Drawing.Size(212, 183);
             this.btnOperacion.TabIndex = 0;
-            this.btnOperacion.Text = "INICIAR";
             this.btnOperacion.UseVisualStyleBackColor = false;
             this.btnOperacion.Click += new System.EventHandler(this.btnOperacion_Click);
             // 
@@ -132,21 +139,21 @@
             // agregarBannerToolStripMenuItem
             // 
             this.agregarBannerToolStripMenuItem.Name = "agregarBannerToolStripMenuItem";
-            this.agregarBannerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.agregarBannerToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.agregarBannerToolStripMenuItem.Text = "Agregar Banner";
             this.agregarBannerToolStripMenuItem.Click += new System.EventHandler(this.agregarBannerToolStripMenuItem_Click);
             // 
             // modificarBannerToolStripMenuItem
             // 
             this.modificarBannerToolStripMenuItem.Name = "modificarBannerToolStripMenuItem";
-            this.modificarBannerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.modificarBannerToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.modificarBannerToolStripMenuItem.Text = "Modificar Banner";
             this.modificarBannerToolStripMenuItem.Click += new System.EventHandler(this.modificarBannerToolStripMenuItem_Click);
             // 
             // borrarBannerToolStripMenuItem
             // 
             this.borrarBannerToolStripMenuItem.Name = "borrarBannerToolStripMenuItem";
-            this.borrarBannerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.borrarBannerToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.borrarBannerToolStripMenuItem.Text = "Borrar Banner";
             this.borrarBannerToolStripMenuItem.Click += new System.EventHandler(this.borrarBannerToolStripMenuItem_Click);
             // 
@@ -186,7 +193,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImage = global::Vista.Properties.Resources._11;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(507, 280);
             this.Controls.Add(this.btnOperacion);
@@ -199,6 +206,7 @@
             this.MainMenuStrip = this.menuStripFrmPrincipal;
             this.Name = "FrmPrincipal";
             this.Text = "Shout News";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.menuStripFrmPrincipal.ResumeLayout(false);
             this.menuStripFrmPrincipal.PerformLayout();
             this.ResumeLayout(false);

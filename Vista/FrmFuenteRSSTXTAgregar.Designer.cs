@@ -311,6 +311,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FrmFuenteRSSTXTAgregar";
             this.Text = "Shout News";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);

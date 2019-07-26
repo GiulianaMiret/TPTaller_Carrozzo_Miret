@@ -22,9 +22,9 @@ namespace EntityFramework.Services
         public CampaniaRepository(DigitalBillboardContext pContext)
         {
             cDbSetCampania = pContext.Set<Campania>();
-        }        
+        }
 
-        public List<Imagen> GetImagenes (Campania pCampania)
+        public List<Imagen> GetImagenes(Campania pCampania)
         {
             Campania mCampania = cDbSetCampania.Find(pCampania.Id);
             if (mCampania == null)
@@ -47,25 +47,25 @@ namespace EntityFramework.Services
         {
             throw new NotImplementedException();
         }
-        
+
         public Dictionary<string, List<Campania>> AvailableTimes(DateTime pFechaInicio, DateTime pFechaFin)
         {
             List<Campania> mListaTodasLasCampanias = cDbSetCampania.ToList();
 
             //Opción 1: 
-            List<Campania> mListaCampaniasMenoresIguales = mListaTodasLasCampanias.Where(x => 
-                                                                (x.FechaFin <= pFechaFin) && 
+            List<Campania> mListaCampaniasMenoresIguales = mListaTodasLasCampanias.Where(x =>
+                                                                (x.FechaFin <= pFechaFin) &&
                                                                 (x.FechaFin >= pFechaInicio)).ToList();
 
             //Opción 2:
-            List<Campania> mListaCampaniasIntermedias = mListaTodasLasCampanias.Where(x => 
-                                                            (x.FechaFin > pFechaFin) && 
-                                                            (x.FechaInicio <= pFechaFin) && 
+            List<Campania> mListaCampaniasIntermedias = mListaTodasLasCampanias.Where(x =>
+                                                            (x.FechaFin > pFechaFin) &&
+                                                            (x.FechaInicio <= pFechaFin) &&
                                                             (x.FechaInicio >= pFechaInicio)).ToList();
 
             //Opción 3:
-            List<Campania> mListaCampaniasMayores = mListaTodasLasCampanias.Where(x => 
-                                                        (x.FechaInicio < pFechaInicio) && 
+            List<Campania> mListaCampaniasMayores = mListaTodasLasCampanias.Where(x =>
+                                                        (x.FechaInicio < pFechaInicio) &&
                                                         (x.FechaFin > pFechaFin)).ToList();
 
             Dictionary<string, List<Campania>> mDiccionarioDeListas = new Dictionary<string, List<Campania>>();
@@ -78,124 +78,186 @@ namespace EntityFramework.Services
 
         }
 
-        public bool AvailableHours (Campania pCampania, Dictionary<string, List<Campania>> pDictionary)
+        public bool AvailableHours(Campania pCampania, Dictionary<string, List<Campania>> pDictionary)
         {
+            int mDias = (pCampania.FechaFin.Date - pCampania.FechaInicio.Date).Days +1;
+
+            int[,] mMatrizHorarios = new int[24, mDias];
+
             List<Campania> mListaCampaniasMenoresIguales = new List<Campania>();
             mListaCampaniasMenoresIguales = pDictionary["MenoresIguales"];
             List<Campania> mListaCampaniasIntermedias = new List<Campania>();
             mListaCampaniasIntermedias = pDictionary["Intermedias"];
             List<Campania> mListaCampaniasMayores = new List<Campania>();
             mListaCampaniasMayores = pDictionary["Mayores"];
-
-            List<Campania> mListaAuxiliar = new List<Campania>();
-            if (mListaCampaniasMenoresIguales.Count() > 0)
+            //Opción 1: 
+            int mCantidadDias = 0;
+            foreach (Campania mCampania in mListaCampaniasMenoresIguales)
             {
-                //Opción 1
-                mListaAuxiliar = mListaCampaniasMenoresIguales.Where(x =>
-                                                        (x.FechaFin.Hour <= pCampania.FechaFin.Hour) &&
-                                                        (x.FechaFin.Hour >= pCampania.FechaInicio.Hour) &&
-                                                        (x.Id != pCampania.Id)).ToList();
-                if (mListaAuxiliar.Count() > 0)
+                if (mCampania.FechaInicio < pCampania.FechaInicio)
                 {
-                    return false;
-                }
-                //Opción 2
-                mListaAuxiliar = mListaCampaniasMenoresIguales.Where(x =>
-                                                        (x.FechaFin.Hour > pCampania.FechaFin.Hour) &&
-                                                        (x.FechaInicio.Hour <= pCampania.FechaFin.Hour) &&
-                                                        (x.FechaInicio.Hour >= pCampania.FechaInicio.Hour) &&
-                                                        (x.Id != pCampania.Id)).ToList();
-
-                if (mListaAuxiliar.Count() > 0)
-                {
-                    return false;
-                }
-
-                //Opción 3
-                mListaAuxiliar = mListaCampaniasMenoresIguales.Where(x =>
-                                                    (x.FechaInicio.Hour < pCampania.FechaInicio.Hour) &&
-                                                    (x.FechaFin.Hour > pCampania.FechaFin.Hour) &&
-                                                    (x.Id != pCampania.Id)).ToList();
-                if (mListaAuxiliar.Count() > 0)
-                {
-                    if(!(pCampania.FechaInicio.Hour > pCampania.FechaFin.Hour))
+                    mCantidadDias = (mCampania.FechaFin.Date - pCampania.FechaInicio.Date).Days +1;
+                    for (int j = 0; j <= mCantidadDias; j++)
                     {
-                        return false;
+                        if (pCampania.Id != mCampania.Id)
+                        {
+                            if (mCampania.FechaInicio.Hour > mCampania.FechaFin.Hour)
+                            {
+                                for (int i = (mCampania.FechaInicio.Hour); i < 24; i++)
+                                {
+                                    mMatrizHorarios[i, j] = 1;
+                                }
+                                for (int i = 0; i <= (mCampania.FechaFin.Hour); i++)
+                                {
+                                    mMatrizHorarios[i, j] = 1;
+                                }
+                            }
+                            else
+                            {
+                                for (int i = (mCampania.FechaInicio.Hour); i <= (mCampania.FechaFin.Hour); i++)
+                                {
+                                    mMatrizHorarios[i, j] = 1;
+                                }
+                            }
+                        }
                     }
-                    
                 }
-            }
-            if (mListaCampaniasIntermedias.Count() > 0)
-            {
-                //Opción 1
-                mListaAuxiliar = mListaCampaniasIntermedias.Where(x =>
-                                                        (x.FechaFin.Hour <= pCampania.FechaFin.Hour) &&
-                                                        (x.FechaFin.Hour >= pCampania.FechaInicio.Hour) &&
-                                                        (x.Id != pCampania.Id)).ToList();
-                if (mListaAuxiliar.Count() > 0)
+                else
                 {
-                    return false;
-                }
-                //Opción 2
-                mListaAuxiliar = mListaCampaniasIntermedias.Where(x =>
-                                                        (x.FechaFin.Hour > pCampania.FechaFin.Hour) &&
-                                                        (x.FechaInicio.Hour <= pCampania.FechaFin.Hour) &&
-                                                        (x.FechaInicio.Hour >= pCampania.FechaInicio.Hour) &&
-                                                        (x.Id != pCampania.Id)).ToList();
-
-                if (mListaAuxiliar.Count() > 0)
-                {
-                    return false;
-                }
-
-                //Opción 3
-                mListaAuxiliar = mListaCampaniasIntermedias.Where(x =>
-                                                    (x.FechaInicio.Hour < pCampania.FechaInicio.Hour) &&
-                                                    (x.FechaFin.Hour > pCampania.FechaFin.Hour) &&
-                                                    (x.Id != pCampania.Id)).ToList();
-                if (mListaAuxiliar.Count() > 0)
-                {
-                    return false;
-                }
-            }
-            if (mListaCampaniasMayores.Count() > 0)
-            {
-                //Opción 1
-                mListaAuxiliar = mListaCampaniasMayores.Where(x =>
-                                                        (x.FechaFin.Hour <= pCampania.FechaFin.Hour) &&
-                                                        (x.FechaFin.Hour >= pCampania.FechaInicio.Hour) &&
-                                                        (x.Id != pCampania.Id)).ToList();
-                if (mListaAuxiliar.Count() > 0)
-                {
-                    return false;
-                }
-                //Opción 2
-                mListaAuxiliar = mListaCampaniasMayores.Where(x =>
-                                                        (x.FechaFin.Hour > pCampania.FechaFin.Hour) &&
-                                                        (x.FechaInicio.Hour <= pCampania.FechaFin.Hour) &&
-                                                        (x.FechaInicio.Hour >= pCampania.FechaInicio.Hour) &&
-                                                        (x.Id != pCampania.Id)).ToList();
-
-                if (mListaAuxiliar.Count() > 0)
-                {
-                    return false;
-                }
-
-                //Opción 3
-                mListaAuxiliar = mListaCampaniasMayores.Where(x =>
-                                                    (x.FechaInicio.Hour < pCampania.FechaInicio.Hour) &&
-                                                    (x.FechaFin.Hour > pCampania.FechaFin.Hour) &&
-                                                    (x.Id != pCampania.Id)).ToList();
-                if (mListaAuxiliar.Count() > 0)
-                {
-                    if (!(pCampania.FechaInicio.Hour > pCampania.FechaFin.Hour))
+                    mCantidadDias = (mCampania.FechaFin.Date - mCampania.FechaInicio.Date).Days;
+                    int mDiaInicio = (mCampania.FechaInicio.Date - pCampania.FechaInicio.Date).Days;
+                    mCantidadDias = mCantidadDias + mDiaInicio;
+                    for (int j = mDiaInicio; j <= mCantidadDias; j++)
                     {
-                        return false;
+                        if (pCampania.Id != mCampania.Id)
+                        {
+                            if (mCampania.FechaInicio.Hour > mCampania.FechaFin.Hour)
+                            {
+                                for (int i = (mCampania.FechaInicio.Hour); i < 24; i++)
+                                {
+                                    mMatrizHorarios[i, j] = 1;
+                                }
+                                for (int i = 0; i <= (mCampania.FechaFin.Hour); i++)
+                                {
+                                    mMatrizHorarios[i, j] = 1;
+                                }
+                            }
+                            else
+                            {
+                                for (int i = (mCampania.FechaInicio.Hour); i <= (mCampania.FechaFin.Hour); i++)
+                                {
+                                    if (j < mDias)
+                                    {
+                                        mMatrizHorarios[i, j] = 1;
+                                    }
+                                }
+                            }
+                        }
+
                     }
                 }
             }
+            //Opción 2:
+            foreach (Campania mCampania in mListaCampaniasIntermedias)
+            {
+                mCantidadDias = (mCampania.FechaInicio.Date - mCampania.FechaInicio.Date).Days;
+
+                for (int j = mCantidadDias; j < mDias; j++)
+                {
+                    if (pCampania.Id != mCampania.Id)
+                    {
+                        if (mCampania.FechaInicio.Hour > mCampania.FechaFin.Hour)
+                        {
+                            for (int i = (mCampania.FechaInicio.Hour); i < 24; i++)
+                            {
+                                mMatrizHorarios[i, j] = 1;
+                            }
+                            for (int i= 0; i <= (mCampania.FechaFin.Hour); i++)
+                            {
+                                mMatrizHorarios[i, j] = 1;
+                            }
+                        }
+                        else
+                        {
+                            for (int i = (mCampania.FechaInicio.Hour); i <= (mCampania.FechaFin.Hour); i++)
+                            {
+                                mMatrizHorarios[i, j] = 1;
+                            }
+                        }
+                    }
+                }
+            }
+
+            //Opción 3:
+            foreach (Campania mCampania in mListaCampaniasMayores)
+            {
+                for (int j = 0; j <= mDias-1; j++)
+                {
+                    if (pCampania.Id != mCampania.Id)
+                    {
+                        if (mCampania.FechaInicio.Hour > mCampania.FechaFin.Hour)
+                        {
+                            for (int i = (mCampania.FechaInicio.Hour); i < 24; i++)
+                            {
+                                mMatrizHorarios[i, j] = 1;
+                            }
+                            for (int i = 0; i <= (mCampania.FechaFin.Hour); i++)
+                            {
+                                mMatrizHorarios[i, j] = 1;
+                            }
+                        }
+                        else
+                        {
+                            for (int i = (mCampania.FechaInicio.Hour); i <= (mCampania.FechaFin.Hour); i++)
+                            {
+                                mMatrizHorarios[i, j] = 1;
+                            }
+                        }
+                    }
+                }
+            }
+
+            for(int j = 0; j <= mDias-1; j++)
+            {
+                if(pCampania.FechaInicio.Hour <= pCampania.FechaFin.Hour)
+                {
+                    for(int i = (pCampania.FechaInicio.Hour); i <= (pCampania.FechaFin.Hour); i++)
+                    {
+                        if (mMatrizHorarios[i, j] == 1)
+                        {
+                            return false;
+                        }
+                    }
+                }
+                else
+                {
+                    if(pCampania.FechaInicio.Hour > pCampania.FechaFin.Hour)
+                    {
+                        for (int i = (pCampania.FechaInicio.Hour); i < 24; i++)
+                        {
+                            if (mMatrizHorarios[i, j] == 1)
+                            {
+                                return false;
+                            }
+                        }
+                        for (int i = 0; i <= (pCampania.FechaFin.Hour); i++)
+                        {
+                            if (mMatrizHorarios[i, j] == 1)
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+            
             return true;
         }
+
+
+
+
+
 
     }
 }

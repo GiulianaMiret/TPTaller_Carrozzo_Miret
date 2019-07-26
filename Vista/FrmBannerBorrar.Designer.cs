@@ -207,6 +207,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmBannerBorrar";
             this.Text = "Shout News";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmBannerBorrar_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBanners)).EndInit();
             this.ResumeLayout(false);

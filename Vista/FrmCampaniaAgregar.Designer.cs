@@ -415,6 +415,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmCampaniaAgregar";
             this.Text = " Shout News";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmAgregarCampania_Load);
             this.groupBoxFechaHora.ResumeLayout(false);
             this.groupBoxFechaHora.PerformLayout();

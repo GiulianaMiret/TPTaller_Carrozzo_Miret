@@ -172,10 +172,6 @@ namespace Vista
                                     dataGridViewHorariosDisponibles[i, j].Style.BackColor = mColor;
                                 }
                             }
-                            //for (int j = (mCampania.FechaInicio.Hour); j <= (mCampania.FechaFin.Hour); j++)
-                            //{
-                            //    dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
-                            //}
                         }
                     }
                     else
@@ -214,14 +210,6 @@ namespace Vista
                                     }
                                 }
                             }
-                            //for (int j = (mCampania.FechaInicio.Hour); j <= (mCampania.FechaFin.Hour); j++)
-                            //{
-                            //    if (i < dataGridViewHorariosDisponibles.ColumnCount)
-                            //    {
-                            //        dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
-                            //    }
-
-                            //}
                         }
                     }
                 }
@@ -307,6 +295,7 @@ namespace Vista
 
         private void buttonCargar_Click(object sender, EventArgs e)
         {
+            dataGridViewHorariosDisponibles.Visible = false;
             dataGridViewTodasLasImagenes.Rows.Clear();
             IList<string> mListaNombres = cFachada.GetAllNamesFromImages();
             foreach (string mNombre in mListaNombres)
@@ -318,6 +307,7 @@ namespace Vista
             dataGridViewImagenesSeleccionadas.Rows.Clear();
             if (dataGridViewCampanias.CurrentRow.Index != -1)
             {
+                dataGridViewHorariosDisponibles.Visible = false;
                 Campania mCampania = new Campania { Id = Convert.ToInt32(dataGridViewCampanias["Id", dataGridViewCampanias.CurrentRow.Index].Value) };
                 cCampania = cFachada.GetCampania(mCampania);
 
@@ -452,6 +442,7 @@ namespace Vista
                     cFachada.UpdateCampania(cCampania);
                     MessageBox.Show("La campaña se ha modificado con éxito");
                     dataGridViewCampanias.DataSource = cFachada.GetAllCampania();
+                    dataGridViewHorariosDisponibles.Visible = false;
                 }
                 else
                 {

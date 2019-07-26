@@ -210,6 +210,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmCampaniaBorrar";
             this.Text = "Shout News";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmCampaniaBorrar_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCampanias)).EndInit();
             this.ResumeLayout(false);
