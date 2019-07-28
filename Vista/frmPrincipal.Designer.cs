@@ -52,6 +52,7 @@
             // 
             this.btnOperacion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOperacion.BackColor = System.Drawing.Color.Transparent;
+            this.btnOperacion.BackgroundImage = global::Vista.Properties.Resources.Start;
             this.btnOperacion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnOperacion.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnOperacion.FlatAppearance.BorderSize = 0;
