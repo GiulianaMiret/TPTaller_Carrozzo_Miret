@@ -50,9 +50,9 @@
             // 
             // btnOperacion
             // 
-            this.btnOperacion.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnOperacion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOperacion.BackColor = System.Drawing.Color.Transparent;
-            this.btnOperacion.BackgroundImage = global::Vista.Properties.Resources.StartBotton;
+            this.btnOperacion.BackgroundImage = global::Vista.Properties.Resources.Start;
             this.btnOperacion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnOperacion.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnOperacion.FlatAppearance.BorderSize = 0;
@@ -61,9 +61,9 @@
             this.btnOperacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOperacion.Font = new System.Drawing.Font("Perpetua Titling MT", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOperacion.ForeColor = System.Drawing.Color.Transparent;
-            this.btnOperacion.Location = new System.Drawing.Point(139, 58);
+            this.btnOperacion.Location = new System.Drawing.Point(149, 81);
             this.btnOperacion.Name = "btnOperacion";
-            this.btnOperacion.Size = new System.Drawing.Size(212, 183);
+            this.btnOperacion.Size = new System.Drawing.Size(346, 100);
             this.btnOperacion.TabIndex = 0;
             this.btnOperacion.UseVisualStyleBackColor = false;
             this.btnOperacion.Click += new System.EventHandler(this.btnOperacion_Click);
@@ -193,7 +193,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.BackgroundImage = global::Vista.Properties.Resources._11;
+            this.BackgroundImage = global::Vista.Properties.Resources.FondoPrincipal;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(507, 280);
             this.Controls.Add(this.btnOperacion);
