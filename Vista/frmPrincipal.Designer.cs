@@ -52,7 +52,6 @@
             // 
             this.btnOperacion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOperacion.BackColor = System.Drawing.Color.Transparent;
-            this.btnOperacion.BackgroundImage = global::Vista.Properties.Resources.Start;
             this.btnOperacion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnOperacion.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnOperacion.FlatAppearance.BorderSize = 0;
@@ -61,7 +60,7 @@
             this.btnOperacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOperacion.Font = new System.Drawing.Font("Perpetua Titling MT", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOperacion.ForeColor = System.Drawing.Color.Transparent;
-            this.btnOperacion.Location = new System.Drawing.Point(149, 81);
+            this.btnOperacion.Location = new System.Drawing.Point(493, 91);
             this.btnOperacion.Name = "btnOperacion";
             this.btnOperacion.Size = new System.Drawing.Size(346, 100);
             this.btnOperacion.TabIndex = 0;
@@ -77,7 +76,7 @@
             this.administraciónDeFuentesToolStripMenuItem1});
             this.menuStripFrmPrincipal.Location = new System.Drawing.Point(0, 0);
             this.menuStripFrmPrincipal.Name = "menuStripFrmPrincipal";
-            this.menuStripFrmPrincipal.Size = new System.Drawing.Size(507, 24);
+            this.menuStripFrmPrincipal.Size = new System.Drawing.Size(884, 24);
             this.menuStripFrmPrincipal.TabIndex = 1;
             this.menuStripFrmPrincipal.Text = "menuStrip1";
             // 
@@ -195,7 +194,7 @@
             this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImage = global::Vista.Properties.Resources.FondoPrincipal;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(507, 280);
+            this.ClientSize = new System.Drawing.Size(884, 485);
             this.Controls.Add(this.btnOperacion);
             this.Controls.Add(this.menuStripFrmPrincipal);
             this.Cursor = System.Windows.Forms.Cursors.Default;
