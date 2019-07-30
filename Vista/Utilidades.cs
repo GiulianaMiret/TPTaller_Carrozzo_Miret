@@ -53,66 +53,6 @@ namespace Vista
             return mResult;
         }
 
-        public static void IniciarBanner(Label pLabel, int pTiempo)
-        {
-            for (int i = 0; i < pTiempo; i++)
-            { 
-                if (pLabel.Location.X == 0)
-                {
-                    pLabel.Location = new Point(500, pLabel.Location.Y);
-                }
-                pLabel.Location = new Point(pLabel.Location.X -1, pLabel.Location.Y);
-                Task.Delay(1000);
-            }
-        }
-        /// <summary>
-        /// Devuelve el Feed Rss a partir de una cadena de texto.
-        /// </summary>
-        /// <param name="pUrl">Cadena de texto del url de la fuente Rss</param>
-        /// <returns>Lista de Items Rss</returns>
-      //  public static List<FuenteRSS> Feed(string pUrl) { return Feed(new Uri(pUrl)); }
-
-        ///// <summary>
-        ///// Devuelve el Feed Rss a partir de una Uri.
-        ///// </summary>
-        ///// <param name="pUrl">Uri que contenga el url de la fuente Rss</param>
-        ///// <returns></returns>
-        //public static List<FuenteRSS> Feed(Uri pUrl)
-        //{
-        //    if (pUrl == null) { throw new ArgumentNullException("pUrl"); }
-
-        //    if (!InternetDisponible()) { throw new Exception("Para poder hacer el Feed es indispensable internet."); }
-
-        //    try
-        //    {
-        //        XmlTextReader mXmlReader = new XmlTextReader(pUrl.AbsoluteUri);
-
-        //        XmlDocument mRssXmlDocument = new XmlDocument();
-
-        //        mRssXmlDocument.Load(mXmlReader);
-
-        //        List<FuenteRSS> mFuentes = new List<FuenteRSS>();
-
-        //        foreach (XmlNode bRssXmlItem in mRssXmlDocument.SelectNodes("//channel/item"))
-        //        {
-        //            mFuentes.Add(new FuenteRSS
-        //            {
-        //                Titulo = GetXmlNodeValue<String>(bRssXmlItem, "title"),
-        //                Descripcion = GetXmlNodeValue<String>(bRssXmlItem, "description"),
-        //                Fecha = GetXmlNodeValue<DateTime>(bRssXmlItem, "pubDate"),
-        //                URL = new Uri(GetXmlNodeValue<String>(bRssXmlItem, "link")).ToString()
-        //            }
-        //            );
-        //        }
-
-        //        return mFuentes;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-        //}
-
         public static Bitmap ByteToImage(byte[] pImagen)
         {
             MemoryStream mStream = new MemoryStream();
@@ -129,10 +69,6 @@ namespace Vista
                 pPictureBox.Image.Save(mMemoryStream, System.Drawing.Imaging.ImageFormat.Png);
                 return mMemoryStream.GetBuffer();
         }
-
-        public static DialogResult MostrarMensajePopup(string pMensaje)
-        {
-            return MessageBox.Show(pMensaje);
-        }
+        
     }
 }
