@@ -41,10 +41,8 @@
             // 
             // pictureBoxOperacion
             // 
-            this.pictureBoxOperacion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxOperacion.Location = new System.Drawing.Point(307, 156);
+            this.pictureBoxOperacion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBoxOperacion.Location = new System.Drawing.Point(19, 68);
             this.pictureBoxOperacion.Name = "pictureBoxOperacion";
             this.pictureBoxOperacion.Size = new System.Drawing.Size(168, 85);
             this.pictureBoxOperacion.TabIndex = 0;

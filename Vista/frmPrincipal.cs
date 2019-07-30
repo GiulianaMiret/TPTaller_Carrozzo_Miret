@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace Vista
 {
@@ -19,13 +20,27 @@ namespace Vista
         private readonly Fachada iFachada;
         private readonly IBannerRepository iBannerRepository;
         private readonly Vista.Logger.ILogger iLog;
+
         public FrmPrincipal(Fachada fachada, Logger.ILogger log)
         {
             iFachada = fachada;
             iLog = log;
+
+            //Creo un hilo
+            Thread mHilo = new Thread(new ThreadStart(SplashStart));
+            mHilo.Start();
+            //ponemos a dormir FrmPrincipal
+            Thread.Sleep(5000);
+
             InitializeComponent();
+            mHilo.Abort();
         }
         
+        public void SplashStart()
+        {
+            Application.Run(new SplashScreen());
+        }
+
         private void agregarFuenteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CompositionRoot.Resolve<FrmFuenteRSSTXTAgregar>().ShowDialog();
