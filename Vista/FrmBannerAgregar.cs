@@ -138,14 +138,6 @@ namespace Vista
                                         }
                                     }
                                 }
-                                //for (int j = (mBanner.FechaInicio.Hour); j <= (mBanner.FechaFin.Hour); j++)
-                                //{
-                                //    if (i < dataGridViewHorariosDisponibles.ColumnCount)
-                                //    {
-                                //        dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
-                                //    }
-
-                                //}
                             }
                         }
                     }
@@ -203,9 +195,8 @@ namespace Vista
                                 }
                             }
                         }
-
-
                     }
+                    cLogger.Debug("Se consultó la disponibilidad horaria para Agregar Banner");
                 }
                 else
                 {
@@ -324,7 +315,8 @@ namespace Vista
                     mFuente = cFachada.GetFuenteTXT(mFuente);
                     mBanner.Fuente = mFuente;
                 }
-
+                string mCadena = "Se agregó el Banner: Id " + mBanner.Id + ", Nombre: " + mBanner.Nombre + ", Fecha y Hora de inicio: " + mBanner.FechaInicio + ", Fecha y Hora de fin: " + mBanner.FechaFin + " Y la Fuente: " + mBanner.Fuente.Titulo;
+                cLogger.Debug(mCadena);
                 cFachada.AddBanner(mBanner);
                 MessageBox.Show("El Banner se ha guardado con éxito");
                 this.Close();

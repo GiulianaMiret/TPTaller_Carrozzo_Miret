@@ -27,11 +27,14 @@ namespace Vista
         private void FrmOperacion_Load(object sender, EventArgs e)
         {
             this.timerBanner_Tick(sender, e);
+
+
         }
+
 
         private void lblBanner_AutoSizeChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         private void timerLabelBanner_Tick(object sender, EventArgs e)
@@ -50,6 +53,7 @@ namespace Vista
             {
                 lblBanner.Text = mValorLabelTextoActual;
             }
+
         }
     }
 }

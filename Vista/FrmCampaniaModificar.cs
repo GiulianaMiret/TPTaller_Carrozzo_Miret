@@ -128,7 +128,6 @@ namespace Vista
                 dataGridViewHorariosDisponibles.AutoGenerateColumns = false;
                 dataGridViewHorariosDisponibles.AutoSize = false;
 
-
                 Dictionary<string, List<Campania>> mDiccionario = cFachada.AvailableTimes(dateTimePickerFechaInicioCampania.Value, dateTimePickerFechaFinCampania.Value);
                 List<Campania> mListaCampaniasMenoresIguales = new List<Campania>();
                 mListaCampaniasMenoresIguales = mDiccionario["MenoresIguales"];
@@ -283,9 +282,8 @@ namespace Vista
                             }
                         }
                     }
-
-
                 }
+                cLogger.Debug("Se consultó la disponibilidad horaria para Modificar Campaña");
             }
             else
             {
@@ -438,11 +436,19 @@ namespace Vista
                         throw new Exception("No se han seleccionado imágenes");
                     }
                     cCampania.Imagenes = mListaImagenes;
-
-                    cFachada.UpdateCampania(cCampania);
-                    MessageBox.Show("La campaña se ha modificado con éxito");
-                    dataGridViewCampanias.DataSource = cFachada.GetAllCampania();
-                    dataGridViewHorariosDisponibles.Visible = false;
+                    DialogResult mMessageBoxResultado = MessageBox.Show("¿Desea modificar la Campaña?", "Modificar Campaña", MessageBoxButtons.YesNo);
+                    if (mMessageBoxResultado == DialogResult.Yes)
+                    {
+                        string mCadena = "Se modificó la campaña: Id: " + mCampania.Id + ", Nombre: " + mCampania.Nombre + ", Fecha y Hora de inicio: " + mCampania.FechaInicio + ", Fecha y Hora de fin: " + mCampania.FechaFin + " Y las imágenes: ";
+                        foreach (string mNombreImagen in cImagenesSeleccionadas)
+                        {
+                            mCadena = mCadena.ToString() + mNombreImagen + " - ";
+                        }
+                        cLogger.Debug(mCadena);
+                        cFachada.UpdateCampania(cCampania);
+                        MessageBox.Show("La campaña se ha modificado con éxito");
+                        dataGridViewCampanias.DataSource = cFachada.GetAllCampania();
+                    }
                 }
                 else
                 {

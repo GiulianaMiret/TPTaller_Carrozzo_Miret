@@ -15,8 +15,8 @@ namespace Vista
 {
     public partial class FrmImagenesGestion : Form
     {
-        private readonly Fachada iFachada;
-        private readonly Logger.ILogger iLogger;
+        private readonly Fachada cFachada;
+        private readonly Logger.ILogger cLogger;
 
         /// <summary>
         /// realizamos la injeccion de dependencias en el constructor
@@ -25,8 +25,8 @@ namespace Vista
         /// <param name="logger"></param>
         public FrmImagenesGestion(Fachada fachada, Logger.ILogger logger)
         {
-            iFachada = fachada;
-            iLogger = logger;
+            cFachada = fachada;
+            cLogger = logger;
             InitializeComponent();
         }
         /// <summary>
@@ -65,14 +65,16 @@ namespace Vista
             mImagenAInsertar.Nombre = comboBoxImagen.Text; 
             try
             {
-                iFachada.AddImagen(mImagenAInsertar);
+                string mCadena = "Se agregó la Imagen: Id " + mImagenAInsertar.Id + ", Nombre: " + mImagenAInsertar.Nombre;
+                cLogger.Debug(mCadena);
+                cFachada.AddImagen(mImagenAInsertar);
                 Utilidades.MostrarMensajePopup("Se agregó correctamente la imagen.");
                 FrmGestionImagenes_Load(sender, e);
             }
-            catch (Exception ex)
+            catch (Exception mException)
             {
-                iLogger.Error(ex.Message);
-                MessageBox.Show("Ha ocurrido un error: " + ex.Message);
+                cLogger.Error(mException.Message);
+                MessageBox.Show("Ha ocurrido un error: " + mException.Message);
             }
         }
         /// <summary>
@@ -87,7 +89,7 @@ namespace Vista
                 //obtiene la imagen por nombre
                 //se tiene la regla que dos imagenes no pueden contener el mismo nombre
                 //regla aplicada en el agregar imagen 
-                Imagen pImagen = iFachada.GetImagenByName(comboBoxImagen.Text);
+                Imagen pImagen = cFachada.GetImagenByName(comboBoxImagen.Text);
                 pictureBoxImagen.Image = Utilidades.ByteToImage(pImagen.Hash);
             }          
         }
@@ -103,7 +105,7 @@ namespace Vista
             //y los agrego al combobox para que puedan ser seleccionadas
             comboBoxImagen.Items.Clear();
             comboBoxImagen.Items.Insert(0, "Seleccione o cargue una imagen mediante el botón -->");
-            var mListaDeNombresDeLasImagenes = iFachada.GetAllNamesFromImages();
+            var mListaDeNombresDeLasImagenes = cFachada.GetAllNamesFromImages();
             pictureBoxImagen.Image = null;
             foreach (var mNombreImagen in mListaDeNombresDeLasImagenes)
             {
@@ -122,14 +124,22 @@ namespace Vista
             {
                 Imagen mImagenABorrar = new Imagen();
                 mImagenABorrar.Nombre = comboBoxImagen.Text;
-                iFachada.DeleteImagen(mImagenABorrar);
-                Utilidades.MostrarMensajePopup("Se borró correctamente la imagen.");
-                FrmGestionImagenes_Load(sender, e);
+
+                DialogResult mMessageBoxResultado = MessageBox.Show("¿Desea borrar la Imagen?", "Borrar Imagen", MessageBoxButtons.YesNo);
+                if (mMessageBoxResultado == DialogResult.Yes)
+                {
+                    string mCadena = "Se borra la Imagen: Id: " + mImagenABorrar.Id + ", Nombre: " + mImagenABorrar.Nombre;
+                    cLogger.Debug(mCadena);
+                    cFachada.DeleteImagen(mImagenABorrar);
+                    Utilidades.MostrarMensajePopup("Se borró correctamente la imagen.");
+                    FrmGestionImagenes_Load(sender, e);
+                }
+               
             }
-            catch (Exception exc)
+            catch (Exception mException)
             {
-                    iLogger.Debug(exc.Message);
-                    MessageBox.Show("Ha ocurrido un error: " + exc.Message);
+                cLogger.Debug(mException.Message);
+                MessageBox.Show("Ha ocurrido un error: " + mException.Message);
             }
         }
     }

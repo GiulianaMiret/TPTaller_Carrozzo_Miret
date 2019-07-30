@@ -52,9 +52,16 @@ namespace Vista
                 if (dataGridViewCampanias.CurrentRow.Index != -1)
                 {
                     Campania mCampania = new Campania { Id = Convert.ToInt32(dataGridViewCampanias["Id", dataGridViewCampanias.CurrentRow.Index].Value) };
-                    cFachada.DeleteCampania(mCampania);
-                    dataGridViewCampanias.DataSource = cFachada.GetAllCampania();
-                    MessageBox.Show("La campaña se ha borrado exitosamente");
+
+                    DialogResult mMessageBoxResultado = MessageBox.Show("¿Desea borrar la Campaña?", "Borrar Campaña", MessageBoxButtons.YesNo);
+                    if (mMessageBoxResultado == DialogResult.Yes)
+                    {
+                        string mCadena = "Se borra la campaña: Id: " + mCampania.Id + " Nombre: " + mCampania.Nombre + " Fecha y Hora de inicio: " + mCampania.FechaInicio + " Fecha y Hora de fin: " + mCampania.FechaFin;
+                        cLogger.Debug(mCadena);
+                        cFachada.DeleteCampania(mCampania);
+                        dataGridViewCampanias.DataSource = cFachada.GetAllCampania();
+                        MessageBox.Show("La campaña se ha borrado exitosamente");
+                    }
                 }
             }
             catch (Exception mException)

@@ -125,18 +125,30 @@ namespace Vista
                             {
                                 cFuenteRSS.Titulo = textBoxTitulo.Text;
                                 cFuenteRSS.URL = textBoxURLfuente.Text;
-                                cFachada.UpdateFuenteRSS(cFuenteRSS);
-                                MessageBox.Show("La fuente RSS se actualizó con éxito");
-                                dataGridViewModificar.DataSource = cFachada.GetAllRSS();
+                                DialogResult mMessageBoxResultado = MessageBox.Show("¿Desea modificar la Fuente?", "Modificar Fuente", MessageBoxButtons.YesNo);
+                                if (mMessageBoxResultado == DialogResult.Yes)
+                                {
+                                    cFachada.UpdateFuenteRSS(cFuenteRSS);
+                                    MessageBox.Show("La fuente RSS se actualizó con éxito");
+                                    dataGridViewModificar.DataSource = cFachada.GetAllRSS();
+                                    string mCadena = "Se modificó la campaña: Id: " + cFuenteRSS.Id + ", Titulo: " + cFuenteRSS.Titulo;
+                                    cLogger.Debug(mCadena);
+                                }
                             }
                         }
                         else
                         {
                             cFuenteTXT.Titulo = textBoxTitulo.Text;
                             cFuenteTXT.Valor = textBoxTextoFijo.Text;
-                            cFachada.UpdateFuenteTXT(cFuenteTXT);
-                            MessageBox.Show("La fuente se actualizó con éxito");
-                            dataGridViewModificar.DataSource = cFachada.GetAllTXT();
+                            DialogResult mMessageBoxResultado = MessageBox.Show("¿Desea modificar la Fuente?", "Modificar Fuente", MessageBoxButtons.YesNo);
+                            if (mMessageBoxResultado == DialogResult.Yes)
+                            {
+                                cFachada.UpdateFuenteTXT(cFuenteTXT);
+                                MessageBox.Show("La fuente se actualizó con éxito");
+                                dataGridViewModificar.DataSource = cFachada.GetAllTXT();
+                                string mCadena = "Se modificó la campaña: Id: " + cFuenteTXT.Id + ", Titulo: " + cFuenteTXT.Titulo;
+                                cLogger.Debug(mCadena);
+                            }
                         }
                     }
                 }
