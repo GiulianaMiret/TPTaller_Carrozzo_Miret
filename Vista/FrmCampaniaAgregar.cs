@@ -108,7 +108,6 @@ namespace Vista
                     {
                         DataGridViewColumn mColumna = new DataGridViewColumn()
                         {
-                            //Name = (i + 1).ToString(),
                             Name = ((mFechaAuxiliar.Day).ToString() + "/" + (mFechaAuxiliar.Month).ToString()),
                             Width = 40,
                             ValueType = typeof(string),
@@ -196,15 +195,6 @@ namespace Vista
                                         }
                                     }
                                 }
-
-                                //for (int j = (mCampania.FechaInicio.Hour); j <= (mCampania.FechaFin.Hour); j++)
-                                //{
-                                //    if(i < dataGridViewHorariosDisponibles.ColumnCount)
-                                //    {
-                                //        dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
-                                //    }
-                                    
-                                //}
                             }
                         }
                     }
@@ -234,12 +224,6 @@ namespace Vista
                                     dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
                                 }
                             }
-
-                            //for (int j = (mCampania.FechaInicio.Hour); j <= (mCampania.FechaFin.Hour); j++)
-                            //{
-                            //    dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
-                            //}
-
                         }
                     }
 
@@ -266,15 +250,9 @@ namespace Vista
                                     dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
                                 }
                             }
-
-                            //for (int j = (mCampania.FechaInicio.Hour); j <= (mCampania.FechaFin.Hour); j++)
-                            //{
-                            //    dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
-                            //}
                         }
-
-                            
                     }
+                    cLogger.Debug("Se consltó la disponibilidad horaria para Agregar Campaña");
                 }
                 else
                 {
@@ -366,18 +344,21 @@ namespace Vista
                     mListaImagenes.Add(mImagen);
                 }
                 mCampania.Imagenes = mListaImagenes;
-
+                string mCadena = "Se agregó la campaña: Id " + mCampania.Id + ", Nombre: " + mCampania.Nombre + ", Fecha y Hora de inicio: " + mCampania.FechaInicio + ", Fecha y Hora de fin: " + mCampania.FechaFin + " Y las imágenes: ";
+                foreach (string mNombreImagen in cImagenesSeleccionadas)
+                {
+                    mCadena = mCadena.ToString() + mNombreImagen + " - ";
+                }
+                cLogger.Debug(mCadena);
                 cFachada.AddCampania(mCampania);
                 MessageBox.Show("La campaña se ha guardado con éxito");
                 this.Close();
-
             }
             catch (Exception mExcepcion)
             {
                 MessageBox.Show(mExcepcion.Message);
                 cLogger.Debug(mExcepcion.Message);
             }
-
         }
 
 

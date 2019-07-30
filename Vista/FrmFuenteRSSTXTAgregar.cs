@@ -50,6 +50,8 @@ namespace Vista
                         else
                         {
                             FuenteRSS mFuenteRSS = new FuenteRSS { Titulo = textBoxTitulo.Text, URL = textBoxURLfuente.Text };
+                            string mCadena = "Se agregó la fuente: Id " + mFuenteRSS.Id + ", Título: " + mFuenteRSS.Titulo;
+                            cLogger.Debug(mCadena);
                             cFachada.AddFuenteRSS(mFuenteRSS);
                             MessageBox.Show("La fuente RSS se agregó con éxito");
                         }
@@ -57,6 +59,8 @@ namespace Vista
                     else
                     {
                         FuenteTextoFijo mFuenteTextoFijo = new FuenteTextoFijo { Titulo = textBoxTitulo.Text, Valor = textBoxTextoFijo.Text };
+                        string mCadena = "Se agregó la fuente: Id " + mFuenteTextoFijo.Id + ", Título: " + mFuenteTextoFijo.Titulo;
+                        cLogger.Debug(mCadena);
                         cFachada.AddFuenteTXT(mFuenteTextoFijo);
                         MessageBox.Show("La fuente se agregó con éxito");
                     }
@@ -67,8 +71,6 @@ namespace Vista
                 MessageBox.Show(mException.Message);
                 cLogger.Debug(mException.ToString());
             }
-            
-            
         }
 
         private void radioButtonRSS_CheckedChanged(object sender, EventArgs e)

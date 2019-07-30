@@ -51,9 +51,15 @@ namespace Vista
                 if (dataGridViewBanners.CurrentRow.Index != -1)
                 {
                     Banner mBanner = new Banner { Id = Convert.ToInt32(dataGridViewBanners["Id", dataGridViewBanners.CurrentRow.Index].Value) };
-                    cFachada.DeleteBanner(mBanner);
-                    dataGridViewBanners.DataSource = cFachada.GetAllBanner();
-                    MessageBox.Show("El Banner se ha borrado exitosamente");
+                    DialogResult mMessageBoxResultado = MessageBox.Show("¿Desea borrar el Banner?", "Borrar Banner", MessageBoxButtons.YesNo);
+                    if (mMessageBoxResultado == DialogResult.Yes)
+                    {
+                        string mCadena = "Se borra la campaña: Id: " + mBanner.Id + " Nombre: " + mBanner.Nombre + " Fecha y Hora de inicio: " + mBanner.FechaInicio + " Fecha y Hora de fin: " + mBanner.FechaFin + " Y la fuente: " + mBanner.Fuente.Titulo;
+                        cLogger.Debug(mCadena);
+                        cFachada.DeleteBanner(mBanner);
+                        dataGridViewBanners.DataSource = cFachada.GetAllBanner();
+                        MessageBox.Show("El Banner se ha borrado exitosamente");
+                    }
                 }
             }
             catch (Exception mException)

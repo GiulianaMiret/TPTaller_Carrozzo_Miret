@@ -83,7 +83,6 @@ namespace Vista
                 dataGridViewHorariosDisponibles.AutoGenerateColumns = false;
                 dataGridViewHorariosDisponibles.AutoSize = false;
 
-
                 Dictionary<string, List<Banner>> mDiccionario = cFachada.AvailableTimesBanner(dateTimePickerBannerFechaInicio.Value, dateTimePickerBannerFechaFin.Value);
                 List<Banner> mListaBannersMenoresIguales = new List<Banner>();
                 mListaBannersMenoresIguales = mDiccionario["MenoresIguales"];
@@ -149,15 +148,6 @@ namespace Vista
                                     }
                                 }
                             }
-
-                            //for (int j = (mBanner.FechaInicio.Hour); j <= (mBanner.FechaFin.Hour); j++)
-                            //{
-                            //    if (i < dataGridViewHorariosDisponibles.ColumnCount)
-                            //    {
-                            //        dataGridViewHorariosDisponibles[i, j].Style.BackColor = Color.Red;
-                            //    }
-
-                            //}
                         }
                     }
                 }
@@ -216,6 +206,7 @@ namespace Vista
                         }
                     }
                 }
+                cLogger.Debug("Se consultó la disponibilidad horaria para Modificar Banner");
             }
             else
             {
@@ -374,11 +365,15 @@ namespace Vista
                         mFuente = cFachada.GetFuenteTXT(mFuente);
                         cBanner.Fuente = mFuente;
                     }
-
-
-                    cFachada.UpdateBanner(cBanner);
-                    MessageBox.Show("El Banner se ha modificado con éxito");
-                    dataGridViewBanners.DataSource = cFachada.GetAllBanner();
+                    DialogResult mMessageBoxResultado = MessageBox.Show("¿Desea modificar el Banner?", "Modificar Banner", MessageBoxButtons.YesNo);
+                    if (mMessageBoxResultado == DialogResult.Yes)
+                    {
+                        cFachada.UpdateBanner(cBanner);
+                        MessageBox.Show("El Banner se ha modificado con éxito");
+                        dataGridViewBanners.DataSource = cFachada.GetAllBanner();
+                        string mCadena = "Se modificó el Banner: Id: " + mBanner.Id + " Nombre: " + mBanner.Nombre + " Fecha y Hora de inicio: " + mBanner.FechaInicio + " Fecha y Hora de fin: " + mBanner.FechaFin + " Y la fuente; " + mBanner.Fuente.Titulo;
+                        cLogger.Debug(mCadena);
+                    }
                 }
                 else
                 {

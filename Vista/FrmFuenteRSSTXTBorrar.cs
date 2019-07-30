@@ -45,21 +45,35 @@ namespace Vista
                     if (radioButtonRSS.Checked)
                     {
                         FuenteRSS mFuenteRSS = new FuenteRSS { Id = Convert.ToInt32(dataGridViewEliminar["Id", dataGridViewEliminar.CurrentRow.Index].Value) };
-                        cFachada.DeleteFuenteRSS(mFuenteRSS);
-                        radioButtonRSS_CheckedChanged(sender, e);
+                        DialogResult mMessageBoxResultado = MessageBox.Show("¿Desea borrar la Fuente?", "Borrar Fuente", MessageBoxButtons.YesNo);
+                        if (mMessageBoxResultado == DialogResult.Yes)
+                        {
+                            string mCadena = "Se borra la fuente: Id: " + mFuenteRSS.Id + ", Titulo: " + mFuenteRSS.Titulo;
+                            cLogger.Debug(mCadena);
+                            cFachada.DeleteFuenteRSS(mFuenteRSS);
+                            radioButtonRSS_CheckedChanged(sender, e);
+                            MessageBox.Show("La fuente se ha borrado exitosamente");
+                        }                       
                     }
                     else
                     {
                         FuenteTextoFijo mFuenteTXT = new FuenteTextoFijo { Id = Convert.ToInt32(dataGridViewEliminar["Id", dataGridViewEliminar.CurrentRow.Index].Value) };
-                        cFachada.DeleteFuenteTXT(mFuenteTXT);
-                        radioButtonTXT_CheckedChanged(sender, e);
+                        DialogResult mMessageBoxResultado = MessageBox.Show("¿Desea borrar la Fuente?", "Borrar Fuente", MessageBoxButtons.YesNo);
+                        if (mMessageBoxResultado == DialogResult.Yes)
+                        {
+                            string mCadena = "Se borra la fuente: Id: " + mFuenteTXT.Id + ", Titulo: " + mFuenteTXT.Titulo;
+                            cLogger.Debug(mCadena);
+                            cFachada.DeleteFuenteTXT(mFuenteTXT);
+                            radioButtonTXT_CheckedChanged(sender, e); 
+                            MessageBox.Show("La fuente se ha borrado exitosamente");
+                        }
                     }
                 }
             }
-            catch (Exception exc)
+            catch (Exception mException)
             {
-                cLogger.Debug(exc.Message);
-                MessageBox.Show("Ocurrio un error: " + exc.Message);
+                cLogger.Debug(mException.Message);
+                MessageBox.Show("Ocurrio un error: " + mException.Message);
             }            
         }
 
