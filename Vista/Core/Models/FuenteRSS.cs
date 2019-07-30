@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Vista;
 using Vista.Core.Models;
 
 namespace Core.Models
@@ -16,5 +17,13 @@ namespace Core.Models
         public string URL { get; set; }
 
         public override string Valor { get; set; }
+
+        public void Actualizar()
+        {
+            if (Utilidades.InternetDisponible())
+            { 
+            this.Valor = Utilidades.GetStringFromXMLRSSUrl(this.URL);
+            }
+        }
     }
 }

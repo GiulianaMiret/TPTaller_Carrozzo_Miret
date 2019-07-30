@@ -139,6 +139,23 @@ namespace Controlador
             return cBannerRepository.GetBannerNow().Fuente.Valor;
         }
 
+        public Banner GetBannerNow()
+        {
+            var mBannerNow = cRepositoryBaseBanner.Filter(x => (x.FechaInicio.Day < DateTime.Now.Day) &&
+                                                               (x.FechaFin.Day > DateTime.Now.Day) &&
+                                                               (x.FechaInicio.Hour < DateTime.Now.Hour) &&
+                                                               (x.FechaFin.Hour < DateTime.Now.Hour)).FirstOrDefault();
+            return mBannerNow;
+        }
+
+        public Campania GetCampaniaNow()
+        {
+            var mCampaniaNow = cRepositoryBaseCampania.Filter(x => (x.FechaInicio.Day < DateTime.Now.Day) &&
+                                                               (x.FechaFin.Day > DateTime.Now.Day) &&
+                                                               (x.FechaInicio.Hour < DateTime.Now.Hour) &&
+                                                               (x.FechaFin.Hour < DateTime.Now.Hour)).FirstOrDefault();
+            return mCampaniaNow;
+        }
 
         public void DeleteFuenteRSS(FuenteRSS pFuenteRSS)
         {
