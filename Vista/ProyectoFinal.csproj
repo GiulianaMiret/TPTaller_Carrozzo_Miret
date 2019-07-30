@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="CompositionRoot.cs" />
     <Compile Include="Core\Models\Fuente.cs" />
+    <Compile Include="Core\Models\IFuente.cs" />
     <Compile Include="DigitalBillboardContext.cs" />
     <Compile Include="EntityFramework\Services\IFuenteRepository.cs" />
     <Compile Include="EntityFramework\Services\IImagenRepository.cs" />

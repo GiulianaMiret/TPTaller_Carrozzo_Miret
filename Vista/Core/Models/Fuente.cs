@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 
 namespace Vista.Core.Models
 {
-    public abstract class Fuente
+    public abstract class Fuente : IFuente
     {
         public int Id { get; set; }
         public string Titulo { get; set; }
         public virtual string Valor { get; set; }
+        public abstract void Actualizar();
     }
 }

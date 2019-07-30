@@ -10,5 +10,6 @@ namespace Core.Models
     public class FuenteTextoFijo : Fuente
     {
         public override string Valor { get; set; }
+        public override void Actualizar(){}
     }
 }

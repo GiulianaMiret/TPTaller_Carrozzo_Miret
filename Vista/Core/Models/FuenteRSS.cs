@@ -18,7 +18,7 @@ namespace Core.Models
 
         public override string Valor { get; set; }
 
-        public void Actualizar()
+        public override void Actualizar()
         {
             if (Utilidades.InternetDisponible())
             { 
