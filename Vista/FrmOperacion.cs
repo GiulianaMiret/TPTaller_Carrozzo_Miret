@@ -37,9 +37,9 @@ namespace Vista
         private void iniciarCampania()
         {
             Campania mCampania = new Campania();
-            if(mCampania != null)
+            int mHoraTimer = DateTime.Now.Hour;
+            if (mCampania != null)
             {
-                int mHoraTimer = DateTime.Now.Hour;
                 if (mCampania.FechaInicio.Hour <= mCampania.FechaFin.Hour)
                 {
                     mHoraTimer = mHoraTimer - mCampania.FechaFin.Hour;
@@ -53,24 +53,34 @@ namespace Vista
             }
             else
             {
-                //
+                mHoraTimer = DateTime.Now.AddHours(1).Hour;
+                timerCampaña.Interval = mHoraTimer;
             }
         }
 
         private void iniciarBanner()
         {
             Banner mBanner = new Banner();
+            
             int mHoraTimer = DateTime.Now.Hour;
-            if (mBanner.FechaInicio.Hour <= mBanner.FechaFin.Hour)
+            if (mBanner != null)
             {
-                mHoraTimer = mHoraTimer - mBanner.FechaFin.Hour;
+                if (mBanner.FechaInicio.Hour <= mBanner.FechaFin.Hour)
+                {
+                    mHoraTimer = mHoraTimer - mBanner.FechaFin.Hour;
+                }
+                else
+                {
+                    mHoraTimer = mHoraTimer - 24;
+                    mHoraTimer = mHoraTimer + (mBanner.FechaFin.Hour) + 1;
+                }
+                timerBanner.Interval = mHoraTimer;
             }
             else
             {
-                mHoraTimer = mHoraTimer - 24;
-                mHoraTimer = mHoraTimer + (mBanner.FechaFin.Hour) + 1;
+                mHoraTimer = DateTime.Now.AddHours(1).Hour;
+                timerBanner.Interval = mHoraTimer;
             }
-            timerCampaña.Interval = mHoraTimer;
         }
 
         private void lblBanner_AutoSizeChanged(object sender, EventArgs e)
