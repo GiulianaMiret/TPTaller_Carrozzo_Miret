@@ -48,7 +48,7 @@ namespace Vista
                         DialogResult mMessageBoxResultado = MessageBox.Show("¿Desea borrar la Fuente?", "Borrar Fuente", MessageBoxButtons.YesNo);
                         if (mMessageBoxResultado == DialogResult.Yes)
                         {
-                            string mCadena = "Se borra la fuente: Id: " + mFuenteRSS.Id + ", Titulo: " + mFuenteRSS.Titulo;
+                            string mCadena = "Se borra la fuente: Id: " + mFuenteRSS.Id;
                             cLogger.Debug(mCadena);
                             cFachada.DeleteFuenteRSS(mFuenteRSS);
                             radioButtonRSS_CheckedChanged(sender, e);
@@ -61,7 +61,7 @@ namespace Vista
                         DialogResult mMessageBoxResultado = MessageBox.Show("¿Desea borrar la Fuente?", "Borrar Fuente", MessageBoxButtons.YesNo);
                         if (mMessageBoxResultado == DialogResult.Yes)
                         {
-                            string mCadena = "Se borra la fuente: Id: " + mFuenteTXT.Id + ", Titulo: " + mFuenteTXT.Titulo;
+                            string mCadena = "Se borra la fuente: Id: " + mFuenteTXT.Id;
                             cLogger.Debug(mCadena);
                             cFachada.DeleteFuenteTXT(mFuenteTXT);
                             radioButtonTXT_CheckedChanged(sender, e); 

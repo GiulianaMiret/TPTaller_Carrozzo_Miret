@@ -59,7 +59,7 @@
             this.lblBanner.AutoSize = true;
             this.lblBanner.Font = new System.Drawing.Font("Microsoft Sans Serif", 24.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBanner.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.lblBanner.Location = new System.Drawing.Point(12, 9);
+            this.lblBanner.Location = new System.Drawing.Point(662, 9);
             this.lblBanner.Name = "lblBanner";
             this.lblBanner.Size = new System.Drawing.Size(194, 38);
             this.lblBanner.TabIndex = 1;
@@ -73,7 +73,7 @@
             // 
             // timerPictureBoxCampaña
             // 
-            this.timerPictureBoxCampaña.Interval = 1000;
+            this.timerPictureBoxCampaña.Interval = 3000;
             this.timerPictureBoxCampaña.Tick += new System.EventHandler(this.timerPictureBoxCampaña_Tick);
             // 
             // timerBanner
@@ -101,6 +101,7 @@
             this.Name = "FrmOperacion";
             this.Text = "Shout News";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmOperacion_FormClosing);
             this.Load += new System.EventHandler(this.FrmOperacion_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOperacion)).EndInit();
             this.ResumeLayout(false);

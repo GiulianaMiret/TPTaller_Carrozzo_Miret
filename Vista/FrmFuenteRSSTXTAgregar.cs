@@ -99,6 +99,7 @@ namespace Vista
                 {
                     cFachada.UpdateValueRSS(mRSS);
                 }
+                MessageBox.Show("Las fuentes han sido actualizadas correctamente");
             }
             catch (Exception exc)
             {

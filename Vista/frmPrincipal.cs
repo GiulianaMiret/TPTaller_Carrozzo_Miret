@@ -24,22 +24,9 @@ namespace Vista
         {
             iFachada = fachada;
             iLog = log;
-
-            //Creo un hilo
-            //Thread mHilo = new Thread(new ThreadStart(SplashStart));
-           // mHilo.Start();
-            //ponemos a dormir FrmPrincipal
-            // Thread.Sleep(5000);
-            this.SplashStart();
             InitializeComponent();
-           // mHilo.Abort();
         }
         
-        public void SplashStart()
-        {
-            Application.Run(CompositionRoot.Resolve<SplashScreen>());
-        }
-
         private void agregarFuenteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CompositionRoot.Resolve<FrmFuenteRSSTXTAgregar>().ShowDialog();

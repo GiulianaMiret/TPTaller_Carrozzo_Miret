@@ -54,7 +54,7 @@ namespace Vista
                     DialogResult mMessageBoxResultado = MessageBox.Show("¿Desea borrar el Banner?", "Borrar Banner", MessageBoxButtons.YesNo);
                     if (mMessageBoxResultado == DialogResult.Yes)
                     {
-                        string mCadena = "Se borra la campaña: Id: " + mBanner.Id + " Nombre: " + mBanner.Nombre + " Fecha y Hora de inicio: " + mBanner.FechaInicio + " Fecha y Hora de fin: " + mBanner.FechaFin + " Y la fuente: " + mBanner.Fuente.Titulo;
+                        string mCadena = "Se borra el banner: Id: " + mBanner.Id;
                         cLogger.Debug(mCadena);
                         cFachada.DeleteBanner(mBanner);
                         dataGridViewBanners.DataSource = cFachada.GetAllBanner();
@@ -69,9 +69,10 @@ namespace Vista
             }
         }
 
+
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-    }
+}
 }

@@ -18,16 +18,18 @@ namespace Vista
     {
         private readonly Fachada cFachada;
         private readonly ILogger cLogger;
-        private Imagen[] cListaImagenes;
-        private int indice = 0;
+        //private Imagen[] cListaImagenes;
+        private List<Imagen> cListaImagenes;
+        private int cIndice;
 
         public FrmOperacion(Fachada pFachada, ILogger pLogger)
         {
             cFachada = pFachada;
             cLogger = pLogger;
-            
+            cIndice = 0;
             InitializeComponent();
-            cListaImagenes = new Imagen[100];
+            cListaImagenes = new List<Imagen>();
+            //cListaImagenes = new Imagen[100];
         }
 
         private void FrmOperacion_Load(object sender, EventArgs e)
@@ -42,65 +44,19 @@ namespace Vista
             int mHoraTimer = DateTime.Now.AddHours(1).Hour;
             mHoraTimer = (60 - DateTime.Now.Minute);
             return mCampania;
-
-            //timerBanner.Interval = mHoraTimer * 60000;
-            //int mHoraTimer = DateTime.Now.Hour;
-            //if (mCampania != null)
-            //{
-            //    if (mCampania.FechaInicio.Hour <= mCampania.FechaFin.Hour)
-            //    {
-            //        mHoraTimer = mHoraTimer - mCampania.FechaFin.Hour;
-            //    }
-            //    else
-            //    {
-            //        mHoraTimer = mHoraTimer - 24;
-            //        mHoraTimer = mHoraTimer + (mCampania.FechaFin.Hour) + 1;
-            //    }
-            //    timerCampaña.Interval = mHoraTimer;
-            //}
-            //else
-            //{
-            //    if(DateTime.Now.Hour == 23)
-            //    {
-
-            //    }
-            //    else
-            //    {
-            //        mHoraTimer = DateTime.Now.Hour + 1;
-            //    }
-                
-            //    timerCampaña.Interval = mHoraTimer;
-            //}
         }
 
         private Banner obtenerBanner()
         {
             Banner mBanner = cFachada.GetBannerNow();
-            
+            if(mBanner != null)
+            {
+                mBanner.Fuente.Actualizar();
+            }
             int mHoraTimer = DateTime.Now.AddHours(1).Hour;
             mHoraTimer = (60 - DateTime.Now.Minute);
             timerBanner.Interval = mHoraTimer * 60000;
             return mBanner;
-
-            //int mHoraTimer = DateTime.Now.Hour;
-            //if (mBanner != null)
-            //{
-            //    if (mBanner.FechaInicio.Hour <= mBanner.FechaFin.Hour)
-            //    {
-            //        mHoraTimer = mHoraTimer - mBanner.FechaFin.Hour + 1;
-            //    }
-            //    else
-            //    {
-            //        mHoraTimer = mHoraTimer - 24;
-            //        mHoraTimer = mHoraTimer + (mBanner.FechaFin.Hour) + 1;
-            //    }
-            //    timerBanner.Interval = mHoraTimer;
-            //}
-            //else
-            //{
-            //    mHoraTimer = DateTime.Now.AddHours(1).Hour;
-            //    timerBanner.Interval = mHoraTimer;
-            //}
         }
 
         private void lblBanner_AutoSizeChanged(object sender, EventArgs e)
@@ -139,11 +95,17 @@ namespace Vista
             Campania mCampania = obtenerCampania();
             if (mCampania != null)
             {
-                cListaImagenes = mCampania.Imagenes.ToArray();
+                cListaImagenes = mCampania.Imagenes.ToList();
+                //cListaImagenes = mCampania.Imagenes.ToArray();
             }
             else
             {
                 cListaImagenes = null;
+                if(pictureBoxOperacion.Image != null)
+                {
+                    pictureBoxOperacion.Image.Dispose();
+                }
+                
             }
             timerCampaña.Start();
             timerPictureBoxCampaña.Start();
@@ -151,19 +113,24 @@ namespace Vista
 
         private void timerPictureBoxCampaña_Tick(object sender, EventArgs e)
         {
-            if(indice >= cListaImagenes.Count())
+            if(cListaImagenes != null)
             {
-                indice = 0;
+                if (cIndice >= cListaImagenes.Count())
+                {
+                    cIndice = 0;
+                }
+                this.pictureBoxOperacion.Image = Utilidades.ByteToImage(cListaImagenes[cIndice].Hash);
+                this.pictureBoxOperacion.SizeMode = PictureBoxSizeMode.StretchImage;
+                cIndice++;
             }
-            this.pictureBoxOperacion.Image = Utilidades.ByteToImage(cListaImagenes[indice].Hash);
-            this.pictureBoxOperacion.SizeMode = PictureBoxSizeMode.StretchImage;
-            indice = indice + 1;
-            //foreach(Imagen mImagen in cListaImagenes)
-            //{
-            //    this.pictureBoxOperacion.Image = Utilidades.ByteToImage(mImagen.Hash);
-            //    this.pictureBoxOperacion.SizeMode = PictureBoxSizeMode.StretchImage;
-            //}
+        }
 
+        private void FrmOperacion_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            timerBanner.Stop();
+            timerCampaña.Stop();
+            timerLabelBanner.Stop();
+            timerPictureBoxCampaña.Stop();
         }
     }
 }

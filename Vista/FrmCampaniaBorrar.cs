@@ -56,7 +56,7 @@ namespace Vista
                     DialogResult mMessageBoxResultado = MessageBox.Show("¿Desea borrar la Campaña?", "Borrar Campaña", MessageBoxButtons.YesNo);
                     if (mMessageBoxResultado == DialogResult.Yes)
                     {
-                        string mCadena = "Se borra la campaña: Id: " + mCampania.Id + " Nombre: " + mCampania.Nombre + " Fecha y Hora de inicio: " + mCampania.FechaInicio + " Fecha y Hora de fin: " + mCampania.FechaFin;
+                        string mCadena = "Se borra la campaña: Id: " + mCampania.Id;
                         cLogger.Debug(mCadena);
                         cFachada.DeleteCampania(mCampania);
                         dataGridViewCampanias.DataSource = cFachada.GetAllCampania();
