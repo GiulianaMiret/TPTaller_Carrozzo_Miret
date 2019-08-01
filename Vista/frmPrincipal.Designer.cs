@@ -45,6 +45,9 @@
             this.agregarFuenteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eliminarFuenteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modificarFuenteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.asdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.actualizarFuentesRSSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripFrmPrincipal.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -139,27 +142,29 @@
             // agregarBannerToolStripMenuItem
             // 
             this.agregarBannerToolStripMenuItem.Name = "agregarBannerToolStripMenuItem";
-            this.agregarBannerToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.agregarBannerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.agregarBannerToolStripMenuItem.Text = "Agregar Banner";
             this.agregarBannerToolStripMenuItem.Click += new System.EventHandler(this.agregarBannerToolStripMenuItem_Click);
             // 
             // modificarBannerToolStripMenuItem
             // 
             this.modificarBannerToolStripMenuItem.Name = "modificarBannerToolStripMenuItem";
-            this.modificarBannerToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.modificarBannerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.modificarBannerToolStripMenuItem.Text = "Modificar Banner";
             this.modificarBannerToolStripMenuItem.Click += new System.EventHandler(this.modificarBannerToolStripMenuItem_Click);
             // 
             // borrarBannerToolStripMenuItem
             // 
             this.borrarBannerToolStripMenuItem.Name = "borrarBannerToolStripMenuItem";
-            this.borrarBannerToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.borrarBannerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.borrarBannerToolStripMenuItem.Text = "Borrar Banner";
             this.borrarBannerToolStripMenuItem.Click += new System.EventHandler(this.borrarBannerToolStripMenuItem_Click);
             // 
             // administraciónDeFuentesToolStripMenuItem1
             // 
             this.administraciónDeFuentesToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.asdToolStripMenuItem,
+            this.toolStripSeparator2,
             this.agregarFuenteToolStripMenuItem,
             this.eliminarFuenteToolStripMenuItem,
             this.modificarFuenteToolStripMenuItem});
@@ -170,23 +175,43 @@
             // agregarFuenteToolStripMenuItem
             // 
             this.agregarFuenteToolStripMenuItem.Name = "agregarFuenteToolStripMenuItem";
-            this.agregarFuenteToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.agregarFuenteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.agregarFuenteToolStripMenuItem.Text = "Agregar fuente";
             this.agregarFuenteToolStripMenuItem.Click += new System.EventHandler(this.agregarFuenteToolStripMenuItem_Click);
             // 
             // eliminarFuenteToolStripMenuItem
             // 
             this.eliminarFuenteToolStripMenuItem.Name = "eliminarFuenteToolStripMenuItem";
-            this.eliminarFuenteToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.eliminarFuenteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.eliminarFuenteToolStripMenuItem.Text = "Eliminar Fuente";
             this.eliminarFuenteToolStripMenuItem.Click += new System.EventHandler(this.eliminarFuenteToolStripMenuItem_Click);
             // 
             // modificarFuenteToolStripMenuItem
             // 
             this.modificarFuenteToolStripMenuItem.Name = "modificarFuenteToolStripMenuItem";
-            this.modificarFuenteToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.modificarFuenteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.modificarFuenteToolStripMenuItem.Text = "Modificar Fuente";
             this.modificarFuenteToolStripMenuItem.Click += new System.EventHandler(this.modificarFuenteToolStripMenuItem_Click);
+            // 
+            // asdToolStripMenuItem
+            // 
+            this.asdToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.actualizarFuentesRSSToolStripMenuItem});
+            this.asdToolStripMenuItem.Name = "asdToolStripMenuItem";
+            this.asdToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.asdToolStripMenuItem.Text = "RSS";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            // 
+            // actualizarFuentesRSSToolStripMenuItem
+            // 
+            this.actualizarFuentesRSSToolStripMenuItem.Name = "actualizarFuentesRSSToolStripMenuItem";
+            this.actualizarFuentesRSSToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.actualizarFuentesRSSToolStripMenuItem.Text = "Actualizar fuentes RSS";
+            this.actualizarFuentesRSSToolStripMenuItem.Click += new System.EventHandler(this.actualizarFuentesRSSToolStripMenuItem_Click);
             // 
             // FrmPrincipal
             // 
@@ -232,6 +257,9 @@
         private System.Windows.Forms.ToolStripMenuItem agregarBannerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modificarBannerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem borrarBannerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem asdToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem actualizarFuentesRSSToolStripMenuItem;
     }
 }
 

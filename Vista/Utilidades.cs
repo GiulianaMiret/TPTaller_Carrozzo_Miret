@@ -14,6 +14,12 @@ namespace Vista
 {
     static public class Utilidades
     {
+        /// <summary>
+        /// Metodo que devuelve true o false, dependiendo si el string pasado como parametro
+        ///     es una URL válida.
+        /// </summary>
+        /// <param name="pUrl"></param>
+        /// <returns></returns>
         public static bool UrlValida(string pUrl)
         { 
         Uri mUriResult;
@@ -29,7 +35,7 @@ namespace Vista
         public static bool InternetDisponible()
         {
             if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
-                return false;
+                throw new Exception("Por favor conéctese a internet para actualizar las fuentes RSS.");
             else
                 try
                 {
@@ -41,7 +47,11 @@ namespace Vista
                     return false;
                 }
         }
-
+        /// <summary>
+        /// Metodo que dado una URL, devuelve un string, con todos los feeds leídos del RSS concatenados.
+        /// </summary>
+        /// <param name="pUrl"></param>
+        /// <returns></returns>
         public static string GetStringFromXMLRSSUrl (string pUrl)
         {
             var feedTask = FeedReader.ReadAsync(pUrl);
@@ -52,7 +62,11 @@ namespace Vista
             }
             return mResult;
         }
-
+        /// <summary>
+        /// Método que devuelve un mapa de bits, dado un array de bytes.
+        /// </summary>
+        /// <param name="pImagen"></param>
+        /// <returns></returns>
         public static Bitmap ByteToImage(byte[] pImagen)
         {
             MemoryStream mStream = new MemoryStream();
@@ -63,6 +77,11 @@ namespace Vista
             return mBitMap;
         }
 
+        /// <summary>
+        /// Dado un pictureBox, se devuelve un array de bytes que representa la imagen dada.
+        /// </summary>
+        /// <param name="pPictureBox"></param>
+        /// <returns></returns>
         public static byte[] ImageToByteArray(PictureBox pPictureBox)
         {
                 MemoryStream mMemoryStream = new MemoryStream();

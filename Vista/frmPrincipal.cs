@@ -17,13 +17,13 @@ namespace Vista
 {
     public partial class FrmPrincipal : Form
     {
-        private readonly Fachada iFachada;
-        private readonly Vista.Logger.ILogger iLog;
+        private readonly Fachada cFachada;
+        private readonly Vista.Logger.ILogger cLogger;
 
-        public FrmPrincipal(Fachada fachada, Logger.ILogger log)
+        public FrmPrincipal(Fachada pFachada, Logger.ILogger pLogger)
         {
-            iFachada = fachada;
-            iLog = log;
+            cFachada = pFachada;
+            cLogger = pLogger;
             InitializeComponent();
         }
         
@@ -80,6 +80,27 @@ namespace Vista
         private void modificarBannerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CompositionRoot.Resolve<FrmBannerModificar>().ShowDialog();
+        }
+        
+        private void actualizarFuentesRSSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            cLogger.Debug("Actualizando las fuentes RSS..");
+            try
+            {
+                var AllRSS = cFachada.GetAllRSS();
+                foreach (var mRSS in AllRSS)
+                {
+                    cLogger.Debug("Actualizando la fuente con id " + mRSS.Id);
+                    mRSS.Actualizar();
+                }
+                MessageBox.Show("Fuentes actualizadas con éxito.");
+            }
+            catch (Exception x)
+            {
+                cLogger.Debug(x.ToString());
+                MessageBox.Show("Hubo un error, por favor consulte su administrador (ver log)");
+            }
+            
         }
     }
 }

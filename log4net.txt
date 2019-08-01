@@ -23,3 +23,6 @@
 2019-07-17 20:11:39,163 ERROR [1] Vista.Logger.Logger4net.Error - La imagen ya existe
 2019-07-17 20:12:18,112 ERROR [1] Vista.Logger.Logger4net.Error - La imagen ya existe
 2019-07-17 20:29:03,174 DEBUG [1] Vista.Logger.Logger4net.Debug - La Imagen no se ha encontrado
+2019-08-01 19:49:00,632 DEBUG [1] Vista.Logger.Logger4net.Debug - Actualizando las fuentes RSS..
+2019-08-01 19:49:01,195 DEBUG [1] Vista.Logger.Logger4net.Debug - Actualizando la fuente con id 2
+2019-08-01 19:49:01,814 DEBUG [1] Vista.Logger.Logger4net.Debug - Actualizando la fuente con id 4
