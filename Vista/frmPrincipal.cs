@@ -18,7 +18,6 @@ namespace Vista
     public partial class FrmPrincipal : Form
     {
         private readonly Fachada iFachada;
-        private readonly IBannerRepository iBannerRepository;
         private readonly Vista.Logger.ILogger iLog;
 
         public FrmPrincipal(Fachada fachada, Logger.ILogger log)
@@ -27,18 +26,18 @@ namespace Vista
             iLog = log;
 
             //Creo un hilo
-            Thread mHilo = new Thread(new ThreadStart(SplashStart));
-            mHilo.Start();
+            //Thread mHilo = new Thread(new ThreadStart(SplashStart));
+           // mHilo.Start();
             //ponemos a dormir FrmPrincipal
-            Thread.Sleep(5000);
-
+            // Thread.Sleep(5000);
+            this.SplashStart();
             InitializeComponent();
-            mHilo.Abort();
+           // mHilo.Abort();
         }
         
         public void SplashStart()
         {
-            Application.Run(new SplashScreen());
+            Application.Run(CompositionRoot.Resolve<SplashScreen>());
         }
 
         private void agregarFuenteToolStripMenuItem_Click(object sender, EventArgs e)

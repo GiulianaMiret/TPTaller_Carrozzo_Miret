@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Controlador;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,8 +13,12 @@ namespace Vista
 {
     public partial class SplashScreen : Form
     {
-        public SplashScreen()
+        private readonly Fachada cFachada;
+
+        public SplashScreen(Fachada pFachada)
         {
+            cFachada = pFachada;
+            ActualizarFuentesRSS();
             InitializeComponent();
         }
 
@@ -31,6 +36,15 @@ namespace Vista
             if (progressBar.Value == 100)
             {
                 timerInicio.Stop();
+            }
+        }
+
+        private void ActualizarFuentesRSS()
+        {
+            var mFuentesRSS = cFachada.GetAllRSS();
+            foreach (var mRSS in mFuentesRSS)
+            {
+                mRSS.Actualizar();
             }
         }
     }

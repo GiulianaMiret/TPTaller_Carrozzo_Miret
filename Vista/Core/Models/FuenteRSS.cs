@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EntityFramework.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -11,7 +12,12 @@ namespace Core.Models
 {
     public class FuenteRSS : Fuente
     {
+        private readonly IRepository<FuenteRSS> cRepositoryBaseRSS;
 
+        public FuenteRSS()
+        {
+            cRepositoryBaseRSS = (CompositionRoot.Resolve<IRepository<FuenteRSS>>());
+        }
         [DataType(DataType.Url)]
 
         public string URL { get; set; }
@@ -22,7 +28,9 @@ namespace Core.Models
         {
             if (Utilidades.InternetDisponible())
             { 
-            this.Valor = Utilidades.GetStringFromXMLRSSUrl(this.URL);
+                this.Valor = Utilidades.GetStringFromXMLRSSUrl(this.URL);
+                cRepositoryBaseRSS.Update(this);
+                cRepositoryBaseRSS.SaveChanges();
             }
         }
     }
