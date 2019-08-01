@@ -11,6 +11,7 @@ using Vista;
 using Vista.Logger;
 using Vista.EntityFramework.Services;
 using Vista.Core.Models;
+using System.Data.Entity;
 
 namespace Controlador
 {
@@ -128,33 +129,6 @@ namespace Controlador
             {
                 throw new Exception("No pudo descargarse el feed RSS por falta de conectividad.");
             }
-        }
-
-        public string GetTextOfActualBanner()
-        {
-            if (cBannerRepository.GetBannerNow() == null)
-            {
-                return "";
-            }
-            return cBannerRepository.GetBannerNow().Fuente.Valor;
-        }
-
-        public Banner GetBannerNow()
-        {
-            var mBannerNow = cRepositoryBaseBanner.Filter(x => (x.FechaInicio.Day < DateTime.Now.Day) &&
-                                                               (x.FechaFin.Day > DateTime.Now.Day) &&
-                                                               (x.FechaInicio.Hour < DateTime.Now.Hour) &&
-                                                               (x.FechaFin.Hour < DateTime.Now.Hour)).FirstOrDefault();
-            return mBannerNow;
-        }
-
-        public Campania GetCampaniaNow()
-        {
-            var mCampaniaNow = cRepositoryBaseCampania.Filter(x => (x.FechaInicio.Day < DateTime.Now.Day) &&
-                                                               (x.FechaFin.Day > DateTime.Now.Day) &&
-                                                               (x.FechaInicio.Hour < DateTime.Now.Hour) &&
-                                                               (x.FechaFin.Hour < DateTime.Now.Hour)).FirstOrDefault();
-            return mCampaniaNow;
         }
 
         public void DeleteFuenteRSS(FuenteRSS pFuenteRSS)
@@ -276,6 +250,177 @@ namespace Controlador
             cRepositoryBaseCampania.SaveChanges();
         }
 
+        public Campania GetCampaniaNow()
+        {
+            Dictionary<string, List<Campania>> mDiccionario = AvailableTimes(DateTime.Now, DateTime.Now);
+            
+            List<Campania> mListaCampaniasMenoresIguales = new List<Campania>();
+            mListaCampaniasMenoresIguales = mDiccionario["MenoresIguales"];
+            List<Campania> mListaCampaniasIntermedias = new List<Campania>();
+            mListaCampaniasIntermedias = mDiccionario["Intermedias"];
+            List<Campania> mListaCampaniasMayores = new List<Campania>();
+            mListaCampaniasMayores = mDiccionario["Mayores"];
+            //Opción 1: 
+            int mCantidadDias = 0;
+            foreach (Campania mCampania in mListaCampaniasMenoresIguales)
+            {
+                if (mCampania.FechaInicio.Date < DateTime.Now.Date)
+                {
+                    mCantidadDias = (mCampania.FechaFin.Date - DateTime.Now.Date).Days + 1;
+                    if (mCampania.FechaInicio.Hour > mCampania.FechaFin.Hour)
+                    {
+                        for (int i = (mCampania.FechaInicio.Hour); i < 24; i++)
+                        {
+                            if(i == DateTime.Now.Hour)
+                            {
+                                return mCampania;
+                            }
+                        }
+                        for (int i = 0; i <= (mCampania.FechaFin.Hour); i++)
+                        {
+                            if (i == DateTime.Now.Hour)
+                            {
+                                return mCampania;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        for (int i = (mCampania.FechaInicio.Hour); i <= (mCampania.FechaFin.Hour); i++)
+                        {
+                            if (i == DateTime.Now.Hour)
+                            {
+                                return mCampania;
+                            }
+                        }
+                    }
+
+                }
+                else
+                {
+                    mCantidadDias = (mCampania.FechaFin.Date - mCampania.FechaInicio.Date).Days;
+                    int mDiaInicio = (mCampania.FechaInicio.Date - DateTime.Now.Date).Days;
+                    mCantidadDias = mCantidadDias + mDiaInicio;
+                    for (int j = mDiaInicio; j <= mCantidadDias; j++)
+                    {
+                        if (mCampania.FechaInicio.Hour > mCampania.FechaFin.Hour)
+                        {
+                            for (int i = (mCampania.FechaInicio.Hour); i < 24; i++)
+                            {
+                                if (i == DateTime.Now.Hour)
+                                {
+                                    return mCampania;
+                                }
+                            }
+                            for (int i = 0; i <= (mCampania.FechaFin.Hour); i++)
+                            {
+                                if (i == DateTime.Now.Hour)
+                                {
+                                    return mCampania;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            for (int i = (mCampania.FechaInicio.Hour); i <= (mCampania.FechaFin.Hour); i++)
+                            {
+                                //if (j < mDias)
+                                //{
+                                    if (i == DateTime.Now.Hour)
+                                    {
+                                        return mCampania;
+                                    }
+                                //}
+                            }
+                        }
+                    }
+
+                }
+            }
+        
+            //Opción 2:
+            foreach (Campania mCampania in mListaCampaniasIntermedias)
+            {
+                if (mCampania.FechaInicio.Hour > mCampania.FechaFin.Hour)
+                {
+                    for (int i = (mCampania.FechaInicio.Hour); i < 24; i++)
+                    {
+                        if (i == DateTime.Now.Hour)
+                        {
+                            return mCampania;
+                        }
+                    }
+                    for (int i = 0; i <= (mCampania.FechaFin.Hour); i++)
+                    {
+                        if (i == DateTime.Now.Hour)
+                        {
+                            return mCampania;
+                        }
+                    }
+                }
+                else
+                {
+                    for (int i = (mCampania.FechaInicio.Hour); i <= (mCampania.FechaFin.Hour); i++)
+                    {
+                        if (i == DateTime.Now.Hour)
+                        {
+                            return mCampania;
+                        }
+                    }
+                }
+            }
+
+            //Opción 3:
+            foreach (Campania mCampania in mListaCampaniasMayores)
+            {
+                if (mCampania.FechaInicio.Hour > mCampania.FechaFin.Hour)
+                {
+                    for (int i = (mCampania.FechaInicio.Hour); i < 24; i++)
+                    {
+                        if (i == DateTime.Now.Hour)
+                        {
+                            return mCampania;
+                        }
+                    }
+                    for (int i = 0; i <= (mCampania.FechaFin.Hour); i++)
+                    {
+                        if (i == DateTime.Now.Hour)
+                        {
+                            return mCampania;
+                        }
+                    }
+                }
+                else
+                {
+                    for (int i = (mCampania.FechaInicio.Hour); i <= (mCampania.FechaFin.Hour); i++)
+                    {
+                        if (i == DateTime.Now.Hour)
+                        {
+                            return mCampania;
+                        }
+                    }
+                }
+                
+                
+            }
+            return null;
+
+                //var mCampaniaNow = cRepositoryBaseCampania.Filter(x => (DbFunctions.TruncateTime(x.FechaInicio) <= DbFunctions.TruncateTime(DateTime.Now)) &&
+                //                                                   (DbFunctions.TruncateTime(x.FechaFin) >= DbFunctions.TruncateTime(DateTime.Now)) &&
+                //                                                   (x.FechaInicio.Hour <= DateTime.Now.Hour) &&
+                //                                                   (x.FechaFin.Hour >= DateTime.Now.Hour)).FirstOrDefault();
+                //if(mCampaniaNow == null)
+                //{
+                //    mCampaniaNow = cRepositoryBaseCampania.Filter(x => (DbFunctions.TruncateTime(x.FechaInicio) <= DbFunctions.TruncateTime(DateTime.Now)) &&
+                //                                                   (DbFunctions.TruncateTime(x.FechaFin) >= DbFunctions.TruncateTime(DateTime.Now)) &&
+                //                                                   (x.FechaInicio.Hour <= DateTime.Now.Hour) &&
+                //                                                   (x.FechaFin.Hour <= DateTime.Now.Hour)).FirstOrDefault();
+                //}
+                //return mCampaniaNow;
+        }
+
+
+
         public List<Campania> GetAllCampania()
         {
             return cRepositoryBaseCampania.GetAll().ToList();
@@ -339,6 +484,173 @@ namespace Controlador
         public List<Banner> GetAllBanner()
         {
             return cRepositoryBaseBanner.GetAll().ToList();
+        }
+
+        public Banner GetBannerNow()
+        {
+            Dictionary<string, List<Banner>> mDiccionario = AvailableTimesBanner(DateTime.Now, DateTime.Now);
+
+            List<Banner> mListaBannersMenoresIguales = new List<Banner>();
+            mListaBannersMenoresIguales = mDiccionario["MenoresIguales"];
+            List<Banner> mListaBannersIntermedias = new List<Banner>();
+            mListaBannersIntermedias = mDiccionario["Intermedias"];
+            List<Banner> mListaBannersMayores = new List<Banner>();
+            mListaBannersMayores = mDiccionario["Mayores"];
+            //Opción 1: 
+            int mCantidadDias = 0;
+            foreach (Banner mBanner in mListaBannersMenoresIguales)
+            {
+                if (mBanner.FechaInicio.Date < DateTime.Now.Date)
+                {
+                    mCantidadDias = (mBanner.FechaFin.Date - DateTime.Now.Date).Days + 1;
+                    if (mBanner.FechaInicio.Hour > mBanner.FechaFin.Hour)
+                    {
+                        for (int i = (mBanner.FechaInicio.Hour); i < 24; i++)
+                        {
+                            if (i == DateTime.Now.Hour)
+                            {
+                                return mBanner;
+                            }
+                        }
+                        for (int i = 0; i <= (mBanner.FechaFin.Hour); i++)
+                        {
+                            if (i == DateTime.Now.Hour)
+                            {
+                                return mBanner;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        for (int i = (mBanner.FechaInicio.Hour); i <= (mBanner.FechaFin.Hour); i++)
+                        {
+                            if (i == DateTime.Now.Hour)
+                            {
+                                return mBanner;
+                            }
+                        }
+                    }
+
+                }
+                else
+                {
+                    mCantidadDias = (mBanner.FechaFin.Date - mBanner.FechaInicio.Date).Days;
+                    int mDiaInicio = (mBanner.FechaInicio.Date - DateTime.Now.Date).Days;
+                    mCantidadDias = mCantidadDias + mDiaInicio;
+                    for (int j = mDiaInicio; j <= mCantidadDias; j++)
+                    {
+                        if (mBanner.FechaInicio.Hour > mBanner.FechaFin.Hour)
+                        {
+                            for (int i = (mBanner.FechaInicio.Hour); i < 24; i++)
+                            {
+                                if (i == DateTime.Now.Hour)
+                                {
+                                    return mBanner;
+                                }
+                            }
+                            for (int i = 0; i <= (mBanner.FechaFin.Hour); i++)
+                            {
+                                if (i == DateTime.Now.Hour)
+                                {
+                                    return mBanner;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            for (int i = (mBanner.FechaInicio.Hour); i <= (mBanner.FechaFin.Hour); i++)
+                            {
+                                //if (j < mDias)
+                                //{
+                                if (i == DateTime.Now.Hour)
+                                {
+                                    return mBanner;
+                                }
+                                //}
+                            }
+                        }
+                    }
+
+                }
+            }
+
+            //Opción 2:
+            foreach (Banner mBanner in mListaBannersIntermedias)
+            {
+                if (mBanner.FechaInicio.Hour > mBanner.FechaFin.Hour)
+                {
+                    for (int i = (mBanner.FechaInicio.Hour); i < 24; i++)
+                    {
+                        if (i == DateTime.Now.Hour)
+                        {
+                            return mBanner;
+                        }
+                    }
+                    for (int i = 0; i <= (mBanner.FechaFin.Hour); i++)
+                    {
+                        if (i == DateTime.Now.Hour)
+                        {
+                            return mBanner;
+                        }
+                    }
+                }
+                else
+                {
+                    for (int i = (mBanner.FechaInicio.Hour); i <= (mBanner.FechaFin.Hour); i++)
+                    {
+                        if (i == DateTime.Now.Hour)
+                        {
+                            return mBanner;
+                        }
+                    }
+                }
+            }
+
+            //Opción 3:
+            foreach (Banner mBanner in mListaBannersMayores)
+            {
+                if (mBanner.FechaInicio.Hour > mBanner.FechaFin.Hour)
+                {
+                    for (int i = (mBanner.FechaInicio.Hour); i < 24; i++)
+                    {
+                        if (i == DateTime.Now.Hour)
+                        {
+                            return mBanner;
+                        }
+                    }
+                    for (int i = 0; i <= (mBanner.FechaFin.Hour); i++)
+                    {
+                        if (i == DateTime.Now.Hour)
+                        {
+                            return mBanner;
+                        }
+                    }
+                }
+                else
+                {
+                    for (int i = (mBanner.FechaInicio.Hour); i <= (mBanner.FechaFin.Hour); i++)
+                    {
+                        if (i == DateTime.Now.Hour)
+                        {
+                            return mBanner;
+                        }
+                    }
+                }
+            }
+            return null;
+
+            //var mBannerNow = cRepositoryBaseBanner.Filter(x => (DbFunctions.TruncateTime(x.FechaInicio) <= DbFunctions.TruncateTime(DateTime.Now)) &&
+            //                                                   (DbFunctions.TruncateTime(x.FechaFin) >= DbFunctions.TruncateTime(DateTime.Now)) &&
+            //                                                   (x.FechaInicio.Hour <= DateTime.Now.Hour) &&
+            //                                                   (x.FechaFin.Hour >= DateTime.Now.Hour)).FirstOrDefault();
+            //if (mBannerNow == null)
+            //{
+            //    mBannerNow = cRepositoryBaseBanner.Filter(x => (DbFunctions.TruncateTime(x.FechaInicio) <= DbFunctions.TruncateTime(DateTime.Now)) &&
+            //                                                   (DbFunctions.TruncateTime(x.FechaFin) >= DbFunctions.TruncateTime(DateTime.Now)) &&
+            //                                                   (x.FechaInicio.Hour <= DateTime.Now.Hour) &&
+            //                                                   (x.FechaFin.Hour <= DateTime.Now.Hour)).FirstOrDefault();
+            //}
+            //return mBannerNow;
         }
 
         public void DeleteBanner(Banner pBanner)

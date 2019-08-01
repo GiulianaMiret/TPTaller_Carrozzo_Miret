@@ -371,7 +371,7 @@ namespace Vista
                         cFachada.UpdateBanner(cBanner);
                         MessageBox.Show("El Banner se ha modificado con éxito");
                         dataGridViewBanners.DataSource = cFachada.GetAllBanner();
-                        string mCadena = "Se modificó el Banner: Id: " + mBanner.Id + " Nombre: " + mBanner.Nombre + " Fecha y Hora de inicio: " + mBanner.FechaInicio + " Fecha y Hora de fin: " + mBanner.FechaFin + " Y la fuente; " + mBanner.Fuente.Titulo;
+                        string mCadena = "Se modificó el Banner: Id: " + cBanner.Id + " Nombre: " + cBanner.Nombre + " Fecha y Hora de inicio: " + cBanner.FechaInicio + " Fecha y Hora de fin: " + cBanner.FechaFin + " Y la fuente; " + cBanner.Fuente.Titulo;
                         cLogger.Debug(mCadena);
                     }
                 }

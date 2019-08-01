@@ -68,7 +68,7 @@ namespace Vista
                 string mCadena = "Se agregó la Imagen: Id " + mImagenAInsertar.Id + ", Nombre: " + mImagenAInsertar.Nombre;
                 cLogger.Debug(mCadena);
                 cFachada.AddImagen(mImagenAInsertar);
-                Utilidades.MostrarMensajePopup("Se agregó correctamente la imagen.");
+                MessageBox.Show("Se agregó correctamente la imagen.");
                 FrmGestionImagenes_Load(sender, e);
             }
             catch (Exception mException)
@@ -131,7 +131,7 @@ namespace Vista
                     string mCadena = "Se borra la Imagen: Id: " + mImagenABorrar.Id + ", Nombre: " + mImagenABorrar.Nombre;
                     cLogger.Debug(mCadena);
                     cFachada.DeleteImagen(mImagenABorrar);
-                    Utilidades.MostrarMensajePopup("Se borró correctamente la imagen.");
+                    MessageBox.Show("Se borró correctamente la imagen.");
                     FrmGestionImagenes_Load(sender, e);
                 }
                
