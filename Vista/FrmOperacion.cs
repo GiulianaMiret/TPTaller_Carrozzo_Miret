@@ -46,7 +46,7 @@ namespace Vista
             Campania mCampania = cFachada.GetCampaniaNow();
             int mHoraTimer = DateTime.Now.AddHours(1).Hour;
             mHoraTimer = (60 - DateTime.Now.Minute);
-            timerCampaña.Interval = mHoraTimer * 60000;
+            //timerCampaña.Interval = mHoraTimer * 60000;
             return mCampania;
         }
 
@@ -135,7 +135,7 @@ namespace Vista
         /// <param name="e"></param>
         private void timerPictureBoxCampaña_Tick(object sender, EventArgs e)
         {
-            if(cListaImagenes.Count() > 0)
+            if(cListaImagenes != null)
             {
                 if (cIndice >= cListaImagenes.Count())
                 {
