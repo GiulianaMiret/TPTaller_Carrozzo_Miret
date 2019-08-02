@@ -93,7 +93,7 @@
             // 
             // textBoxBannerNombre
             // 
-            this.textBoxBannerNombre.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.textBoxBannerNombre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxBannerNombre.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxBannerNombre.Location = new System.Drawing.Point(97, 83);
             this.textBoxBannerNombre.Name = "textBoxBannerNombre";
@@ -345,7 +345,7 @@
             // 
             // groupBoxFuente
             // 
-            this.groupBoxFuente.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.groupBoxFuente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxFuente.AutoSize = true;
             this.groupBoxFuente.BackColor = System.Drawing.Color.Transparent;
             this.groupBoxFuente.Controls.Add(this.textBoxId);
@@ -387,6 +387,8 @@
             // 
             // textBoxValorFuente
             // 
+            this.textBoxValorFuente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxValorFuente.Location = new System.Drawing.Point(74, 115);
             this.textBoxValorFuente.Multiline = true;
             this.textBoxValorFuente.Name = "textBoxValorFuente";

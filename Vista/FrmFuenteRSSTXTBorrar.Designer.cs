@@ -50,7 +50,8 @@
             this.dataGridViewEliminar.AllowUserToDeleteRows = false;
             this.dataGridViewEliminar.AllowUserToResizeColumns = false;
             this.dataGridViewEliminar.AllowUserToResizeRows = false;
-            this.dataGridViewEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.dataGridViewEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewEliminar.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewEliminar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -62,7 +63,7 @@
             this.dataGridViewEliminar.Location = new System.Drawing.Point(12, 72);
             this.dataGridViewEliminar.Name = "dataGridViewEliminar";
             this.dataGridViewEliminar.ReadOnly = true;
-            this.dataGridViewEliminar.Size = new System.Drawing.Size(882, 354);
+            this.dataGridViewEliminar.Size = new System.Drawing.Size(882, 296);
             this.dataGridViewEliminar.TabIndex = 0;
             // 
             // Id
@@ -96,12 +97,12 @@
             // 
             // btnBorrar
             // 
-            this.btnBorrar.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnBorrar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnBorrar.BackColor = System.Drawing.Color.SandyBrown;
             this.btnBorrar.Font = new System.Drawing.Font("Copperplate Gothic Bold", 14.25F);
-            this.btnBorrar.Location = new System.Drawing.Point(353, 441);
+            this.btnBorrar.Location = new System.Drawing.Point(244, 439);
             this.btnBorrar.Name = "btnBorrar";
-            this.btnBorrar.Size = new System.Drawing.Size(280, 51);
+            this.btnBorrar.Size = new System.Drawing.Size(146, 51);
             this.btnBorrar.TabIndex = 1;
             this.btnBorrar.Text = "BORRAR";
             this.btnBorrar.UseVisualStyleBackColor = false;
@@ -109,22 +110,28 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
             this.groupBox1.Controls.Add(this.radioButtonRSS);
             this.groupBox1.Controls.Add(this.radioButtonTXT);
-            this.groupBox1.Location = new System.Drawing.Point(181, 432);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.ForeColor = System.Drawing.Color.White;
+            this.groupBox1.Location = new System.Drawing.Point(244, 370);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(136, 65);
+            this.groupBox1.Size = new System.Drawing.Size(372, 53);
             this.groupBox1.TabIndex = 25;
             this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Seleccione el Tipo";
             // 
             // radioButtonRSS
             // 
+            this.radioButtonRSS.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButtonRSS.AutoSize = true;
             this.radioButtonRSS.BackColor = System.Drawing.Color.Transparent;
             this.radioButtonRSS.Font = new System.Drawing.Font("Perpetua Titling MT", 12F);
             this.radioButtonRSS.ForeColor = System.Drawing.Color.White;
-            this.radioButtonRSS.Location = new System.Drawing.Point(3, 9);
+            this.radioButtonRSS.Location = new System.Drawing.Point(28, 19);
             this.radioButtonRSS.Name = "radioButtonRSS";
             this.radioButtonRSS.Size = new System.Drawing.Size(118, 23);
             this.radioButtonRSS.TabIndex = 22;
@@ -134,10 +141,12 @@
             // 
             // radioButtonTXT
             // 
+            this.radioButtonTXT.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButtonTXT.AutoSize = true;
             this.radioButtonTXT.Font = new System.Drawing.Font("Perpetua Titling MT", 12F);
             this.radioButtonTXT.ForeColor = System.Drawing.Color.White;
-            this.radioButtonTXT.Location = new System.Drawing.Point(3, 38);
+            this.radioButtonTXT.Location = new System.Drawing.Point(234, 19);
             this.radioButtonTXT.Name = "radioButtonTXT";
             this.radioButtonTXT.Size = new System.Drawing.Size(121, 23);
             this.radioButtonTXT.TabIndex = 23;
@@ -165,7 +174,7 @@
             this.btnCancelar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnCancelar.Font = new System.Drawing.Font("Copperplate Gothic Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.btnCancelar.Location = new System.Drawing.Point(682, 443);
+            this.btnCancelar.Location = new System.Drawing.Point(478, 439);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(138, 47);
             this.btnCancelar.TabIndex = 27;

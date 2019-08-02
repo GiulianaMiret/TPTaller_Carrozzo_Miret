@@ -46,8 +46,8 @@
             this.actualizarFuentesRSSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.agregarFuenteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.eliminarFuenteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modificarFuenteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eliminarFuenteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripFrmPrincipal.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -196,15 +196,8 @@
             // 
             this.agregarFuenteToolStripMenuItem.Name = "agregarFuenteToolStripMenuItem";
             this.agregarFuenteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.agregarFuenteToolStripMenuItem.Text = "Agregar fuente";
+            this.agregarFuenteToolStripMenuItem.Text = "Agregar Fuente";
             this.agregarFuenteToolStripMenuItem.Click += new System.EventHandler(this.agregarFuenteToolStripMenuItem_Click);
-            // 
-            // eliminarFuenteToolStripMenuItem
-            // 
-            this.eliminarFuenteToolStripMenuItem.Name = "eliminarFuenteToolStripMenuItem";
-            this.eliminarFuenteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.eliminarFuenteToolStripMenuItem.Text = "Eliminar Fuente";
-            this.eliminarFuenteToolStripMenuItem.Click += new System.EventHandler(this.eliminarFuenteToolStripMenuItem_Click);
             // 
             // modificarFuenteToolStripMenuItem
             // 
@@ -212,6 +205,13 @@
             this.modificarFuenteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.modificarFuenteToolStripMenuItem.Text = "Modificar Fuente";
             this.modificarFuenteToolStripMenuItem.Click += new System.EventHandler(this.modificarFuenteToolStripMenuItem_Click);
+            // 
+            // eliminarFuenteToolStripMenuItem
+            // 
+            this.eliminarFuenteToolStripMenuItem.Name = "eliminarFuenteToolStripMenuItem";
+            this.eliminarFuenteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eliminarFuenteToolStripMenuItem.Text = "Eliminar Fuente";
+            this.eliminarFuenteToolStripMenuItem.Click += new System.EventHandler(this.eliminarFuenteToolStripMenuItem_Click);
             // 
             // FrmPrincipal
             // 

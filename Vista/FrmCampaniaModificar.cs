@@ -143,6 +143,10 @@ namespace Vista
                     if (mCampania.FechaInicio < mFechaInicio)
                     {
                         mCantidadDias = (mCampania.FechaFin.Date - mFechaInicio.Date).Days;
+                        if(mCantidadDias <= dataGridViewHorariosDisponibles.ColumnCount)
+                        {
+                            mCantidadDias = mCantidadColumnas;
+                        }
                         for (int i = 0; i <= mCantidadDias; i++)
                         {
                             mColor = Color.Red;
@@ -178,6 +182,10 @@ namespace Vista
                         mCantidadDias = (mCampania.FechaFin.Date - mCampania.FechaInicio.Date).Days;
                         int mDiaInicio = (mCampania.FechaInicio.Date - mFechaInicio.Date).Days;
                         mCantidadDias = mCantidadDias + mDiaInicio;
+                        if (mCantidadDias <= dataGridViewHorariosDisponibles.ColumnCount)
+                        {
+                            mCantidadDias = mCantidadColumnas;
+                        }
                         for (int i = mDiaInicio; i <= mCantidadDias; i++)
                         {
                             mColor = Color.Red;
