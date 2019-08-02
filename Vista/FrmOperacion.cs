@@ -113,7 +113,7 @@ namespace Vista
 
         private void timerPictureBoxCampaña_Tick(object sender, EventArgs e)
         {
-            if(cListaImagenes != null)
+            if(cListaImagenes.Count() > 0)
             {
                 if (cIndice >= cListaImagenes.Count())
                 {

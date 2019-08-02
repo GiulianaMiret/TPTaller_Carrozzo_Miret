@@ -41,6 +41,7 @@ namespace Vista
             mOpenFileDialog.Filter = "*.png|*.png";
             //si la seleccion resulta correcta, se carga la imagen y se pone el foco en el combobox para que coloque un nombre
             if (mOpenFileDialog.ShowDialog() == DialogResult.OK) pictureBoxImagen.Load(mOpenFileDialog.FileName);
+            pictureBoxImagen.SizeMode = PictureBoxSizeMode.StretchImage;
             comboBoxImagen.Text = "COLOQUE AQUÍ EL NOMBRE DE LA IMAGEN";
             comboBoxImagen.Focus();
         }
