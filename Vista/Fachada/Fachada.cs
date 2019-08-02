@@ -38,7 +38,7 @@ namespace Controlador
         private readonly IRepository<FuenteRSS> cRepositoryBaseRSS;
         private readonly IRepository<FuenteTextoFijo> cRepositoryBaseTXT;
         private readonly IRepository<Imagen> cRepositoryBaseImagen;
-        private readonly ILogger iLogger;
+        private readonly ILogger cLogger;
         /// <summary>
         /// Constructor de la clase Fachada que basicamente inyecta las dependencias de los repositorios con Ninject.
         /// </summary>
@@ -64,7 +64,7 @@ namespace Controlador
             cRepositoryBaseRSS = pRepositoryBaseRSS;
             cRepositoryBaseTXT = pRepositoryBaseTXT;
             cRepositoryBaseImagen = pRepositoryBaseImagen;
-            iLogger = pLogger;
+            cLogger = pLogger;
         }
 
 
@@ -200,6 +200,12 @@ namespace Controlador
 
         public void DeleteImagen(Imagen pImagen)
         {
+            var mImagenABorrar = cRepositoryBaseImagen.Filter(x => x.Nombre == pImagen.Nombre).FirstOrDefault();
+            if (mImagenABorrar.Campanias.Count > 0)
+            {
+                cLogger.Debug("La imagen con id " + mImagenABorrar.Id + "no puede eliminarse porque una o más campañas la contienen como imagen a mostrar.");
+                throw new Exception("La imagen pertenece a una o más campañas, no puede eliminarse.");
+            }
             if (pImagen.Nombre != "")
             {
                 cImagenRepository.DeleteByName(pImagen.Nombre);

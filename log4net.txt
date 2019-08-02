@@ -27,3 +27,8 @@
 2019-08-01 19:49:01,195 DEBUG [1] Vista.Logger.Logger4net.Debug - Actualizando la fuente con id 2
 2019-08-01 19:49:01,814 DEBUG [1] Vista.Logger.Logger4net.Debug - Actualizando la fuente con id 4
 2019-08-01 21:39:00,497 DEBUG [1] Vista.Logger.Logger4net.Debug - Se agregó la Imagen: Id 0, Nombre: asdasd
+2019-08-01 22:30:07,254 DEBUG [1] Vista.Logger.Logger4net.Debug - Se borra la Imagen: Id: 0, Nombre: asdasd
+2019-08-01 22:31:02,590 DEBUG [1] Vista.Logger.Logger4net.Debug - Se borra la Imagen: Id: 0, Nombre: asdasd
+2019-08-01 22:33:01,838 DEBUG [1] Vista.Logger.Logger4net.Debug - Se borra la Imagen: Id: 0, Nombre: asdasd
+2019-08-01 22:33:24,439 DEBUG [1] Vista.Logger.Logger4net.Debug - Se borra la Imagen: Id: 0, Nombre: asdasd
+2019-08-01 22:34:00,966 DEBUG [1] Vista.Logger.Logger4net.Debug - Se borra la Imagen: Id: 0, Nombre: asdasd
