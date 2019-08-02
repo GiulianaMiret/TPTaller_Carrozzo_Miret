@@ -43,7 +43,6 @@
             this.lblTipo = new System.Windows.Forms.Label();
             this.lblTextoFijo = new System.Windows.Forms.Label();
             this.textBoxTextoFijo = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBoxTitulo = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -229,13 +228,6 @@
             this.textBoxTextoFijo.TabIndex = 27;
             this.textBoxTextoFijo.Visible = false;
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(227, 388);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 28;
-            // 
             // textBoxTitulo
             // 
             this.textBoxTitulo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -252,7 +244,6 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1241, 629);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.textBoxTextoFijo);
             this.Controls.Add(this.lblTextoFijo);
             this.Controls.Add(this.lblTipo);
@@ -295,7 +286,6 @@
         private System.Windows.Forms.Label lblTipo;
         private System.Windows.Forms.Label lblTextoFijo;
         private System.Windows.Forms.TextBox textBoxTextoFijo;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBoxTitulo;
     }
 }

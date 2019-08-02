@@ -119,7 +119,7 @@ namespace Vista
                 {
                     cIndice = 0;
                 }
-                this.pictureBoxOperacion.Image = Utilidades.ByteToImage(cListaImagenes[cIndice].Hash);
+                this.pictureBoxOperacion.Image = cFachada.ByteToImage(cListaImagenes[cIndice].Hash);
                 this.pictureBoxOperacion.SizeMode = PictureBoxSizeMode.StretchImage;
                 cIndice++;
             }

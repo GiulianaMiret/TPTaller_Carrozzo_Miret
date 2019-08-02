@@ -54,6 +54,7 @@
             // 
             // btnExplorarBtn
             // 
+            this.btnExplorarBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExplorarBtn.BackColor = System.Drawing.Color.White;
             this.btnExplorarBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExplorarBtn.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -68,6 +69,8 @@
             // 
             // comboBoxImagen
             // 
+            this.comboBoxImagen.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxImagen.Font = new System.Drawing.Font("Consolas", 20F);
             this.comboBoxImagen.FormattingEnabled = true;
             this.comboBoxImagen.Location = new System.Drawing.Point(44, 60);
@@ -78,6 +81,9 @@
             // 
             // pictureBoxImagen
             // 
+            this.pictureBoxImagen.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBoxImagen.Location = new System.Drawing.Point(44, 106);
             this.pictureBoxImagen.Name = "pictureBoxImagen";
             this.pictureBoxImagen.Size = new System.Drawing.Size(979, 479);

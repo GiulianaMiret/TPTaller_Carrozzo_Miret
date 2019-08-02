@@ -12,6 +12,7 @@ using Vista.Logger;
 using Vista.EntityFramework.Services;
 using Vista.Core.Models;
 using System.Data.Entity;
+using System.Drawing;
 
 namespace Controlador
 {
@@ -169,6 +170,16 @@ namespace Controlador
         /// <summary>
         /// Métodos relacionados a Imagen
         /// </summary>
+
+        public Bitmap ByteToImage(byte[] pImagen)
+        {
+            return cImagenRepository.ByteToImage(pImagen);
+        }
+
+        public byte[] ImageToByteArray(PictureBox pPictureBox)
+        {
+            return cImagenRepository.ImageToByteArray(pPictureBox);
+        }
 
         public void AddImagen(Imagen pImagen)
         {

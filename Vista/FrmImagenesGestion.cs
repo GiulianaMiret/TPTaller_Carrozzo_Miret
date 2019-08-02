@@ -61,7 +61,7 @@ namespace Vista
             }
 
             Imagen mImagenAInsertar = new Imagen();
-            mImagenAInsertar.Hash = Utilidades.ImageToByteArray(pictureBoxImagen);
+            mImagenAInsertar.Hash = cFachada.ImageToByteArray(pictureBoxImagen);
             mImagenAInsertar.Nombre = comboBoxImagen.Text; 
             try
             {
@@ -90,7 +90,7 @@ namespace Vista
                 //se tiene la regla que dos imagenes no pueden contener el mismo nombre
                 //regla aplicada en el agregar imagen 
                 Imagen pImagen = cFachada.GetImagenByName(comboBoxImagen.Text);
-                pictureBoxImagen.Image = Utilidades.ByteToImage(pImagen.Hash);
+                pictureBoxImagen.Image = cFachada.ByteToImage(pImagen.Hash);
             }          
         }
 

@@ -7,6 +7,9 @@ using Core.Models;
 using System.Linq.Expressions;
 using System.Data.Entity;
 using Vista.EntityFramework.Services;
+using System.IO;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace EntityFramework.Services
 {
@@ -74,7 +77,34 @@ namespace EntityFramework.Services
             }
             
             cDbSetImagen.Remove(mImagen);            
-        }                
+        }
+
+        /// <summary>
+        /// Método que devuelve un mapa de bits, dado un array de bytes.
+        /// </summary>
+        /// <param name="pImagen"></param>
+        /// <returns></returns>
+        public Bitmap ByteToImage(byte[] pImagen)
+        {
+            MemoryStream mStream = new MemoryStream();
+            byte[] pData = pImagen;
+            mStream.Write(pData, 0, Convert.ToInt32(pData.Length));
+            Bitmap mBitMap = new Bitmap(mStream, false);
+            mStream.Dispose();
+            return mBitMap;
+        }
+
+        /// <summary>
+        /// Dado un pictureBox, se devuelve un array de bytes que representa la imagen dada.
+        /// </summary>
+        /// <param name="pPictureBox"></param>
+        /// <returns></returns>
+        public byte[] ImageToByteArray(PictureBox pPictureBox)
+        {
+            MemoryStream mMemoryStream = new MemoryStream();
+            pPictureBox.Image.Save(mMemoryStream, System.Drawing.Imaging.ImageFormat.Png);
+            return mMemoryStream.GetBuffer();
+        }
 
     }
 

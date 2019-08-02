@@ -39,7 +39,7 @@ namespace Vista
                 {
                     string mNombreImagen = dataGridViewTodasLasImagenes.CurrentRow.Cells[0].Value.ToString();
                     Imagen mImagen = cFachada.GetImagenByName(mNombreImagen);
-                    pictureBoxVistaPreviaImagenes.Image = Utilidades.ByteToImage(mImagen.Hash);
+                    pictureBoxVistaPreviaImagenes.Image = cFachada.ByteToImage(mImagen.Hash);
                 }
             }
         }
@@ -50,7 +50,7 @@ namespace Vista
             {
                 string mNombreImagen = dataGridViewTodasLasImagenes.CurrentRow.Cells[0].Value.ToString();
                 Imagen mImagen = cFachada.GetImagenByName(mNombreImagen);
-                pictureBoxVistaPreviaImagenes.Image = Utilidades.ByteToImage(mImagen.Hash);
+                pictureBoxVistaPreviaImagenes.Image = cFachada.ByteToImage(mImagen.Hash);
             }
 
         }
