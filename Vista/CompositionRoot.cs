@@ -8,6 +8,11 @@ using System.Threading.Tasks;
 
 namespace Vista
 {
+    /// <summary>
+    /// Ésta clase utiliza la inyeccion de dependencias para resolver las diferentes peticiones de 
+    ///     instancias de variables.
+    ///     
+    /// </summary>
     public class CompositionRoot
     {
         private static IKernel cNinjectKernel;

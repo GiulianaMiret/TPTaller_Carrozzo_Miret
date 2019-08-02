@@ -72,7 +72,11 @@ namespace Vista
                 cLogger.Debug(mException.ToString());
             }
         }
-
+        /// <summary>
+        /// Hacemos el ocultamiento y visibilizacion de elementos dependiendo de lo checkeado
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void radioButtonRSS_CheckedChanged(object sender, EventArgs e)
         {
             lblTextoFijo.Visible = false;
@@ -87,25 +91,6 @@ namespace Vista
             textBoxTextoFijo.Visible = true;
             lblURL.Visible = false;
             textBoxURLfuente.Visible = false;
-        }
-
-        private void actualizarValoresDeFuentesRSSToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //traigo todas las fuentes RSS y las mando a la fachada a updatearse
-            var mListOfRSS = cFachada.GetAllRSS();
-            try
-            {
-                foreach (var mRSS in mListOfRSS)
-                {
-                    mRSS.Actualizar();
-                }
-                MessageBox.Show("Las fuentes han sido actualizadas correctamente");
-            }
-            catch (Exception exc)
-            {
-                cLogger.Debug(exc.Message);
-                MessageBox.Show("Ha ocurrido un error " + exc.Message);
-            }            
         }
 
         private void btnFuenteCancelar_Click(object sender, EventArgs e)

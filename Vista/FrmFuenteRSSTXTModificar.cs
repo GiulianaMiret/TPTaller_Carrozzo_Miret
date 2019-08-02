@@ -15,6 +15,9 @@ namespace Vista
 {
     public partial class FrmFuenteRSSTXTModificar : Form
     {
+        /// <summary>
+        /// Variables de clase, fachada y logger se inyectan con ninject.
+        /// </summary>
         private readonly Fachada cFachada;
         private readonly ILogger cLogger;
         private FuenteRSS cFuenteRSS;
@@ -27,7 +30,11 @@ namespace Vista
             InitializeComponent();
             radioButtonRSS.Checked = true;
         }
-
+        /// <summary>
+        /// Se ocultan y se visibilizan elementos de acuerdo al radiobutton checkeado.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void radioButtonRSS_CheckedChanged(object sender, EventArgs e)
         {
             lblTextoFijo.Visible = false;
@@ -45,7 +52,11 @@ namespace Vista
             textBoxURLfuente.Visible = false;
             dataGridViewModificar.DataSource = cFachada.GetAllTXT();
         }
-
+        /// <summary>
+        /// Busca una fuente con el parametro pasado en el textbox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonBuscar_Click(object sender, EventArgs e)
         {
             if (radioButtonRSS.Checked)
@@ -78,7 +89,11 @@ namespace Vista
             }
             
         }
-
+        /// <summary>
+        /// Carga una fuente seleccionada y muestra los datos de la misma.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonCargar_Click(object sender, EventArgs e)
         {
             if (dataGridViewModificar.CurrentRow.Index != -1)
@@ -102,7 +117,11 @@ namespace Vista
 
         }
 
-
+        /// <summary>
+        /// Guarda los cambios
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             try
@@ -164,7 +183,11 @@ namespace Vista
             }
         }
 
-
+        /// <summary>
+        /// Cancela y cierra el form.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();

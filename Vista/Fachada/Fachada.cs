@@ -16,13 +16,8 @@ using System.Drawing;
 
 namespace Controlador
 {
-    //Como hacer un select en TPH, BankAccount es de tipo BillingDetails.
-    //IQueryable<BankAccount> query = from b in context.BillingDetails.OfType<BankAccount>() 
-    //select b;
-
-
     /// <summary>
-    /// Clase fachada, de donde se va a llamar a los repositorios para realizar las operaciones, entre otras cosas
+    /// Clase fachada, de donde se va a llamar a los repositorios para realizar las operaciones
     /// </summary>
     public class Fachada
     {
@@ -68,8 +63,10 @@ namespace Controlador
         }
 
 
+        ///Métodos de Fuentes
+
         /// <summary>
-        /// Métodos relacionados a Fuentes
+        /// Agrega una fuente de texto fijo
         /// </summary>
         /// 
         public void AddFuenteTXT(FuenteTextoFijo pFuenteTextoFijo)
@@ -84,7 +81,10 @@ namespace Controlador
                 throw new Exception("Ya existe una fuente con ese nombre.");
             }
         }
-
+        /// <summary>
+        /// Actualiza el valor de la fuente RSS a partir de la URL
+        /// </summary>
+        /// <param name="pFuenteRSS"></param>
         public void UpdateValueRSS(FuenteRSS pFuenteRSS)
         {
             if (Utilidades.InternetDisponible())
@@ -98,17 +98,28 @@ namespace Controlador
             cRepositoryBaseRSS.Update(pFuenteRSS);
             cRepositoryBaseRSS.SaveChanges();
         }
-
+        /// <summary>
+        /// Obtiene todas las fuentes RSS
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<FuenteRSS> GetAllRSS()
         {
             return cRepositoryBaseRSS.GetAll().ToList();
         }
 
+        /// <summary>
+        /// Obtiene todas las fuentes TXT
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<FuenteTextoFijo> GetAllTXT()
         {
             return cRepositoryBaseTXT.GetAll().ToList();
         }
 
+        /// <summary>
+        /// Agrega una fuente RSS
+        /// </summary>
+        /// <param name="pFuenteRSS"></param>
         public void AddFuenteRSS(FuenteRSS pFuenteRSS)
         {
             if (Utilidades.InternetDisponible())
@@ -131,56 +142,87 @@ namespace Controlador
                 throw new Exception("No pudo descargarse el feed RSS por falta de conectividad.");
             }
         }
-
+        /// <summary>
+        /// Borra una fuente RSS
+        /// </summary>
+        /// <param name="pFuenteRSS"></param>
         public void DeleteFuenteRSS(FuenteRSS pFuenteRSS)
         {
             cRepositoryBaseRSS.DeleteById(pFuenteRSS.Id);
             cRepositoryBaseRSS.SaveChanges();
         }
-
+        /// <summary>
+        /// Borra una fuente TXT
+        /// </summary>
+        /// <param name="pFuenteTXT"></param>
         public void DeleteFuenteTXT(FuenteTextoFijo pFuenteTXT)
         {
             cRepositoryBaseTXT.DeleteById(pFuenteTXT.Id);
             cRepositoryBaseTXT.SaveChanges();
         }
-
+        /// <summary>
+        /// Obtiene una fuente RSS dado el ID
+        /// </summary>
+        /// <param name="pFuenteRSS"></param>
+        /// <returns></returns>
         public FuenteRSS GetFuenteRSS(FuenteRSS pFuenteRSS)
         {
             return cRepositoryBaseRSS.GetById(pFuenteRSS.Id);
         }
 
+        /// <summary>
+        /// Obtiene una fuente TXT dado el ID
+        /// </summary>
+        /// <param name="pFuenteTXT"></param>
+        /// <returns></returns>
         public FuenteTextoFijo GetFuenteTXT(FuenteTextoFijo pFuenteTXT)
         {
             return cRepositoryBaseTXT.GetById(pFuenteTXT.Id);
         }
 
+        /// <summary>
+        /// Actualiza una fuente RSS
+        /// </summary>
+        /// <param name="pFuenteRSS"></param>
         public void UpdateFuenteRSS(FuenteRSS pFuenteRSS)
         {
             cRepositoryBaseRSS.Update(pFuenteRSS);
             cRepositoryBaseRSS.SaveChanges();
         }
-
+        /// <summary>
+        /// Actualiza una fuente TXT
+        /// </summary>
+        /// <param name="pFuenteTXT"></param>
         public void UpdateFuenteTXT(FuenteTextoFijo pFuenteTXT)
         {
             cRepositoryBaseTXT.Update(pFuenteTXT);
             cRepositoryBaseTXT.SaveChanges();
         }
 
+        //Métodos relacionados a Imagenes
 
         /// <summary>
-        /// Métodos relacionados a Imagen
+        /// Devuelve un BitMap dado un array de bytes que corresponden al hash de la imagen
         /// </summary>
-
+        /// <param name="pImagen"></param>
+        /// <returns></returns>
         public Bitmap ByteToImage(byte[] pImagen)
         {
             return cImagenRepository.ByteToImage(pImagen);
         }
-
+        /// <summary>
+        /// Devuelve un array de bytes que corresponden al hash de la imagen, dado un pictureBox
+        /// </summary>
+        /// <param name="pPictureBox"></param>
+        /// <returns></returns>
         public byte[] ImageToByteArray(PictureBox pPictureBox)
         {
             return cImagenRepository.ImageToByteArray(pPictureBox);
         }
-
+        /// <summary>
+        /// Agrega una imagen a la DB
+        /// </summary>
+        /// <param name="pImagen"></param>
         public void AddImagen(Imagen pImagen)
         {
             Imagen mBusquedaDeImagenPorHash = cRepositoryBaseImagen.Filter(x => x.Hash == pImagen.Hash).FirstOrDefault();
@@ -197,7 +239,10 @@ namespace Controlador
             cRepositoryBaseImagen.Add(pImagen);
             cRepositoryBaseImagen.SaveChanges();
         }
-
+        /// <summary>
+        /// Borra una imagen de la DB
+        /// </summary>
+        /// <param name="pImagen"></param>
         public void DeleteImagen(Imagen pImagen)
         {
             var mImagenABorrar = cRepositoryBaseImagen.Filter(x => x.Nombre == pImagen.Nombre).FirstOrDefault();
@@ -216,45 +261,66 @@ namespace Controlador
             }
             cRepositoryBaseImagen.SaveChanges();
         }
-
+        /// <summary>
+        /// Actualiza una imagen
+        /// </summary>
+        /// <param name="pImagen"></param>
         public void UpdateImagen(Imagen pImagen)
         {
             cRepositoryBaseImagen.Update(pImagen);
             cRepositoryBaseImagen.SaveChanges();
         }
 
-
+        /// <summary>
+        /// Obtiene una imagen por ID
+        /// </summary>
+        /// <param name="pId"></param>
+        /// <returns></returns>
         public Imagen GetImagenById(int pId)
         {
             return cRepositoryBaseImagen.GetById(pId);
         }
-
+        /// <summary>
+        /// Obtiene una imagen por nombre
+        /// </summary>
+        /// <param name="pNombreImagen"></param>
+        /// <returns></returns>
         public Imagen GetImagenByName(string pNombreImagen)
         {
             return cImagenRepository.GetByName(pNombreImagen);
         }
-
+        /// <summary>
+        /// Obtiene todos los nombres de las imagenes
+        /// </summary>
+        /// <returns></returns>
         public List<string> GetAllNamesFromImages()
         {
             return cImagenRepository.GetAllNamesFromImages();
         }
-
+        /// <summary>
+        /// Obtiene todas las imagenes
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<Imagen> GetAllImagen()
         {
             return cRepositoryBaseImagen.GetAll().ToList();
         }
-
+        /// <summary>
+        /// Obtiene todas las imagenes, en formato List<Imagen>
+        /// </summary>
+        /// <returns></returns>
         public List<Imagen> GetImagenes()
         {
             return cRepositoryBaseImagen.GetAll().ToList();
         }
 
 
+        ///Metodos relacionados a Campañas
 
         /// <summary>
-        /// Métodos relacionados a Campaña
+        /// Agrega una campaña a la db
         /// </summary>
-
+        /// <param name="pCampania"></param>
         public void AddCampania(Campania pCampania)
         {
             Campania mBusquedaDeCampaniaPorNombre = cRepositoryBaseCampania.Filter(x => x.Nombre == pCampania.Nombre).FirstOrDefault();
@@ -266,7 +332,10 @@ namespace Controlador
             cRepositoryBaseCampania.Add(pCampania);
             cRepositoryBaseCampania.SaveChanges();
         }
-
+        /// <summary>
+        /// Obtiene la campaña en el instante de tiempo "ahora"
+        /// </summary>
+        /// <returns></returns>
         public Campania GetCampaniaNow()
         {
             Dictionary<string, List<Campania>> mDiccionario = AvailableTimes(DateTime.Now, DateTime.Now);
@@ -424,50 +493,83 @@ namespace Controlador
         }
 
 
-
+        /// <summary>
+        /// Obtiene todas las campañas
+        /// </summary>
+        /// <returns></returns>
         public List<Campania> GetAllCampania()
         {
             return cRepositoryBaseCampania.GetAll().ToList();
         }
 
+        /// <summary>
+        /// Obtiene una campaña por ID
+        /// </summary>
+        /// <param name="pCampania"></param>
+        /// <returns></returns>
         public Campania GetCampania(Campania pCampania)
         {
             return cRepositoryBaseCampania.GetById(pCampania.Id);
         }
-
+        /// <summary>
+        /// Obtiene las fechas disponibles para una campaña
+        /// </summary>
+        /// <param name="pFechaInicio"></param>
+        /// <param name="pFechaFin"></param>
+        /// <returns></returns>
         public Dictionary<string, List<Campania>> AvailableTimes(DateTime pFechaInicio, DateTime pFechaFin)
         {
             return cCampaniaRepository.AvailableTimes(pFechaInicio, pFechaFin);
         }
-
+        /// <summary>
+        /// Borra una campaña.
+        /// </summary>
+        /// <param name="pCampania"></param>
         public void DeleteCampania(Campania pCampania)
         {
             cRepositoryBaseCampania.DeleteById(pCampania.Id);
             cRepositoryBaseCampania.SaveChanges();
         }
-
+        /// <summary>
+        /// Obtiene las imagenes de una campaña.
+        /// </summary>
+        /// <param name="pCampania"></param>
+        /// <returns></returns>
         public List<Imagen> GetImagesOfCampania(Campania pCampania)
         {
             return cCampaniaRepository.GetImagenes(pCampania);
         }
-
+        /// <summary>
+        /// Actualiza una campaña
+        /// </summary>
+        /// <param name="pCampania"></param>
         public void UpdateCampania(Campania pCampania)
         {
             cRepositoryBaseCampania.Update(pCampania);
             cRepositoryBaseCampania.SaveChanges();
         }
-
+        /// <summary>
+        /// Obtiene los horarios disponibles para agregar una campaña
+        /// </summary>
+        /// <param name="pCampania"></param>
+        /// <param name="pDictionary"></param>
+        /// <returns></returns>
         public bool AvailableHoursCampania(Campania pCampania, Dictionary<string, List<Campania>> pDictionary)
         {
             return cCampaniaRepository.AvailableHours(pCampania, pDictionary);
         }
 
 
-        /// <summary>
-        /// Métodos relacionados a Banners
-        /// </summary>
+        ///Métodos relacionados a Banners
+        ///
+        /// 
         /// 
 
+
+        /// <summary>
+        /// Agrega un banner
+        /// </summary>
+        /// <param name="pBanner"></param>
         public void AddBanner(Banner pBanner)
         {
             Banner mBusquedaDeBannerPorNombre = cRepositoryBaseBanner.Filter(x => x.Nombre == pBanner.Nombre).FirstOrDefault();
@@ -479,17 +581,28 @@ namespace Controlador
             cRepositoryBaseBanner.Add(pBanner);
             cRepositoryBaseBanner.SaveChanges();
         }
-
+        /// <summary>
+        /// Obtiene las fechas disponibles para un banner.
+        /// </summary>
+        /// <param name="pFechaInicio"></param>
+        /// <param name="pFechaFin"></param>
+        /// <returns></returns>
         public Dictionary<string, List<Banner>> AvailableTimesBanner(DateTime pFechaInicio, DateTime pFechaFin)
         {
             return cBannerRepository.AvailableTimes(pFechaInicio, pFechaFin);
         }
-
+        /// <summary>
+        /// Obtiene todos los banners
+        /// </summary>
+        /// <returns></returns>
         public List<Banner> GetAllBanner()
         {
             return cRepositoryBaseBanner.GetAll().ToList();
         }
-
+        /// <summary>
+        /// Obtiene el banner en el instante de tiempo "ahora"
+        /// </summary>
+        /// <returns></returns>
         public Banner GetBannerNow()
         {
             Dictionary<string, List<Banner>> mDiccionario = AvailableTimesBanner(DateTime.Now, DateTime.Now);
@@ -643,24 +756,39 @@ namespace Controlador
             }
             return null;
         }
-
+        /// <summary>
+        /// Borrar un banner
+        /// </summary>
+        /// <param name="pBanner"></param>
         public void DeleteBanner(Banner pBanner)
         {
             cRepositoryBaseBanner.DeleteById(pBanner.Id);
             cRepositoryBaseBanner.SaveChanges();
         }
-
+        /// <summary>
+        /// Obtiene un banner, dado un ID
+        /// </summary>
+        /// <param name="pBanner"></param>
+        /// <returns></returns>
         public Banner GetBanner(Banner pBanner)
         {
             return cRepositoryBaseBanner.GetById(pBanner.Id);
         }
-
+        /// <summary>
+        /// Actualiza un banner
+        /// </summary>
+        /// <param name="pBanner"></param>
         public void UpdateBanner(Banner pBanner)
         {
             cRepositoryBaseBanner.Update(pBanner);
             cRepositoryBaseBanner.SaveChanges();
         }
-
+        /// <summary>
+        /// Verifica si en el rango de horario que se le pasa, está libre 
+        /// </summary>
+        /// <param name="pBanner"></param>
+        /// <param name="pDictionary"></param>
+        /// <returns></returns>
         public bool AvailableHoursBanner(Banner pBanner, Dictionary<string, List<Banner>> pDictionary)
         {
             return cBannerRepository.AvailableHours(pBanner, pDictionary);

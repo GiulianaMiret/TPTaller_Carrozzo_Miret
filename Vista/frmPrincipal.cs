@@ -15,8 +15,14 @@ using System.Threading;
 
 namespace Vista
 {
+    /// <summary>
+    ///  Clase principal de la aplicación
+    /// </summary>
     public partial class FrmPrincipal : Form
     {
+        /// <summary>
+        /// Variables que se injectaran mediante Ninject en el constructor.
+        /// </summary>
         private readonly Fachada cFachada;
         private readonly Vista.Logger.ILogger cLogger;
 
@@ -81,7 +87,12 @@ namespace Vista
         {
             CompositionRoot.Resolve<FrmBannerModificar>().ShowDialog();
         }
-        
+
+        /// <summary>
+        /// Actualiza todas las fuentes RSS si hay conexión a internet.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void actualizarFuentesRSSToolStripMenuItem_Click(object sender, EventArgs e)
         {
             cLogger.Debug("Actualizando las fuentes RSS..");

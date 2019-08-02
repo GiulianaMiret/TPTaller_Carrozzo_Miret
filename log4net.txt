@@ -35,3 +35,6 @@
 2019-08-02 01:05:45,700 DEBUG [1] Vista.Logger.Logger4net.Debug - Actualizando las fuentes RSS..
 2019-08-02 01:05:45,748 DEBUG [1] Vista.Logger.Logger4net.Debug - Actualizando la fuente con id 2
 2019-08-02 01:05:46,430 DEBUG [1] Vista.Logger.Logger4net.Debug - Actualizando la fuente con id 4
+2019-08-02 01:34:39,886 DEBUG [1] Vista.Logger.Logger4net.Debug - Actualizando las fuentes RSS..
+2019-08-02 01:34:40,166 DEBUG [1] Vista.Logger.Logger4net.Debug - Actualizando la fuente con id 2
+2019-08-02 01:34:40,775 DEBUG [1] Vista.Logger.Logger4net.Debug - Actualizando la fuente con id 4

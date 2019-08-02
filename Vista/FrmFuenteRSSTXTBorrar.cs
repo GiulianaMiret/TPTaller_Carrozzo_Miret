@@ -16,6 +16,9 @@ namespace Vista
 {
     public partial class FrmFuenteRSSTXTBorrar : Form
     {
+        /// <summary>
+        /// Variables de clase, se inyectan con Ninject
+        ///</summary>
         private readonly Fachada cFachada;
         private readonly ILogger cLogger;
 
@@ -25,7 +28,11 @@ namespace Vista
             cLogger = pLogger;
             InitializeComponent();
         }        
-
+        /// <summary>
+        /// Se traen las fuentes dependiendo del checkeo del radiobutton
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void radioButtonRSS_CheckedChanged(object sender, EventArgs e)
         {
             dataGridViewEliminar.DataSource = cFachada.GetAllRSS();
@@ -35,7 +42,11 @@ namespace Vista
         {
             dataGridViewEliminar.DataSource = cFachada.GetAllTXT();
         }
-
+        /// <summary>
+        /// Borra una fuente.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnBorrar_Click(object sender, EventArgs e)
         {
             try
