@@ -92,12 +92,11 @@
             // 
             // labelNombreModificarCampania
             // 
-            this.labelNombreModificarCampania.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.labelNombreModificarCampania.AutoSize = true;
             this.labelNombreModificarCampania.BackColor = System.Drawing.Color.Transparent;
             this.labelNombreModificarCampania.Font = new System.Drawing.Font("Perpetua Titling MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelNombreModificarCampania.ForeColor = System.Drawing.Color.White;
-            this.labelNombreModificarCampania.Location = new System.Drawing.Point(470, 293);
+            this.labelNombreModificarCampania.Location = new System.Drawing.Point(135, 191);
             this.labelNombreModificarCampania.Name = "labelNombreModificarCampania";
             this.labelNombreModificarCampania.Size = new System.Drawing.Size(77, 19);
             this.labelNombreModificarCampania.TabIndex = 20;
@@ -105,9 +104,8 @@
             // 
             // textBoxNombreCampania
             // 
-            this.textBoxNombreCampania.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.textBoxNombreCampania.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxNombreCampania.Location = new System.Drawing.Point(567, 286);
+            this.textBoxNombreCampania.Location = new System.Drawing.Point(224, 187);
             this.textBoxNombreCampania.Name = "textBoxNombreCampania";
             this.textBoxNombreCampania.Size = new System.Drawing.Size(196, 30);
             this.textBoxNombreCampania.TabIndex = 22;
@@ -125,7 +123,7 @@
             this.groupBoxFechaHoraModificarCampaña.Controls.Add(this.labelFHInicio);
             this.groupBoxFechaHoraModificarCampaña.Font = new System.Drawing.Font("Perpetua Titling MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxFechaHoraModificarCampaña.ForeColor = System.Drawing.Color.White;
-            this.groupBoxFechaHoraModificarCampaña.Location = new System.Drawing.Point(25, 67);
+            this.groupBoxFechaHoraModificarCampaña.Location = new System.Drawing.Point(170, 245);
             this.groupBoxFechaHoraModificarCampaña.Name = "groupBoxFechaHoraModificarCampaña";
             this.groupBoxFechaHoraModificarCampaña.Size = new System.Drawing.Size(326, 111);
             this.groupBoxFechaHoraModificarCampaña.TabIndex = 23;
@@ -247,7 +245,7 @@
             this.btnGuardar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnGuardar.AutoSize = true;
             this.btnGuardar.Font = new System.Drawing.Font("Copperplate Gothic Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardar.Location = new System.Drawing.Point(458, 583);
+            this.btnGuardar.Location = new System.Drawing.Point(305, 583);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(134, 33);
             this.btnGuardar.TabIndex = 24;
@@ -260,7 +258,7 @@
             this.btnCancelar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnCancelar.Font = new System.Drawing.Font("Copperplate Gothic Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.btnCancelar.Location = new System.Drawing.Point(694, 583);
+            this.btnCancelar.Location = new System.Drawing.Point(488, 583);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(134, 33);
             this.btnCancelar.TabIndex = 25;
@@ -274,7 +272,7 @@
             this.buttonConsultarDisponibilidad.AutoSize = true;
             this.buttonConsultarDisponibilidad.BackColor = System.Drawing.Color.SandyBrown;
             this.buttonConsultarDisponibilidad.Font = new System.Drawing.Font("Copperplate Gothic Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonConsultarDisponibilidad.Location = new System.Drawing.Point(73, 187);
+            this.buttonConsultarDisponibilidad.Location = new System.Drawing.Point(547, 287);
             this.buttonConsultarDisponibilidad.Name = "buttonConsultarDisponibilidad";
             this.buttonConsultarDisponibilidad.Size = new System.Drawing.Size(241, 39);
             this.buttonConsultarDisponibilidad.TabIndex = 26;
@@ -284,7 +282,7 @@
             // 
             // groupBoxImagenes
             // 
-            this.groupBoxImagenes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxImagenes.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.groupBoxImagenes.AutoSize = true;
             this.groupBoxImagenes.BackColor = System.Drawing.Color.Transparent;
             this.groupBoxImagenes.Controls.Add(this.pictureBoxImagenesActuales);
@@ -295,7 +293,7 @@
             this.groupBoxImagenes.Controls.Add(this.pictureBoxVistaPreviaImagenes);
             this.groupBoxImagenes.Font = new System.Drawing.Font("Perpetua Titling MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxImagenes.ForeColor = System.Drawing.Color.White;
-            this.groupBoxImagenes.Location = new System.Drawing.Point(385, 67);
+            this.groupBoxImagenes.Location = new System.Drawing.Point(44, 362);
             this.groupBoxImagenes.Name = "groupBoxImagenes";
             this.groupBoxImagenes.Size = new System.Drawing.Size(677, 206);
             this.groupBoxImagenes.TabIndex = 27;
@@ -405,11 +403,10 @@
             // 
             // buttonBuscar
             // 
-            this.buttonBuscar.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.buttonBuscar.AutoSize = true;
-            this.buttonBuscar.BackColor = System.Drawing.Color.SandyBrown;
+            this.buttonBuscar.BackColor = System.Drawing.Color.Silver;
             this.buttonBuscar.Font = new System.Drawing.Font("Copperplate Gothic Light", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonBuscar.Location = new System.Drawing.Point(787, 286);
+            this.buttonBuscar.Location = new System.Drawing.Point(432, 185);
             this.buttonBuscar.Name = "buttonBuscar";
             this.buttonBuscar.Size = new System.Drawing.Size(94, 33);
             this.buttonBuscar.TabIndex = 28;
@@ -420,7 +417,8 @@
             // dataGridViewCampanias
             // 
             this.dataGridViewCampanias.AllowUserToAddRows = false;
-            this.dataGridViewCampanias.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridViewCampanias.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewCampanias.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewCampanias.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dataGridViewCampanias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -430,10 +428,10 @@
             this.dataGridViewTextBoxColumn1,
             this.FechaInicio,
             this.FechaFin});
-            this.dataGridViewCampanias.Location = new System.Drawing.Point(362, 330);
+            this.dataGridViewCampanias.Location = new System.Drawing.Point(12, 57);
             this.dataGridViewCampanias.Name = "dataGridViewCampanias";
             this.dataGridViewCampanias.ReadOnly = true;
-            this.dataGridViewCampanias.Size = new System.Drawing.Size(652, 118);
+            this.dataGridViewCampanias.Size = new System.Drawing.Size(886, 118);
             this.dataGridViewCampanias.TabIndex = 29;
             // 
             // Id
@@ -491,9 +489,10 @@
             this.dataGridViewHorariosDisponibles.AllowUserToDeleteRows = false;
             this.dataGridViewHorariosDisponibles.AllowUserToResizeColumns = false;
             this.dataGridViewHorariosDisponibles.AllowUserToResizeRows = false;
-            this.dataGridViewHorariosDisponibles.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.dataGridViewHorariosDisponibles.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewHorariosDisponibles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewHorariosDisponibles.Location = new System.Drawing.Point(39, 232);
+            this.dataGridViewHorariosDisponibles.Location = new System.Drawing.Point(820, 191);
             this.dataGridViewHorariosDisponibles.Name = "dataGridViewHorariosDisponibles";
             this.dataGridViewHorariosDisponibles.ReadOnly = true;
             this.dataGridViewHorariosDisponibles.Size = new System.Drawing.Size(287, 388);
@@ -502,11 +501,11 @@
             // 
             // buttonCargar
             // 
-            this.buttonCargar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.buttonCargar.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.buttonCargar.AutoSize = true;
             this.buttonCargar.BackColor = System.Drawing.Color.SandyBrown;
             this.buttonCargar.Font = new System.Drawing.Font("Copperplate Gothic Light", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonCargar.Location = new System.Drawing.Point(618, 464);
+            this.buttonCargar.Location = new System.Drawing.Point(924, 93);
             this.buttonCargar.Name = "buttonCargar";
             this.buttonCargar.Size = new System.Drawing.Size(94, 33);
             this.buttonCargar.TabIndex = 31;

@@ -126,12 +126,12 @@
             // 
             // radioButtonRSS
             // 
-            this.radioButtonRSS.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.radioButtonRSS.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.radioButtonRSS.AutoSize = true;
             this.radioButtonRSS.BackColor = System.Drawing.Color.Transparent;
             this.radioButtonRSS.Font = new System.Drawing.Font("Perpetua Titling MT", 12F);
             this.radioButtonRSS.ForeColor = System.Drawing.Color.White;
-            this.radioButtonRSS.Location = new System.Drawing.Point(39, 177);
+            this.radioButtonRSS.Location = new System.Drawing.Point(80, 169);
             this.radioButtonRSS.Name = "radioButtonRSS";
             this.radioButtonRSS.Size = new System.Drawing.Size(118, 23);
             this.radioButtonRSS.TabIndex = 24;
@@ -141,12 +141,12 @@
             // 
             // radioButtonTXT
             // 
-            this.radioButtonTXT.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.radioButtonTXT.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.radioButtonTXT.AutoSize = true;
             this.radioButtonTXT.BackColor = System.Drawing.Color.Transparent;
             this.radioButtonTXT.Font = new System.Drawing.Font("Perpetua Titling MT", 12F);
             this.radioButtonTXT.ForeColor = System.Drawing.Color.White;
-            this.radioButtonTXT.Location = new System.Drawing.Point(39, 206);
+            this.radioButtonTXT.Location = new System.Drawing.Point(80, 198);
             this.radioButtonTXT.Name = "radioButtonTXT";
             this.radioButtonTXT.Size = new System.Drawing.Size(121, 23);
             this.radioButtonTXT.TabIndex = 25;

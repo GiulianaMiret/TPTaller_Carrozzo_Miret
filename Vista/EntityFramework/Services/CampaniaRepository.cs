@@ -97,7 +97,11 @@ namespace EntityFramework.Services
                 if (mCampania.FechaInicio < pCampania.FechaInicio)
                 {
                     mCantidadDias = (mCampania.FechaFin.Date - pCampania.FechaInicio.Date).Days +1;
-                    for (int j = 0; j <= mCantidadDias; j++)
+                    if (mCantidadDias >= mMatrizHorarios.GetLength(1))
+                    {
+                        mCantidadDias = mMatrizHorarios.GetLength(1) - 1;
+                    }
+                    for (int j = 0; j <= (mCantidadDias); j++)
                     {
                         if (pCampania.Id != mCampania.Id)
                         {
@@ -127,6 +131,10 @@ namespace EntityFramework.Services
                     mCantidadDias = (mCampania.FechaFin.Date - mCampania.FechaInicio.Date).Days;
                     int mDiaInicio = (mCampania.FechaInicio.Date - pCampania.FechaInicio.Date).Days;
                     mCantidadDias = mCantidadDias + mDiaInicio;
+                    if (mCantidadDias >= mMatrizHorarios.GetLength(1))
+                    {
+                        mCantidadDias = mMatrizHorarios.GetLength(1) - 1;
+                    }
                     for (int j = mDiaInicio; j <= mCantidadDias; j++)
                     {
                         if (pCampania.Id != mCampania.Id)

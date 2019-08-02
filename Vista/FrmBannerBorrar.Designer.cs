@@ -49,7 +49,8 @@
             // 
             // labelNuevaCampania
             // 
-            this.labelNuevaCampania.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelNuevaCampania.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.labelNuevaCampania.AutoSize = true;
             this.labelNuevaCampania.BackColor = System.Drawing.Color.Transparent;
             this.labelNuevaCampania.Font = new System.Drawing.Font("Lucida Calligraphy", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -196,6 +197,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Vista.Properties.Resources.FondoSlogo;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(800, 480);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnBorrar);
@@ -204,6 +206,7 @@
             this.Controls.Add(this.labelNombre);
             this.Controls.Add(this.textBoxNombreBanner);
             this.Controls.Add(this.labelNuevaCampania);
+            this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmBannerBorrar";
             this.Text = "Shout News";

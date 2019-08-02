@@ -69,6 +69,10 @@ namespace EntityFramework.Services
                 if (mBanner.FechaInicio < pBanner.FechaInicio)
                 {
                     mCantidadDias = (mBanner.FechaFin.Date - pBanner.FechaInicio.Date).Days + 1;
+                    if (mCantidadDias >= mMatrizHorarios.GetLength(1))
+                    {
+                        mCantidadDias = mMatrizHorarios.GetLength(1) -1;
+                    }
                     for (int j = 0; j <= mCantidadDias; j++)
                     {
                         if (pBanner.Id != mBanner.Id)
@@ -99,6 +103,10 @@ namespace EntityFramework.Services
                     mCantidadDias = (mBanner.FechaFin.Date - mBanner.FechaInicio.Date).Days;
                     int mDiaInicio = (mBanner.FechaInicio.Date - pBanner.FechaInicio.Date).Days;
                     mCantidadDias = mCantidadDias + mDiaInicio;
+                    if (mCantidadDias >= mMatrizHorarios.GetLength(1))
+                    {
+                        mCantidadDias = mMatrizHorarios.GetLength(1) - 1;
+                    }
                     for (int j = mDiaInicio; j <= mCantidadDias; j++)
                     {
                         if (pBanner.Id != mBanner.Id)

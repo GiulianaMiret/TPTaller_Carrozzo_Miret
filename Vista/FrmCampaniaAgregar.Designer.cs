@@ -304,6 +304,7 @@
             // dataGridViewImagenesSeleccionadas
             // 
             this.dataGridViewImagenesSeleccionadas.AllowUserToAddRows = false;
+            this.dataGridViewImagenesSeleccionadas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewImagenesSeleccionadas.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dataGridViewImagenesSeleccionadas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewImagenesSeleccionadas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -326,6 +327,7 @@
             // dataGridViewTodasLasImagenes
             // 
             this.dataGridViewTodasLasImagenes.AllowUserToAddRows = false;
+            this.dataGridViewTodasLasImagenes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewTodasLasImagenes.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.ActiveCaption;

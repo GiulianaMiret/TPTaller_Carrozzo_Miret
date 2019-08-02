@@ -98,6 +98,10 @@ namespace Vista
                     if (mBanner.FechaInicio < mFechaInicio)
                     {
                         mCantidadDias = (mBanner.FechaFin.Date - mFechaInicio.Date).Days;
+                        if (mCantidadDias <= dataGridViewHorariosDisponibles.ColumnCount)
+                        {
+                            mCantidadDias = mCantidadColumnas;
+                        }
                         for (int i = 0; i <= mCantidadDias; i++)
                         {
                             if (mBanner.FechaInicio.Hour > mBanner.FechaFin.Hour)
@@ -125,6 +129,10 @@ namespace Vista
                         mCantidadDias = (mBanner.FechaFin.Date - mBanner.FechaInicio.Date).Days;
                         int mDiaInicio = (mBanner.FechaInicio.Date - mFechaInicio.Date).Days;
                         mCantidadDias = mCantidadDias + mDiaInicio;
+                        if (mCantidadDias <= dataGridViewHorariosDisponibles.ColumnCount)
+                        {
+                            mCantidadDias = mCantidadColumnas;
+                        }
                         for (int i = mDiaInicio; i <= mCantidadDias; i++)
                         {
                             if (mBanner.FechaInicio.Hour > mBanner.FechaFin.Hour)
