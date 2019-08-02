@@ -32,3 +32,6 @@
 2019-08-01 22:33:01,838 DEBUG [1] Vista.Logger.Logger4net.Debug - Se borra la Imagen: Id: 0, Nombre: asdasd
 2019-08-01 22:33:24,439 DEBUG [1] Vista.Logger.Logger4net.Debug - Se borra la Imagen: Id: 0, Nombre: asdasd
 2019-08-01 22:34:00,966 DEBUG [1] Vista.Logger.Logger4net.Debug - Se borra la Imagen: Id: 0, Nombre: asdasd
+2019-08-02 01:05:45,700 DEBUG [1] Vista.Logger.Logger4net.Debug - Actualizando las fuentes RSS..
+2019-08-02 01:05:45,748 DEBUG [1] Vista.Logger.Logger4net.Debug - Actualizando la fuente con id 2
+2019-08-02 01:05:46,430 DEBUG [1] Vista.Logger.Logger4net.Debug - Actualizando la fuente con id 4

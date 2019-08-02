@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProyectoFinal", "Vista\Proy
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TallerTest", "FachadaTest\TallerTest.csproj", "{6606E1B8-B932-47D4-9063-842E7B2DECB1}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ShoutNewsInstaller", "ShoutNewsInstaller\ShoutNewsInstaller.vdproj", "{2ECFC09D-41C7-46AD-BBCA-983F4077C82D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,8 @@ Global
 		{6606E1B8-B932-47D4-9063-842E7B2DECB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6606E1B8-B932-47D4-9063-842E7B2DECB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6606E1B8-B932-47D4-9063-842E7B2DECB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2ECFC09D-41C7-46AD-BBCA-983F4077C82D}.Debug|Any CPU.ActiveCfg = Debug
+		{2ECFC09D-41C7-46AD-BBCA-983F4077C82D}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
