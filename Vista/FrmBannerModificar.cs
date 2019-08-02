@@ -32,6 +32,11 @@ namespace Vista
             comboBoxTipoFuente.Text = "RSS";
         }
 
+        /// <summary>
+        /// Filtra: Busca un banner con los datos ingresados dentro del datagrid y muestra solo el resultado
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonBuscar_Click(object sender, EventArgs e)
         {
             List<Banner> mListaResultadoBusqueda = new List<Banner>();
@@ -47,6 +52,12 @@ namespace Vista
             dataGridViewBanners.DataSource = mListaResultadoBusqueda;
         }
 
+        /// <summary>
+        /// Busca todos los banner que se encuentran dentro del rango de fechas establecido y crea un datagridview
+        /// marcando con rojo las horas no disponibles
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonConsultarDisponibilidad_Click(object sender, EventArgs e)
         {
             dataGridViewHorariosDisponibles.Columns.Clear();
@@ -223,6 +234,11 @@ namespace Vista
 
         }
 
+        /// <summary>
+        /// Cambia las fuentes mostradas en el datagrid cuando se selecciona un tipo
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void comboBoxTipoFuente_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboBoxTipoFuente.Text == "RSS")
@@ -236,6 +252,12 @@ namespace Vista
             }
         }
 
+        /// <summary>
+        /// De todas las fuentes mostradas en el datagridview, toma la seleccionada actualmente
+        /// y carga sus datos en los campos correspondientes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonSeleccionarFuente_Click(object sender, EventArgs e)
         {
             if (dataGridViewFuentes.CurrentRow.Index != -1)
@@ -261,6 +283,11 @@ namespace Vista
 
         }
 
+        /// <summary>
+        /// Toma el banner seleccionado actualmente del datagridview y carga sus datos en los campos correspondientes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonCargar_Click(object sender, EventArgs e)
         {
             if (dataGridViewBanners.CurrentRow.Index != -1)
@@ -292,6 +319,11 @@ namespace Vista
             }
         }
 
+        /// <summary>
+        /// Verifica si están todos los datos necesarios cargados y guarda el banner que se modificó
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             try

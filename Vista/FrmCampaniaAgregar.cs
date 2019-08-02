@@ -25,6 +25,12 @@ namespace Vista
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Cuando inicia la pestaña, se buscan todos los nombres de las imagenes que estan en la base de datos
+        /// y se los lista en un datagridview
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FrmAgregarCampania_Load(object sender, EventArgs e)
         {
             IList<string> mListaNombres = cFachada.GetAllNamesFromImages();
@@ -44,6 +50,11 @@ namespace Vista
             }
         }
 
+        /// <summary>
+        /// Cada vez que se selecciona una celda del datagridview, se muestra la imagen en el picturebox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dataGridViewTodasLasImagenes_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if(dataGridViewTodasLasImagenes.CurrentRow.Cells[0].Value != null)
@@ -55,40 +66,60 @@ namespace Vista
 
         }
 
+        /// <summary>
+        /// Quita la imagen seleccionada del datagridview donde están todas y la agrega al datagridview 
+        /// donde estan las imagenes de la campaña
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonAgregarImagen_Click(object sender, EventArgs e)
         {
             if(dataGridViewTodasLasImagenes.CurrentRow.Cells[0].Value != null)
             {
+                //busca la imagen seleccionada
                 string mNombreImagen = dataGridViewTodasLasImagenes.CurrentRow.Cells[0].Value.ToString();
-
+                //Agrega al datagridview
                 dataGridViewImagenesSeleccionadas.Rows.Add(mNombreImagen);
                 dataGridViewImagenesSeleccionadas.Show();
-
+                //Quita del otro datagridview
                 dataGridViewTodasLasImagenes.Rows.Remove(dataGridViewTodasLasImagenes.CurrentRow);
                 dataGridViewTodasLasImagenes.Show();
-
+                //Agrega la imagen a la lista de imagenes que va a tener la campaña
                 cImagenesSeleccionadas.Add(mNombreImagen);
             }
 
         }
 
+        /// <summary>
+        /// Quita la imagen seleccionada del un datagridview de imagenes de la campaña y 
+        /// la agrega al datagridview donde estan todas las imagenes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonQuitarImagen_Click(object sender, EventArgs e)
         {
             if (dataGridViewImagenesSeleccionadas.CurrentRow.Cells[0].Value != null)
             {
+                //Busca la imagen seleccionada
                 string mNombreImagen = dataGridViewImagenesSeleccionadas.CurrentRow.Cells[0].Value.ToString();
-
+                //agrega la imagen al datagridview donde estan todas las imagenes de la base de datos
                 dataGridViewTodasLasImagenes.Rows.Add(mNombreImagen);
                 dataGridViewTodasLasImagenes.Show();
-
+                //Quita la imagen del datagridview de imagenes para la campaña
                 dataGridViewImagenesSeleccionadas.Rows.Remove(dataGridViewImagenesSeleccionadas.CurrentRow);
                 dataGridViewImagenesSeleccionadas.Show();
-
+                //Quita la imagen de la lista de imagenes de la campaña
                 cImagenesSeleccionadas.Remove(mNombreImagen);
             }
 
         }
 
+        /// <summary>
+        /// Busca todos los banner que se encuentran dentro del rango de fechas establecido y crea un datagridview
+        /// marcando con rojo las horas no disponibles
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonConsultarDisponibilidad_Click(object sender, EventArgs e)
         {
             dataGridViewHorariosDisponibles.Columns.Clear();
@@ -96,6 +127,7 @@ namespace Vista
 
             if (dateTimePickerCampaniaFechaInicio.Value.Date >= DateTime.Now.Date)
             {
+                //Crea el datagridview que se mostrará
                 if (dateTimePickerCampaniaFechaInicio.Value.Date <= dateTimePickerCampaniaFechaFin.Value.Date)
                 {
                     DateTime mFechaInicio = dateTimePickerCampaniaFechaInicio.Value;
@@ -124,11 +156,10 @@ namespace Vista
                         dataGridViewHorariosDisponibles.AutoResizeRowHeadersWidth(
                                                         DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders);
                     }
-                    //DGV Rangos Horarios Seleccionados
                     dataGridViewHorariosDisponibles.AutoGenerateColumns = false;
                     dataGridViewHorariosDisponibles.AutoSize = false;
 
-
+                    //Toma todas las campañas que se encuentran dentro de los dias indicados
                     Dictionary<string, List<Campania>> mDiccionario = cFachada.AvailableTimes(dateTimePickerCampaniaFechaInicio.Value, dateTimePickerCampaniaFechaFin.Value);
                     List<Campania> mListaCampaniasMenoresIguales = new List<Campania>();
                     mListaCampaniasMenoresIguales = mDiccionario["MenoresIguales"];
@@ -136,7 +167,7 @@ namespace Vista
                     mListaCampaniasIntermedias = mDiccionario["Intermedias"];
                     List<Campania> mListaCampaniasMayores = new List<Campania>();
                     mListaCampaniasMayores = mDiccionario["Mayores"];
-
+                    //completa el datagridview con el color rojo en los horarios ocupados
                     //Opción 1: 
                     int mCantidadDias = 0;
                     foreach (Campania mCampania in mListaCampaniasMenoresIguales)
@@ -265,7 +296,11 @@ namespace Vista
             }
         }
 
-
+        /// <summary>
+        /// Verifica los datos y guarda la nueva campaña
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCampaniaGuardar_Click(object sender, EventArgs e)
         {
             try
@@ -337,7 +372,7 @@ namespace Vista
                 }
 
                 List<Imagen> mListaImagenes = new List<Imagen>();
-
+                //Busca todas las imagenes seleccionadas por nombres y las agrega a la campaña
                 foreach (string mNombreImagen in cImagenesSeleccionadas)
                 {
                     Imagen mImagen = cFachada.GetImagenByName(mNombreImagen);

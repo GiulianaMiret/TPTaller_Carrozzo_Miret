@@ -64,7 +64,6 @@
             this.lblBanner.Size = new System.Drawing.Size(194, 38);
             this.lblBanner.TabIndex = 1;
             this.lblBanner.Text = "Shout News";
-            this.lblBanner.AutoSizeChanged += new System.EventHandler(this.lblBanner_AutoSizeChanged);
             // 
             // timerLabelBanner
             // 

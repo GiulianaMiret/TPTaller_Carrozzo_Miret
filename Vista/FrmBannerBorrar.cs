@@ -29,6 +29,11 @@ namespace Vista
             dataGridViewBanners.DataSource = cFachada.GetAllBanner();
         }
 
+        /// <summary>
+        /// Filtra: Busca un banner con los datos ingresados dentro del datagrid y muestra solo el resultado
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonBuscar_Click(object sender, EventArgs e)
         {
             List<Banner> mListaResultadoBusqueda = new List<Banner>();
@@ -44,6 +49,11 @@ namespace Vista
             dataGridViewBanners.DataSource = mListaResultadoBusqueda;
         }
 
+        /// <summary>
+        /// Borra el banner que está actualmente seleccionado del datagrid
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnBorrar_Click(object sender, EventArgs e)
         {
             try

@@ -29,7 +29,12 @@ namespace Vista
         {
             dataGridViewCampanias.DataSource = cFachada.GetAllCampania();
         }
-              
+
+        /// <summary>
+        /// Filtra: Busca una campaña con los datos ingresados dentro del datagrid y muestra solo el resultado
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonBuscar_Click(object sender, EventArgs e)
         {
             List<Campania> mListaResultadoBusqueda = new List<Campania>();
@@ -45,6 +50,11 @@ namespace Vista
             dataGridViewCampanias.DataSource = mListaResultadoBusqueda;
         }
 
+        /// <summary>
+        /// Borra la campaña que está actualmente seleccionado del datagridview
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnBorrar_Click(object sender, EventArgs e)
         {
             try

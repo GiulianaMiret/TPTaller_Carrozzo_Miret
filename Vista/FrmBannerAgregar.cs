@@ -27,17 +27,23 @@ namespace Vista
         private void FrmBannerAgregar_Load(object sender, EventArgs e)
         {
             comboBoxTipoFuente.Text = "RSS";
+            //Trae todas las fuentes de tipo RSS de la base de datos
             List<FuenteRSS> mListaFuenteRSS = cFachada.GetAllRSS().ToList();
             dataGridViewFuentes.DataSource = mListaFuenteRSS;
             
         }
 
-
+        /// <summary>
+        /// Busca todos los banner que se encuentran dentro del rango de fechas establecido y crea un datagridview
+        /// marcando con rojo las horas no disponibles
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonConsultarDisponibilidad_Click(object sender, EventArgs e)
         {
             dataGridViewHorariosDisponibles.Columns.Clear();
             dataGridViewHorariosDisponibles.Visible = true;
-
+            //Crea las filas y columnas del datagrid que se muestra en pantalla
             if (dateTimePickerBannerFechaInicio.Value.Date >= DateTime.Now.Date)
             {
                 if (dateTimePickerBannerFechaInicio.Value.Date <= dateTimePickerBannerFechaFin.Value.Date)
@@ -68,11 +74,10 @@ namespace Vista
                         dataGridViewHorariosDisponibles.AutoResizeRowHeadersWidth(
                                                         DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders);
                     }
-                    //DGV Rangos Horarios Seleccionados
                     dataGridViewHorariosDisponibles.AutoGenerateColumns = false;
                     dataGridViewHorariosDisponibles.AutoSize = false;
 
-
+                    //Trae todas los los banners que se encuentran entre las fechas ingresadas
                     Dictionary<string, List<Banner>> mDiccionario = cFachada.AvailableTimesBanner(dateTimePickerBannerFechaInicio.Value, dateTimePickerBannerFechaFin.Value);
                     List<Banner> mListaBannersMenoresIguales = new List<Banner>();
                     mListaBannersMenoresIguales = mDiccionario["MenoresIguales"];
@@ -80,7 +85,7 @@ namespace Vista
                     mListaBannersIntermedias = mDiccionario["Intermedias"];
                     List<Banner> mListaBannersMayores = new List<Banner>();
                     mListaBannersMayores = mDiccionario["Mayores"];
-
+                    //Completa el datagrid con el color rojo en los horarios donde hay un banner
                     //Opción 1: 
                     int mCantidadDias = 0;
                     foreach (Banner mBanner in mListaBannersMenoresIguales)
@@ -210,11 +215,15 @@ namespace Vista
 
         }
 
+        /// <summary>
+        /// Carga todos los datos de la fuente seleccionada en sus correspondientes componentes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonSeleccionarFuente_Click(object sender, EventArgs e)
         {
             if (dataGridViewFuentes.CurrentRow.Index != -1)
             {
-                
                 if(comboBoxTipoFuente.Text == "RSS")
                 {
                     FuenteRSS mFuente = new FuenteRSS { Id = Convert.ToInt32(dataGridViewFuentes["Id", dataGridViewFuentes.CurrentRow.Index].Value) };
@@ -234,6 +243,11 @@ namespace Vista
             }
         }
 
+        /// <summary>
+        /// Cambia las fuentes mostradas en el datagrid cuando se selecciona un tipo
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void comboBoxTipoFuente_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(comboBoxTipoFuente.Text == "RSS")
@@ -247,6 +261,11 @@ namespace Vista
             }
         }
 
+        /// <summary>
+        /// Verifica los datos y guarda el nuevo banner
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnBannerGuardar_Click(object sender, EventArgs e)
         {
             try
@@ -319,8 +338,6 @@ namespace Vista
                 cLogger.Debug(mCadena);
                 cFachada.AddBanner(mBanner);
                 MessageBox.Show("El Banner se ha guardado con éxito");
-                this.Close();
-
             }
             catch (Exception mExcepcion)
             {

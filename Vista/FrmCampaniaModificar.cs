@@ -26,6 +26,12 @@ namespace Vista
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Busca en la base de datos todas las campañas y las lista en un datagridview
+        /// Busca todas las imagenes y muestra sus nombres en un datagridview
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FrmModificarCampania_Load(object sender, EventArgs e)
         {
             IList<string> mListaNombres = cFachada.GetAllNamesFromImages();
@@ -43,6 +49,11 @@ namespace Vista
             dataGridViewCampanias.DataSource = cFachada.GetAllCampania();
         }
 
+        /// <summary>
+        /// Muestra la imágen en el picturebox cada vez que se selecciona una celda del datagridview
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dataGridViewTodasLasImagenes_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dataGridViewTodasLasImagenes.CurrentRow.Cells[0].Value != null)
@@ -53,6 +64,12 @@ namespace Vista
             }
         }
 
+        /// <summary>
+        /// Quita la imagen seleccionada del datagridview donde están todas y la agrega al datagridview 
+        /// donde estan las imagenes de la campaña
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonAgregarImagen_Click(object sender, EventArgs e)
         {
             if (dataGridViewTodasLasImagenes.CurrentRow.Cells[0].Value != null)
@@ -67,6 +84,12 @@ namespace Vista
             }
         }
 
+        /// <summary>
+        /// Quita la imagen seleccionada del un datagridview de imagenes de la campaña y 
+        /// la agrega al datagridview donde estan todas las imagenes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonQuitarImagen_Click(object sender, EventArgs e)
         {
             if (dataGridViewImagenesSeleccionadas.CurrentRow.Cells[0].Value != null)
@@ -81,6 +104,11 @@ namespace Vista
             }
         }
 
+        /// <summary>
+        /// Muestra en el picturebox la imagen seleccionada del datagridview
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dataGridViewImagenesSeleccionadas_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dataGridViewImagenesSeleccionadas.CurrentRow.Cells[0].Value != null)
@@ -91,13 +119,20 @@ namespace Vista
             }
         }
 
+        /// <summary>
+        /// Busca todos los banner que se encuentran dentro del rango de fechas establecido y crea un datagridview
+        /// marcando con rojo las horas no disponibles
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonConsultarDisponibilidad_Click(object sender, EventArgs e)
         {
             dataGridViewHorariosDisponibles.Columns.Clear();
             dataGridViewHorariosDisponibles.Visible = true;
-
+            
             if (dateTimePickerFechaInicioCampania.Value.Date <= dateTimePickerFechaFinCampania.Value.Date)
             {
+                //Crea el datagridview 
                 DateTime mFechaInicio = dateTimePickerFechaInicioCampania.Value;
                 DateTime mFechaFin = dateTimePickerFechaFinCampania.Value;
                 int mCantidadColumnas = (mFechaFin - mFechaInicio).Days;
@@ -124,10 +159,9 @@ namespace Vista
                     dataGridViewHorariosDisponibles.AutoResizeRowHeadersWidth(
                                                     DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders);
                 }
-                //DGV Rangos Horarios Seleccionados
                 dataGridViewHorariosDisponibles.AutoGenerateColumns = false;
                 dataGridViewHorariosDisponibles.AutoSize = false;
-
+                //Busca todas las campañas que estan dentro del rango de fechas establecidos
                 Dictionary<string, List<Campania>> mDiccionario = cFachada.AvailableTimes(dateTimePickerFechaInicioCampania.Value, dateTimePickerFechaFinCampania.Value);
                 List<Campania> mListaCampaniasMenoresIguales = new List<Campania>();
                 mListaCampaniasMenoresIguales = mDiccionario["MenoresIguales"];
@@ -136,6 +170,7 @@ namespace Vista
                 List<Campania> mListaCampaniasMayores = new List<Campania>();
                 mListaCampaniasMayores = mDiccionario["Mayores"];
                 Color mColor = new Color();
+                //Pinta las celdas del datagridview que están ocupadas por otra campaña
                 //Opción 1: 
                 int mCantidadDias = 0;
                 foreach (Campania mCampania in mListaCampaniasMenoresIguales)
@@ -299,6 +334,12 @@ namespace Vista
             }
         }
 
+        /// <summary>
+        /// Toma la vampaña seleccionado actualmente del datagridview y carga sus datos en los campos correspondientes
+        /// incluyendo las imágenes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonCargar_Click(object sender, EventArgs e)
         {
             dataGridViewHorariosDisponibles.Visible = false;
@@ -338,6 +379,12 @@ namespace Vista
             }
         }
 
+        /// <summary>
+        /// Filtra por nombre en el datagridview de todas las campañas, mostrando solo 
+        /// las que coincidan con el nombre escrito
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonBuscar_Click(object sender, EventArgs e)
         {
             List<Campania> mListaResultadoBusqueda = new List<Campania>();
@@ -354,7 +401,11 @@ namespace Vista
         }
 
 
-
+        /// <summary>
+        /// Verifica los datos ingresados y guarda los cambios realizados en la campaña
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             try
