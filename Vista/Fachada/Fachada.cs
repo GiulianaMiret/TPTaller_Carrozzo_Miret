@@ -421,19 +421,6 @@ namespace Controlador
                 
             }
             return null;
-
-                //var mCampaniaNow = cRepositoryBaseCampania.Filter(x => (DbFunctions.TruncateTime(x.FechaInicio) <= DbFunctions.TruncateTime(DateTime.Now)) &&
-                //                                                   (DbFunctions.TruncateTime(x.FechaFin) >= DbFunctions.TruncateTime(DateTime.Now)) &&
-                //                                                   (x.FechaInicio.Hour <= DateTime.Now.Hour) &&
-                //                                                   (x.FechaFin.Hour >= DateTime.Now.Hour)).FirstOrDefault();
-                //if(mCampaniaNow == null)
-                //{
-                //    mCampaniaNow = cRepositoryBaseCampania.Filter(x => (DbFunctions.TruncateTime(x.FechaInicio) <= DbFunctions.TruncateTime(DateTime.Now)) &&
-                //                                                   (DbFunctions.TruncateTime(x.FechaFin) >= DbFunctions.TruncateTime(DateTime.Now)) &&
-                //                                                   (x.FechaInicio.Hour <= DateTime.Now.Hour) &&
-                //                                                   (x.FechaFin.Hour <= DateTime.Now.Hour)).FirstOrDefault();
-                //}
-                //return mCampaniaNow;
         }
 
 
@@ -655,19 +642,6 @@ namespace Controlador
                 }
             }
             return null;
-
-            //var mBannerNow = cRepositoryBaseBanner.Filter(x => (DbFunctions.TruncateTime(x.FechaInicio) <= DbFunctions.TruncateTime(DateTime.Now)) &&
-            //                                                   (DbFunctions.TruncateTime(x.FechaFin) >= DbFunctions.TruncateTime(DateTime.Now)) &&
-            //                                                   (x.FechaInicio.Hour <= DateTime.Now.Hour) &&
-            //                                                   (x.FechaFin.Hour >= DateTime.Now.Hour)).FirstOrDefault();
-            //if (mBannerNow == null)
-            //{
-            //    mBannerNow = cRepositoryBaseBanner.Filter(x => (DbFunctions.TruncateTime(x.FechaInicio) <= DbFunctions.TruncateTime(DateTime.Now)) &&
-            //                                                   (DbFunctions.TruncateTime(x.FechaFin) >= DbFunctions.TruncateTime(DateTime.Now)) &&
-            //                                                   (x.FechaInicio.Hour <= DateTime.Now.Hour) &&
-            //                                                   (x.FechaFin.Hour <= DateTime.Now.Hour)).FirstOrDefault();
-            //}
-            //return mBannerNow;
         }
 
         public void DeleteBanner(Banner pBanner)

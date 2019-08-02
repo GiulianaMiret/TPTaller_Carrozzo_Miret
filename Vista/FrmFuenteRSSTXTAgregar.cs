@@ -97,7 +97,7 @@ namespace Vista
             {
                 foreach (var mRSS in mListOfRSS)
                 {
-                    cFachada.UpdateValueRSS(mRSS);
+                    mRSS.Actualizar();
                 }
                 MessageBox.Show("Las fuentes han sido actualizadas correctamente");
             }

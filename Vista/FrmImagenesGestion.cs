@@ -129,7 +129,7 @@ namespace Vista
                 DialogResult mMessageBoxResultado = MessageBox.Show("¿Desea borrar la Imagen?", "Borrar Imagen", MessageBoxButtons.YesNo);
                 if (mMessageBoxResultado == DialogResult.Yes)
                 {
-                    string mCadena = "Se borra la Imagen: Id: " + mImagenABorrar.Id + ", Nombre: " + mImagenABorrar.Nombre;
+                    string mCadena = "Se borra la Imagen: Nombre: " + mImagenABorrar.Nombre;
                     cLogger.Debug(mCadena);
                     cFachada.DeleteImagen(mImagenABorrar);
                     MessageBox.Show("Se borró correctamente la imagen.");
