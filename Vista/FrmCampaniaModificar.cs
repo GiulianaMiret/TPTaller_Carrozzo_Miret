@@ -38,7 +38,7 @@ namespace Vista
             {
                 string mNombreImagen = dataGridViewTodasLasImagenes.CurrentRow.Cells[0].Value.ToString();
                 Imagen mImagen = cFachada.GetImagenByName(mNombreImagen);
-                pictureBoxVistaPreviaImagenes.Image = Utilidades.ByteToImage(mImagen.Hash);
+                pictureBoxVistaPreviaImagenes.Image = cFachada.ByteToImage(mImagen.Hash);
             }            
             dataGridViewCampanias.DataSource = cFachada.GetAllCampania();
         }
@@ -49,7 +49,7 @@ namespace Vista
             {
                 string mNombreImagen = dataGridViewTodasLasImagenes.CurrentRow.Cells[0].Value.ToString();
                 Imagen mImagen = cFachada.GetImagenByName(mNombreImagen);
-                pictureBoxVistaPreviaImagenes.Image = Utilidades.ByteToImage(mImagen.Hash);
+                pictureBoxVistaPreviaImagenes.Image = cFachada.ByteToImage(mImagen.Hash);
             }
         }
 
@@ -87,7 +87,7 @@ namespace Vista
             {
                 string mNombreImagen = dataGridViewImagenesSeleccionadas.CurrentRow.Cells[0].Value.ToString();
                 Imagen mImagen = cFachada.GetImagenByName(mNombreImagen);
-                pictureBoxImagenesActuales.Image = Utilidades.ByteToImage(mImagen.Hash);
+                pictureBoxImagenesActuales.Image = cFachada.ByteToImage(mImagen.Hash);
             }
         }
 
